@@ -1,0 +1,2109 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Individual Project}
+\chead{Name: Rhea Potdar}
+\rhead{CID: 00603104} 
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language british
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman utopia
+\font_sans default
+\font_typewriter default
+\font_default_family rmdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\boxbgcolor #d3d3d3
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 4cm
+\rightmargin 3cm
+\bottommargin 4cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Individual Project Interim Report
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Motivation
+\end_layout
+
+\begin_layout Subsection
+Objectives
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Background
+\end_layout
+
+\begin_layout Subsection
+Markov Chains
+\end_layout
+
+\begin_layout Standard
+In order to comprehend Markov Chains and Markov Processes, one must be familiar
+ with stochastic processes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 1.1
+\end_layout
+
+\begin_layout Plain Layout
+A 
+\series bold
+stochastic process S
+\series default
+ is defined as a family of random variables 
+\begin_inset Formula $\{X_{t}\in\Omega\text{ | }t\text{ }\in\text{ }T\}$
+\end_inset
+
+ , which take values from some sample space 
+\begin_inset Formula $\Omega$
+\end_inset
+
+ and are indexed by values from some parameter space 
+\begin_inset Formula $T$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\Omega$
+\end_inset
+
+ and 
+\begin_inset Formula $T$
+\end_inset
+
+ may be either discrete or continuous.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A 
+\series bold
+Markov chain
+\series default
+ is a stochastic process that has the 
+\emph on
+Markov Property
+\emph default
+ with a countable sample space (or state space) 
+\begin_inset Formula $\Omega$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 1.2
+\end_layout
+
+\begin_layout Plain Layout
+The 
+\series bold
+Markov Property (MP)
+\series default
+ states that
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray}
+P(X_{t}+s=j\mbox{ | }X_{u},\mbox{ }u\text{≤}t) & = & P(X_{t}+s=j\mbox{ | }X_{t})\label{eq:Markov Property}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+This states that the conditional probability distribution of future states
+ depends only on the current state and not the events that preceded it.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Alternatively Markov chains can also be defined as labelled transition systems,
+ undergoing transitions with different rates between finite number of possible
+ states.
+\end_layout
+
+\begin_layout Subsubsection
+Discrete Time Markov Chains
+\end_layout
+
+\begin_layout Standard
+Discrete Time Markov Chains (DTMC) are Markov chains with a parameter space
+ T consisting of discrete times 
+\begin_inset Formula $\{t_{0},t_{1},...\}$
+\end_inset
+
+.
+ We are interested in the behaviour of a DTMC at equilibrium and the following
+ results are used in defining it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 1.3
+\end_layout
+
+\begin_layout Plain Layout
+The m-step transition probabilities of a Markov chain defined as
+\end_layout
+
+\begin_layout Plain Layout
+
+\family sans
+\begin_inset Formula 
+\begin{eqnarray*}
+q_{ij}^{(m)} & = & P(X_{n+m}=j\mbox{ }|\mbox{ }X_{n}=i),\mbox{ }(m\geq1)\\
+ & = & (Q^{m})_{ij}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since we are interested in the long term behaviour of DTMC, we can use its
+ m-step transition probabilities to calculate the probabilistic behaviour
+ of DTMC over any finite period of time.
+ Thus the probability of a DTMC being in an arbitrary state j at equilibrium
+ is defined as:
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{j} & = & lim_{n\to\infty}P(X_{n}=j\mbox{ |}X_{0}=i)\\
+ & = & lim_{n\to\infty}(Q^{n})_{ij}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 1.4
+\end_layout
+
+\begin_layout Plain Layout
+If C is a subset of states, then it is called 
+\series bold
+closed
+\series default
+ if j 
+\begin_inset Formula $\notin$
+\end_inset
+
+ C implies j cannot be reached from any i 
+\begin_inset Formula $\in$
+\end_inset
+
+ C .
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If 
+\begin_inset Formula $\nexists$
+\end_inset
+
+ a proper subset 
+\begin_inset Formula $C\subset\Omega$
+\end_inset
+
+ which is closed, then the Markov chain is called 
+\emph on
+irreducible
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 1.6
+\end_layout
+
+\begin_layout Plain Layout
+The state j is 
+\series bold
+periodic
+\series default
+ with period 
+\begin_inset Formula $m>1$
+\end_inset
+
+ if 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+q_{ii}^{(k)}=0 & , & k\neq rm\mbox{ for any }r\geq1
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+and 
+\begin_inset Formula 
+\begin{eqnarray*}
+P(X_{n+rm}=j\mbox{ for some }r\geq1\mbox{ | }X_{n}=j) & = & 1
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Otherwise the state is 
+\emph on
+aperiodic
+\emph default
+, or has period 1.
+ An aperiodic DTMC is one in which all states are aperiodic.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 1.5
+\end_layout
+
+\begin_layout Plain Layout
+Let 
+\begin_inset Formula $m_{j}$
+\end_inset
+
+ is the mean interval between successive visits to state j.
+ If 
+\begin_inset Formula $m_{j}<\infty$
+\end_inset
+
+ and
+\begin_inset Formula $\pi_{j}=1/m_{j}$
+\end_inset
+
+, then 
+\begin_inset Formula $\pi_{j}>0$
+\end_inset
+
+ and state 
+\begin_inset Formula $j$
+\end_inset
+
+ is recurrent non-null or 
+\series bold
+positive recurrent
+\series default
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A positive recurrent DTMC is a DTMC in which all states are positive recurrent.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Proposition 1.1
+\end_layout
+
+\begin_layout Plain Layout
+If 
+\begin_inset Formula $\mbox{\{}X_{n}\mbox{ | }n=0,1,...\mbox{\}}$
+\end_inset
+
+ is an irreducible, aperiodic Markov chain, then the limiting probabilities
+ 
+\begin_inset Formula $\mbox{\{}\pi_{j}|j=0,1,...\mbox{\}}$
+\end_inset
+
+ exist and
+\begin_inset Formula $\pi_{j}=1/m_{j}$
+\end_inset
+
+ where 
+\begin_inset Formula $m_{j}$
+\end_inset
+
+ is the mean interval between successive visits to state j.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When the limiting probabilities 
+\begin_inset Formula $\mbox{\{}\mbox{\pi_{j}}|j=0,1,...\mbox{\}}$
+\end_inset
+
+ do exist, they form the steady state probability distribution (SSPD) of
+ a DTMC.
+ This is formally defined by the following Theorem 1.1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Theorem 1.1
+\end_layout
+
+\begin_layout Plain Layout
+An irreducible, aperiodic Markov Chain, 
+\begin_inset Formula $X$
+\end_inset
+
+, with state space 
+\begin_inset Formula $S$
+\end_inset
+
+ and one-step transition probability matrix 
+\begin_inset Formula $Q=(q_{ij}\mbox{ | }i,j\in S)$
+\end_inset
+
+ , is positive recurrent if and only if the system of equations
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{j} & = & \sum_{i\in S}\pi_{i}q_{ij}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+and (normalisation):
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+\sum_{i\in S}\pi_{i} & = & 1
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+has a solution.
+ If it exists, the solution is unique and is the SSPD of X.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Markov Processes
+\end_layout
+
+\begin_layout Standard
+A Markov process(MP) is a stochastic process, which has a 
+\emph on
+continuous
+\emph default
+ parameter space T, discrete sample space 
+\begin_inset Formula $\Omega$
+\end_inset
+
+ and the 
+\emph on
+Markov property
+\emph default
+ (refer equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Markov Property"
+
+\end_inset
+
+).
+ They can also be defined as Markov chains with continuous time parameters.
+ 
+\end_layout
+
+\begin_layout Standard
+A Markov process is 
+\emph on
+time homogenous
+\emph default
+ if the transition probability function of MP, 
+\begin_inset Formula $q_{ij}(s)=P(X_{t+s}=j\mbox{ | }X_{t}=i)$
+\end_inset
+
+ , is independent of 
+\begin_inset Formula $t$
+\end_inset
+
+, or equivalently 
+\begin_inset Formula $q_{ij}(s)=P(X_{s}=j\mbox{ | }X_{0}=i)$
+\end_inset
+
+.
+ Markov Property and time homogeneity imply the 
+\emph on
+memoryless property
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 2.1
+\end_layout
+
+\begin_layout Plain Layout
+The 
+\series bold
+memoryless property
+\series default
+ of a Markov process states that if at time 
+\begin_inset Formula $t$
+\end_inset
+
+ the process is in state 
+\begin_inset Formula $j$
+\end_inset
+
+, the time remaining in state 
+\begin_inset Formula $j$
+\end_inset
+
+ is independent of the time already spent in state 
+\begin_inset Formula $j$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using time homogeneity, the generators 
+\begin_inset Formula $a_{ij}$
+\end_inset
+
+ of a Markov Process can be uniquely determined by the products:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+a_{ij} & = & \mu_{i}q_{ij}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\mu_{i}$
+\end_inset
+
+ is the rate out of state 
+\begin_inset Formula $i$
+\end_inset
+
+ and 
+\begin_inset Formula $q_{ij}$
+\end_inset
+
+ is the probability of selecting state 
+\begin_inset Formula $j$
+\end_inset
+
+ next.
+ 
+\begin_inset Formula $a_{ij}$
+\end_inset
+
+ is also the instantaneous transition rate from state 
+\begin_inset Formula $i$
+\end_inset
+
+ to state 
+\begin_inset Formula $j$
+\end_inset
+
+, 
+\begin_inset Formula $i\neq j$
+\end_inset
+
+.
+ They also form A, generator matrix of the Markov Process, in which all
+ rows sum to zero by setting 
+\begin_inset Formula $q_{ii}=−\mu_{i}$
+\end_inset
+
+.
+ So 
+\begin_inset Formula $A=(a_{ij})$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Subsubsection
+Steady State Probability Distribution (SSPD) of the Markov Process
+\end_layout
+
+\begin_layout Standard
+If a Markov Process is positive recurrent, the limits 
+\begin_inset Formula $p_{j}$
+\end_inset
+
+ exist, then 
+\begin_inset Formula $p_{j}>0,\sum_{j\in S}p_{j}=1$
+\end_inset
+
+ and {
+\begin_inset Formula $p_{j}\mbox{ | }j\in S$
+\end_inset
+
+} constitute the SSPD of the Markov Process.
+ This is formally defined by Theorem 2.1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Theorem 2.1 
+\end_layout
+
+\begin_layout Plain Layout
+An irreducible Markov Process 
+\begin_inset Formula $X$
+\end_inset
+
+ with state space 
+\begin_inset Formula $S$
+\end_inset
+
+ and generator matrix 
+\begin_inset Formula $A=(a_{ij})\mbox{ }(i,j\in S)$
+\end_inset
+
+ is positive recurrent if and only if
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\forall j\in S$
+\end_inset
+
+ , Balance equations:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+\sum_{i\in S}\pi_{i}a_{ij} & = & 0\mbox{ }
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+and Normalising equation:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray}
+\sum_{i\in S}\pi_{i} & = & 1\label{eq:Normalising_Eq_MP}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+have a solution.
+ This solution is unique and is the SSPD.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From Theorem 2.1, we can rewrite the balance equations as 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\sum_{j\neq i}\pi_{i}a_{ij} & = & \sum_{j\neq i}\pi_{j}a_{ji}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Following gives the justification of the balance equations:
+\end_layout
+
+\begin_layout Standard
+In equilibrium, 
+\begin_inset Formula $\pi_{i}$
+\end_inset
+
+ is the proportion of time that the process spends in state 
+\begin_inset Formula $i$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{ij}$
+\end_inset
+
+ is the rate at which the process goes from state 
+\begin_inset Formula $i\to j\mbox{ }(j\neq i)$
+\end_inset
+
+.
+ Thus, in unit time, the expected number of transitions from state 
+\begin_inset Formula $i$
+\end_inset
+
+ to state 
+\begin_inset Formula $j$
+\end_inset
+
+ is 
+\begin_inset Formula $\pi_{i}a_{ij}$
+\end_inset
+
+ .
+ This quantity is called the 
+\emph on
+probability flux
+\emph default
+ from state 
+\begin_inset Formula $i$
+\end_inset
+
+ to 
+\begin_inset Formula $j$
+\end_inset
+
+.
+ So we can infer that the left-hand side of the balance equation for state
+ 
+\begin_inset Formula $i$
+\end_inset
+
+ is the total flux out of state 
+\begin_inset Formula $i$
+\end_inset
+
+ to any other state.
+ Similarly, the right-hand side is the total flux into state 
+\begin_inset Formula $i$
+\end_inset
+
+ from any other state.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\implies\forall j$
+\end_inset
+
+ , the fluxes balance:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+\sum_{i\neq j}flux(i\to j) & = & \sum_{i\neq j}flux(j\to i)\label{eq:BalanceEquations}
+\end{eqnarray}
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Example - Poisson Process
+\end_layout
+
+\begin_layout Standard
+The Poisson process is a renewal process with renewal period (inter-arrival
+ time) having cumulative distribution function 
+\begin_inset Formula $F$
+\end_inset
+
+ and probability density function (pdf) 
+\begin_inset Formula $f$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+F(x) & = & P(X\leq x)=1-e-\lambda x\\
+f(x) & = & F'(x)=\lambda e-\lambda x
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where λ is the rate of the Poisson process.
+ Since its an example of a Markov process its probability of arrival in
+ period 
+\begin_inset Formula $(t,t+h)$
+\end_inset
+
+ is independent of the process history before 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ So by memoryless property:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+P(\mbox{arrival in }(t,t+h)) & = & 1-e^{-\lambda h}\\
+ & = & \lambda h+o(h)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From the above result we get the instantaneous transition rates which can
+ be then used to find the SSPD for the process.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+a_{ij} & = & \begin{cases}
+\lambda & \mbox{if }j=i+1\\
+0 & \mbox{if}j\neq i,i+1\\
+ & \mbox{not defined if}j=i
+\end{cases}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Birth-Death Processes
+\end_layout
+
+\begin_layout Standard
+Birth-death process is a special case of Markov Process with state space
+ 
+\begin_inset Formula $\{0,1,...\}$
+\end_inset
+
+ in which a one-step transition can only change the current state by one
+ unit, so if 
+\begin_inset Formula $i\to j$
+\end_inset
+
+ then 
+\begin_inset Formula $|i-j|=1$
+\end_inset
+
+.
+ This process thus has only non-zero transition probabilities - 
+\begin_inset Formula $a_{i,i+1}$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{i+1,i}\mbox{ }(i\geq0)$
+\end_inset
+
+ , representing 
+\emph on
+births
+\emph default
+ and 
+\emph on
+deaths
+\emph default
+ respectively.
+ This ensures the population need not become extinct when state 0 is reached
+ which is useful while considering queues, where arrivals can join an empty
+ queue, represented by state 0.
+ The SSPD of this process is discussed later taking M/M/1 queue as an example.
+\end_layout
+
+\begin_layout Subsection
+Single Server Queue (SSQ)
+\end_layout
+
+\begin_layout Standard
+The Single Server Queue Model - SSQ - is a birth-death process that consists
+ of 
+\end_layout
+
+\begin_layout Itemize
+a Poisson arrival process with a rate of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+a queue which the arriving tasks join
+\end_layout
+
+\begin_layout Itemize
+a server with a FIFO queuing discipline and exponentially distributed service
+ times with parameter 
+\begin_inset Formula $\mu$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+The M/M/1 queue is an example of the SSQ model.
+\end_layout
+
+\begin_layout Subsubsection
+Kendall's Notation
+\end_layout
+
+\begin_layout Standard
+Queues are classified according to Kendall's notation, which defines the
+ class 
+\emph on
+A/S/m/K/N/D 
+\emph default
+as:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+A
+\emph default
+ describes the nature of the arrival process.
+ For example if the process is Poisson, then 
+\begin_inset Formula $A=M$
+\end_inset
+
+ for Markovian.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+S
+\emph default
+ describes the service time distribution.
+ 
+\begin_inset Formula $S=M$
+\end_inset
+
+ for a Markovian(exponential) service time distribution, while 
+\begin_inset Formula $S=G$
+\end_inset
+
+ stands for a general or non-Markovian service time distribution.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+m
+\emph default
+ denotes the number of servers available to give service to customers in
+ the queue.
+ 
+\begin_inset Formula $m=1$
+\end_inset
+
+refers to a single server, while 
+\begin_inset Formula $m=m$
+\end_inset
+
+ shows a parallel server.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+K
+\emph default
+ denotes the capacity of the system or the maximum number of customers allowed
+ in the system
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+N 
+\emph default
+denotes the size of the population from which the customers come.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+D
+\emph default
+ denotes the queuing discipline or priority order in which customers are
+ served in the queue.
+\end_layout
+
+\begin_layout Standard
+In this paper, the concise form - 
+\series bold
+\emph on
+A/S/m
+\series default
+\emph default
+ - is used and default values 
+\begin_inset Formula $K=\infty,\mbox{ }N=\infty,\mbox{ }D=FIFO$
+\end_inset
+
+ are assumed.
+\end_layout
+
+\begin_layout Subsubsection
+M/M/1 Queue
+\end_layout
+
+\begin_layout Standard
+The M/M/1 queue is an example of the SSQ model with a Poisson arrival process
+ rate 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, Markovian service time distribution rate 
+\begin_inset Formula $\mu$
+\end_inset
+
+, unlimited server capacity and infinite calling population.
+ The rates 
+\begin_inset Formula $\lambda\mbox{ , }\mu$
+\end_inset
+
+ are general functions of the queue length; so when the queue length is
+ n, we write them as 
+\begin_inset Formula $\lambda(n)\mbox{ ,}\mu(n)$
+\end_inset
+
+.
+ Considering the M/M/1 queue in equilibrium, in the steady state, we can
+ write down the probability flux balance equations passing in and out of
+ the states enclosed in the contour shown in Figure 1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/MM1_Queue_state_transition.png
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+M/M/1 Queue state diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There is only one arc leaving the contour and one incoming arc.
+ The balance equations are therefore, 
+\end_layout
+
+\begin_layout Standard
+Outward flux (all from state 
+\begin_inset Formula $i$
+\end_inset
+
+):
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\pi_{i}\lambda(i)$
+\end_inset
+
+ , 
+\begin_inset Formula $\forall i\geq0\mbox{, }i\in S$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Inward flux (all from state 
+\begin_inset Formula $i+1$
+\end_inset
+
+): 
+\begin_inset Formula $\pi_{i+1}\mu(i+1)$
+\end_inset
+
+ , 
+\begin_inset Formula $\forall i\geq0\mbox{, }i\in S$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\implies$
+\end_inset
+
+ balance equations (using equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:BalanceEquations"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{i}\lambda(i) & = & \pi_{i+1}\mu(i+1)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+So,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{i+1} & = & \frac{\lambda(i)}{\mu(i+1)}\pi_{i}\\
+ & = & [\prod_{j=0}^{i}\rho(j)]\mbox{ }\pi_{0}\\
+\mbox{where }\rho(j) & = & \frac{\lambda(i)}{\mu(i+1)}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The Normalising equation (refer equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Normalising_Eq_MP"
+
+\end_inset
+
+) implies that
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{0}(1+\sum_{i=0}^{\infty}\prod_{j=0}^{i}\rho(j)) & = & 1
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Solving the equation gives the steady state probability 
+\begin_inset Formula $\pi_{i}$
+\end_inset
+
+ for any state 
+\begin_inset Formula $i\geq0$
+\end_inset
+
+: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{i} & = & \frac{\prod_{j=0}^{i-1}\rho(j)}{\sum_{k=0}^{\infty}\prod_{n=0}^{k-1}\rho(n)}\mbox{ }(i\geq0)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In a classical M/M/1 queue, the arrival and service rates, 
+\begin_inset Formula $\lambda\mbox{ and }\mu$
+\end_inset
+
+ respectively, are constant.
+ So 
+\begin_inset Formula $\forall n\in S$
+\end_inset
+
+ , 
+\begin_inset Formula $\lambda(n)=\lambda\mbox{ , }\mu(n)=\mu\mbox{ , }\rho(n)=\rho=\frac{\lambda}{\mu}$
+\end_inset
+
+ .
+ This implies,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+\pi_{i} & = & \frac{\prod_{j=0}^{i-1}\rho^{j}}{\sum_{k=0}^{\infty}\prod_{n=0}^{k-1}\rho^{n}}\nonumber \\
+ & = & (1-\rho)\rho^{i}\mbox{ }(i\geq0)\label{eq:SSPD_of_MM1Q}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The derived result (equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:SSPD_of_MM1Q"
+
+\end_inset
+
+) is the simplified version of the SSPD of M/M/1 queues.
+\end_layout
+
+\begin_layout Standard
+Since this (equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:SSPD_of_MM1Q"
+
+\end_inset
+
+) is a geometric mass probability function, it is easy to deduce the mean
+ length of the queue 
+\begin_inset Formula $(L)$
+\end_inset
+
+ and utilisation of the server 
+\begin_inset Formula $(U)$
+\end_inset
+
+ in equilibrium.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+L & = & \frac{\rho}{(1-\rho)}\\
+U & = & 1-p_{0}=\rho
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It can be noted here that, the mean arrival rate 
+\begin_inset Formula $(\lambda)$
+\end_inset
+
+ is equal to the mean departure rate 
+\begin_inset Formula $(U\mu)$
+\end_inset
+
+ in steady state, as required.
+\end_layout
+
+\begin_layout Standard
+The above analysis and argument applies to any system in equilibrium.
+\end_layout
+
+\begin_layout Subsection
+Reversed Processes
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+reversed process
+\emph default
+ of a stationary Markov process is a stochastically identical process (to
+ the original MP) with the same state space but in which the direction of
+ time has been reversed.
+ Knowledge of the reversed process allows us solve balance equations of
+ a Markov process in equilibrium and therefore obtain product-form stationary
+ distributions of complex processes such queuing network models.
+ Thus comprehension of reversed processes helps in applying the RCAT theorem
+ (discussed in Section 2.7).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 4.1
+\end_layout
+
+\begin_layout Plain Layout
+A stochastic process 
+\begin_inset Formula $\{X_{t}\mbox{ | }-\infty<t<\infty\}$
+\end_inset
+
+ is 
+\series bold
+stationary 
+\series default
+if 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+(X_{t_{1}}\mbox{, }X_{t_{2}},\mbox{... , }X_{t_{n}}) & \mbox{\emph{ }and} & (X_{t_{1}+\tau}\mbox{, }X_{t_{2}+\tau},\mbox{... , }X_{t_{n}+\tau})
+\end{eqnarray*}
+
+\end_inset
+
+and have the same probability distribution for all times 
+\begin_inset Formula $t_{1}\mbox{ , }t_{2}\mbox{ , .... , }t_{n}\mbox{ and }\tau$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 4.2
+\end_layout
+
+\begin_layout Plain Layout
+A stochastic process 
+\begin_inset Formula $\{X_{t}\mbox{ | }-\infty<t<\infty\}$
+\end_inset
+
+ is 
+\series bold
+reversible 
+\series default
+if 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+(X_{t_{1}}\mbox{, }X_{t_{2}},\mbox{... , }X_{t_{n}}) & \mbox{\emph{ }and} & (X_{\tau-t_{1}}\mbox{, }X_{\tau-t_{2}},\mbox{... , }X_{\tau-t_{n}})
+\end{eqnarray*}
+
+\end_inset
+
+and have the same probability distribution for all times 
+\begin_inset Formula $t_{1}\mbox{ , }t_{2}\mbox{ , .... , }t_{n}\mbox{ and }\tau$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Definitions 4.1 and 4.2 relate a stationary Markov process to its reversed
+ process.
+ Thus the reversed process of a Markov process 
+\begin_inset Formula $\{X_{t}\}$
+\end_inset
+
+ will be the stationary process 
+\begin_inset Formula $\{X_{\tau-t}\}$
+\end_inset
+
+ for any real number 
+\begin_inset Formula $\tau$
+\end_inset
+
+.
+ We can also define a reversed process in terms of balance conditions of
+ a stationary Markov process as in the following proposition 4.1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Proposition 4.1
+\end_layout
+
+\begin_layout Plain Layout
+A stationary Markov process 
+\begin_inset Formula $\{X_{t}\}$
+\end_inset
+
+ with a generator matrix 
+\begin_inset Formula $A=(a_{ij})$
+\end_inset
+
+ is reversible if and only if there exists a collection of positive real
+ numbers 
+\begin_inset Formula $\{\pi_{k}\mbox{ | }k\in S\}$
+\end_inset
+
+ satisfying the detailed balance equations:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{i}a_{ij}=\pi_{j}a_{ji} &  & (\forall i,j\in S,i\neq j)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Proposition 4.1 would be useful to detect a reversible Markov process but
+ most Markov processes are not reversible.
+ Thus a method is required to define a reversed process 
+\begin_inset Formula $\{X_{\tau-t}\}$
+\end_inset
+
+ for an irreversible Markov process 
+\begin_inset Formula $\{X_{t}\}$
+\end_inset
+
+.
+ The stationary distribution 
+\begin_inset Formula $\pi$
+\end_inset
+
+ is the same for both the processes and thus the we can relate the instantaneous
+ transition rates of reversed process to those of the original process by
+ the following proposition 4.2.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Proposition 4.2
+\end_layout
+
+\begin_layout Plain Layout
+The reversed process of a stationary Markov process 
+\begin_inset Formula ${X_{t}}$
+\end_inset
+
+ with state space 
+\begin_inset Formula $S$
+\end_inset
+
+, generator matrix 
+\begin_inset Formula $A$
+\end_inset
+
+ and stationary probabilities 
+\series bold
+
+\begin_inset Formula $\mathbf{\pi}$
+\end_inset
+
+
+\series default
+ is a stationary Markov process with generator matrix 
+\begin_inset Formula $A′$
+\end_inset
+
+ defined by
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray}
+a'_{ij}=\frac{\pi_{j}a_{ji}}{\pi_{i}} &  & \forall i,j\in S\label{eq:BalanceEquation_RP}
+\end{eqnarray}
+
+\end_inset
+
+and with the same stationary probabilities 
+\series bold
+
+\begin_inset Formula $\mathbf{\pi}$
+\end_inset
+
+
+\series default
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+<INSERT Proof?>
+\end_layout
+
+\begin_layout Standard
+The equilibrium distribution of stationary Markov process can be found using
+ the above result by 
+\emph on
+guessing
+\emph default
+ possible instantaneous transition rates 
+\begin_inset Formula $\{a'_{ij}\mbox{ | }i,j\in S\}$
+\end_inset
+
+ for the reversed process and a collection of positive real numbers 
+\begin_inset Formula $\{\pi_{i}\mbox{ | }i\in S\}$
+\end_inset
+
+ which sum finitely to 
+\begin_inset Formula $G$
+\end_inset
+
+ such that
+\end_layout
+
+\begin_layout Itemize
+The total rate out of state 
+\begin_inset Formula $i$
+\end_inset
+
+ is the same for reversed and original process: 
+\begin_inset Formula $a'_{i}=a_{i}\mbox{ }(\forall i\in S)$
+\end_inset
+
+ where 
+\begin_inset Formula $a_{i}\equiv-a_{ii}$
+\end_inset
+
+ is the total rate out of state 
+\begin_inset Formula $i$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\pi_{i}a'_{ij}\mbox{ }=\mbox{ }\pi_{j}a_{ji}\mbox{ }(\forall i\mbox{ , }j\in S\mbox{ , }i\neq j)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These conditions ensure that 
+\begin_inset Formula $\pi$
+\end_inset
+
+ satisfies the Markov process balance equations and thus the steady state
+ probabilities are 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula $\{\pi_{i}/G\mbox{ | }i\in S\}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ by uniqueness.
+\end_layout
+
+\begin_layout Standard
+But this methodology depends on making the 'right guesses' of the unknown
+ vector 
+\begin_inset Formula $\pi$
+\end_inset
+
+ - the equilibrium state probabilities.
+ Since 
+\begin_inset Formula $\pi$
+\end_inset
+
+ is defined by the generators of a Markov process, its instantaneous transition
+ rates, another methodology which finds reversed processes without reference
+ to 
+\begin_inset Formula $\pi$
+\end_inset
+
+ can be useful.
+ The following proposition, called 
+\emph on
+Kolmogorov’s criteria,
+\emph default
+ provides this by placing conditions only on the instantaneous rates of
+ a Markov process.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Proposition 4.3 - Kolmogorov’s generalised criteria
+\end_layout
+
+\begin_layout Plain Layout
+A stationary Markov process with state space 
+\begin_inset Formula $S$
+\end_inset
+
+ and generator matrix 
+\begin_inset Formula $A$
+\end_inset
+
+ has a reversed process with generator matrix 
+\begin_inset Formula $A'$
+\end_inset
+
+ if and only if
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+a'_{i}=a_{i} &  & \forall i\in S
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+and for every finite sequence of states 
+\begin_inset Formula $i_{1}\mbox{, }i_{2}\mbox{, ..., }i_{n}\in S$
+\end_inset
+
+ ,
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray}
+a_{i_{1}i_{2}}a_{i_{2}i_{3}}\mbox{. . . }a_{i_{n-1}i_{n}}a_{i_{n}i_{1}} & = & a'_{i_{1}i_{n}}a'_{i_{n}i_{n-1}}\mbox{ . . . }a'_{i_{3}i_{2}}a'_{i_{2}i_{1}}\label{eq:KolmogorovCriteria_RP}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As mentioned, Proposition 4.3 can be used to find the instantaneous transition
+ rates of the reversed process 
+\begin_inset Formula $A'$
+\end_inset
+
+ and then use Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:BalanceEquation_RP"
+
+\end_inset
+
+ to derive the SSPD of both original and reversed Markov Process.
+\end_layout
+
+\begin_layout Subsubsection
+Example - M/M/1 Queue
+\end_layout
+
+\begin_layout Subsection
+Queuing Networks
+\end_layout
+
+\begin_layout Subsection
+PEPA
+\end_layout
+
+\begin_layout Subsection
+Reversed Compound Agent Theorem (RCAT)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Project Plan
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Evaluation
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
