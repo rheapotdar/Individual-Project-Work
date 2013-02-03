@@ -150,8 +150,10 @@ key "HarrisonPaperTBTinMAP2003"
 
 \end_inset
 
- is to find the product form solutions of large queuing networks simplifying
- the computational difficulty.
+ is to find the product form solutions of synchronisations between Markov
+ chains.
+ It is usually applied to large queuing networks simplifying the computational
+ difficulty.
  RCAT provides an approach for deriving the steady state probabilities for
  Markov processes that does not require Kolmogorov equations to be solved.
  Instead it provides a methodology of calculating the reversed process of
@@ -4547,6 +4549,10 @@ The implementation for a simple Jackson Network should be straightforward
  We can also then apply this implementation on tandem Jackson networks.
 \end_layout
 
+\begin_layout Enumerate
+I hope to complete this section by the end of february.
+\end_layout
+
 \end_deeper
 \begin_layout Enumerate
 Extend the implementation to more complicated queues with negative customers
@@ -4555,7 +4561,9 @@ Extend the implementation to more complicated queues with negative customers
 
 \begin_deeper
 \begin_layout Enumerate
-Hope to complete this by mid-March and work on UI until end of second term.
+This section will be an extension from section 2.
+ I hope to complete this by section mid-March and work on UI until end of
+ second term.
 \end_layout
 
 \end_deeper
@@ -4564,6 +4572,13 @@ We will then proceed to extend RCAT to look at chains of interaction - detect
  product forms in chains of interaction.
 \end_layout
 
+\begin_deeper
+\begin_layout Enumerate
+On finishing section 3, I can work on this extension until the start of
+ exams in May.
+\end_layout
+
+\end_deeper
 \begin_layout Enumerate
 If we complete the extension we can also look at other extensions detailed
  below:
@@ -4589,7 +4604,7 @@ approximate
 status open
 
 \begin_layout Plain Layout
-As part 1 is complete in the background, I can now statrt work on part 2
+As part 1 is complete in the background, I can now start work on part 2
  and 3.
  I aim to complete the these by the end of the second term (mid-march).
  I will tThe final two weeks before submission is dedicated to writing up
