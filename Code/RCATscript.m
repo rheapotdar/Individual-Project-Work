@@ -29,7 +29,7 @@ function output = RCATscript()
     registerCoop( 'P(0) with Q(0) over {a,b,c}' );
     
     createRk();
-        
+    
     output = r;
     
 %     condition = 'n <= 0';
@@ -66,7 +66,8 @@ function validateCoop( leftProcess, leftStartState, rightProcess, rightStartStat
     
     % TODO: what happes if the user calls validateCoop before
     % registerProcess?
-    % TODO: check if the actions are actually in the processes registered.
+    % TODO: check if the actions are actually in all processes registered.
+    % TODO: check if coop actions are passive in atleast one p.
     
     % Check the processes are in the structures
     if ~isKey( registeredProcesses, leftProcess )
@@ -127,7 +128,7 @@ function addToProcessStructure( processDefinition )
     else
         appendToCellArrayWithinMap( activeActionLabels, processToRegister, actionLabel );
     end 
-    
+    %TODO: need to make actionRate strings symbolic
     keyset = { 'transitionFromState', 'actionName', 'actionRate', 'transitionToState', 'domain' };
     valueset = { processDefinition{2}, actionLabel, actionRate, processDefinition{6}, domain };
     
@@ -167,7 +168,6 @@ function createRk()
      
     for i = 1:numOfProcesses
        r(i).definitions = registeredProcesses( processKeyset{1,i} );
-       
        r(i).activeLabels = setActionLabels( activeActionLabels, processKeyset{1,i} );         
        r(i).passiveLabels = setActionLabels( passiveActionLabels, processKeyset{1,i} );
        len = size(r(i).definitions, 1);
@@ -194,4 +194,18 @@ function callable = convertToMatlabFunction( functionAsAString )
     % function that Matlab can execute.
     
     callable = @(n) eval( functionAsAString );
+end
+
+function sspd = sspdMM1(state, arrivalRate, serviceRate)
+    % This function calculates the sspd of an MMm queue given an arrival
+    % and service rate. Please note if the queue isnt MMm then this sspd
+    % does not apply for calculating reversed rates in rcat. Also the input
+    % arguments to this function have to be symbolic variables.
+    
+    syms r x;
+    
+    rho = ( arrivalRate / serviceRate );
+    formula = '(1 - r) * r^x';
+    temp = subs( formula, x, state );
+    sspd = subs( temp, r, rho );
 end
