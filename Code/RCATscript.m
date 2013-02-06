@@ -6,6 +6,8 @@
 %     the[
 %     name that the user has given you, and then you will have yourself a
 %     symbolic variable of that name.
+% pi as input is given symbollically or as 'MM1 with arrival rate and
+% service rate functions'
     
 
 
@@ -197,8 +199,8 @@ function callable = convertToMatlabFunction( functionAsAString )
 end
 
 function sspd = sspdMM1(state, arrivalRate, serviceRate)
-    % This function calculates the sspd of an MMm queue given an arrival
-    % and service rate. Please note if the queue isnt MMm then this sspd
+    % This function calculates the sspd of an MM1 queue given an arrival
+    % and service rate. Please note if the queue isnt MM1 then this sspd
     % does not apply for calculating reversed rates in rcat. Also the input
     % arguments to this function have to be symbolic variables.
     
