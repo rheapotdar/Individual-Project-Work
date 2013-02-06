@@ -1,9 +1,9 @@
 % TELL THE USER : make labels standardised in terms of n only. Can k only
-% equal 1 or 2 (only 2 agents coop?)
+% equal 1 or 2 (only 2 agents coop?) Rates have to be symbolic and HAVE to
+% begin with a letter to be parsed.
 % pi as input is given symbollically or as 'MM1 with arrival rate and
 % service rate functions'
     
-
 
 function output = RCATscript()
     
@@ -21,23 +21,33 @@ function output = RCATscript()
     global r
     r = struct( 'definitions', {}, 'activeLabels', {}, 'passiveLabels', {} );
     
-    registerProcess( 'P(n) = (e, lambda).P(n+1) for n >= 0' );
-    registerProcess( 'P(n) = (a, mu1).P(n-1) for n > 0' );
-    registerProcess( 'Q(n) = (a, infinity).Q(n+1) for n >= 0' );
-    registerProcess( 'Q(n) = (d, mu2).Q(n+1) for n > 0' );
-    registerCoop( 'P(0) with Q(0) over {a}' );
+%      registerProcess( 'P(n) = (e, lambda).P(n+1) for n >= 0' );
+%      registerProcess( 'P(n) = (a, mu1).P(n-1) for n > 0' );
+%      registerProcess( 'Q(n) = (a, infinity).Q(n+1) for n >= 0' );
+%      registerProcess( 'Q(n) = (d, mu2).Q(n+1) for n > 0' );
+%      registerCoop( 'P(0) with Q(0) over {a}' );
     
+     registerProcess( 'P(n) = (e1, lambda1).P(n+1) for n >= 0' );
+     registerProcess( 'P(n) = (a1, infinity).P(n+1) for n >= 0' );
+     registerProcess( 'P(n) = (d1, (1-p12)*mu1).P(n-1) for n > 0' );
+     registerProcess( 'P(n) = (a2, p12*mu1).P(n-1) for n > 0' );
+     registerProcess( 'Q(n) = (e2, lambda2).Q(n+1) for n >= 0' );
+     registerProcess( 'Q(n) = (a2, infinity).Q(n+1) for n >= 0' );
+     registerProcess( 'Q(n) = (d2, (1-p21)*mu2).P(n-1) for n > 0' );
+     registerProcess( 'Q(n) = (a1, p21*mu2).P(n-1) for n > 0' );
+     registerCoop( 'P(0) with Q(0) over {a1, a2}' );
+     
     createRk();
     storeReversedRates();
-    output = reversedRates;
+    computeSolutionsOfPassiveActionRates();
+    output = r;
     
 end
 
 function registerCoop( coopDescription )
-    % This function parses input for cooperation (synchronisation) between 
-    % two processes. It stores the action labels the processes are
-    % cooperating on. It also runs sanity checks on the inupt.
-    % Example coop: "P(0) with Q(0) over {a}"
+% This function parses input for cooperation (synchronisation) between two
+% processes. It stores the action labels the processes are cooperating on.
+% It also runs sanity checks on the inupt. Example coop: "P(0) with Q(0) over {a}"
     
     global coopLabels
     
@@ -87,7 +97,6 @@ function validateCoop( leftProcess, leftStartState, rightProcess, rightStartStat
     
 end
 
-
 function registerProcess( processDescription )
     % This function parses input for each PEPA component defined and adds
     % it to a process structure. It also runs sanity checks on the input.
@@ -100,12 +109,11 @@ function registerProcess( processDescription )
 end
 
 function addToProcessStructure( processDefinition )
-    % This function stores the processes based on their descriptions.
-    % So 2 descriptions of a single Process P will be stored under the same 
-    % value 'P'.
-    % It also relables all action rates with 'infinity'. So a process with 
-    % action rate 'infinity' and action label 'a' will be relabelled as 'x_a'.
-    % This is for enabling all passive actions in a Process.
+% This function stores the processes based on their descriptions. So 2
+% descriptions of a single Process P will be stored under the same value 'P'.
+% It also relables all action rates with 'infinity'. So a process with
+% action rate 'infinity' and action label 'a' will be relabelled as 'x_a'.
+% This is for enabling all passive actions in a Process.
     
     global registeredProcesses
     global activeActionLabels
@@ -130,15 +138,30 @@ function addToProcessStructure( processDefinition )
     syms n;
     %Please Note: All rates are made symbolic here -> TODO: consider case
     %when rates are not symbolic!
+    % Making action rates symbolic expresssions!
+    actionRate = stringToMatlabExpr(actionRate);
+    
     keyset = { 'transitionFromState', 'actionName', 'actionRate', 'transitionToState', 'domain' };
-    valueset = { eval(processDefinition{2}), actionLabel, sym(actionRate), eval(processDefinition{6}), domain };
+    valueset = { eval(processDefinition{2}), actionLabel, actionRate, eval(processDefinition{6}), domain };
     
     processMap = containers.Map(keyset, valueset);
     appendToCellArrayWithinMap( registeredProcesses, processToRegister, processMap );    
 end
 
+function symExpr = stringToMatlabExpr( string )
+% This function parses a string, finds variables in the string, makes
+% them symbolic and then returns the evaluated string as a symbolic var
+    matches = regexp( string, '([a-z]+[a-z0-9_]+)', 'tokens' );
+    for i = 1:length( matches )
+        match = matches{i}{1};
+        syms( match );
+    end
+    symExpr = eval( string );
+end
+
+
 function appendToCellArrayWithinMap(map, key, valueToAppend)
-    % helper function in 'addToProcessStructure(..)'
+% helper function in 'addToProcessStructure(..)'
     
     if ~isKey(map, key)
         map(key) = { valueToAppend };
@@ -151,12 +174,12 @@ function appendToCellArrayWithinMap(map, key, valueToAppend)
 end
 
 function createRk()
-    % this function creates the structure Rk used in the RCAT algorithm.
-    % It has 3 fields :
-    % 1. Definitions which stores the transition info (with action label
-    % and rate) 2. Active labels which have all the active actions
-    % 3. Passive labels which have all passive (and enabled) actions. If a
-    % process has no passive actions then it will store an empty set. 
+% this function creates the structure Rk used in the RCAT algorithm.
+% It has 3 fields :
+% 1. Definitions which stores the transition info (with action label and
+% rate) 2. Active labels which have all the active actions 3. Passive
+% labels which have all passive (and enabled) actions. If a process has no
+% passive actions then it will store an empty set. 
     
     global registeredProcesses
     global activeActionLabels
@@ -176,7 +199,7 @@ function createRk()
 end
 
 function value = setActionLabels( labelMap, key )
-    % helper function in 'createRk()'
+% helper function in 'createRk()'
     if ~isKey( labelMap, key )
         value = {};
     else
@@ -185,20 +208,18 @@ function value = setActionLabels( labelMap, key )
 end
 
 function callable = convertToMatlabFunction( functionAsAString )
-    % This function will take a string in terms of "n"
-    % such as "n <= 0" and turn it into a callable function.
-    
-    % This is useful because you will want to, in the case of conditions
-    % check if a particular value of n satisfies "n <= 0". While it's a
-    % string, it's impossible for Matlab to use, so we convert it into a
-    % function that Matlab can execute.
+% This function will take a string in terms of "n" such as "n <= 0" and turn it into a callable function.
+% This is useful because you will want to, in the case of conditions
+% check if a particular value of n satisfies "n <= 0". While it's a
+% string, it's impossible for Matlab to use, so we convert it into a
+% function that Matlab can execute.
     
     callable = @(n) eval( functionAsAString );
 end
 
 function storeReversedRates()
-    % This function stores reversed rates with the coop action labels as
-    % key. Will be used in evaluating the passive action rates
+% This function stores reversed rates with the coop action labels as key.
+% Will be used in evaluating the passive action rates
     
     global coopLabels
     global reversedRates
@@ -221,11 +242,11 @@ function storeReversedRates()
 end
 
 function [ fromState, toState, rate ] = getStatesAndRateForAction( actionLabel, process )
-    % This function returns the states an action transitions from and the
-    % rate of the instance of action type a going out of that state. This
-    % is used in calculating the reversed rate for specified action.
-    % Assumption made here is that in one process there cannot be multiple
-    % transitions for the same action.
+% This function returns the states an action transitions from and the
+% rate of the instance of action type a going out of that state. This
+% is used in calculating the reversed rate for specified action.
+% Assumption made here is that in one process there cannot be multiple
+% transitions for the same action.
     
     fromState = 0;
     toState = 0;
@@ -241,10 +262,10 @@ function [ fromState, toState, rate ] = getStatesAndRateForAction( actionLabel, 
 end
 
 function [ forwardSum, backwardSum ] = getAggregateArrivalAndServiceRates( process )
-    % This function is used to calculate the total forward rate and total
-    % backward rate of a process. This is used for calculating the sspd of
-    % a process id MM1.
-    % Input: Please supply a process, such as p(1) where p is the struct.
+% This function is used to calculate the total forward rate and total
+% backward rate of a process. This is used for calculating the sspd of
+% a process id MM1.
+% Input: Please supply a process, such as p(1) where p is the struct.
     
     forwardSum = 0;
     backwardSum = 0;
@@ -260,17 +281,17 @@ function [ forwardSum, backwardSum ] = getAggregateArrivalAndServiceRates( proce
 end
 
 function isGoingForward = isTransitioningForwards( procesDefinition )
-    % Figure out if it's going forwards to backwards
-    % Both params must be symbolic equations.
+% This function is to figure out if a process transition is going forwards or backwards
+% Both params must be symbolic equations.
     
     isGoingForward = eval( procesDefinition('transitionToState') - procesDefinition('transitionFromState') ) > 0;
 end
 
 function sspd = sspdMM1( state, arrivalRate, serviceRate )
-    % This function calculates the sspd of an MM1 queue given an arrival
-    % and service rate. Please note if the queue isnt MM1 then this sspd
-    % does not apply for calculating reversed rates in rcat. Also the input
-    % arguments to this function have to be symbolic variables.
+% This function calculates the sspd of an MM1 queue given an arrival
+% and service rate. Please note if the queue isnt MM1 then this sspd
+% does not apply for calculating reversed rates in rcat. Also the input
+% arguments to this function have to be symbolic variables.
     
     syms r x;
     
@@ -281,9 +302,40 @@ function sspd = sspdMM1( state, arrivalRate, serviceRate )
 end
 
 function reversedRate = calculateReversedRate( forwardRate, iStateSSPD, jStateSSPD )
-    % This function calculates the reversed rate based on the formula given
-    % in the generic algorithm for rcat.
+% This function calculates the reversed rate based on the formula given in
+% the generic algorithm for rcat.
 
     formula = (forwardRate * iStateSSPD) / jStateSSPD;
     reversedRate = simplify(formula); 
+end
+
+function computeSolutionsOfPassiveActionRates()
+% This function stores rates replacing type 'x_a' - step 3 of algorithm
+    global r
+    disp( 'Printing passive action rates computed using RCAT alogithm...' );
+    for i = 1:2
+        if ~isempty( r(i).passiveLabels )
+            for label = r(i).passiveLabels
+                label = label{1};
+                [ oldActionRate, newActionRate ] = setPassiveActionRate( label, r(i).definitions );
+                disp( strcat( char(oldActionRate) , ' = ', char(newActionRate) ) );
+            end
+        end
+    end
+end
+
+function [ oldActionRate, newActionRate ] = setPassiveActionRate( actionLabel, definitions )
+% helper function in computeSolutionsOfPassiveActionRates(). This function
+% matcjes the passive action rate with the right reversed rate and returns
+% both the rates.
+    global reversedRates
+    
+    for definition = definitions
+        definition = definition{1};
+        if isequal( definition( 'actionName' ), actionLabel )
+            oldActionRate = definition( 'actionRate' );
+            definition( 'actionRate' ) = reversedRates( actionLabel );
+            newActionRate = definition( 'actionRate' );
+        end
+    end
 end
