@@ -130,9 +130,10 @@ function addToProcessStructure( processDefinition )
     else
         appendToCellArrayWithinMap( activeActionLabels, processToRegister, actionLabel );
     end 
-    %TODO: need to make actionRate strings symbolic
+    %Please Note: All rates are made symbolic here -> TODO: consider case
+    %when rates are not symbolic!
     keyset = { 'transitionFromState', 'actionName', 'actionRate', 'transitionToState', 'domain' };
-    valueset = { processDefinition{2}, actionLabel, actionRate, processDefinition{6}, domain };
+    valueset = { processDefinition{2}, actionLabel, sym(actionRate), processDefinition{6}, domain };
     
     processMap = containers.Map(keyset, valueset);
     appendToCellArrayWithinMap( registeredProcesses, processToRegister, processMap );    
@@ -172,7 +173,6 @@ function createRk()
        r(i).definitions = registeredProcesses( processKeyset{1,i} );
        r(i).activeLabels = setActionLabels( activeActionLabels, processKeyset{1,i} );         
        r(i).passiveLabels = setActionLabels( passiveActionLabels, processKeyset{1,i} );
-       len = size(r(i).definitions, 1);
     end
 
 end
@@ -210,4 +210,15 @@ function sspd = sspdMM1(state, arrivalRate, serviceRate)
     formula = '(1 - r) * r^x';
     temp = subs( formula, x, state );
     sspd = subs( temp, r, rho );
+end
+
+function reversedRate = calculateReversedRate(forwardRate, iStateSSPD, jStateSSPD)
+    syms r i j
+    
+    formula = '(r * i) / j';
+    temp = subs(formula, r, forwardRate)
+    t2 = subs(temp, i, iStateSSPD)
+    t3 = subs(t2, j, jStateSSPD)
+    reversedRate = eval(t3)
+    
 end
