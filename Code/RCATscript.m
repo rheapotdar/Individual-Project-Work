@@ -1,17 +1,12 @@
-% (1) Setup a nice strut to store the informatoin
-% (2) Make this structure usable. I.e., can you *check* constraints like
-%     n >= 0, or can you have a way of distinguishing the lambda in one
-%     registerProcess call from the lambda in another? Or do you want the
-%     user to supply lambda1 and lambda2? You can just call sym() using
-%     the[
-%     name that the user has given you, and then you will have yourself a
-%     symbolic variable of that name.
+% TELL THE USER : make labels standardised in terms of n only. Can k only
+% equal 1 or 2 (only 2 agents coop?)
 % pi as input is given symbollically or as 'MM1 with arrival rate and
 % service rate functions'
     
 
 
 function output = RCATscript()
+    
     %Defining global variables
     global registeredProcesses 
     registeredProcesses = containers.Map();
@@ -21,6 +16,8 @@ function output = RCATscript()
     passiveActionLabels = containers.Map();
     global coopLabels
     coopLabels = {};
+    global reversedRates
+    reversedRates = containers.Map();
     global r
     r = struct( 'definitions', {}, 'activeLabels', {}, 'passiveLabels', {} );
     
@@ -28,17 +25,12 @@ function output = RCATscript()
     registerProcess( 'P(n) = (a, mu1).P(n-1) for n > 0' );
     registerProcess( 'Q(n) = (a, infinity).Q(n+1) for n >= 0' );
     registerProcess( 'Q(n) = (d, mu2).Q(n+1) for n > 0' );
-    registerCoop( 'P(0) with Q(0) over {a,b,c}' );
+    registerCoop( 'P(0) with Q(0) over {a}' );
     
     createRk();
+    storeReversedRates();
+    output = reversedRates;
     
-    output = r;
-    
-%     condition = 'n <= 0';
-%     conditionAsAFunction = convertToMatlabFunction( condition );
-%     conditionAsAFunction( 5 )
-%     conditionAsAFunction( -1 ) 
-%     conditionAsAFunction( 0 )
 end
 
 function registerCoop( coopDescription )
@@ -49,14 +41,16 @@ function registerCoop( coopDescription )
     
     global coopLabels
     
+    %TODO: check if coop is empty. If yes then throw error!
     matches = regexp( coopDescription, '([A-Z])\((.+)\) with ([A-Z])\((.+)\) over \{(.+)\}', 'tokens' );
     matches = matches{1};
+    
     
     leftProcess = matches{1};
     leftStartState = matches{2};
     rightProcess = matches{3};
     rightStartState = matches{4};
-    coopLabels = regexp( matches{5}, ',', 'split' );
+    coopLabels = regexp( matches{5}, '\s*,\s*', 'split' );
     
     validateCoop( leftProcess, leftStartState, rightProcess, rightStartState, coopLabels )
 end
@@ -130,10 +124,14 @@ function addToProcessStructure( processDefinition )
     else
         appendToCellArrayWithinMap( activeActionLabels, processToRegister, actionLabel );
     end 
+    
+    % n is made symbolic so that the transition states such as "n+1" are stored
+    % as expressions not strings and thus can be used in formula maipulation.
+    syms n;
     %Please Note: All rates are made symbolic here -> TODO: consider case
     %when rates are not symbolic!
     keyset = { 'transitionFromState', 'actionName', 'actionRate', 'transitionToState', 'domain' };
-    valueset = { processDefinition{2}, actionLabel, sym(actionRate), processDefinition{6}, domain };
+    valueset = { eval(processDefinition{2}), actionLabel, sym(actionRate), eval(processDefinition{6}), domain };
     
     processMap = containers.Map(keyset, valueset);
     appendToCellArrayWithinMap( registeredProcesses, processToRegister, processMap );    
@@ -198,7 +196,77 @@ function callable = convertToMatlabFunction( functionAsAString )
     callable = @(n) eval( functionAsAString );
 end
 
-function sspd = sspdMM1(state, arrivalRate, serviceRate)
+function storeReversedRates()
+    % This function stores reversed rates with the coop action labels as
+    % key. Will be used in evaluating the passive action rates
+    
+    global coopLabels
+    global reversedRates
+    global r
+
+    for action = coopLabels
+        action = action{1};
+        % r(k) can only have k = 1 or 2 
+        for i = 1:2
+            if ismember( action, r(i).activeLabels )
+                [arrivalRate, serviceRate] = getAggregateArrivalAndServiceRates( r(i) );
+                [fromState, toState, rate] = getStatesAndRateForAction( action, r(i) );
+                iSSPD = sspdMM1( fromState, arrivalRate, serviceRate );
+                jSSPD = sspdMM1( toState, arrivalRate, serviceRate );
+                reversedRate = calculateReversedRate( rate, iSSPD, jSSPD );
+                reversedRates( action ) = reversedRate;
+            end
+        end
+    end   
+end
+
+function [ fromState, toState, rate ] = getStatesAndRateForAction( actionLabel, process )
+    % This function returns the states an action transitions from and the
+    % rate of the instance of action type a going out of that state. This
+    % is used in calculating the reversed rate for specified action.
+    % Assumption made here is that in one process there cannot be multiple
+    % transitions for the same action.
+    
+    fromState = 0;
+    toState = 0;
+    rate = 0;
+    for definition = process.definitions
+        definition = definition{1};
+        if isequal( actionLabel, definition( 'actionName' ) )
+            fromState = definition( 'transitionFromState' );
+            toState = definition( 'transitionToState' );
+            rate = definition( 'actionRate' );
+        end
+    end  
+end
+
+function [ forwardSum, backwardSum ] = getAggregateArrivalAndServiceRates( process )
+    % This function is used to calculate the total forward rate and total
+    % backward rate of a process. This is used for calculating the sspd of
+    % a process id MM1.
+    % Input: Please supply a process, such as p(1) where p is the struct.
+    
+    forwardSum = 0;
+    backwardSum = 0;
+    
+    for definition = process.definitions
+        definition = definition{1};
+        if isTransitioningForwards( definition )
+            forwardSum = forwardSum + definition('actionRate');
+        else
+            backwardSum = backwardSum + definition('actionRate');
+        end
+    end
+end
+
+function isGoingForward = isTransitioningForwards( procesDefinition )
+    % Figure out if it's going forwards to backwards
+    % Both params must be symbolic equations.
+    
+    isGoingForward = eval( procesDefinition('transitionToState') - procesDefinition('transitionFromState') ) > 0;
+end
+
+function sspd = sspdMM1( state, arrivalRate, serviceRate )
     % This function calculates the sspd of an MM1 queue given an arrival
     % and service rate. Please note if the queue isnt MM1 then this sspd
     % does not apply for calculating reversed rates in rcat. Also the input
@@ -212,13 +280,10 @@ function sspd = sspdMM1(state, arrivalRate, serviceRate)
     sspd = subs( temp, r, rho );
 end
 
-function reversedRate = calculateReversedRate(forwardRate, iStateSSPD, jStateSSPD)
-    syms r i j
-    
-    formula = '(r * i) / j';
-    temp = subs(formula, r, forwardRate)
-    t2 = subs(temp, i, iStateSSPD)
-    t3 = subs(t2, j, jStateSSPD)
-    reversedRate = eval(t3)
-    
+function reversedRate = calculateReversedRate( forwardRate, iStateSSPD, jStateSSPD )
+    % This function calculates the reversed rate based on the formula given
+    % in the generic algorithm for rcat.
+
+    formula = (forwardRate * iStateSSPD) / jStateSSPD;
+    reversedRate = simplify(formula); 
 end
