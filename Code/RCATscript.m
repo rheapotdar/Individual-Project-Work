@@ -5,7 +5,7 @@
 % service rate functions'
     
 
-function output = RCATscript()
+function output = RCATscript( processList, coopString )
     
     %Defining global variables
     global registeredProcesses 
@@ -20,28 +20,25 @@ function output = RCATscript()
     reversedRates = containers.Map();
     global r
     r = struct( 'definitions', {}, 'activeLabels', {}, 'passiveLabels', {} );
-    
-%      registerProcess( 'P(n) = (e, lambda).P(n+1) for n >= 0' );
-%      registerProcess( 'P(n) = (a, mu1).P(n-1) for n > 0' );
-%      registerProcess( 'Q(n) = (a, infinity).Q(n+1) for n >= 0' );
-%      registerProcess( 'Q(n) = (d, mu2).Q(n+1) for n > 0' );
-%      registerCoop( 'P(0) with Q(0) over {a}' );
-    
-     registerProcess( 'P(n) = (e1, lambda1).P(n+1) for n >= 0' );
-     registerProcess( 'P(n) = (a1, infinity).P(n+1) for n >= 0' );
-     registerProcess( 'P(n) = (d1, (1-p12)*mu1).P(n-1) for n > 0' );
-     registerProcess( 'P(n) = (a2, p12*mu1).P(n-1) for n > 0' );
-     registerProcess( 'Q(n) = (e2, lambda2).Q(n+1) for n >= 0' );
-     registerProcess( 'Q(n) = (a2, infinity).Q(n+1) for n >= 0' );
-     registerProcess( 'Q(n) = (d2, (1-p21)*mu2).P(n-1) for n > 0' );
-     registerProcess( 'Q(n) = (a1, p21*mu2).P(n-1) for n > 0' );
-     registerCoop( 'P(0) with Q(0) over {a1, a2}' );
-     
+
+    setup( processList, coopString );
+    %Step 1%
     createRk();
+    %Step 2%
     storeReversedRates();
+    %Step %
     computeSolutionsOfPassiveActionRates();
     output = r;
     
+end
+
+function setup( processList, coopString )
+% This function registers process Components and cooperation
+    
+    for process = processList
+        registerProcess( process{1} );
+    end
+    registerCoop( coopString );
 end
 
 function registerCoop( coopDescription )
@@ -312,7 +309,7 @@ end
 function computeSolutionsOfPassiveActionRates()
 % This function stores rates replacing type 'x_a' - step 3 of algorithm
     global r
-    disp( 'Printing passive action rates computed using RCAT alogithm...' );
+    disp( 'Printing passive action rates computed using RCAT algorithm...' );
     for i = 1:2
         if ~isempty( r(i).passiveLabels )
             for label = r(i).passiveLabels
