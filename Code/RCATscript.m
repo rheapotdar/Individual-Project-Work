@@ -17,7 +17,7 @@ function output = RCATscript( processList, coopString )
         registerProcess( registeredProcesses, activeActionLabels, passiveActionLabels, process{1} );
     end
     coopLabels = registerCoop( coopString );
-    %setup done%
+    %setup done% 
     %Step 1%
     r = createRk( registeredProcesses, activeActionLabels, passiveActionLabels );
     %Step 2%

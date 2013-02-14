@@ -1,6 +1,7 @@
 function reversedRates = storeReversedRates( coopLabels, r )
 % This function stores reversed rates with the coop action labels as key.
-% Will be used in evaluating the passive action rates
+% Will be used in evaluating the passive action rates. Assumes that the
+% contents of coopLabels is passive. If not symbolic var NaN is returned!!
 
     reversedRates = containers.Map();
     for action = coopLabels
@@ -13,6 +14,11 @@ function reversedRates = storeReversedRates( coopLabels, r )
                 iSSPD = sspdMM1( fromState, arrivalRate, serviceRate );
                 jSSPD = sspdMM1( toState, arrivalRate, serviceRate );
                 reversedRate = calculateReversedRate( rate, iSSPD, jSSPD );
+                if isnan( reversedRate )
+                    throw( MException( ...
+                        'RCATscript:InvalidComputationStoreReversedRates',...
+                        'Error in calculating reversed rate' ) );
+                end
                 reversedRates( action ) = reversedRate;
             end
         end

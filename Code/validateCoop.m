@@ -3,18 +3,18 @@ function validateCoop( leftProcess, leftStartState, rightProcess, rightStartStat
     
     %TODO: Validate user input : 1.check transition is going from P->P!
     
-    global registeredProcesses
+    
     
 
     % TODO: check if the actions are actually in all processes registered.
     % TODO: check if coop actions are passive in atleast one p.
     
     % Check the processes are in the structures
-    if ~isKey( registeredProcesses, leftProcess ) || ~isKey( registeredProcesses, rightProcess )
-        exception = MException('RCATscript:invalidSyntax', ...
-            'Invalid Input: Processes in coopString have not been registered.');
-        throwAsCaller(exception);
-    end
+%     if ~isKey( registeredProcesses, leftProcess ) || ~isKey( registeredProcesses, rightProcess )
+%         exception = MException('RCATscript:invalidSyntax', ...
+%             'Invalid Input: Processes in coopString have not been registered.');
+%         throwAsCaller(exception);
+%     end
 
     
     % Now we'll retrieve the domain of the processes (leftProcess and

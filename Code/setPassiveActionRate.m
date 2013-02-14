@@ -1,6 +1,6 @@
 function [ oldActionRate, newActionRate ] = setPassiveActionRate( reversedRates, actionLabel, definitions )
 % helper function in computeSolutionsOfPassiveActionRates(). This function
-% matcjes the passive action rate with the right reversed rate and returns
+% matches the passive action rate with the right reversed rate and returns
 % both the rates.
     
     for definition = definitions
