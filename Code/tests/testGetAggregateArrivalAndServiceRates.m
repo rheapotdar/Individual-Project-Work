@@ -10,8 +10,8 @@ function testGetAggregateArrivalAndServiceRates
     r = createRk( registeredProcesses, activeActionLabels, passiveActionLabels );
     [ forwardSum, backwardSum ] = getAggregateArrivalAndServiceRates( r(1) );
     
-    assertTrue( forwardSum == lambda );
-    assertTrue( backwardSum == 0);
+    assertTrue( isequal( forwardSum,lambda ) );
+    assertTrue( isequal( backwardSum, 0) );
     
     registerProcess( registeredProcesses, activeActionLabels,...
         passiveActionLabels, 'P(n) = (f, mu1).P(n-1) for n >= 0' );
@@ -20,6 +20,6 @@ function testGetAggregateArrivalAndServiceRates
     r = createRk( registeredProcesses, activeActionLabels, passiveActionLabels );
     [ forwardSum, backwardSum ] = getAggregateArrivalAndServiceRates( r(1) );
     
-    assertTrue( forwardSum == 3*lambda);
-    assertTrue( backwardSum == mu1);
+    assertTrue( isequal( forwardSum, 3*lambda) );
+    assertTrue( isequal( backwardSum, mu1) );
 end

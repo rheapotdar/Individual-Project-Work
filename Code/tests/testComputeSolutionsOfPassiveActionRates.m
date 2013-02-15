@@ -16,10 +16,10 @@ function testComputeSolutionsOfPassiveActionRates
     temp = r(1).definitions;
     defs = temp{1};
     
-    assertTrue( oldActionRate == x_a );
-    assertFalse( defs( 'actionRate' ) == oldActionRate );
+    assertTrue( isequal( oldActionRate, x_a ) );
+    assertFalse( isequal( defs( 'actionRate' ), oldActionRate ) );
     
     newActionRate = defs( 'actionRate' );
-    assertTrue( newActionRate == lambda, ...
+    assertTrue( isequal( newActionRate, lambda ), ...
         'Old passive rate has not been replaced by new calculated rate' );
 end

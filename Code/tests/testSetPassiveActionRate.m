@@ -9,6 +9,6 @@ function testSetPassiveActionRate
     
     % test case where x_a the passive rate %
     [ oldActionRate, newActionRate ] = setPassiveActionRate( reversedRates, actionLabel, definitions );
-    assertTrue( oldActionRate == x_a );
-    assertTrue( newActionRate == lambda );
+    assertTrue( isequal( oldActionRate, x_a ) );
+    assertTrue( isequal( newActionRate, lambda ) );
 end

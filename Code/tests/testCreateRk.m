@@ -20,7 +20,7 @@ function testCreateRk
     assertEqual( P( 'actionName' ), 'e' ) 
     assertEqual( P( 'actionRate' ), lambda )
     assertEqual( P( 'transitionFromState' ), eval('n') ) 
-    assertTrue( P( 'transitionToState' ) == n+1 )
+    assertTrue( isequal( P( 'transitionToState' ), n+1 ) )
     
     assertEqual( length( r(1).activeLabels ), 1 );
     assertEqual( length( r(2).passiveLabels ), 1 );

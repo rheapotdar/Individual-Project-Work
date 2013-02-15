@@ -5,5 +5,5 @@ function testCalculateReversedRate
     jSspd = (1 - (lambda/mu1)) * (lambda/mu1)^n;
     rate = calculateReversedRate( mu1, iSspd, jSspd );
     
-    assertTrue( rate == lambda );
+    assertTrue( isequal( rate, lambda ) );
 end

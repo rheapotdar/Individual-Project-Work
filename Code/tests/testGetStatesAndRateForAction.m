@@ -10,7 +10,7 @@ function testGetStatesAndRateForAction()
     r = createRk( registeredProcesses, activeActionLabels, passiveActionLabels );
     [ fromState, toState, rate ] = getStatesAndRateForAction( 'e', r(1) );
     
-    assertTrue( fromState == n );
-    assertTrue( toState == n+1 );
-    assertTrue( rate == lambda );
+    assertTrue( isequal(fromState, n ) );
+    assertTrue( isequal(toState, n+1 ) );
+    assertTrue( isequal(rate, lambda ) );
 end

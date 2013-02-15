@@ -18,7 +18,7 @@ function testStoreReversedRates
     reversedRates = storeReversedRates( coopLabels, r );
     
     assertEqual( reversedRates.length(), 1);
-    assertTrue( reversedRates( 'a' ) == lambda );
+    assertTrue( isequal( reversedRates( 'a' ), lambda ) );
     
     coopLabels = { 'd' };
     assertExceptionThrown( @() storeReversedRates( coopLabels, r ),...

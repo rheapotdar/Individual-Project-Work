@@ -12,7 +12,7 @@ function testRegisterProcess()
     assertEqual( P( 'actionName' ), 'e' ) 
     assertEqual( P( 'actionRate' ), lambda )
     assertEqual( P( 'transitionFromState' ), eval('n') ) 
-    assertTrue( P( 'transitionToState' ) == n+1 ) 
+    assertTrue( isequal( P( 'transitionToState' ), n+1 ) ) 
     
     % Test the domain function by giving it actual values (since we can't
     % check the Matlab function converted from a string, will work as
