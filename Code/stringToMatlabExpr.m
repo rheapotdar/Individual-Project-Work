@@ -9,7 +9,8 @@ function symExpr = stringToMatlabExpr( string )
     try
         symExpr = eval( string );
     catch
-        e = MException('RCATscript:InvalidStringToMatlabExpr' , strcat(string, ' not a valid mathematical expression'));
+        e = MException('RCATscript:InvalidStringToMatlabExpr' , ...
+            strcat(string, ' not a valid mathematical expression'));
         throw( e );
     end
 end

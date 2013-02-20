@@ -7,10 +7,10 @@ function coopLabels = registerCoop( coopDescription )
     %TODO: check if coop is empty. If yes then throw error!
     matches = regexp( coopDescription, ...
         '([A-Z])\((.+)\) with ([A-Z])\((.+)\) over \{(.*)\}', 'tokens' );
-    if isempty( matches )
-        throw( MException( 'RCATscript:InvalidInputRegisterCoop', ...
-            'The input coopString is empty. Please enter a valid string.' ) );
-    end
+    
+    validateInputIsNotEmpty( matches, 'RCATscript:InvalidInputRegisterCoop', ...
+            'The input coopString is empty. Please enter a valid string.' );
+        
     matches = matches{1};
     leftProcess = matches{1};
     leftStartState = matches{2};
