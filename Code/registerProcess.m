@@ -24,7 +24,7 @@ function addToProcessStructure( registeredProcesses, activeActionLabels, passive
     processToRegister = processDefinition{1};
     actionLabel = processDefinition{3};
     actionRate = processDefinition{4};
-    domain = convertToMatlabFunction( processDefinition{7} );
+    [domainMin, domainMax] = parseDomain( processDefinition{7} );
     
     % ------------Validating Input ----------------%
     validateActionLabelSyntax( actionLabel );
@@ -48,7 +48,7 @@ function addToProcessStructure( registeredProcesses, activeActionLabels, passive
     actionRate = stringToMatlabExpr(actionRate);
     
     keyset = { 'transitionFromState', 'actionName', 'actionRate', 'transitionToState', 'domain' };
-    valueset = { eval(processDefinition{2}), actionLabel, actionRate, eval(processDefinition{6}), domain };
+    valueset = { eval(processDefinition{2}), actionLabel, actionRate, eval(processDefinition{6}), [domainMin, domainMax] };
     
     processMap = containers.Map(keyset, valueset);
     appendToCellArrayWithinMap( registeredProcesses, processToRegister, processMap );    

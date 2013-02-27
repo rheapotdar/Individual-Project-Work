@@ -17,10 +17,9 @@ function testRegisterProcess()
     % Test the domain function by giving it actual values (since we can't
     % check the Matlab function converted from a string, will work as
     % expected)
-    domainFunction = P( 'domain' );
-    assertTrue( domainFunction(1) )
-    assertTrue( domainFunction(0) )
-    assertFalse( domainFunction(-1) )
+    domain = P( 'domain' );
+    assertTrue( isequal( 0, domain(1) ) );
+    assertTrue( isequal( Inf, domain(2) ) );
     
     registerProcess( registeredProcesses, activeActionLabels,...
         passiveActionLabels, 'Q(n) = (a, infinity).Q(n+1) for n >= 0' );
