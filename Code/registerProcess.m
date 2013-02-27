@@ -43,8 +43,7 @@ function addToProcessStructure( registeredProcesses, activeActionLabels, passive
     % n is made symbolic so that the transition states such as "n+1" are stored
     % as expressions not strings and thus can be used in formula maipulation.
     syms n;
-    %Please Note: All rates are made symbolic here -> TODO: consider case
-    %when rates are not symbolic!
+    % Please Note: All rates are made symbolic here
     % Making action rates symbolic expresssions
     actionRate = stringToMatlabExpr(actionRate);
     

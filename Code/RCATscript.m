@@ -20,6 +20,8 @@ function output = RCATscript( processList, coopString )
     %setup done% 
     %Step 1%
     r = createRk( registeredProcesses, activeActionLabels, passiveActionLabels );
+    % Validate syntax %
+    validatePassiveAndActiveLabels( r );
     %Step 2%
     reversedRates = storeReversedRates( coopLabels, r );
     %Step %
