@@ -19,7 +19,6 @@ function addToProcessStructure( registeredProcesses, activeActionLabels, passive
 % descriptions of a single Process P will be stored under the same value 'P'.
 % It also relables all action rates with 'infinity'. So a process with
 % action rate 'infinity' and action label 'a' will be relabelled as 'x_a'.
-% This is for enabling all passive actions in a Process.
     
     processToRegister = processDefinition{1};
     actionLabel = processDefinition{3};

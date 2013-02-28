@@ -2,7 +2,7 @@
 % equal 1 or 2 (only 2 agents coop?) Rates have to be symbolic and HAVE to
 % begin with a letter to be parsed.
 % pi as input is given symbollically or as 'MM1 with arrival rate and
-% service rate functions'
+% service rate functions.' TODO: need to make the sspd toggle
     
 
 function output = RCATscript( processList, coopString )
@@ -10,11 +10,15 @@ function output = RCATscript( processList, coopString )
     %Defining global variables
     registeredProcesses = containers.Map();
     activeActionLabels = containers.Map();
-    passiveActionLabels = containers.Map();    
+    passiveActionLabels = containers.Map();
+    
+    %Todo: define state space from given info. Hard coding temporary
+    stateSpace = [0, Inf];
 
     %Setup%
     for process = processList
-        registerProcess( registeredProcesses, activeActionLabels, passiveActionLabels, process{1} );
+        registerProcess( registeredProcesses, activeActionLabels, ...
+            passiveActionLabels, process{1} );
     end
     coopLabels = registerCoop( coopString );
     %setup done% 
@@ -22,9 +26,11 @@ function output = RCATscript( processList, coopString )
     r = createRk( registeredProcesses, activeActionLabels, passiveActionLabels );
     % Validate syntax %
     validatePassiveAndActiveLabels( r );
+    %Step %
+    checkFirstRcatCondition( r, stateSpace );
     %Step 2%
     reversedRates = storeReversedRates( coopLabels, r );
-    %Step %
+    %Step 3%
     computeSolutionsOfPassiveActionRates( r, reversedRates );
     output = r;
     

@@ -1,6 +1,6 @@
 function validatePassiveAndActiveLabels( r )
 % This function validates that an action cannot be both passive and active
-% in the same component. It also checks that each cooperating action a ? L
+% in the same component. It also checks that each cooperating action a in L
 % is passive in only one component in the cooperation.
 
     setOfLabels = {};
@@ -11,7 +11,7 @@ function validatePassiveAndActiveLabels( r )
         end
         if ~isempty(intersect(setOfLabels, r(i).passiveLabels))
             throw( MException( 'RCATscript:ActionPassiveMultipleComponents', ...
-                    'Each cooperating action a ? L is passive in only one component in the cooperation' ) );
+                    'Each cooperating action a in L is passive in only one component in the cooperation' ) );
         end
         setOfLabels = [setOfLabels, r(i).passiveLabels];
     end    
