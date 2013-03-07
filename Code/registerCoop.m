@@ -21,6 +21,7 @@ function coopLabels = registerCoop( coopDescription )
             'No actions given which the agents synchronise on. Check input' ) );
     end
     coopLabels = regexp( matches{5}, '\s*,\s*', 'split' );
+    coopLabels = unique(coopLabels);
     
 %     validateCoop( leftProcess, leftStartState, rightProcess, rightStartState, coopLabels )
 end

@@ -3,7 +3,7 @@ function isEnabled = checkActionIsEnabled( actionLabel, definitions, stateSpace 
 % checks if action is enabled in all states of transition graph.
 % ASSUMPTIONS are made here. Check if these if problems debugging. They are
 % 1. state space is (0 to Infinity). 2. Assumes that all n->n+1 transitions
-% are n>=0 and all n->n-1 transitions are n>0. 3. If an action is passive
+% are n>=0 and all n->n-1 transitions are n>0. 3. An action to be enabled
 % in n->n-1, it must have an invisible transition from n->n for n=0.
 
     allDefs = definitions;
@@ -28,7 +28,7 @@ function ret = allChecksAreOK( definition, allDefs )
 % returns false if
 % 1. domain is 1 and transition is going from n -> n+1.
 % 2. domain is 1 and transition is going from n -> n-1 and there are no
-% invisible transitions present from n->n.
+% invisible transitions present from n -> n.
 
     domain = definition( 'domain' );
     transitionTostate = definition( 'transitionToState' );

@@ -24,6 +24,6 @@ function value = setActionLabels( labelMap, key )
     if ~isKey( labelMap, key )
         value = {};
     else
-        value = labelMap( key );
+        value = unique(labelMap( key ));
     end
 end

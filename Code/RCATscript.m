@@ -12,7 +12,7 @@ function output = RCATscript( processList, coopString )
     activeActionLabels = containers.Map();
     passiveActionLabels = containers.Map();
     
-    %Todo: define state space from given info. Hard coding temporary
+    %Todo: define state space from given info.
     stateSpace = [0, Inf];
 
     %Setup%
@@ -28,6 +28,7 @@ function output = RCATscript( processList, coopString )
     validatePassiveAndActiveLabels( r );
     %Step %
     checkFirstRcatCondition( r, stateSpace );
+    checkSecondRcatCondition( r, coopLabels );
     %Step 2%
     reversedRates = storeReversedRates( coopLabels, r );
     %Step 3%
