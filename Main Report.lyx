@@ -1,0 +1,6595 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\date{}
+\usepackage{fancyhdr}
+\fancyhead{}
+\renewcommand{\headrulewidth}{0pt}% Remove header rule
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{} 
+
+\lstset{language=matlab,tabsize=2,showstringspaces=false,showspaces=false,breaklines=true}
+
+\usepackage{amssymb,pepa}
+
+\hyphenpenalty 100000
+\exhyphenpenalty 100000
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language british
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman utopia
+\font_sans default
+\font_typewriter default
+\font_default_family rmdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\boxbgcolor #d3d3d3
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 4cm
+\rightmargin 3cm
+\bottommargin 4cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Automatic Generation of Product-Forms
+\end_layout
+
+\begin_layout Author
+By Rhea Potdar
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Section
+Motivation
+\end_layout
+
+\begin_layout Standard
+There has been an increase in the complexity systems of the future, due
+ to which performance models have become essential for understanding the
+ behaviour of these systems.
+ Computer systems can be modelled as a network of queues which are then
+ evaluated analytically.
+ These (stochastic) queuing models then allow for determining some useful
+ performance measures of the systems at equilibrium such as throughput,
+ mean queue length.
+ There has been considerable effort devoted in finding the product-form
+ solutions for the steady state probabilities of systems.
+ A product form solution can be derived for joint steady state probabilities
+ of interacting Markov processes by finding the the reversed process of
+ the interaction.
+ Analytically, this involves solving Kolmogorov (balance) equations.
+ Thus finding product form solutions is computationally expensive for systems
+ with large state spaces.
+\end_layout
+
+\begin_layout Standard
+The motivation for using RCAT
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HarrisonPaperTBTinMAP2003"
+
+\end_inset
+
+ is to find the product form solutions of synchronisations between Markov
+ chains.
+ It is usually applied to large queuing networks simplifying the computational
+ difficulty.
+ RCAT provides an approach for deriving the steady state probabilities for
+ Markov processes that does not require Kolmogorov equations to be solved.
+ Instead it provides a methodology of calculating the reversed process of
+ the Markov chain in terms of the reversed processes of its sub-chains
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ercat"
+
+\end_inset
+
+.
+ RCAT uses PEPA (Performance Evaluation Process Algebra), a Markovian Process
+ Algebra formalism, which has an appropriate recursive structure for hierarchal
+ analysis done by RCAT.
+ 
+\end_layout
+
+\begin_layout Standard
+The RCAT theorem can automatically derive product form solutions of G-networks
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GelenbeGNetworks"
+
+\end_inset
+
+ with negative customers, with ease comparable to deriving product form
+ solutions of simpler Jackson queuing networks.
+ This shows its compositional utility in validating product form solutions
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HarrisonPaperTBTinMAP2003"
+
+\end_inset
+
+.
+ It can also be used for finding new product form solutions of networks
+ with no known product form - such as blocking networks.
+ 
+\end_layout
+
+\begin_layout Section
+Objectives
+\end_layout
+
+\begin_layout Standard
+This project aims to automate the generation of product form solutions for
+ queuing networks.
+ We can divide this into two encompassing objectives.
+\end_layout
+
+\begin_layout Standard
+The first of these is to ensure the accuracy of the project.
+ We will achieve this by developing an implementation of the RCAT theorem
+ and derive product form solutions for different queuing networks.
+\end_layout
+
+\begin_layout Standard
+The latter of these is to ensure the implementation has ease of use.
+ The software should be able to be used without any knowledge of the underlying
+ implementation (some knowledge of integral concepts such as product forms
+ will be necessary).
+ 
+\end_layout
+
+\begin_layout Standard
+An extension of this implementation, if time permits, would be to use RCAT
+ to look at chains of interactions between queues.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Background
+\end_layout
+
+\begin_layout Standard
+In this chapter, we will explore the theory required for the automatic generatio
+n of product forms by implementing the RCAT.
+ We commence this chapter by describing theory behind Markov Chains, Markov
+ Processes and Reversed Process as shown in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LectureNotes,PerformanceModellingHarrisonBook,MarkovChainsQueuesStewartBook"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Markov Chains
+\end_layout
+
+\begin_layout Standard
+In order to comprehend Markov Chains and Markov Processes, one must be familiar
+ with stochastic processes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 1.1
+\end_layout
+
+\begin_layout Plain Layout
+A 
+\series bold
+stochastic process S
+\series default
+ is defined as a family of random variables 
+\begin_inset Formula $\{X_{t}\in\Omega\text{ | }t\text{ }\in\text{ }T\}$
+\end_inset
+
+ , which take values from some sample space 
+\begin_inset Formula $\Omega$
+\end_inset
+
+ and are indexed by values from some parameter space 
+\begin_inset Formula $T$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\Omega$
+\end_inset
+
+ and 
+\begin_inset Formula $T$
+\end_inset
+
+ may be either discrete or continuous.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A 
+\series bold
+Markov chain
+\series default
+ is a stochastic process that has the 
+\emph on
+Markov Property
+\emph default
+ with a countable sample space (or state space) 
+\begin_inset Formula $\Omega$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 1.2
+\end_layout
+
+\begin_layout Plain Layout
+The 
+\series bold
+Markov Property (MP)
+\series default
+ states that
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray}
+P(X_{t}+s=j\mbox{ | }X_{u},\mbox{ }u\text{≤}t) & = & P(X_{t}+s=j\mbox{ | }X_{t})\label{eq:Markov Property}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+This states that the conditional probability distribution of future states
+ depends only on the current state and not the events that preceded it.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Alternatively Markov chains can also be defined as labelled transition systems,
+ undergoing transitions with different rates between finite number of possible
+ states.
+\end_layout
+
+\begin_layout Subsection
+Discrete Time Markov Chains
+\end_layout
+
+\begin_layout Standard
+Discrete Time Markov Chains (DTMC) are Markov chains with a parameter space
+ T consisting of discrete times 
+\begin_inset Formula $\{t_{0},t_{1},...\}$
+\end_inset
+
+.
+ We are interested in the behaviour of a DTMC at equilibrium and the following
+ results are used in defining it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 1.3
+\end_layout
+
+\begin_layout Plain Layout
+The m-step transition probabilities of a Markov chain defined as
+\end_layout
+
+\begin_layout Plain Layout
+
+\family sans
+\begin_inset Formula 
+\begin{eqnarray*}
+p_{ij}^{(m)} & = & P(X_{n+m}=j\mbox{ }|\mbox{ }X_{n}=i),\mbox{ }(m\geq1)\\
+ & = & (P^{m})_{ij}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since we are interested in the long term behaviour of DTMC, we can use its
+ m-step transition probabilities to calculate the probabilistic behaviour
+ of DTMC over any finite period of time.
+ Thus the probability of a DTMC being in an arbitrary state j at equilibrium
+ is defined as:
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{j} & = & lim_{n\to\infty}P(X_{n}=j\mbox{ |}X_{0}=i)\\
+ & = & lim_{n\to\infty}(P^{n})_{ij}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 1.4
+\end_layout
+
+\begin_layout Plain Layout
+If C is a subset of states, then it is called 
+\series bold
+closed
+\series default
+ if j 
+\begin_inset Formula $\notin$
+\end_inset
+
+ C implies j cannot be reached from any i 
+\begin_inset Formula $\in$
+\end_inset
+
+ C .
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If 
+\begin_inset Formula $\nexists$
+\end_inset
+
+ a proper subset 
+\begin_inset Formula $C\subset\Omega$
+\end_inset
+
+ which is closed, then the Markov chain is called 
+\emph on
+irreducible
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 1.6
+\end_layout
+
+\begin_layout Plain Layout
+The state j is 
+\series bold
+periodic
+\series default
+ with period 
+\begin_inset Formula $m>1$
+\end_inset
+
+ if 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+p_{ii}^{(k)}=0 & , & k\neq rm\mbox{ for any }r\geq1
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+and 
+\begin_inset Formula 
+\begin{eqnarray*}
+P(X_{n+rm}=j\mbox{ for some }r\geq1\mbox{ | }X_{n}=j) & = & 1
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Otherwise the state is 
+\emph on
+aperiodic
+\emph default
+, or has period 1.
+ An aperiodic DTMC is one in which all states are aperiodic.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 1.5
+\end_layout
+
+\begin_layout Plain Layout
+Let 
+\begin_inset Formula $m_{j}$
+\end_inset
+
+ is the mean interval between successive visits to state j.
+ If 
+\begin_inset Formula $m_{j}<\infty$
+\end_inset
+
+ and
+\begin_inset Formula $\pi_{j}=1/m_{j}$
+\end_inset
+
+, then 
+\begin_inset Formula $\pi_{j}>0$
+\end_inset
+
+ and state 
+\begin_inset Formula $j$
+\end_inset
+
+ is recurrent non-null or 
+\series bold
+positive recurrent
+\series default
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A positive recurrent DTMC is a DTMC in which all states are positive recurrent.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Proposition 1.1
+\end_layout
+
+\begin_layout Plain Layout
+If 
+\begin_inset Formula $\mbox{\{}X_{n}\mbox{ | }n=0,1,...\mbox{\}}$
+\end_inset
+
+ is an irreducible, aperiodic Markov chain, then the limiting probabilities
+ 
+\begin_inset Formula $\mbox{\{}\pi_{j}|j=0,1,...\mbox{\}}$
+\end_inset
+
+ exist and
+\begin_inset Formula $\pi_{j}=1/m_{j}$
+\end_inset
+
+ where 
+\begin_inset Formula $m_{j}$
+\end_inset
+
+ is the mean interval between successive visits to state j.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When the limiting probabilities 
+\begin_inset Formula $\mbox{\{}\mbox{\pi_{j}}|j=0,1,...\mbox{\}}$
+\end_inset
+
+ do exist, they form the steady state probability distribution (SSPD) of
+ a DTMC.
+ This is formally defined by the following Theorem 1.1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Theorem 1.1
+\end_layout
+
+\begin_layout Plain Layout
+An irreducible, aperiodic Markov Chain, 
+\begin_inset Formula $X$
+\end_inset
+
+, with state space 
+\begin_inset Formula $S$
+\end_inset
+
+ and one-step transition probability matrix 
+\begin_inset Formula $P=(p_{ij}\mbox{ | }i,j\in S)$
+\end_inset
+
+ , is positive recurrent if and only if the system of equations
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{j} & = & \sum_{i\in S}\pi_{i}p_{ij}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+and (normalisation):
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+\sum_{i\in S}\pi_{i} & = & 1
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+has a solution.
+ If it exists, the solution is unique and is the SSPD of X.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Markov Processes
+\end_layout
+
+\begin_layout Standard
+A Markov process(MP) is a stochastic process, which has a 
+\emph on
+continuous
+\emph default
+ parameter space T, discrete sample space 
+\begin_inset Formula $\Omega$
+\end_inset
+
+ and the 
+\emph on
+Markov property
+\emph default
+ (refer equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Markov Property"
+
+\end_inset
+
+).
+ They can also be defined as Markov chains with continuous time parameters.
+ 
+\end_layout
+
+\begin_layout Standard
+A Markov process is 
+\emph on
+time homogenous
+\emph default
+ if the transition probability function of MP, 
+\begin_inset Formula $p_{ij}(s)=P(X_{t+s}=j\mbox{ | }X_{t}=i)$
+\end_inset
+
+ , is independent of 
+\begin_inset Formula $t$
+\end_inset
+
+, or equivalently 
+\begin_inset Formula $p_{ij}(s)=P(X_{s}=j\mbox{ | }X_{0}=i)$
+\end_inset
+
+.
+ Markov Property and time homogeneity imply the 
+\emph on
+memoryless property
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 2.1
+\end_layout
+
+\begin_layout Plain Layout
+The 
+\series bold
+memoryless property
+\series default
+ of a Markov process states that if at time 
+\begin_inset Formula $t$
+\end_inset
+
+ the process is in state 
+\begin_inset Formula $j$
+\end_inset
+
+, the time remaining in state 
+\begin_inset Formula $j$
+\end_inset
+
+ is independent of the time already spent in state 
+\begin_inset Formula $j$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using time homogeneity, the generators 
+\begin_inset Formula $q_{ij}$
+\end_inset
+
+ of a Markov Process can be uniquely determined by the products:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+q_{ij} & = & \mu_{i}p_{ij}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\mu_{i}$
+\end_inset
+
+ is the rate out of state 
+\begin_inset Formula $i$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{ij}$
+\end_inset
+
+ is the probability of selecting state 
+\begin_inset Formula $j$
+\end_inset
+
+ next.
+ 
+\begin_inset Formula $q_{ij}$
+\end_inset
+
+ is also the instantaneous transition rate from state 
+\begin_inset Formula $i$
+\end_inset
+
+ to state 
+\begin_inset Formula $j$
+\end_inset
+
+, 
+\begin_inset Formula $i\neq j$
+\end_inset
+
+.
+ They also form 
+\series bold
+\emph on
+Q
+\series default
+\emph default
+, generator matrix of the Markov Process, in which all rows sum to zero
+ by setting 
+\begin_inset Formula $q_{ii}=−\mu_{i}$
+\end_inset
+
+.
+ So 
+\begin_inset Formula $Q=(q_{ij})$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Subsection
+Steady State Probability Distribution (SSPD) of the Markov Process
+\end_layout
+
+\begin_layout Standard
+If a Markov Process is positive recurrent, the limits 
+\begin_inset Formula $\pi_{j}$
+\end_inset
+
+ exist, then 
+\begin_inset Formula $\pi_{j}>0,\sum_{j\in S}\pi_{j}=1$
+\end_inset
+
+ and {
+\begin_inset Formula $\pi_{j}\mbox{ | }j\in S$
+\end_inset
+
+} constitute the SSPD of the Markov Process.
+ This is formally defined by Theorem 2.1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Theorem 2.1 
+\end_layout
+
+\begin_layout Plain Layout
+An irreducible Markov Process 
+\begin_inset Formula $X$
+\end_inset
+
+ with state space 
+\begin_inset Formula $S$
+\end_inset
+
+ and generator matrix 
+\begin_inset Formula $Q=(q_{ij})\mbox{ }(i,j\in S)$
+\end_inset
+
+ is positive recurrent if and only if
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\forall j\in S$
+\end_inset
+
+ , Balance equations:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+\sum_{i\in S}\pi_{i}q_{ij} & = & 0\mbox{ }
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+and Normalising equation:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray}
+\sum_{i\in S}\pi_{i} & = & 1\label{eq:Normalising_Eq_MP}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+have a solution.
+ This solution is unique and is the SSPD.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From Theorem 2.1, we can rewrite the balance equations as 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\sum_{j\neq i}\pi_{i}q_{ij} & = & \sum_{j\neq i}\pi_{j}q_{ji}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Following gives the justification of the balance equations:
+\end_layout
+
+\begin_layout Standard
+In equilibrium, 
+\begin_inset Formula $\pi_{i}$
+\end_inset
+
+ is the proportion of time that the process spends in state 
+\begin_inset Formula $i$
+\end_inset
+
+ and 
+\begin_inset Formula $q_{ij}$
+\end_inset
+
+ is the rate at which the process goes from state 
+\begin_inset Formula $i\to j\mbox{ }(j\neq i)$
+\end_inset
+
+.
+ Thus, in unit time, the expected number of transitions from state 
+\begin_inset Formula $i$
+\end_inset
+
+ to state 
+\begin_inset Formula $j$
+\end_inset
+
+ is 
+\begin_inset Formula $\pi_{i}q_{ij}$
+\end_inset
+
+ .
+ This quantity is called the 
+\emph on
+probability flux
+\emph default
+ from state 
+\begin_inset Formula $i$
+\end_inset
+
+ to 
+\begin_inset Formula $j$
+\end_inset
+
+.
+ So we can infer that the left-hand side of the balance equation for state
+ 
+\begin_inset Formula $i$
+\end_inset
+
+ is the total flux out of state 
+\begin_inset Formula $i$
+\end_inset
+
+ to any other state.
+ Similarly, the right-hand side is the total flux into state 
+\begin_inset Formula $i$
+\end_inset
+
+ from any other state.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\implies\forall j$
+\end_inset
+
+ , the fluxes balance:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+\sum_{i\neq j}flux(i\to j) & = & \sum_{i\neq j}flux(j\to i)\label{eq:BalanceEquations}
+\end{eqnarray}
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection
+Example - Poisson Process
+\end_layout
+
+\begin_layout Standard
+The Poisson process is a renewal process with renewal period (inter-arrival
+ time) having cumulative distribution function 
+\begin_inset Formula $F$
+\end_inset
+
+ and probability density function (pdf) 
+\begin_inset Formula $f$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+F(x) & = & P(X\leq x)=1-e-\lambda x\\
+f(x) & = & F'(x)=\lambda e-\lambda x
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where λ is the rate of the Poisson process.
+ Since its an example of a Markov process its probability of arrival in
+ period 
+\begin_inset Formula $(t,t+h)$
+\end_inset
+
+ is independent of the process history before 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ So by memoryless property:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+P(\mbox{arrival in }(t,t+h)) & = & 1-e^{-\lambda h}\\
+ & = & \lambda h+o(h)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From the above result we get the instantaneous transition rates which can
+ be then used to find the SSPD for the process.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+q_{ij} & = & \begin{cases}
+\lambda & \mbox{if }j=i+1\\
+0 & \mbox{if}j\neq i,i+1\\
+ & \mbox{not defined if}j=i
+\end{cases}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Birth-Death Processes
+\end_layout
+
+\begin_layout Standard
+Birth-death process is a special case of Markov Process with state space
+ 
+\begin_inset Formula $\{0,1,...\}$
+\end_inset
+
+ in which a one-step transition can only change the current state by one
+ unit, so if 
+\begin_inset Formula $i\to j$
+\end_inset
+
+ then 
+\begin_inset Formula $|i-j|=1$
+\end_inset
+
+.
+ This process thus has only non-zero transition probabilities - 
+\begin_inset Formula $a_{i,i+1}$
+\end_inset
+
+ and 
+\begin_inset Formula $a_{i+1,i}\mbox{ }(i\geq0)$
+\end_inset
+
+ , representing 
+\emph on
+births
+\emph default
+ and 
+\emph on
+deaths
+\emph default
+ respectively.
+ This ensures the population need not become extinct when state 0 is reached
+ which is useful while considering queues, where arrivals can join an empty
+ queue, represented by state 0.
+ The SSPD of this process is discussed later taking M/M/1 queue as an example.
+\end_layout
+
+\begin_layout Section
+Single Server Queue (SSQ)
+\end_layout
+
+\begin_layout Standard
+The Single Server Queue Model
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PerformanceModellingHarrisonBook"
+
+\end_inset
+
+ - SSQ - is a birth-death process that consists of 
+\end_layout
+
+\begin_layout Itemize
+a Poisson arrival process with a rate of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+a queue which the arriving tasks join
+\end_layout
+
+\begin_layout Itemize
+a server with a FIFO queuing discipline and exponentially distributed service
+ times with parameter 
+\begin_inset Formula $\mu$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+The M/M/1 queue is an example of the SSQ model.
+\end_layout
+
+\begin_layout Subsection
+Kendall's Notation
+\end_layout
+
+\begin_layout Standard
+Queues are classified according to Kendall's notation
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PerformanceModellingHarrisonBook,LectureNotes"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PerformanceModellingHarrisonBook,LectureNotes"
+
+\end_inset
+
+, which defines the class 
+\emph on
+A/S/m/K/N/D 
+\emph default
+as:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+A
+\emph default
+ describes the nature of the arrival process.
+ For example if the process is Poisson, then 
+\begin_inset Formula $A=M$
+\end_inset
+
+ for Markovian.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+S
+\emph default
+ describes the service time distribution.
+ 
+\begin_inset Formula $S=M$
+\end_inset
+
+ for a Markovian(exponential) service time distribution, while 
+\begin_inset Formula $S=G$
+\end_inset
+
+ stands for a general or non-Markovian service time distribution.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+m
+\emph default
+ denotes the number of servers available to give service to customers in
+ the queue.
+ 
+\begin_inset Formula $m=1$
+\end_inset
+
+refers to a single server, while 
+\begin_inset Formula $m=m$
+\end_inset
+
+ shows a parallel server.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+K
+\emph default
+ denotes the capacity of the system or the maximum number of customers allowed
+ in the system
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+N 
+\emph default
+denotes the size of the population from which the customers come.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+D
+\emph default
+ denotes the queuing discipline or priority order in which customers are
+ served in the queue.
+\end_layout
+
+\begin_layout Standard
+In this paper, the concise form - 
+\series bold
+\emph on
+A/S/m
+\series default
+\emph default
+ - is used and default values 
+\begin_inset Formula $K=\infty,\mbox{ }N=\infty,\mbox{ }D=FIFO$
+\end_inset
+
+ are assumed.
+\end_layout
+
+\begin_layout Subsection
+M/M/1 Queue
+\end_layout
+
+\begin_layout Standard
+The M/M/1 queue
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PerformanceModellingHarrisonBook"
+
+\end_inset
+
+ is an example of the SSQ model with a Poisson arrival process rate 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, Markovian service time distribution rate 
+\begin_inset Formula $\mu$
+\end_inset
+
+, unlimited server capacity and infinite calling population.
+ The rates 
+\begin_inset Formula $\lambda\mbox{ , }\mu$
+\end_inset
+
+ are general functions of the queue length; so when the queue length is
+ n, we write them as 
+\begin_inset Formula $\lambda(n)\mbox{ ,}\mu(n)$
+\end_inset
+
+.
+ Considering the M/M/1 queue in equilibrium, in the steady state, we can
+ write down the probability flux balance equations passing in and out of
+ the states enclosed in the contour shown in Figure 2.1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/MM1_Queue_state_transition.png
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+M/M/1 Queue state diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There is only one arc leaving the contour and one incoming arc.
+ The balance equations are therefore, 
+\end_layout
+
+\begin_layout Standard
+Outward flux (all from state 
+\begin_inset Formula $i$
+\end_inset
+
+):
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\pi_{i}\lambda(i)$
+\end_inset
+
+ , 
+\begin_inset Formula $\forall i\geq0\mbox{, }i\in S$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Inward flux (all from state 
+\begin_inset Formula $i+1$
+\end_inset
+
+): 
+\begin_inset Formula $\pi_{i+1}\mu(i+1)$
+\end_inset
+
+ , 
+\begin_inset Formula $\forall i\geq0\mbox{, }i\in S$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\implies$
+\end_inset
+
+ balance equations (using equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:BalanceEquations"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{i}\lambda(i) & = & \pi_{i+1}\mu(i+1)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+So,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{i+1} & = & \frac{\lambda(i)}{\mu(i+1)}\pi_{i}\\
+ & = & [\prod_{j=0}^{i}\rho(j)]\mbox{ }\pi_{0}\\
+\mbox{where }\rho(j) & = & \frac{\lambda(i)}{\mu(i+1)}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The Normalising equation (refer equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Normalising_Eq_MP"
+
+\end_inset
+
+) implies that
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{0}(1+\sum_{i=0}^{\infty}\prod_{j=0}^{i}\rho(j)) & = & 1
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Solving the equation gives the steady state probability 
+\begin_inset Formula $\pi_{i}$
+\end_inset
+
+ for any state 
+\begin_inset Formula $i\geq0$
+\end_inset
+
+: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{i} & = & \frac{\prod_{j=0}^{i-1}\rho(j)}{\sum_{k=0}^{\infty}\prod_{n=0}^{k-1}\rho(n)}\mbox{ }(i\geq0)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In a classical M/M/1 queue, the arrival and service rates, 
+\begin_inset Formula $\lambda\mbox{ and }\mu$
+\end_inset
+
+ respectively, are constant.
+ So 
+\begin_inset Formula $\forall n\in S$
+\end_inset
+
+ , 
+\begin_inset Formula $\lambda(n)=\lambda\mbox{ , }\mu(n)=\mu\mbox{ , }\rho(n)=\rho=\frac{\lambda}{\mu}$
+\end_inset
+
+ .
+ This implies,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray}
+\pi_{i} & = & \frac{\prod_{j=0}^{i-1}\rho^{j}}{\sum_{k=0}^{\infty}\prod_{n=0}^{k-1}\rho^{n}}\nonumber \\
+ & = & (1-\rho)\rho^{i}\mbox{ }(i\geq0)\label{eq:SSPD_of_MM1Q}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The derived result (equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:SSPD_of_MM1Q"
+
+\end_inset
+
+) is the simplified version of the SSPD of M/M/1 queues.
+\end_layout
+
+\begin_layout Standard
+Since this (equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:SSPD_of_MM1Q"
+
+\end_inset
+
+) is a geometric mass probability function, it is easy to deduce the mean
+ length of the queue 
+\begin_inset Formula $(L)$
+\end_inset
+
+ and utilisation of the server 
+\begin_inset Formula $(U)$
+\end_inset
+
+ in equilibrium.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+L & = & \frac{\rho}{(1-\rho)}\\
+U & = & 1-p_{0}=\rho
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It can be noted here that, the mean arrival rate 
+\begin_inset Formula $(\lambda)$
+\end_inset
+
+ is equal to the mean departure rate 
+\begin_inset Formula $(U\mu)$
+\end_inset
+
+ in steady state, as required.
+\end_layout
+
+\begin_layout Standard
+The above analysis and argument applies to any system in equilibrium.
+\end_layout
+
+\begin_layout Section
+Reversed Processes
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+reversed process
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "BradleyRP&RCAT,HarrisonPaperTBTinMAP2003,PerformanceModellingHarrisonBook,LectureNotes"
+
+\end_inset
+
+ of a stationary Markov process is a stochastically identical process (to
+ the original MP) with the same state space but in which the direction of
+ time has been reversed.
+ Knowledge of the reversed process allows us solve balance equations of
+ a Markov process in equilibrium and therefore obtain product-form stationary
+ distributions of complex processes such queuing network models.
+ Thus comprehension of reversed processes helps in applying the RCAT theorem
+ (discussed in Section 2.7).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 4.1
+\end_layout
+
+\begin_layout Plain Layout
+A stochastic process 
+\begin_inset Formula $\{X_{t}\mbox{ | }-\infty<t<\infty\}$
+\end_inset
+
+ is 
+\series bold
+stationary 
+\series default
+if 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+(X_{t_{1}}\mbox{, }X_{t_{2}},\mbox{... , }X_{t_{n}}) & \mbox{\emph{ }and} & (X_{t_{1}+\tau}\mbox{, }X_{t_{2}+\tau},\mbox{... , }X_{t_{n}+\tau})
+\end{eqnarray*}
+
+\end_inset
+
+and have the same probability distribution for all times 
+\begin_inset Formula $t_{1}\mbox{ , }t_{2}\mbox{ , .... , }t_{n}\mbox{ and }\tau$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 4.2
+\end_layout
+
+\begin_layout Plain Layout
+A stochastic process 
+\begin_inset Formula $\{X_{t}\mbox{ | }-\infty<t<\infty\}$
+\end_inset
+
+ is 
+\series bold
+reversible 
+\series default
+if 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+(X_{t_{1}}\mbox{, }X_{t_{2}},\mbox{... , }X_{t_{n}}) & \mbox{\emph{ }and} & (X_{\tau-t_{1}}\mbox{, }X_{\tau-t_{2}},\mbox{... , }X_{\tau-t_{n}})
+\end{eqnarray*}
+
+\end_inset
+
+and have the same probability distribution for all times 
+\begin_inset Formula $t_{1}\mbox{ , }t_{2}\mbox{ , .... , }t_{n}\mbox{ and }\tau$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Definitions 4.1 and 4.2 relate a stationary Markov process to its reversed
+ process.
+ Thus the reversed process of a Markov process 
+\begin_inset Formula $\{X_{t}\}$
+\end_inset
+
+ will be the stationary process 
+\begin_inset Formula $\{X_{\tau-t}\}$
+\end_inset
+
+ for any real number 
+\begin_inset Formula $\tau$
+\end_inset
+
+.
+ We can also define a reversed process in terms of balance conditions of
+ a stationary Markov process as in the following proposition 4.1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Proposition 4.1
+\end_layout
+
+\begin_layout Plain Layout
+A stationary Markov process 
+\begin_inset Formula $\{X_{t}\}$
+\end_inset
+
+ with a generator matrix 
+\begin_inset Formula $Q=(q_{ij})$
+\end_inset
+
+ is reversible if and only if there exists a collection of positive real
+ numbers 
+\begin_inset Formula $\{\pi_{k}\mbox{ | }k\in S\}$
+\end_inset
+
+ satisfying the detailed balance equations:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{i}q_{ij}=\pi_{j}q_{ji} &  & (\forall i,j\in S,i\neq j)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+An example of a reversible process is the M/M/1 queue.
+ An M/M/1 queue is a birth-death process and thus its transition graph is
+ linear - a tree with no branches.
+ So, the probability flux in and out of states balances as derived at equation
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:BalanceEquations"
+
+\end_inset
+
+.
+ Thus by Proposition 4.1 the M/M/1 queue is reversible.
+\end_layout
+
+\begin_layout Standard
+The departure process of an M/M/1 queue is also identical to the arrival
+ process in the reversed queue.
+ To prove this claim let process 
+\begin_inset Formula $N_{t}$
+\end_inset
+
+ denote the number of customers in the queue at time t.
+ An arrival corresponds to the instants 
+\begin_inset Formula $N_{t}$
+\end_inset
+
+ jumps up by one and defines a Poisson arrival process.
+ Due to reversibility, instants at which 
+\begin_inset Formula $N_{-t}$
+\end_inset
+
+ jumps upwards by one also define a reversible process.
+ But arrivals in 
+\begin_inset Formula $N_{-t}$
+\end_inset
+
+ become departures in 
+\begin_inset Formula $N_{t}$
+\end_inset
+
+ thus proving that the departure process forms an identical Poisson process.
+ 
+\end_layout
+
+\begin_layout Standard
+Proposition 4.1 would be useful to detect a reversible Markov process but
+ most Markov processes are not reversible.
+ Thus a method is required to define a reversed process 
+\begin_inset Formula $\{X_{\tau-t}\}$
+\end_inset
+
+ for an irreversible Markov process 
+\begin_inset Formula $\{X_{t}\}$
+\end_inset
+
+.
+ The stationary distribution 
+\begin_inset Formula $\pi$
+\end_inset
+
+ is the same for both the processes and thus the we can relate the instantaneous
+ transition rates of reversed process to those of the original process by
+ the following proposition 4.2.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Proposition 4.2
+\end_layout
+
+\begin_layout Plain Layout
+The reversed process of a stationary Markov process 
+\begin_inset Formula ${X_{t}}$
+\end_inset
+
+ with state space 
+\begin_inset Formula $S$
+\end_inset
+
+, generator matrix 
+\begin_inset Formula $Q$
+\end_inset
+
+ and stationary probabilities 
+\series bold
+
+\begin_inset Formula $\mathbf{\pi}$
+\end_inset
+
+
+\series default
+ is a stationary Markov process with generator matrix 
+\begin_inset Formula $Q′$
+\end_inset
+
+ defined by
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray}
+q'_{ij}=\frac{\pi_{j}q_{ji}}{\pi_{i}} &  & \forall i,j\in S\label{eq:BalanceEquation_RP}
+\end{eqnarray}
+
+\end_inset
+
+and with the same stationary probabilities 
+\series bold
+
+\begin_inset Formula $\mathbf{\pi}$
+\end_inset
+
+
+\series default
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+
+\series bold
+Kolmogorov’s criteria
+\end_layout
+
+\begin_layout Standard
+The equilibrium distribution of stationary Markov process can be found using
+ the result (Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:BalanceEquation_RP"
+
+\end_inset
+
+) from Proposition 4.2 by 
+\emph on
+guessing
+\emph default
+ possible instantaneous transition rates 
+\begin_inset Formula $\{q'_{ij}\mbox{ | }i,j\in S\}$
+\end_inset
+
+ for the reversed process and a collection of positive real numbers 
+\begin_inset Formula $\{\pi_{i}\mbox{ | }i\in S\}$
+\end_inset
+
+ which sum finitely to 
+\begin_inset Formula $G$
+\end_inset
+
+ such that
+\end_layout
+
+\begin_layout Itemize
+The total rate out of state 
+\begin_inset Formula $i$
+\end_inset
+
+ is the same for reversed and original process: 
+\begin_inset Formula $q'_{i}=q_{i}\mbox{ }(\forall i\in S)$
+\end_inset
+
+ where 
+\begin_inset Formula $q_{i}\equiv-q_{ii}$
+\end_inset
+
+ is the total rate out of state 
+\begin_inset Formula $i$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\pi_{i}q'_{ij}\mbox{ }=\mbox{ }\pi_{j}q_{ji}\mbox{ }(\forall i\mbox{ , }j\in S\mbox{ , }i\neq j)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These conditions ensure that 
+\begin_inset Formula $\pi$
+\end_inset
+
+ satisfies the Markov process balance equations and thus the steady state
+ probabilities are 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula $\{\pi_{i}/G\mbox{ | }i\in S\}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ by uniqueness.
+\end_layout
+
+\begin_layout Standard
+But this methodology depends on making the 'right guesses' of the unknown
+ vector 
+\begin_inset Formula $\pi$
+\end_inset
+
+ - the equilibrium state probabilities.
+ Since 
+\begin_inset Formula $\pi$
+\end_inset
+
+ is defined by the generators of a Markov process, its instantaneous transition
+ rates, another methodology which finds reversed processes without reference
+ to 
+\begin_inset Formula $\pi$
+\end_inset
+
+ can be useful.
+ The following proposition, called 
+\emph on
+Kolmogorov’s criteria,
+\emph default
+ provides this by placing conditions only on the instantaneous rates of
+ a Markov process.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Proposition 4.3 - Kolmogorov’s Generalised Criteria
+\end_layout
+
+\begin_layout Plain Layout
+A stationary Markov process with state space 
+\begin_inset Formula $S$
+\end_inset
+
+ and generator matrix 
+\begin_inset Formula $Q$
+\end_inset
+
+ has a reversed process with generator matrix 
+\begin_inset Formula $Q'$
+\end_inset
+
+ if and only if
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+q'_{i}=q_{i} &  & \forall i\in S
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+and for every finite sequence of states 
+\begin_inset Formula $i_{1}\mbox{, }i_{2}\mbox{, ..., }i_{n}\in S$
+\end_inset
+
+ ,
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray}
+q_{i_{1}i_{2}}q_{i_{2}i_{3}}\mbox{. . . }q_{i_{n-1}i_{n}}q_{i_{n}i_{1}} & = & q'_{i_{1}i_{n}}q'_{i_{n}i_{n-1}}\mbox{ . . . }q'_{i_{3}i_{2}}q'_{i_{2}i_{1}}\label{eq:KolmogorovCriteria_RP}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+where 
+\begin_inset Formula $q_{i}\mbox{ }=\mbox{ }-q_{ii}\mbox{ }=\mbox{ }\sum_{j\mbox{ }:\mbox{ }j\neq i}q_{ij}$
+\end_inset
+
+ is the total exit rate from state 
+\begin_inset Formula $i$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As mentioned, Proposition 4.3 can be used to find the instantaneous transition
+ rates of the reversed process 
+\begin_inset Formula $Q'$
+\end_inset
+
+ and then use them to derive the SSPD of both original and reversed Markov
+ Process.
+ This can be done by using the Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:BalanceEquation_RP"
+
+\end_inset
+
+ or a modified approach given as follows:
+\end_layout
+
+\begin_layout Enumerate
+We first arbitrarily choose a reference state 0
+\end_layout
+
+\begin_layout Enumerate
+We then find a sequence of directly connected states 
+\begin_inset Formula $0\mbox{, . . . , }j$
+\end_inset
+
+ in either the forward or reverse process
+\end_layout
+
+\begin_layout Enumerate
+We then calculate 
+\begin_inset Formula $\pi_{j}$
+\end_inset
+
+ steady state probability related to a base value 
+\begin_inset Formula $\pi_{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi_{j} & = & \pi_{0}\prod_{i=0}^{j-1}\frac{q_{i,i+1}}{q'_{i+1,i}}\\
+ & = & \pi_{0}\prod_{i=0}^{j-1}\frac{q'_{i,i+1}}{q{}_{i+1,i}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Example
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/KolgomorovCriteriaReversedProcess.png
+	scale 50
+	rotateOrigin centerTop
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+A forward Markov process and its reversed counterpart
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider a 3-state CTMC, as shown in Figure 2.2, with the only non-zero transitio
+n rates given by 
+\begin_inset Formula $q_{12}=q_{23}=\lambda$
+\end_inset
+
+ and 
+\begin_inset Formula $q_{32}=q_{31}=\mu$
+\end_inset
+
+.
+ Thus using Kolmogorov Generalised Criteria (Proposition 4.3) to discover
+ the reversed rates in its generator matrix 
+\begin_inset Formula $Q'$
+\end_inset
+
+ , we start by comparing the outbound rates in the forward and reversed
+ process:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $q_{1}=\lambda\mbox{ , }q_{2}=\lambda\mbox{ , }q_{3}=2\mu$
+\end_inset
+
+ gives,
+\begin_inset Formula 
+\begin{eqnarray*}
+q'_{1}=q'_{13}=q_{1}=\lambda\mbox{ , } & q'_{2}=q'_{21}+q'_{23}=q_{2}=\lambda\mbox{ , } & q'_{3}=q'_{32}=q_{3}=2\mu
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There are two minimal cycles in the forward process, 
+\begin_inset Formula $\{1\to2,\mbox{ }2\to3,\mbox{ }3\to1\}$
+\end_inset
+
+ and 
+\begin_inset Formula $\{2\to3,\mbox{ }3\to2\}$
+\end_inset
+
+, gives the following cycle equations:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+q'_{13}q'_{32}q'_{21}=\lambda^{2}\mu &  & q'_{23}q'_{32}=\mu\lambda
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Solving these we get, 
+\begin_inset Formula 
+\[
+q'_{13}=\lambda,\mbox{ }q'_{32}=2\mu,\mbox{ }q'_{21}=q'_{23}=\frac{\lambda}{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This style of reasoning is used in the RCAT to determine the reversed rates
+ of PEPA actions in sequential PEPA components, described in later sections.
+\end_layout
+
+\begin_layout Section
+Queuing Networks
+\end_layout
+
+\begin_layout Standard
+Queuing networks
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PerformanceModellingHarrisonBook,LectureNotes"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PerformanceModellingHarrisonBook,LectureNotes"
+
+\end_inset
+
+ are systems which are network of queues with interconnect input and outputs.
+ 
+\emph on
+Open
+\emph default
+ queuing networks are queuing networks where external customers are allowed
+ to arrive or depart the system while 
+\emph on
+closed
+\emph default
+ queuing networks are those where no external customers are allowed in the
+ system.
+\end_layout
+
+\begin_layout Subsection
+Traffic Equations
+\end_layout
+
+\begin_layout Standard
+Traffic equations are a system of linear equations used to compute the mean
+ arrival rate values 
+\begin_inset Formula $\lambda_{i}$
+\end_inset
+
+ to each node 
+\begin_inset Formula $i$
+\end_inset
+
+ in the network.
+ In queuing networks, for any node 
+\begin_inset Formula $i$
+\end_inset
+
+, the mean number of arrivals to node 
+\begin_inset Formula $i$
+\end_inset
+
+ is the sum of the mean external arrivals to node 
+\begin_inset Formula $i$
+\end_inset
+
+ and the mean arrivals from all other nodes 
+\begin_inset Formula $j$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+So the traffic equations for node 
+\begin_inset Formula $i=1\mbox{, }2\mbox{, . . . , }M$
+\end_inset
+
+ is defined as:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\lambda_{i} & = & \gamma_{i}+\sum_{j=1}^{M}\lambda_{j}q_{ji}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\gamma_{i}$
+\end_inset
+
+ is the external arrival rate at node 
+\begin_inset Formula $i$
+\end_inset
+
+, and 
+\begin_inset Formula $q_{ji}$
+\end_inset
+
+ is the routing probability that traffic leaving node 
+\begin_inset Formula $j$
+\end_inset
+
+ are routed to node 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ In closed queuing networks, the external arrival rate 
+\begin_inset Formula $\gamma_{i}$
+\end_inset
+
+ will be zero.
+\end_layout
+
+\begin_layout Subsection
+Jackson Theorem
+\end_layout
+
+\begin_layout Standard
+Using the traffic equations, the utilisation of node 
+\begin_inset Formula $i$
+\end_inset
+
+ can be derived.
+ For open queuing networks having nodes with fixed service rates 
+\begin_inset Formula $\mu_{i}$
+\end_inset
+
+, the traffic intensity is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\rho_{i} & = & \frac{\lambda_{i}}{\mu_{i}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The utilisation therefore at node 
+\begin_inset Formula $i$
+\end_inset
+
+ is 
+\begin_inset Formula $U_{i}=\mbox{traffic intensity at node }i=\rho_{i}$
+\end_inset
+
+.
+ A network is 
+\emph on
+stable
+\emph default
+, which means capable of reaching a steady state, if the following condition
+ holds:
+\end_layout
+
+\begin_layout Standard
+Utilisation at all nodes should be:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\rho_{i}=\frac{\lambda_{i}}{\mu_{i}}<1 &  & :\forall i
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To calculate the steady state probability distribution of a stable network,
+ the Jackson's theorem is used, which gives a product form solution for
+ open queuing networks.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Theorem 5.1 Jackson Theorem
+\end_layout
+
+\begin_layout Plain Layout
+The theorem states that if the open queuing network is stable, that is if
+ the condition:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+\rho_{i}<1 &  & :\forall i
+\end{eqnarray*}
+
+\end_inset
+
+holds, then the steady-state exists and
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray}
+\pi(n_{1}\mbox{, . . . , }n_{m}) & = & \prod_{i=1}^{M}(1-\rho_{i})\rho_{i}^{n_{i}}\label{eq:ProductFormSolutionJThm}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+is the joint probability (or steady state probabilities) where
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pi(n_{1}\mbox{, . . . , }n_{m})$
+\end_inset
+
+ is the probability that the system has queue length 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+ at node 
+\begin_inset Formula $i$
+\end_inset
+
+ .
+ The result is also called the
+\emph on
+ product form solution
+\emph default
+ of the model.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The product-form result implies that each node can be reasoned about as
+ a M/M/1 queue in isolation and thus makes obtaining performance measures
+ of a network such as - mean queue lengths, throughput, mean waiting time
+ - an easy task.
+ If we analyse the product form solution, we notice that marginal distribution
+ of the number of jobs at node 
+\begin_inset Formula $i$
+\end_inset
+
+ is the same of an M/M/1 queue (compare the SSPD equation of a M/M/1 queue
+ from 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:SSPD_of_MM1Q"
+
+\end_inset
+
+ to the inner term of the product form solution obtained 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ProductFormSolutionJThm"
+
+\end_inset
+
+).
+ Thus we can conclude that for a stable Jackson Network with an arrival
+ rate 
+\begin_inset Formula $\lambda_{i}$
+\end_inset
+
+ to node 
+\begin_inset Formula $i$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+The number of of jobs at any node is independent of the state of any other
+ node as we get a product form solution
+\end_layout
+
+\begin_layout Itemize
+Node 
+\begin_inset Formula $i$
+\end_inset
+
+ behaves stochastically as if it were subject to Poisson arrivals with rate
+ 
+\begin_inset Formula $\lambda_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We can now define 
+\emph on
+Jackson Network
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PerformanceModellingHarrisonBook"
+
+\end_inset
+
+
+\emph default
+ as an open queuing network with any external arrivals to any node 
+\begin_inset Formula $i$
+\end_inset
+
+ forming a Poisson stream and the equilibrium probability distribution resulting
+ to a product form solution model.
+ It is a relatively simple queuing network and we shall derive its product
+ form solution using the RCAT theorem in later sections.
+\end_layout
+
+\begin_layout Subsection
+G-Network
+\end_layout
+
+\begin_layout Standard
+A G-network
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GelenbeGNetworks"
+
+\end_inset
+
+, also known as generalised queueing network or Gelenbe network and introduced
+ by Erol Gelenbe, are queuing networks with negative customers.
+ Thus this network has two types of customers:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+positive customers
+\emph default
+ are customers as in a M/M/1 queue which arrive from other queues or externally
+ as Poisson arrivals.
+ Their departures (state decrements) are synchronised with state increments
+ (arrivals) in destination queue.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+negative customers
+\emph default
+ are customers which remove or 'cancel' positive customers in the queue
+ if it not empty and have not effect on an empty queue.
+ They are useful to remove traffic if a network is congested.
+\end_layout
+
+\begin_layout Standard
+A product form solution exists for the stationary G-networks despite the
+ traffic flows forming a system of non-linear equations.
+ 
+\end_layout
+
+\begin_layout Section
+PEPA
+\end_layout
+
+\begin_layout Standard
+PEPA
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HillstonPEPAbook,HarrisonPaperTBTinMAP2003,BradleyRP&RCAT,HarrisonPaperPerformanceImpact2009"
+
+\end_inset
+
+ is a formal system description technique used in performance modelling.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HillstonPEPAbook"
+
+\end_inset
+
+ It is a Markovian Process Algebra (MPA) with the fewest combinators that
+ provide a semantic model for denoting the states of a continuous time Markov
+ Chain.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HarrisonPaperPerformanceImpact2009"
+
+\end_inset
+
+ As the Jackson Theorem (see Theorem 5.1) operates over queuing networks
+ to generate product form solutions, RCAT operates over PEPA.
+\end_layout
+
+\begin_layout Standard
+In PEPA, a system is an interaction of 
+\emph on
+components
+\emph default
+ which engage in 
+\emph on
+activities.
+
+\emph default
+ For example, in a stochastic process components correspond to states while
+ activities correspond to transitions between them.
+ An activity in PEPA is specified as 
+\begin_inset Formula $\alpha=(a,r)$
+\end_inset
+
+ , where 
+\begin_inset Formula $a$
+\end_inset
+
+ is the 
+\emph on
+action type 
+\emph default
+and
+\emph on
+ 
+\begin_inset Formula $r$
+\end_inset
+
+ 
+\emph default
+is the 
+\emph on
+activity rate
+\emph default
+.
+ The Markov process's transition rates are represented in PEPA by activity
+ by the activity rate as a duration which is a random variable with an exponenti
+al distribution.
+ Every activity within the PEPA model with the same action type represents
+ different instances of that action by the system.
+ A 
+\emph on
+derivation graph
+\emph default
+, formed by PEPA terms at nodes (states of an MP) and arcs showing transitions
+ between them, determine the underlying Markov process of a component P.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+To be improved from Harrison paper 2002
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+PEPA Syntax
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 6.1
+\end_layout
+
+\begin_layout Plain Layout
+The syntax
+\begin_inset CommandInset citation
+LatexCommand cite
+key "BradleyRP&RCAT"
+
+\end_inset
+
+ of a PEPA component 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $P$
+\end_inset
+
+ is represented by:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+P & ::= & (a,\lambda).P\mbox{ | }P_{1}\mbox{ }+\mbox{ }P_{2}\mbox{ | }P_{1}\ensuremath{\sync{\mathcal{L}}}P_{2}\mbox{ | }P/L\mbox{ | }A
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(a,\lambda).P$
+\end_inset
+
+ is called a 
+\emph on
+prefix 
+\emph default
+operation.
+ It represents a process which performs an action 
+\begin_inset Formula $a$
+\end_inset
+
+ with a rate parameter 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and then becomes a new process 
+\begin_inset Formula $P$
+\end_inset
+
+.
+ The rate parameter may either be a positive real number or the value 
+\begin_inset Formula $\top$
+\end_inset
+
+ which makes the action passive in a cooperation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P_{1}+P_{2}$
+\end_inset
+
+ is a 
+\emph on
+choice
+\emph default
+ operation.
+ Here the two components 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ are in a race condition where the process can evolve into either one of
+ them.
+ The first component to activate will dictate the direction of choice
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P_{1}\ensuremath{\sync{\mathcal{L}}}P_{2}$
+\end_inset
+
+ is the 
+\emph on
+cooperation 
+\emph default
+or synchronisation operator.
+ 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ run in parallel and synchronise over actions in set 
+\begin_inset Formula $\mathcal{{L}}$
+\end_inset
+
+.
+ Synchronising actions much be activated jointly by both components.
+ Thus if component 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+ can evolve only by activating a synchronising action 
+\begin_inset Formula $a$
+\end_inset
+
+, it may be blocked until 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ is in a derivative state that can synchronise on 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ In a passive cooperation, if 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+ evolves with a rate 
+\begin_inset Formula $\top$
+\end_inset
+
+ on synchronising action 
+\begin_inset Formula $a$
+\end_inset
+
+, then the joint action 
+\begin_inset Formula $a$
+\end_inset
+
+ inherits its rate from 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+ component alone.
+ Parallelism is a special case of synchronisation where the set of synchronising
+ actions is empty, that is, 
+\begin_inset Formula $P_{1}\ensuremath{\sync{\emptyset}}P_{2}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P/L$
+\end_inset
+
+ is the 
+\emph on
+hiding
+\emph default
+ operation.
+ Observable actions from set 
+\begin_inset Formula $L$
+\end_inset
+
+ in 
+\begin_inset Formula $P$
+\end_inset
+
+ are rewritten as silent 
+\begin_inset Formula $\tau$
+\end_inset
+
+ actions which cannot be used in cooperations with other components.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A$
+\end_inset
+
+ is a 
+\emph on
+constant
+\emph default
+ label that is used while constructing recursive definitions.
+\end_layout
+
+\begin_layout Standard
+Processes or 
+\emph on
+agents
+\emph default
+ defined using only assignments or prefixes are called simple agents while
+ the ones defined using at least one cooperation combinator are called compound
+ agents.
+\end_layout
+
+\begin_layout Subsection
+PEPA activity substitution
+\end_layout
+
+\begin_layout Standard
+Relabelling
+\begin_inset CommandInset citation
+LatexCommand cite
+key "BradleyRP&RCAT"
+
+\end_inset
+
+ or activity substitution is a method for an activity 
+\begin_inset Formula $\alpha=(a,r)$
+\end_inset
+
+ to be syntactically replaced with activity 
+\begin_inset Formula $\alpha'=(a'\mbox{ , }r')$
+\end_inset
+
+.
+ This is particularly useful in defining reversed processes of cooperations.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 6.2
+\end_layout
+
+\begin_layout Plain Layout
+The PEPA activity substitution function is defined as:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+(\beta.P)\{\alpha\leftarrow\alpha'\} & = & \begin{cases}
+\alpha'.(P\{\alpha\leftarrow\alpha'\}) & :\mbox{ if }\alpha=\beta\\
+\beta.(P\{\alpha\leftarrow\alpha'\}) & :\mbox{ }otherwise
+\end{cases}\\
+(P+Q)\{\alpha\leftarrow\alpha'\} & = & P\{\alpha\leftarrow\alpha'\}+Q\{\alpha\leftarrow\alpha'\}\\
+\\
+(P_{1}\ensuremath{\sync{\mathcal{L}}}P_{2})\{\alpha\leftarrow\alpha'\} & = & P\{\alpha\leftarrow\alpha'\}\sync{\mathcal{{L}}\{\alpha\leftarrow\alpha'\}}Q\{\alpha\leftarrow\alpha'\}\\
+where\mbox{ }\mathcal{L}\{(a,\lambda)\leftarrow(a',\lambda')\} & = & \begin{cases}
+(\mathcal{L}\backslash\{a\})\mbox{ }\bigcup\mbox{ }\{a'\} & :\mbox{ }if\mbox{ }a\in\mathcal{L}\\
+\mathcal{L} & :\mbox{ }otherwise
+\end{cases}\\
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Reversing a PEPA component
+\end_layout
+
+\begin_layout Standard
+Reversing a PEPA component is done for finding the reversed process of a
+ Markov process in terms of a PEPA agent with appropriate rates.
+ The RCAT theorem deals with the reversal of a compound agent, 
+\begin_inset Formula $P_{1}\ensuremath{\sync{\mathcal{L}}}P_{2}$
+\end_inset
+
+ , and uses reversing sequential components in its definition.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 6.3
+\end_layout
+
+\begin_layout Plain Layout
+For all states 
+\begin_inset Formula $S$
+\end_inset
+
+ in a component:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+\overline{S} & \rmdef & \sum_{i\mbox{ : }R_{i}\to^{(a_{i},\lambda_{i})}S}(\overline{a}_{i}\mbox{ , }\overline{\lambda_{i}}).\overline{R_{i}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus the reversed rate of a component 
+\begin_inset Formula $\bar{S}$
+\end_inset
+
+ is a choice between all the states that have 
+\begin_inset Formula $S$
+\end_inset
+
+ as its immediate successor in the forward process
+\begin_inset CommandInset citation
+LatexCommand cite
+key "BradleyRP&RCAT"
+
+\end_inset
+
+.
+ Thus in the reversed component, actions 
+\begin_inset Formula $a$
+\end_inset
+
+ become 
+\begin_inset Formula $\bar{a}$
+\end_inset
+
+ and rates 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ become 
+\begin_inset Formula $\bar{\lambda}$
+\end_inset
+
+ where 
+\begin_inset Formula $\bar{\lambda}$
+\end_inset
+
+ can be calculated using Kolmogorov’s generalised criteria (Proposition
+ 4.3 - Equation
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:KolmogorovCriteria_RP"
+
+\end_inset
+
+).
+ Finding the rates of a reversed compound agent requires a new rule as an
+ agent may have several actions leading to the same state that synchronises
+ with distinct actions in a cooperating agent
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HarrisonPaperTBTinMAP2003"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 6.4
+\end_layout
+
+\begin_layout Plain Layout
+The reversed actions of multiple actions 
+\begin_inset Formula $(a_{i},\lambda_{i})$
+\end_inset
+
+, for 
+\begin_inset Formula $1\leq i\leq n$
+\end_inset
+
+ that an agent 
+\begin_inset Formula $P$
+\end_inset
+
+ can perform, which lead to the same derivative 
+\begin_inset Formula $Q$
+\end_inset
+
+, are respectively
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+(\bar{a_{i}}\mbox{, }(\lambda_{i}/\lambda)\bar{\lambda}))
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+where 
+\begin_inset Formula $\lambda=\lambda_{1}+\mbox{ . . . }+\lambda_{n}$
+\end_inset
+
+ and 
+\begin_inset Formula $\bar{\lambda}$
+\end_inset
+
+ is the reversed rate of the one-step, composite transition with rate 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ in the Markov chain, corresponding to all the arcs between 
+\begin_inset Formula $P$
+\end_inset
+
+ and 
+\begin_inset Formula $Q$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Definition 6.4 is used in the RCAT theorem for reversing compound agents.
+\end_layout
+
+\begin_layout Section
+Reversed Compound Agent Theorem (RCAT)
+\end_layout
+
+\begin_layout Standard
+The Reversed Compound Agent Theorem (RCAT) finds the reversed compound agent
+ of the cooperation 
+\begin_inset Formula $P\ensuremath{\sync{L}}Q$
+\end_inset
+
+ by finding the reversed rates of the constituent processes 
+\begin_inset Formula $P$
+\end_inset
+
+ and 
+\begin_inset Formula $Q$
+\end_inset
+
+.
+ For RCAT operation, we define some restrictions on actions in a component.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 7.1
+\end_layout
+
+\begin_layout Plain Layout
+The subset of action types in a set 
+\begin_inset Formula $L$
+\end_inset
+
+ which are passive with respect to a process 
+\begin_inset Formula $P$
+\end_inset
+
+ (i.e.
+ are of the form 
+\begin_inset Formula $(a,\top)$
+\end_inset
+
+ in 
+\begin_inset Formula $P$
+\end_inset
+
+) is denoted by 
+\begin_inset Formula $\mathcal{P}_{P}(L)$
+\end_inset
+
+.
+ The set of corresponding active action types is denoted by 
+\begin_inset Formula $\mathcal{A}{}_{P}(L)=L\backslash\mathcal{P}_{P}(L)$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus an action cannot be both passive and active in the same component.
+ If an action is active in a component, all its instances are active in
+ that component, and if it is passive then all its instances are passive.
+ This is necessary as we, in RCAT, syntactically transform every passive
+ action before reversing an agent to ensure every passive action rate is
+ uniquely identified with exactly one action type 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HarrisonPaperTBTinMAP2003"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+The RCAT theorem
+\end_layout
+
+\begin_layout Standard
+The RCAT as stated in the original paper
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HarrisonPaperTBTinMAP2003"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Theorem 7.1 Reversed Compound Agent Theorem
+\end_layout
+
+\begin_layout Plain Layout
+Suppose that the cooperation 
+\begin_inset Formula $P\ensuremath{\sync{L}}Q$
+\end_inset
+
+ has a derivation graph with an irreducible subgraph G.
+ Given that:
+\end_layout
+
+\begin_layout Enumerate
+every passive action type in 
+\begin_inset Formula $\mathcal{P}_{P}(L)$
+\end_inset
+
+ or 
+\begin_inset Formula $\mathcal{P}_{Q}(L)$
+\end_inset
+
+ is always enabled in 
+\begin_inset Formula $P$
+\end_inset
+
+ or 
+\begin_inset Formula $Q$
+\end_inset
+
+ respectively (i.e.
+ enabled in all states of the transition graph);
+\end_layout
+
+\begin_layout Enumerate
+every reversed action of an active action type in 
+\begin_inset Formula $\mathcal{A}{}_{P}(L)$
+\end_inset
+
+ or 
+\begin_inset Formula $\mathcal{A}{}_{Q}(L)$
+\end_inset
+
+ is always enabled in 
+\begin_inset Formula $\overline{P}$
+\end_inset
+
+ or 
+\begin_inset Formula $\overline{Q}$
+\end_inset
+
+ respectively;
+\end_layout
+
+\begin_layout Enumerate
+every occurrence of a reversed action of an active action type in 
+\begin_inset Formula $\mathcal{A}{}_{P}(L)$
+\end_inset
+
+ or 
+\begin_inset Formula $\mathcal{A}{}_{Q}(L)$
+\end_inset
+
+ has the same rate in 
+\begin_inset Formula $\overline{P}$
+\end_inset
+
+ or 
+\begin_inset Formula $\overline{Q}$
+\end_inset
+
+ respectively.
+\end_layout
+
+\begin_layout Plain Layout
+the reversed agent 
+\begin_inset Formula $\overline{P\sync{L}Q}$
+\end_inset
+
+, with derivation graph containing the reversed subgraph 
+\begin_inset Formula $\overline{G}$
+\end_inset
+
+, is: 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+R^{*}\sync{\overline{L}}S^{*}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+where:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+R^{*} & = & \overline{R}\{(\overline{a},\bar{p}_{a})\leftarrow(\bar{a},\top)\mbox{ }|\mbox{ }a\in\mathcal{A}{}_{P}(L)\}\\
+S^{*} & = & \overline{S}\{(\overline{a},\bar{q}_{a})\leftarrow(\bar{a},\top)\mbox{ }|\mbox{ }a\in\mathcal{A}{}_{Q}(L)\}\\
+R & = & P\{(a,\top)\leftarrow(a,x_{a})\mbox{ }|\mbox{ }a\in\mathcal{P}{}_{P}(L)\}\\
+S & = & Q\{(a,\top)\leftarrow(a,x_{a})\mbox{ }|\mbox{ }a\in\mathcal{P}{}_{Q}(L)\}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+where the symbolic rates 
+\begin_inset Formula $\{x_{a}\}$
+\end_inset
+
+ are given by:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+x_{a} & = & \begin{cases}
+\bar{q}_{a} & :\mbox{ if }a\in\mathcal{P}_{P}(L)\\
+\bar{p}_{a} & :\mbox{ if }a\in\mathcal{P}_{Q}(L)
+\end{cases}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+and 
+\begin_inset Formula $\bar{p}_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $\bar{q}_{a}$
+\end_inset
+
+ are symbolic rates of action types 
+\begin_inset Formula $\bar{a}$
+\end_inset
+
+ in 
+\begin_inset Formula $\overline{P}$
+\end_inset
+
+ and 
+\begin_inset Formula $\overline{Q}$
+\end_inset
+
+ respectively.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The proof of this theorem is detailed in the paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HarrisonPaperTBTinMAP2003"
+
+\end_inset
+
+ and consists of verifying that Kolmogorov’s criteria hold.
+\end_layout
+
+\begin_layout Subsection
+(E)RCAT - Extended RCAT
+\end_layout
+
+\begin_layout Standard
+Conditions 1 and 2 in the RCAT (Theorem 7.1) requires every passive action
+ to be enabled in every derivative (state) of both the forward and reversed
+ cooperating agents.
+ This ensures that the total outgoing rate from any state is the same in
+ the two processes in agent 
+\begin_inset Formula $P\ensuremath{\sync{L}}Q$
+\end_inset
+
+ and its reversed agent.
+ But as stated in paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ercat"
+
+\end_inset
+
+, relaxing these conditions allows RCAT to be applied on a large breadth
+ of systems.
+ We define some new notation to account for the action types in 
+\begin_inset Formula $L$
+\end_inset
+
+ that might not be present in every derivative of the forward and reversed
+ cooperating agents.
+ This is an extension to Definition 7.1
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 7.2
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{P}_{A}^{i\rightarrow}$
+\end_inset
+
+ denotes the subset that are passive in 
+\begin_inset Formula $A$
+\end_inset
+
+ and correspond to transitions out of state 
+\begin_inset Formula $i$
+\end_inset
+
+ in the Markov process 
+\begin_inset Formula $A$
+\end_inset
+
+ ;
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{P}_{A}^{i\leftarrow}$
+\end_inset
+
+ denotes the subset that are passive in 
+\begin_inset Formula $A$
+\end_inset
+
+ and correspond to transitions into state 
+\begin_inset Formula $i$
+\end_inset
+
+ in the Markov process 
+\begin_inset Formula $A$
+\end_inset
+
+ ;
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{A}_{A}^{i\rightarrow}$
+\end_inset
+
+ denotes the subset that are active in 
+\begin_inset Formula $A$
+\end_inset
+
+ and correspond to transitions out of state 
+\begin_inset Formula $i$
+\end_inset
+
+ in the Markov process 
+\begin_inset Formula $A$
+\end_inset
+
+ ;
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{A}_{A}^{i\rightarrow}$
+\end_inset
+
+ denotes the subset that are active in 
+\begin_inset Formula $A$
+\end_inset
+
+ and correspond to transitions into state 
+\begin_inset Formula $i$
+\end_inset
+
+ in the Markov process 
+\begin_inset Formula $A$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{P}^{(i,j)\rightarrow}=\mathcal{P}_{P}^{i\rightarrow}+\mathcal{P}_{Q}^{j\rightarrow}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{A}^{(i,j)\rightarrow}=\mathcal{A}_{P}^{i\rightarrow}+\mathcal{A}_{Q}^{j\rightarrow}$
+\end_inset
+
+ ;
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathcal{P}^{(i,j)\leftarrow}=\mathcal{P}_{P}^{i\leftarrow}+\mathcal{P}_{Q}^{j\leftarrow}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{A}^{(i,j)\leftarrow}=\mathcal{A}_{P}^{i\leftarrow}+\mathcal{A}_{Q}^{j\leftarrow}$
+\end_inset
+
+ ;
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha_{a}^{(i,j)}$
+\end_inset
+
+ denotes the instantaneous transition rate out of (joint) state 
+\begin_inset Formula $(i,j)$
+\end_inset
+
+ in the Markov process of 
+\begin_inset Formula $P\ensuremath{\sync{L}}Q$
+\end_inset
+
+ corresponding to active action type 
+\begin_inset Formula $a\in L$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\overline{\beta_{a}^{(i,j)}}$
+\end_inset
+
+ denotes the instantaneous transition rate out of (joint) state 
+\begin_inset Formula $(i,j)$
+\end_inset
+
+ in the reversed Markov process of 
+\begin_inset Formula $P\ensuremath{\sync{L}}Q$
+\end_inset
+
+ corresponding to passive action type 
+\begin_inset Formula $a\in L$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The theorem with the new notation is defined as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Theorem 7.2 Extended
+\series default
+ 
+\series bold
+Reversed Compound Agent Theorem
+\series default
+\emph on
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RCAT2009Paper"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+If the following conditions hold,
+\end_layout
+
+\begin_layout Enumerate
+The reversed rate 
+\begin_inset Formula $x_{a}$
+\end_inset
+
+ of every active action 
+\begin_inset Formula $a$
+\end_inset
+
+ is the same at every instance, given by the solution of the rate equations,
+ as in the original RCAT (Theorem 7.1).
+\end_layout
+
+\begin_layout Enumerate
+The forward and reversed passive and active transition rates satisfy:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+\sum_{a\in\mathcal{P}^{(i,j)\rightarrow}}x_{a}-\sum_{a\in\mathcal{A}^{(i,j)\leftarrow}}x_{a} & = & \sum_{a\in\mathcal{P}^{(i,j)\leftarrow}}\overline{\beta_{a}^{(i,j)}}-\sum_{a\in\mathcal{A}^{(i,j)\rightarrow}\backslash\mathcal{P}^{(i,j)\rightarrow}}\alpha_{a}^{(i,j)}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Then the reversed process of the cooperation 
+\begin_inset Formula $P\ensuremath{\sync{L}}Q$
+\end_inset
+
+ is
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+\overline{P\sync{L}Q} & = & R^{*}\sync{\overline{L}}S^{*}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+where:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+R^{*} & = & \overline{R}\{(\overline{a},\bar{p}_{a})\leftarrow(\bar{a},\top)\mbox{ }|\mbox{ }a\in\mathcal{A}{}_{P}(L)\}\\
+S^{*} & = & \overline{S}\{(\overline{a},\bar{q}_{a})\leftarrow(\bar{a},\top)\mbox{ }|\mbox{ }a\in\mathcal{A}{}_{Q}(L)\}\\
+R & = & P\{(a,\top)\leftarrow(a,x_{a})\mbox{ }|\mbox{ }a\in\mathcal{P}{}_{P}(L)\}\\
+S & = & Q\{(a,\top)\leftarrow(a,x_{a})\mbox{ }|\mbox{ }a\in\mathcal{P}{}_{Q}(L)\}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+where the symbolic rates 
+\begin_inset Formula $\{x_{a}\}$
+\end_inset
+
+ are given by:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{eqnarray*}
+x_{a} & = & \begin{cases}
+\bar{q}_{a} & :\mbox{ if }a\in\mathcal{P}_{P}(L)\\
+\bar{p}_{a} & :\mbox{ if }a\in\mathcal{P}_{Q}(L)
+\end{cases}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+and 
+\begin_inset Formula $\bar{p}_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $\bar{q}_{a}$
+\end_inset
+
+ are symbolic rates of action types 
+\begin_inset Formula $\bar{a}$
+\end_inset
+
+ in 
+\begin_inset Formula $\overline{P}$
+\end_inset
+
+ and 
+\begin_inset Formula $\overline{Q}$
+\end_inset
+
+ respectively.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+is it necessary to write about original rcat and passive invisible transitions
+ from 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ercat"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Practical Application of the RCAT method
+\end_layout
+
+\begin_layout Standard
+For using the RCAT method practically, the algorithm detailed in section
+ 2.7.3.1 can be used.
+ This algorithm does not require the whole reversed processes to be determined
+ in RCAT theorem 7.1but does require the specific reversed rates of the synchroni
+sing active actions.
+ These rates are computed using equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:BalanceEquation_RP"
+
+\end_inset
+
+ which use the equilibrium state probabilities of each component process.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Generic Algorithm
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RCAT2009Paper"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider the cooperation 
+\begin_inset Formula $P_{1}\sync{L}P_{2}$
+\end_inset
+
+.
+ The algorithm is as follows
+\end_layout
+
+\begin_layout Enumerate
+From 
+\begin_inset Formula $P_{k}$
+\end_inset
+
+ construct 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ by setting the rate of every instance of action 
+\begin_inset Formula $a\in L$
+\end_inset
+
+ that is passive in 
+\begin_inset Formula $P_{k}$
+\end_inset
+
+ to 
+\begin_inset Formula $x_{a}$
+\end_inset
+
+, for 
+\begin_inset Formula $k=1,2$
+\end_inset
+
+ (each 
+\begin_inset Formula $a$
+\end_inset
+
+ will be passive for only one 
+\begin_inset Formula $k$
+\end_inset
+
+);
+\end_layout
+
+\begin_layout Enumerate
+For each active action type 
+\begin_inset Formula $a$
+\end_inset
+
+ in 
+\begin_inset Formula $R_{k}\mbox{ , }k=1,2$
+\end_inset
+
+, check that its reversed rate is the same for all of its instances, that
+ is for for all transitions 
+\begin_inset Formula $i\rightarrow j$
+\end_inset
+
+ it denotes states 
+\begin_inset Formula $i,j$
+\end_inset
+
+ in the state transition graph of 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+.
+ Compute and denote this reversed rate (in the reversed process 
+\begin_inset Formula $\overline{R_{k}}$
+\end_inset
+
+) by the equation 
+\begin_inset Formula 
+\begin{eqnarray}
+\overline{r_{a}} & = & \frac{\pi_{k}(i)r_{a}^{i}}{\pi_{k}(j)}\label{eq:GenericAlgoRRCal}
+\end{eqnarray}
+
+\end_inset
+
+where 
+\begin_inset Formula $r_{a}^{i}$
+\end_inset
+
+ is the specified forward rate of the instance of action type 
+\begin_inset Formula $a$
+\end_inset
+
+ going out of state 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ In fact, if the reversed process of the cooperation is required, the full
+ reversed processes 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ must be computed;
+\end_layout
+
+\begin_layout Enumerate
+Noting that the symbolic reversed rate 
+\begin_inset Formula $\overline{r_{a}}$
+\end_inset
+
+ will in general be a function of the 
+\begin_inset Formula $x_{b}(b\in L)$
+\end_inset
+
+, solve the equations 
+\begin_inset Formula $x_{a}=\overline{r_{a}}$
+\end_inset
+
+ for each 
+\begin_inset Formula $a\in L$
+\end_inset
+
+ and substitute the solutions for the variables 
+\begin_inset Formula $x_{a}$
+\end_inset
+
+ in each 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Enumerate
+Check the enabling conditions (detailed in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "marcatHarLee2005"
+
+\end_inset
+
+) for each co-operating action in each process 
+\begin_inset Formula $P_{k}$
+\end_inset
+
+.
+ For queueing networks, these are as in the original RCAT, namely that all
+ passive actions be enabled in all states and that all states also have
+ an incoming instance of every active action;
+\end_layout
+
+\begin_layout Enumerate
+The required product-form for state 
+\begin_inset Formula $\underline{s}=(s1\mbox{ , }s2)$
+\end_inset
+
+ is now 
+\begin_inset Formula $\pi(\underline{s})\propto\pi_{1}(s_{1})\pi_{2}(s_{2})$
+\end_inset
+
+ where 
+\begin_inset Formula $π_{k}(s_{k})$
+\end_inset
+
+ is the equilibrium probability (which may be unnormalised) of state 
+\begin_inset Formula $s_{k}$
+\end_inset
+
+ in 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Example 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "BradleyRP&RCAT"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/tandemMM2Network.png
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+A simple tandem queue system
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider a tandem queue system, as in Figure 2.3, which has 2 M/M/1 queuing
+ nodes where input in queue 2 is coming from output from queue 1.
+ Queue 1 has an external arrival rate of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and queuing nodes 
+\begin_inset Formula $i$
+\end_inset
+
+, where 
+\begin_inset Formula $1\leq i\leq2$
+\end_inset
+
+, have a service rate of 
+\begin_inset Formula $\mu_{i}$
+\end_inset
+
+.
+ Let external arrival be represented by action 
+\begin_inset Formula $e$
+\end_inset
+
+, internal transfer between queues be action 
+\begin_inset Formula $a$
+\end_inset
+
+ and departure from the system be action 
+\begin_inset Formula $d$
+\end_inset
+
+.
+ This system can be modelled in PEPA as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+Sys & \rmdef & P_{0}\sync{a}Q_{0}\\
+P_{0} & \rmdef & (e,\lambda).P_{1}\\
+P_{n} & \rmdef & (e,\lambda).P_{n+1}+(a,\mu_{1}).P_{n-1}\\
+Q_{0} & \rmdef & (a,\top).Q_{1}\\
+Q_{n} & \rmdef & (a,\top).Q_{n+1}+(d,\mu_{2}).Q_{n-1}
+\end{eqnarray*}
+
+\end_inset
+
+ Using Step 1 of the algorithm and activity substitution we get,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\\
+R_{0} & \rmdef & (e,\lambda).R_{1}\\
+R_{n} & \rmdef & (e,\lambda).R_{n+1}+(a,\mu_{1}).R_{n-1}\\
+S_{0} & \rmdef & (a,x_{a}).S_{1}\\
+S_{n} & \rmdef & (a,x_{a}).Q_{n+1}+(d,\mu_{2}).Q_{n-1}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Step 2: Now we need to find reversed rates for action type 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ Since both the queuing nodes are M/M/1 queues, their equilibrium state
+ probabilities are known to be 
+\begin_inset Formula $\pi_{1}(q)=(1-\rho_{1})\rho_{1}^{q}$
+\end_inset
+
+ for node 1 and 
+\begin_inset Formula $\pi_{2}(q)=(1-\rho_{2})\rho_{2}^{q}$
+\end_inset
+
+ for node 2 (refer equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:SSPD_of_MM1Q"
+
+\end_inset
+
+), where 
+\begin_inset Formula $\rho_{1}=\frac{\lambda}{\mu_{1}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\rho_{2}=\frac{x_{a}}{\mu_{2}}$
+\end_inset
+
+ , since the arrival and service rates are state independent.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\implies$
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+\overline{r_{a}} & = & \frac{\pi_{1}(n+1)r_{a}^{n+1}}{\pi_{1}(n)}\\
+ & = & \rho\mu_{1}\\
+ & = & \lambda
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Step 3: Solving equation 
+\begin_inset Formula $x_{a}=\overline{r_{a}}$
+\end_inset
+
+ and executing step 3 of the algorithm we get,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+x_{a} & = & \lambda
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, we can calculate the product form solution result by step 5,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+\pi(P_{m},\mbox{ }Q_{n}) & = & \pi(P_{m})\pi(Q_{n})\\
+ & = & \pi_{1}(m)\pi_{2}(n)\\
+ & = & (1-\rho_{1})\rho_{1}^{m}(1-\rho_{2})\rho_{2}^{n}\\
+ & = & (1-\rho_{1})\rho_{1}^{0}(1-\rho_{2})\rho_{2}^{0}\rho_{1}^{m}\rho_{2}^{n}\\
+ & = & \pi(P_{0},\mbox{ }Q_{0})\rho_{1}^{m}\rho_{2}^{n}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where where 
+\begin_inset Formula $\rho_{1}=\frac{\lambda}{\mu_{1}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\rho_{2}=\frac{x_{a}}{\mu_{2}}=\frac{\lambda}{\mu_{2}}$
+\end_inset
+
+.
+ The derived product form solution aggress with Jackson's Theorem (Theorem
+ 5.1, equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ProductFormSolutionJThm"
+
+\end_inset
+
+) confirming its validity.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Implementation of the RCAT
+\end_layout
+
+\begin_layout Standard
+This chapter covers the design, implementation and testing aspects of the
+ project.
+ Since RCAT was implemented from scratch, considerable effort was put in
+ to produce easy and scalable application programming interface (API) and
+ clean and modularised code.
+ 
+\end_layout
+
+\begin_layout Section
+Design Decisions
+\end_layout
+
+\begin_layout Standard
+The first design consideration was the API of the RCAT solver.
+ The input to the RCAT algorithm (Theorem 7.1) are two PEPA compound agents
+ synchronising over some action labels.
+ Thus while considering the input to the automated version of RCAT, there
+ were two choices:
+\end_layout
+
+\begin_layout Subsubsection*
+User splits input requiring minimal automated parsing
+\end_layout
+
+\begin_layout Standard
+In this implementation, the user is required to split PEPA processes such
+ that they be directly used to in reversed rate calculation with minimal
+ automated parsing.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+add examples
+\end_layout
+
+\end_inset
+
+ This option is thus easier to program but is non-intuitive and cumbersome
+ to the user.
+ The program would also be prone to calculation errors as we would not be
+ able to robustly validate the input.
+ An additional disadvantage would be coupling the API to close to the functional
+ logic of RCAT.
+ Finally it would also require the user to have some knowledge of the programmin
+g language to supply a ready made PEPA structure as input.
+\end_layout
+
+\begin_layout Subsubsection*
+User inputs Pure PEPA descriptions
+\end_layout
+
+\begin_layout Standard
+User to inputs component descriptions as they would to a normal non-automated
+ RCAT theorem (shown in Figure 3.3).
+ This ensures ease of use and is quite intuitive for the user.
+ It also deals with input validation and decoupling of the API from functional
+ aspects of the RCAT theorem.
+\end_layout
+
+\begin_layout Standard
+Option two was selected for its aforementioned advantages.
+ In further detail, the API is simply a function 
+\family typewriter
+RCATscript
+\family default
+ which accepts the full PEPA description as text.
+ For example, we write PEPA process description for the RCAT algorithm as
+\begin_inset Formula 
+\begin{eqnarray*}
+\\
+P_{n}= & (e,\lambda).P_{n+1} & (n\geq0)\\
+P_{n}= & (a,\mu_{1}).P_{n-1} & (n>0)\\
+Q_{n}= & (a,\top).Q_{n+1} & (n\geq0)\\
+Q_{n}= & (d,\mu_{2}).Q_{n-1} & (n>0)\\
+ & P_{0}\sync{a}Q_{0}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is an example of a queueing network (a basic tandem network with two
+ nodes) modelled in PEPA.
+ Its corresponding translation to code is shown in Figure 3.1.
+ Please note that the unspecified action rate 
+\begin_inset Formula $\top$
+\end_inset
+
+ effectively has the value of 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\infty$
+\end_inset
+
+, and is therefore represented as 
+\emph on
+infinity
+\emph default
+ in the program.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+P(n) = (e, lambda).P(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P(n) = (a, mu1).P(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+Q(n) = (a, infinity).Q(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+Q(n) = (d, mu2).Q(n+1) for n > 0
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Pure PEPA Process Description translated to RCAT Program input
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From Figure 3.1, it is apparent that with minimal substitution we can translate
+ a pure PEPA process description to code input.
+ RCAT also requires as input the cooperating compound agents (processes)
+ with the actions they are synchronising on, which are converted into code
+ input as shown in Figure 3.2.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+P(0) with Q(0) over {a}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+PEPA Cooperating Agents translated to RCAT Program input
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(0)\mbox{ and }Q(0)$
+\end_inset
+
+ are the cooperating agents and 
+\begin_inset Formula $\{a\}$
+\end_inset
+
+ are the synchronising actions.
+ It is mandatory that the cooperation is written as in Figure 3.2 for parsing.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+inputs change when sspd toggle is added?
+\end_layout
+
+\end_inset
+
+The RCAT algorithm is run as shown in Figure 3.3, with the converted PEPA
+ process description (Figure 3.1) in a cell array as the first input and
+ with PEPA cooperation string (see Figure 3.2) as second input.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> input1 = { `P(n) = (e, lambda).P(n+1) for n >= 0',
+\end_layout
+
+\begin_layout Plain Layout
+
+	`P(n) = (a, mu1).P(n-1) for n > 0',
+\end_layout
+
+\begin_layout Plain Layout
+
+	`Q(n) = (a, infinity).Q(n+1) for n >= 0',
+\end_layout
+
+\begin_layout Plain Layout
+
+	`Q(n) = (d, mu2).Q(n+1) for n > 0' }
+\end_layout
+
+\begin_layout Plain Layout
+
+>
+\end_layout
+
+\begin_layout Plain Layout
+
+> input2 = `P(0) with Q(0) over {a}'
+\end_layout
+
+\begin_layout Plain Layout
+
+>
+\end_layout
+
+\begin_layout Plain Layout
+
+> RCATscript( input1, input2 )
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Function used to run the RCAT Program
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The next design consideration was the choice of programming language and
+ effort was made to make a choice comfortable for both the developer and
+ user and meeting the demands of the program.
+ MATLAB was chosen as the implementation language for the project because
+ of its capability to perform symbolic calculations as RCAT operates largely
+ on symbolic variables.
+ Its 
+\emph on
+Symbolic Math Toolbox
+\emph default
+ provides a large library of functions for symbolic variable instantiation,
+ substitution, handling and operating on symbolic math expressions.
+ Its greatest advantage is that programs can calculate in terms of symbolic
+ variables giving a symbolic result.
+ Other languages considered were Python, Java and Mathematica.
+ Python has a symbolic manipulation library called '
+\emph on
+sympy' 
+\emph default
+which is a lightweight normal Python module which aims to be a full-featured
+ computer algebra system.
+ Matlab was chosen over Python as it is better tested and documented.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+insert stuff about pythons shortcomings and sympy lacking
+\end_layout
+
+\end_inset
+
+Java despite is object oriented capabilities was not chosen as a symbolic
+ manipulator would have to be written from scratch and robustly tested thus
+ making the task extremely time consuming.
+\end_layout
+
+\begin_layout Standard
+Before starting implementation, we decided to break the RCAT Theorem into
+ smaller implementation tasks.
+ Since the project was not object oriented, we structured the system according
+ to the implementation stages.
+ These undermentioned implementation stages are based on the generic RCAT
+ algorithm detailed in the background (Section 2.7.3).
+\end_layout
+
+\begin_layout Enumerate
+Parsing PEPA input and constructing process structures 
+\begin_inset Formula $P_{k}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Checking that RCAT conditions (1-3) hold for input PEPA model
+\end_layout
+
+\begin_layout Enumerate
+Calculating reversed rates of passive actions
+\end_layout
+
+\begin_layout Enumerate
+Replacing passive actions with symbolic reversed rates
+\end_layout
+
+\begin_layout Enumerate
+Deducing the product-form solution of the model.
+\end_layout
+
+\begin_layout Section
+Implementation
+\end_layout
+
+\begin_layout Subsection
+Parsing PEPA input
+\end_layout
+
+\begin_layout Standard
+The initial step in implementing the project was parsing the PEPA input
+ and converting it to the process structure 
+\begin_inset Formula $P_{k}$
+\end_inset
+
+.
+ On analysing a process description, we realised that a PEPA process definition
+ can be broken into parts (or process descriptors) such as 'name of the
+ process', 'source state of the transition', ' destination state of the
+ transition', ' process action label', 'action rate', and 'process state
+ domain'.
+ For example, a process definition 
+\begin_inset Formula $P_{n}=(e,\lambda).P_{n+1}(n\geq0)$
+\end_inset
+
+ has 
+\begin_inset Formula $P$
+\end_inset
+
+ as the name of the process, 
+\begin_inset Formula $n$
+\end_inset
+
+ as the state 
+\begin_inset Formula $P$
+\end_inset
+
+ is currently in, 
+\begin_inset Formula $n+1$
+\end_inset
+
+ as the the state 
+\begin_inset Formula $P$
+\end_inset
+
+ is transitioning to, 
+\begin_inset Formula $e$
+\end_inset
+
+ as its action label, 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ as it action rate and 
+\begin_inset Formula $n\geq0$
+\end_inset
+
+ as the state domain.
+ We thus parse this information from the process input by using regular
+ expressions.
+ 
+\end_layout
+
+\begin_layout Standard
+Thus the program 
+\family typewriter
+RCATscript
+\family default
+, on receiving input a process description string (Figure 3.1), calls the
+ function 
+\family typewriter
+registerProcess
+\family default
+ with one process description at a time.
+ The program 
+\family typewriter
+registerProcess
+\family default
+ is responsible for parsing the process string and storing it in a map of
+ processes, ordered by process name.
+ Parsing is done using regular expressions as in Figure 3.4.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+matches = regexp( processDescription,
+\end_layout
+
+\begin_layout Plain Layout
+
+`([A-Z])
+\backslash
+((.+)
+\backslash
+) = 
+\backslash
+((.+),(.+)
+\backslash
+)
+\backslash
+.([A-Z])
+\backslash
+((.+)
+\backslash
+)(?: for)?(.*)', 
+\end_layout
+
+\begin_layout Plain Layout
+
+		`tokens' );
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Code for parsing PEPA process description using regular expressions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The built in Matlab 
+\family typewriter
+regexp
+\family default
+ function allows retrieving matched text from an input string, that corresponds
+ to portions of the regular expression(s) enclosed in parentheses.
+ In further detail, the regular expression 
+\family typewriter
+([A-Z])
+\family default
+ will match one letter in the upper case, regexp 
+\family typewriter
+
+\backslash
+((.+)
+\backslash
+)
+\family default
+ will ignore parentheses and match anything within them while 
+\family typewriter
+(?: for)?(.*)
+\family default
+ will optionally look for the keyword 
+\family typewriter
+for
+\family default
+ and optionally match anything after it.
+ Running the code in Figure 3.4 on code input- 
+\family typewriter
+'P(n) = (e, lambda).P(n+1) for n >= 0'
+\family default
+, we ultimately get a list of aforementioned process descriptors - 
+\family typewriter
+{P, n, e, lambda, n+1, n>=0}
+\family default
+.
+ It is noteworthy that the regular expression string (parameter two in regexp
+ function in Figure 3.4) allows processes to have an optional state domain.
+\end_layout
+
+\begin_layout Subsubsection
+Constructing 
+\begin_inset Formula $P_{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P_{k}$
+\end_inset
+
+ is a structure consisting of 
+\begin_inset Formula $k$
+\end_inset
+
+ PEPA processes with their definitions.
+ 
+\begin_inset Formula $k=1,2$
+\end_inset
+
+ is used in most system/network models used as input to RCAT, thus 
+\begin_inset Formula $P_{k}$
+\end_inset
+
+ will correspond to two separate PEPA processes analogous to P and Q respectivel
+y in Figure 3.1.
+\end_layout
+
+\begin_layout Standard
+The program 
+\family typewriter
+addToProcessStructure
+\family default
+ stores processes in a map called registeredProcesses, ordered by process
+ name.
+ So multiple descriptions of any process 
+\begin_inset Formula $P$
+\end_inset
+
+ will be stored under the same key 'P'.
+ The map 
+\family typewriter
+registeredProcesses
+\family default
+ behaves as the 
+\begin_inset Formula $P_{k}$
+\end_inset
+
+ for this implementation of RCAT.
+\end_layout
+
+\begin_layout Standard
+A description of a process with name 
+\begin_inset Formula $P$
+\end_inset
+
+ comprises of aforementioned process descriptors and is added to 
+\family typewriter
+registeredProcesses
+\family default
+ as a map with the process descriptors as keys.
+ Figure 3.5 lists the keyset which each process description map is ordered
+ by.
+ If a process 
+\begin_inset Formula $P$
+\end_inset
+
+ has multiple descriptions (as shown in Figure 3.1), they are converted into
+ maps ordered by process descriptors and stored together in a cell array
+ (a data structure in MATLAB which allows entries of different classes).
+ Thus 
+\family typewriter
+registeredProcesses
+\family default
+ has a key-value pair : 'process name'-'descriptions cell array'.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+keyset = { `transitionFromState',`actionName',`actionRate',
+\end_layout
+
+\begin_layout Plain Layout
+
+	`transitionToState',`domain' };
+\end_layout
+
+\begin_layout Plain Layout
+
+valueset = { eval(processDefinition{2}), actionLabel, actionRate, 
+\end_layout
+
+\begin_layout Plain Layout
+
+	eval(processDefinition{6}), [domainMin, domainMax] };
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Process description map's keyset and valueset
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Values of every process description ( as shown in Figure 3.5) have certain
+ properties
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+transitionFromState
+\emph default
+ is the the source state the transition is coming from while 
+\emph on
+transitionToStat
+\emph default
+e is the destination state for that transition.
+ They are stored as a MATLAB symbolic variables to simplify future implementatio
+n stages such as RCAT condition checking (Section 3.2.3).
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+actionName
+\emph default
+ is stored as a String
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+actionRate
+\emph default
+ is stored as MATLAB symbolic variable as it is used extensively in reversed
+ rate calculations (Section 3.2.2).
+ RCAT requires all passive action rates (rate 
+\begin_inset Formula $=\top$
+\end_inset
+
+) to be relabelled to avoid confusion in multiple infinite action rates.
+ We achieve this by relabelling all action rates with 
+\emph on
+'infinity'
+\emph default
+ to symbolic variable 
+\emph on
+'x'
+\emph default
+ postfixed with the action name of that passive rate.
+ So a process with action rate 
+\emph on
+'infinity'
+\emph default
+ and action label 
+\emph on
+'a'
+\emph default
+ will be relabelled as 
+\emph on
+'x_a'
+\emph default
+.
+ Action rates are also parsed to check if they are mathematical expressions
+ using function 
+\family typewriter
+stringToMatlabExpr.
+
+\family default
+ It parses a string, finds variables in the string, makes them symbolic
+ and then returns the evaluated string as a symbolic variable which is stored
+ as action rate.
+ This requires action rates to compulsorily begin with an alphabet in the
+ lower case and is validated by the same function.
+ While evaluating the action rates, the program makes an assumption that
+ no active action rate can have value 'infinity' as this would cause the
+ program to assume the action was passive when it was actually active.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+domain
+\emph default
+ is an equality or inequality mathematical expression.
+ This is analysed to give a range of values for which the state transition
+ holds.
+ The function 
+\family typewriter
+parseDomain
+\family default
+ achieves this by parsing the (in)equality string and return a tuple of
+ (
+\emph on
+domainMin
+\emph default
+, 
+\emph on
+domainMax
+\emph default
+), which denotes the maximum and minimum number of the range that process
+ transition is valid for.
+ 
+\end_layout
+
+\begin_layout Standard
+The program 
+\family typewriter
+addToProcessStructure
+\family default
+ also stores all active action names and passive action names for each process
+ in cell arrays and inserts them into maps 
+\family typewriter
+activeActionLabels
+\family default
+ and 
+\family typewriter
+passiveActionLabels
+\family default
+ respectively ordered by process name.
+ This simplifies the task of creating the structure 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Constructing 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ from 
+\begin_inset Formula $P_{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $R_{k}$
+\end_inset
+
+, similar to 
+\begin_inset Formula $P_{k}$
+\end_inset
+
+, is structure consisting of 
+\begin_inset Formula $k$
+\end_inset
+
+ PEPA processes where 
+\begin_inset Formula $k=1,2$
+\end_inset
+
+.
+ 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ in this implementation is modelled as a MATLAB structure array (an array
+ with named fields that can contain data of varying types and sizes) called
+ 
+\family typewriter
+r
+\family default
+.
+ Each entry in the structure 
+\family typewriter
+r
+\family default
+ contains fields for various properties of the processes.
+ The 
+\family typewriter
+definitions
+\family default
+ field refers to the parsed PEPA descriptions in the previous section, the
+ 
+\family typewriter
+activeLabels
+\family default
+ field refers the set of active actions for each 
+\begin_inset Formula $P_{k}$
+\end_inset
+
+ and the 
+\family typewriter
+passiveLabels
+\family default
+ field refers the set of passive actions for each 
+\begin_inset Formula $P_{k}$
+\end_inset
+
+.
+ Figure 3.6 is an example of structure 
+\family typewriter
+r
+\family default
+ used to model two PEPA processes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+r = 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+1x2 struct array with fields:
+\end_layout
+
+\begin_layout Plain Layout
+
+    definitions
+\end_layout
+
+\begin_layout Plain Layout
+
+    activeLabels
+\end_layout
+
+\begin_layout Plain Layout
+
+    passiveLabels
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Fields in structure r containing r(1) and r(2)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The function 
+\family typewriter
+createRk
+\family default
+ is used for creating the structure 
+\family typewriter
+r
+\family default
+.
+ It uses the maps 
+\family typewriter
+registeredProcesses, activeActionLabels
+\family default
+ and 
+\family typewriter
+passiveActionLabels
+\family default
+ generated in the function 
+\family typewriter
+addToProcessStructure
+\family default
+ for instantiating the three fields of the structure 
+\family typewriter
+r
+\family default
+.
+\end_layout
+
+\begin_layout Subsubsection
+Parsing PEPA cooperation
+\end_layout
+
+\begin_layout Standard
+The function 
+\family typewriter
+registerCoop
+\family default
+ parses input for a PEPA cooperation (synchronisation) between two processes.
+ A cooperation as shown in Figure 3.2 is the second input to the API function
+ RCATscript.
+ The cooperation string is parsed using regular expressions as in Figure
+ 3.7.
+ 
+\family typewriter
+registerCoop
+\family default
+ returns the action labels the two processes are cooperating over in a cell
+ array called 
+\family typewriter
+coopLabels
+\family default
+, which is used in calculating reversed rates and checking RCAT conditions.
+ For input as in Figure 3.2, 
+\family typewriter
+coopLabels
+\family default
+ will equal 
+\begin_inset Formula $\{a\mbox{ }\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+matches = regexp( coopDescription,
+\end_layout
+
+\begin_layout Plain Layout
+
+	`([A-Z])
+\backslash
+((.+)
+\backslash
+) with ([A-Z])
+\backslash
+((.+)
+\backslash
+) over 
+\backslash
+{(.*)
+\backslash
+}', 
+\end_layout
+
+\begin_layout Plain Layout
+
+	`tokens' );
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Code for parsing PEPA Cooperation string using regular expressions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Validation of user input
+\end_layout
+
+\begin_layout Subsection
+Calculating Reversed Rates
+\end_layout
+
+\begin_layout Standard
+Reversed rates of passive actions are calculated using the formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:GenericAlgoRRCal"
+
+\end_inset
+
+ stated in the generic algorithm (Section 2.7.3.1).
+ The formula requires the steady state probabilities 
+\begin_inset Formula $\pi_{k}$
+\end_inset
+
+ are known for each 
+\begin_inset Formula $k=1,2$
+\end_inset
+
+ in 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ and requires 
+\begin_inset Formula $r_{a}^{i}$
+\end_inset
+
+, the specified forward rate of action type 
+\begin_inset Formula $a$
+\end_inset
+
+ going out of state 
+\begin_inset Formula $i$
+\end_inset
+
+ (for the relevant 
+\begin_inset Formula $k=1,2$
+\end_inset
+
+ in 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+) to be known.
+ Thus the reversed rate calculation is divided into the undermentioned subsectio
+ns.
+\end_layout
+
+\begin_layout Subsubsection
+Calculating steady state probability
+\end_layout
+
+\begin_layout Standard
+The RCAT application was primarily designed to run on systems composed of
+ M/M/1 queues,
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+insert stuff about sspd toggle
+\end_layout
+
+\end_inset
+
+ which have known equilibrium probability distributions and are given by
+ the formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:SSPD_of_MM1Q"
+
+\end_inset
+
+ stated in Section 2.3.2.
+ The steady state distribution formula uses the utilisation 
+\begin_inset Formula $\rho$
+\end_inset
+
+ of an M/M/1 queue which is defined as 
+\begin_inset Formula 
+\[
+\rho_{i}=\frac{\lambda}{\mu}
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is the aggregate arrival rate at node 
+\begin_inset Formula $i$
+\end_inset
+
+ and 
+\begin_inset Formula $\mu$
+\end_inset
+
+ is the service rate of node 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ Since it is assumed for all 
+\begin_inset Formula $k=1,2$
+\end_inset
+
+, 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ is a M/M/1 queue, 
+\begin_inset Formula $\rho_{k}=\mbox{arrival rate of }R_{k}\backslash\mbox{ service rate of }R_{k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Calculating total arrival and service rates for 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The arrival rate (since 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ is M/M/1) is equal to the sum of all rates for transitions from state 
+\begin_inset Formula $i$
+\end_inset
+
+ to 
+\begin_inset Formula $i+1$
+\end_inset
+
+ while the service rate is sum of all rates for transitions coming into
+ state 
+\begin_inset Formula $i$
+\end_inset
+
+, so from 
+\begin_inset Formula $i+1$
+\end_inset
+
+ to 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ The function 
+\family typewriter
+getAggregateArrivalAndServiceRates
+\family default
+ is used to find arrival and service rates for each 
+\begin_inset Formula $k$
+\end_inset
+
+ in 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+.
+ The calculation involves iterating through all the definitions of a process
+ and determining the the direction of the transition in each definition(see
+ Figure 3.8).
+ Function 
+\family typewriter
+isTransitioningForwards
+\family default
+ determines if a process transition is going out or coming into state 
+\begin_inset Formula $i$
+\end_inset
+
+ using process descriptors 
+\emph on
+transitionFromState
+\emph default
+ and 
+\emph on
+transitionToState.
+
+\emph default
+ The arrival rate and service rate is the 
+\family typewriter
+forwardSum
+\family default
+ and 
+\family typewriter
+backwardSum
+\family default
+ respectively in Figure 3.8.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+for definition = process.definitions
+\end_layout
+
+\begin_layout Plain Layout
+
+   if isTransitioningForwards( definition )
+\end_layout
+
+\begin_layout Plain Layout
+
+      forwardSum = forwardSum + definition('actionRate');
+\end_layout
+
+\begin_layout Plain Layout
+
+   else
+\end_layout
+
+\begin_layout Plain Layout
+
+      backwardSum = backwardSum + definition('actionRate');
+\end_layout
+
+\begin_layout Plain Layout
+
+   end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Code for calculating arrival rate and service rate for each process
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Function 
+\family typewriter
+sspdMM1
+\family default
+ calculates the steady state probability of an M/M/1 queue given an arrival
+ and service rate.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+syms r x;
+\end_layout
+
+\begin_layout Plain Layout
+
+rho = ( arrivalRate / serviceRate );
+\end_layout
+
+\begin_layout Plain Layout
+
+formula = '(1 - r) * r^x';
+\end_layout
+
+\begin_layout Plain Layout
+
+temp = subs( formula, x, state );
+\end_layout
+
+\begin_layout Plain Layout
+
+sspd = subs( temp, r, rho );
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Code for SSPD calculation of M/M/1 queue
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The formula shown in Figure 3.9 is the formula of equilibrium probability
+ distribution (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:SSPD_of_MM1Q"
+
+\end_inset
+
+) of a M/M/1 queue.
+ MATLAB function 
+\family typewriter
+subs
+\family default
+ performs a symbolic variable substitution in a given mathematical expression,
+ which in this case is the SSPD formula.
+ On calculating 
+\begin_inset Formula $\rho$
+\end_inset
+
+ (
+\family typewriter
+rho
+\family default
+) with arrival and service rate (both symbolic variables) and performing
+ symbolic substitution in the formula for steady state probability, we get
+ 
+\begin_inset Formula $\pi_{k}$
+\end_inset
+
+ for each 
+\begin_inset Formula $k=1,2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Calculating specified forward rate
+\end_layout
+
+\begin_layout Standard
+Function 
+\family typewriter
+getStatesAndRateForAction
+\family default
+ calculates 
+\begin_inset Formula $r_{a}^{i}$
+\end_inset
+
+, the specified forward rate of action type 
+\begin_inset Formula $a$
+\end_inset
+
+ going out of state 
+\begin_inset Formula $i$
+\end_inset
+
+ in the process where 
+\begin_inset Formula $a$
+\end_inset
+
+ is the active action.
+ Thus the function iterates over process definitions of 
+\begin_inset Formula $P$
+\end_inset
+
+ as action 
+\begin_inset Formula $a$
+\end_inset
+
+ belongs to the set of activeLabels in 
+\begin_inset Formula $P$
+\end_inset
+
+ and returns the rate.
+\end_layout
+
+\begin_layout Subsubsection
+Calculating reversed rates
+\end_layout
+
+\begin_layout Standard
+Function 
+\family typewriter
+calculateReversedRate
+\family default
+ uses the formula 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:GenericAlgoRRCal"
+
+\end_inset
+
+ stated in the generic algorithm (Section 2.7.3.1) to calculate revered rates
+ for all passive synchronising actions.
+ The code shown in Figure 3.10 corresponds to this, where the 
+\family typewriter
+forwardRate
+\family default
+ is the specified forward rate of a given passive action, 
+\family typewriter
+iStateSSPD
+\family default
+ and 
+\family typewriter
+jStateSSPD
+\family default
+ is the steady state probability at state 
+\begin_inset Formula $i$
+\end_inset
+
+ and 
+\begin_inset Formula $j$
+\end_inset
+
+ respectively for some process 
+\begin_inset Formula $P$
+\end_inset
+
+.
+ As all three are MATLAB symbolic variables, the function 
+\family typewriter
+simplify
+\family default
+ solves formula which is mathematical expression of the form 
+\begin_inset Formula $\pi_{k}(i)r_{a}^{i}/\mbox{ }\pi_{k}(j)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+formula = (forwardRate * iStateSSPD) / jStateSSPD;
+\end_layout
+
+\begin_layout Plain Layout
+
+reversedRate = simplify(formula);
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Code for reversed rate calculation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Storing revered rates
+\end_layout
+
+\begin_layout Standard
+As a final step in reversed rate calculation, we need to store the revered
+ rate for each action 
+\begin_inset Formula $a$
+\end_inset
+
+ that belongs to the set of cooperating actions, that is 
+\begin_inset Formula $\forall a\in coopLabels$
+\end_inset
+
+.
+ The function 
+\family typewriter
+storeReversedRates
+\family default
+ performs the task of storing reversed rates in a map called 
+\family typewriter
+reversedRates
+\family default
+ with the every action in 
+\family typewriter
+coopLabels
+\family default
+ as the key.
+ The map of reveres rates becomes significant while replacing the passive
+ actions (
+\begin_inset Formula $x_{a}$
+\end_inset
+
+) with the relevant reversed rates in 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Replacing Passive Actions with Reversed Rates 
+\end_layout
+
+\begin_layout Subsection
+Checking RCAT Conditions
+\end_layout
+
+\begin_layout Subsection
+Generating a Product Form Result
+\end_layout
+
+\begin_layout Section
+Testing and Verification
+\end_layout
+
+\begin_layout Chapter
+Evaluation
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "1"
+key "PerformanceModellingHarrisonBook"
+
+\end_inset
+
+ Harrison, Peter G.
+ and Patel, Naresh M.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Performance Modelling of Communication Networks and Computer Architectures.
+\begin_inset Quotes erd
+\end_inset
+
+ Addison-Wesley, 1992.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "2"
+key "MarkovChainsQueuesStewartBook"
+
+\end_inset
+
+ Stewart, William, J.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Probability, Markov Chains, Queues and Simulation: The mathematical basis
+ of performance modelling.
+\begin_inset Quotes erd
+\end_inset
+
+ Princeton University Press, 2009.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "3"
+key "HarrisonPaperTBTinMAP2003"
+
+\end_inset
+
+ Harrison, Peter G.
+ “Turning back time in Markovian process algebra.” Theoretical Computer Science,
+ vol.
+ 290, pp.
+ 1947–1986, 2003.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "4"
+key "HarrisonPaperPerformanceImpact2009"
+
+\end_inset
+
+ Harrison, Peter G.
+ “Turning Back TimeWhat Impact on Performance?.” The Computer Journal, vol.
+ 53, no.
+ 6, pp.
+ 860–868, 2010.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "5"
+key "LectureNotes"
+
+\end_inset
+
+ Harrison, Peter G., Casale, Giuliano.
+ and Bradley, Jeremy, T.
+ “Course 436 : Performance Analysis,” Imperial College London, 2010.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "6"
+key "BradleyRP&RCAT"
+
+\end_inset
+
+ Bradley, Jeremy, T.
+ “RCAT: From PEPA to Product form.” Technical Report, vol.
+ 2007, Issue 2, pp.1–8, March 2007.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "7"
+key "GelenbeGNetworks"
+
+\end_inset
+
+Gelenbe, Erol.
+ “Product-Form Queueing Networks with Negative and Positive Customers.” Journal
+ of Applied Probability, Vol.
+ 28, No.
+ 3, pp.
+ 656-663, 1991.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "8"
+key "HillstonPEPAbook"
+
+\end_inset
+
+ Hillston, Jane.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+A Compositional Approach to Performance Modelling.
+\begin_inset Quotes erd
+\end_inset
+
+ New York, NY, USA: Cambridge University Press, 1996.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "9"
+key "RCAT2009Paper"
+
+\end_inset
+
+ Harrison, Peter G., Lladó, Catalina M.
+ and Puigjaner, Ramón.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+A unified approach to modelling the performance of concurrent systems.
+\begin_inset Quotes erd
+\end_inset
+
+ Simulation Modelling Practice and Theory 17 , no.
+ 9 (2009): 1445-1456.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "10"
+key "ercat"
+
+\end_inset
+
+ Harrison, Peter G.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Reversed processes, product forms and a non-product form.
+\begin_inset Quotes erd
+\end_inset
+
+ Linear Algebra and Its Applications, Volume 386, pp.359–381, 2004.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "11"
+key "marcat2003"
+
+\end_inset
+
+ Harrison, Peter G., Lee, Ting.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Reversed Processes of Multiple Agent Cooperations.
+\begin_inset Quotes erd
+\end_inset
+
+ 19th UK Performance Engineering Workshop, pp.257–265, 2003.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "12"
+key "marcatHarLee2005"
+
+\end_inset
+
+ Harrison, Peter G., Lee, Ting T.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Separable equilibrium state probabilities via time reversal in Markovian
+ process algebra.
+\begin_inset Quotes erd
+\end_inset
+
+ Theoretical Computer Science, vol 346, pp.161–182, 2005
+\end_layout
+
+\end_body
+\end_document
