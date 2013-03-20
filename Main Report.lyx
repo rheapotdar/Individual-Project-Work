@@ -1188,7 +1188,11 @@ f(x) & = & F'(x)=\lambda e-\lambda x
 \end_layout
 
 \begin_layout Standard
-where λ is the rate of the Poisson process.
+where 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is the rate of the Poisson process.
  Since its an example of a Markov process its probability of arrival in
  period 
 \begin_inset Formula $(t,t+h)$
@@ -4274,7 +4278,7 @@ The required product-form for state
 \end_inset
 
  where 
-\begin_inset Formula $π_{k}(s_{k})$
+\begin_inset Formula $\pi_{k}(s_{k})$
 \end_inset
 
  is the equilibrium probability (which may be unnormalised) of state 
