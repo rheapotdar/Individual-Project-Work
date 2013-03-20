@@ -6,8 +6,9 @@ function reversedRates = storeReversedRates( coopLabels, r )
     reversedRates = containers.Map();
     for action = coopLabels
         action = action{1};
-        % r(k) can only have k = 1 or 2 
-        for i = 1:2
+        % r(k) can only have k = 1 or 2
+        % if k>2 then multiple tranitions for action a is not allowed
+        for i = 1:length(r)
             if ismember( action, r(i).activeLabels )
                 [arrivalRate, serviceRate] = getAggregateArrivalAndServiceRates( r(i) );
                 [fromState, toState, rate] = getStatesAndRateForAction( action, r(i) );

@@ -9,10 +9,13 @@ function testCreateRk
         passiveActionLabels, 'P(n) = (e, lambda).P(n+1) for n >= 0' );
     registerProcess( registeredProcesses, activeActionLabels,...
         passiveActionLabels, 'Q(n) = (a, infinity).Q(n+1) for n >= 0' );
+    registerProcess( registeredProcesses, activeActionLabels,...
+        passiveActionLabels, 'R(n) = (d, infinity).R(n+1) for n >= 0' );
     r = createRk( registeredProcesses, activeActionLabels, passiveActionLabels );
     
     len = size( r );
-    assertEqual( len( :, 2 ), 2 );
+    %checks if multiple ages are accepted as input
+    assertEqual( len( :, 2 ), 3 );
     % since each process has only one definition
     P = r(1).definitions;
     assertEqual( length( P ), 1 );

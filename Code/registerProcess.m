@@ -7,7 +7,7 @@ function registerProcess( registeredProcesses, activeActionLabels, passiveAction
             'The Pepa component definition is empty. Please enter a valid string.' );
     
     matches = regexp( processDescription, ... 
-        '([A-Z])\((.+)\) = \((.+), (.+)\)\.([A-Z])\((.+)\)(?: for )?(.*)', 'tokens' );
+        '([A-Z][0-9]*)\((.+)\) = \((.+), (.+)\)\.([A-Z][0-9]*)\((.+)\)(?: for )?(.*)', 'tokens' );
     
     validateInputIsNotEmpty( matches, 'RCATscript:InvalidInputParsedRegisterProcess', ...
             'The Pepa component definition has syntactical errors. Please check and re-enter' );

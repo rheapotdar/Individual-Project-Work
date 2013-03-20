@@ -16,7 +16,8 @@ function output = RCATscript( processList, coopString )
     stateSpace = [0, Inf];
 
     %Setup%
-    for process = processList
+    for i = 1:length( processList )
+        process = processList(i);
         registerProcess( registeredProcesses, activeActionLabels, ...
             passiveActionLabels, process{1} );
     end
