@@ -6790,7 +6790,7 @@ domain
 allChecksAreOK
 \family default
  evaluates the domain of the process further.
- This helper function considers three cases:
+ This helper function considers two cases:
 \end_layout
 
 \begin_layout Enumerate
@@ -6820,6 +6820,18 @@ If a process has a transition
 \end_layout
 
 \begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[2.]
+\backslash
+setcounter{enumi}{2}
+\end_layout
+
+\end_inset
+
 when there is a passive transition going from 
 \begin_inset Formula $n\to n-1$
 \end_inset
@@ -7278,6 +7290,44 @@ Third Condition:
 
  respectively.
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thie condition checks that the total reversed rate of all incoming active
+ actions 
+\begin_inset Formula $a$
+\end_inset
+
+ in state 
+\begin_inset Formula $k$
+\end_inset
+
+ of the active process is equal to a constant 
+\begin_inset Formula $\bar{r_{a}}$
+\end_inset
+
+ independent of state 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ It is known that for M/M/1 queus, the equilibrium state proabilities are
+ state independent.
+ Thus the reversed rate is same for all the satets the transition correspondis
+ to.
+ For example, if we are finding the reversed rate 
+\begin_inset Formula $a$
+\end_inset
+
+ with active process
+\begin_inset Formula 
+\[
+P(n)=(a,\mu_{1}).P(n-1),\mbox{ }\forall n>0
+\]
 
 \end_inset
 
