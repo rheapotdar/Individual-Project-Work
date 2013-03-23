@@ -4904,7 +4904,11 @@ Symbolic Math Toolbox
  substitution, handling and operating on symbolic math expressions.
  Its greatest advantage is that programs can calculate in terms of symbolic
  variables giving a symbolic result.
- Other languages considered were Python, Java and Mathematica.
+ 
+\end_layout
+
+\begin_layout Standard
+Other languages considered were Python, Java and Mathematica.
  Python has a symbolic manipulation library called '
 \emph on
 sympy' 
@@ -5075,21 +5079,21 @@ matches = regexp( processDescription,
 
 \begin_layout Plain Layout
 
-`([A-Z])
+`'([A-Z][0-9]*)
 \backslash
 ((.+)
 \backslash
 ) = 
 \backslash
-((.+),(.+)
+((.+), (.+)
 \backslash
 )
 \backslash
-.([A-Z])
+.([A-Z][0-9]*)
 \backslash
 ((.+)
 \backslash
-)(?: for)?(.*)', 
+)(?: for )?(.*)', 
 \end_layout
 
 \begin_layout Plain Layout
@@ -5137,9 +5141,19 @@ regexp
  to portions of the regular expression(s) enclosed in parentheses.
  In further detail, the regular expression 
 \family typewriter
-([A-Z])
+([A-Z][0-9]*)
 \family default
- will match one letter in the upper case, regexp 
+ will match one letter in the upper case and zero or more numbers, thus
+ allowing a process 
+\begin_inset Formula $P$
+\end_inset
+
+ and a process 
+\begin_inset Formula $P1$
+\end_inset
+
+ to both be parsed.
+ Regexp 
 \family typewriter
 
 \backslash
@@ -5156,7 +5170,11 @@ regexp
 for
 \family default
  and optionally match anything after it.
- Running the code in Figure 3.4 on code input- 
+ 
+\end_layout
+
+\begin_layout Standard
+	Running the code in Figure 3.4 on code input- 
 \family typewriter
 'P(n) = (e, lambda).P(n+1) for n >= 0'
 \family default
@@ -5721,15 +5739,15 @@ matches = regexp( coopDescription,
 
 \begin_layout Plain Layout
 
-	`([A-Z])
+	`([A-Z][0-9]*)
 \backslash
-((.+)
+(([^
 \backslash
-) with ([A-Z])
+)]+)
 \backslash
-((.+)
+) (with .+
 \backslash
-) over 
+s*)+ over 
 \backslash
 {(.*)
 \backslash
@@ -5765,6 +5783,19 @@ Code for parsing PEPA Cooperation string using regular expressions
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+add detail explaining how this works.
 \end_layout
 
 \end_inset
@@ -7003,7 +7034,7 @@ height "0.8pt"
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Snippet of output of prgram RCATscript
+Snippet of output of program RCATscript
 \end_layout
 
 \end_inset
@@ -7224,7 +7255,11 @@ Code for checking incoming transitions
 \end_layout
 
 \begin_layout Standard
-The function isSymbolicEqual checks if the states 
+The function 
+\family typewriter
+isSymbolicEqual
+\family default
+(Figure 3.16) checks if the states 
 \emph on
 from
 \emph default
@@ -7297,7 +7332,7 @@ Third Condition:
 \end_layout
 
 \begin_layout Standard
-Thie condition checks that the total reversed rate of all incoming active
+This condition checks that the total reversed rate of all incoming active
  actions 
 \begin_inset Formula $a$
 \end_inset
@@ -7315,12 +7350,12 @@ Thie condition checks that the total reversed rate of all incoming active
 \end_inset
 
 .
- It is known that for M/M/1 queus, the equilibrium state proabilities are
- state independent.
- Thus the reversed rate is same for all the satets the transition correspondis
+ It is known that for M/M/1 queues, the equilibrium state probabilities
+ are state independent.
+ Thus the reversed rate is same for all the states the transition corresponds
  to.
  For example, if we are finding the reversed rate 
-\begin_inset Formula $a$
+\begin_inset Formula $r_{a}$
 \end_inset
 
  with active process
@@ -7335,11 +7370,52 @@ P(n)=(a,\mu_{1}).P(n-1),\mbox{ }\forall n>0
 \end_layout
 
 \begin_layout Standard
+we know that the reversed rate will be the same for all 
+\begin_inset Formula $n>0$
+\end_inset
+
+.
+ We then need to check if there are multiple transitions with the same action
+ name in the description of the active process, calculate their reversed
+ rates and ensure they are equal.
+ Thus if active process 
+\begin_inset Formula $P$
+\end_inset
+
+ has multiple transitions for action type 
+\begin_inset Formula $a$
+\end_inset
+
+, their reversed rates will be calculated and checked to see if equal.
+ The function 
+\family typewriter
+checkThirdRcatCondition
+\family default
+ iterates through each activeLabels for all active processes and 
+\begin_inset Formula $\forall a\in coopLabels\mbox{ }\&\mbox{ }a\in activeLabels$
+\end_inset
+
+, checks if action 
+\begin_inset Formula $a$
+\end_inset
+
+ has multiple transitions.
+ Then its reversed rates are calculated and are checked for equality with
+ function 
+\family typewriter
+isSymbolicEqual
+\family default
+.
+ The function checks to see if the difference (Line 2, Figure 3.16) between
+ two symbolic variables is zero, proving they are equal.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset CommandInset line
@@ -7352,7 +7428,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\ttfamily},language=Matlab,numbers=left,showstringspaces=false"
 inline false
 status open
 
@@ -7389,7 +7465,7 @@ height "0.8pt"
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Code to check if two symbolic variables are equal
+Code to checking symbolic equivalence
 \end_layout
 
 \end_inset
@@ -7400,6 +7476,11 @@ Code to check if two symbolic variables are equal
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Finally if all requirements are satisfied, the function notifies the user
+ of satisfying the third condition and concludes RCAT condition checking.
 \end_layout
 
 \begin_layout Subsection
@@ -7410,8 +7491,1618 @@ Generating a Product Form Result
 Testing and Verification
 \end_layout
 
+\begin_layout Standard
+Testing and verification of program logic and output are important aspects
+ of the implementation process as they help in ensuring a robust and correct
+ program.
+ The program logic was unit tested using MATLAB unit test library 
+\emph on
+xUnit
+\emph default
+.
+ The implementation of different parts of the program logic is in different
+ files making it quite easy to be unit tested.
+ All tests follow a similar format where we compare the results of the function
+ being tested with the expected values.
+ 
+\emph on
+xUnit
+\emph default
+ provides functions to test exceptions along with equality.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,numbers=left,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+assertEqual( reversedRates.length(), 1);
+\end_layout
+
+\begin_layout Plain Layout
+
+assertTrue( isequal( reversedRates( 'a' ), lambda ) );
+\end_layout
+
+\begin_layout Plain Layout
+
+assertExceptionThrown( @() storeReversedRates( coopLabels, r ),...
+\end_layout
+
+\begin_layout Plain Layout
+
+        'RCATscript:InvalidComputationStoreReversedRates' );
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Code to checking symbolic equivalence
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 3.17 is a code snippet from the test 
+\family typewriter
+testStoreReversedRates
+\family default
+ which tests if reversed rates are calculated and stored correctly.
+ Function 
+\family typewriter
+assertExceptionThrown
+\family default
+ tests if the program throws the right exception on being given erroneous
+ input.
+ This function is very useful for testing program validations.
+\end_layout
+
+\begin_layout Standard
+Program output is verified by running RCAT on various system models, taken
+ from research papers and provided by the supervisor, and comparing the
+ solutions against the given solutions.
+ The implementation has a command line interface which has been user tested
+ and been provided with instructions for first time users.
+ User testing by primarily myself and my supervisor has helped correct any
+ erroneous or unexpected behaviour by the program.
+\end_layout
+
+\begin_layout Standard
+This concludes the implementation of RCAT.
+ The next chapter details the implementation of some extensions made to
+ the current RCAT implementation.
+\end_layout
+
+\begin_layout Chapter
+Implementation of Extensions to RCAT
+\end_layout
+
+\begin_layout Section
+Multiple Agents RCAT
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Write from marcat.
+ Only thing different is the input.
+ remaining everything in the implementation remains same.
+ Talk about how you extended register process to parse multiple process
+ descs.
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+A Multiple Agent Cooperation is denoted by 
+\begin_inset Formula $\ensuremath{\sync L}P_{k}$
+\end_inset
+
+ where 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+In the next chapter, we evaluate the usefulness of the implemented RCAT
+ algorithm
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Evaluation
+\end_layout
+
+\begin_layout Standard
+In this chapter, the implementation of RCAT is tested over several queuing
+ networks and their results are verified using research papers and by hand.
+\end_layout
+
+\begin_layout Section
+Tandem Queues
+\end_layout
+
+\begin_layout Standard
+An example of a simple queuing network is a network with two queues (nodes)
+ in tandem (Figure 5.1) with Poisson arrivals to queue one at the rate 
+\begin_inset Formula $\lambda$
+\end_inset
+
+.
+ Customers proceed immediately to queue 2 and depart the system on leaving
+ queue 2.
+ Both queues have exponential service times with parameters 
+\begin_inset Formula $\mu_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mu_{2}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/tandemMM2Network.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Tandem Queue with two Queues
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This network can be described in PEPA as follows and in as MATLAB code in
+ Figure 3.1.
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+\\
+P_{n}= & (e,\lambda).P_{n+1} & (n\geq0)\\
+P_{n}= & (a,\mu_{1}).P_{n-1} & (n>0)\\
+Q_{n}= & (a,\top).Q_{n+1} & (n\geq0)\\
+Q_{n}= & (d,\mu_{2}).Q_{n-1} & (n>0)\\
+ & P_{0}\sync{a}Q_{0}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Running 
+\family typewriter
+RCATscript
+\family default
+ on this queuing network we get reversed rates as shown in Figure 5.2.
+ From the cooperation, it is clear that the three RCAT conditions are satisfied
+ on this network.
+ The program checks this and displays a message for satisfying all conditions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,numbers=left,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Reversed rate for passive action a: x_a = lambda
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Passive rates in 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ in Two node Tandem Queuing network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HarrisonPaperTBTinMAP2003"
+
+\end_inset
+
+ confirms the correctness of the solution generated.
+\end_layout
+
+\begin_layout Section
+Feedback Queues
+\end_layout
+
+\begin_layout Standard
+We now consider an example of a generally connected pair of queues with
+ feedback from the paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HarrisonPaperTBTinMAP2003"
+
+\end_inset
+
+.
+ The network has two queues, with 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ as respective external arrivals and 
+\begin_inset Formula $\mu_{1}\mbox{ and }\mu_{2}$
+\end_inset
+
+ as respective service rates.
+ The network has routing probability 
+\begin_inset Formula $p_{12}$
+\end_inset
+
+ from queue 1 to queue 2 and 
+\begin_inset Formula $p_{21}$
+\end_inset
+
+ from queue 2 to queue 1.
+ Customers leave the network with probabilities 
+\begin_inset Formula $1-p_{12}\mbox{ and }1-p_{21}$
+\end_inset
+
+ as shown in Figure 5.3.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Change diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/GeneralTandem2Network.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+General Tandem-2 Network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The network is represented in MATLAB code as given in Figure 5.4 where the
+ last line denotes the cooperation between the two queues.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+P(n) = (e1, lambda1).P(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P(n) = (a1, infinity).P(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P(n) = (d1, (1-p12)*mu1).P(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P(n) = (a2, p12*mu1).P(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+Q(n) = (e2, lambda2).Q(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+Q(n) = (a2, infinity).Q(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+Q(n) = (d2, (1-p21)*mu2).Q(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+Q(n) = (a1, p21*mu2).Q(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+P(0) with Q(0) over {a1, a2}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+MATLAB Code for General Tandem-2 Network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On parsing the input, the program produces the structure 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+, where 
+\begin_inset Formula $R_{1}$
+\end_inset
+
+ (or process 
+\begin_inset Formula $P$
+\end_inset
+
+) is shown in Figure 5.5.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+>> r(1)
+\end_layout
+
+\begin_layout Plain Layout
+
+definitions: {[5x1 containers.Map]  [5x1 containers.Map]  
+\end_layout
+
+\begin_layout Plain Layout
+
+			  [5x1 containers.Map]  [5x1 containers.Map]}
+\end_layout
+
+\begin_layout Plain Layout
+
+activeLabels: {'a2'  'd1'  'e1'}
+\end_layout
+
+\begin_layout Plain Layout
+
+passiveLabels: {'a1'}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset Formula $R_{1}$
+\end_inset
+
+ for General Tandem-2 Network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As input in Figure 5.4, the process 
+\begin_inset Formula $P$
+\end_inset
+
+ has four definitions, three active actions - 
+\begin_inset Formula $\{a2,d1,e1\}$
+\end_inset
+
+ and one passive action - 
+\begin_inset Formula $\{a1\}$
+\end_inset
+
+.
+ Each description of the process is stored as a map with process descriptors
+ as keys.
+ Running the reversed rate calculation, we get solutions as shown in Figure
+ 5.6
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Reversed rate for passive action a1: x_a1 = p21*(lambda2 + x_a2)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Reversed rate for passive action a2: x_a2 = p12*(lambda1 + x_a1)
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Passive rates for General Tandem-2 Network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Comparing the rates with the ones in the paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HarrisonPaperTBTinMAP2003"
+
+\end_inset
+
+, we verify that they are as expected.
+ As with the first example, we know that all the three conditions of RCAT
+ are satisfied and this is verified by the program.
+\end_layout
+
+\begin_layout Section
+G-Networks
+\end_layout
+
+\begin_layout Standard
+G-Networks as detailed in section 2.5.3, are queuing networks with negative
+ customers.
+ A G-network node has two customers - positive which behave as standard
+ customers in an M/M/1 queue, and negative which are Poisson arrivals that
+ remove, or kill, customers in the queue when it is not empty.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/G-queue.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+A G-Queue
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider a G-network with two nodes (see figure 5.7), with respective positive/
+ negative external arrival rates 
+\begin_inset Formula $\lambda_{1},\lambda_{2}$
+\end_inset
+
+/ 
+\begin_inset Formula $\Lambda_{1}\Lambda_{2}$
+\end_inset
+
+ (correspond to 
+\emph on
+lambda 
+\emph default
+and 
+\emph on
+bigLambda
+\emph default
+ in Figure 5.8), with respective service rates 
+\begin_inset Formula $\mu_{1},\mu_{2}$
+\end_inset
+
+ and with respective positive / negative routing probabilities 
+\begin_inset Formula $p_{12},p_{21}$
+\end_inset
+
+ / 
+\begin_inset Formula $(1-p_{12}),(1-p_{21})$
+\end_inset
+
+.
+ This network is represented in MATLAB code as given in Figure 5.8 where
+ the last line denotes the cooperation between the two queues.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,numbers=left,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+P(n) = (e1, lambda1).P(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P(n) = (f1, bigLambda1).P(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P(n) = (a21, infinity).P(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P(n) = (b21, infinity).P(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P(n) = (b21, infinity).P(n) for n = 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P(n) = (a12, p12*mu1).P(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P(n) = (b12, (1-p12)*mu1).P(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Q(n) = (e2, lambda2).Q(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+Q(n) = (f2, bigLambda2).Q(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+Q(n) = (a12, infinity).Q(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+Q(n) = (b12, infinity).Q(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+Q(n) = (b12, infinity).Q(n) for n = 0
+\end_layout
+
+\begin_layout Plain Layout
+
+Q(n) = (a21, p21*mu2).Q(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+Q(n) = (b21, (1-p21)*mu2).Q(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+P(0) with Q(0) over {a12, a21, b12, b21}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+MATLAB Code for a Two Node G-Network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since the two queues in the G-network are M/M/1 queues, every node 
+\begin_inset Formula $i$
+\end_inset
+
+ in isolation has a steady state probability of local state 
+\begin_inset Formula $n$
+\end_inset
+
+ as 
+\begin_inset Formula $\pi(n)=(1-\rho_{i})\rho_{i}^{n}$
+\end_inset
+
+ where 
+\begin_inset Formula $\rho_{i}=\frac{\lambda_{i}+\sum_{k}x_{ki}}{\mu_{i}+\Lambda_{i}+\sum_{k}x'_{ki}}$
+\end_inset
+
+ where 
+\begin_inset Formula $\lambda_{i}+\sum_{k}x_{ki}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mu_{i}+\Lambda_{i}+\sum_{k}x'_{ki}$
+\end_inset
+
+ is the arrival rate and service rate at node 
+\begin_inset Formula $i$
+\end_inset
+
+ respectively.
+ Since the nodes are M/M/1 queues, we can run the reversed rate calculation
+ of the implemented RCATscript which generates solutions given in Figure
+ 5.9.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Reversed rate for passive action a21: x_a21 = 
+\end_layout
+
+\begin_layout Plain Layout
+
+(mu2*p21*(lambda2 + x_a12))/(bigLambda2 + mu2 + 2*x_b12)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Reversed rate for passive action b21: x_b21 = 
+\end_layout
+
+\begin_layout Plain Layout
+
+-(mu2*(lambda2 + x_a12)*(p21 - 1))/(bigLambda2 + mu2 + 2*x_b12)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Reversed rate for passive action a12: x_a12 = 
+\end_layout
+
+\begin_layout Plain Layout
+
+(mu1*p12*(lambda1 + x_a21))/(bigLambda1 + mu1 + 2*x_b21)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Reversed rate for passive action b12: x_b12 = 
+\end_layout
+
+\begin_layout Plain Layout
+
+-(mu1*(lambda1 + x_a21)*(p12 - 1))/(bigLambda1 + mu1 + 2*x_b21)
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Passive rates for a Two Node G-Network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The correctness of the steady state probability calculation and reversed
+ rate calculation is established on comparing the results with the same
+ example in paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HarrisonPaperPerformanceImpact2009"
+
+\end_inset
+
+.
+ The reversed rates as calculated in the paper are given below for reference.
+\begin_inset Formula 
+\begin{eqnarray*}
+x_{akj} & = & \frac{p_{kj}\mu_{k}(\lambda_{k}+\sum_{j}x_{ajk})}{\mu_{k}+\Lambda_{k}+\sum_{j}x_{bjk}}\\
+x_{bkj} & = & \frac{(1-p_{kj})\mu_{k}(\lambda_{k}+\sum_{j}x_{ajk})}{\mu_{k}+\Lambda_{k}+\sum_{j}x_{bjk}}
+\end{eqnarray*}
+
+\end_inset
+
+ where 
+\begin_inset Formula $x_{aij}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{bij}$
+\end_inset
+
+ are the passive action rates corresponding to external arrivals, positive
+ and negative respectively, 
+\begin_inset Formula $a_{ij}\mbox{ and }b_{ij}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+To ensure that the RCAT first condition holds on this network, we add invisible
+ transitions (line 5 and 12 in Figure 5.8) to ensure negative arrivals have
+ no effect on an empty queue.
+ Thus we can see that the first two RCAT conditions are satisfied from the
+ PEPA description.
+ Since the passive actions in the reversed process do not have multiple
+ transitions, we conclude that the third condition of RCAT holds for this
+ network.
+ As with previous examples, all the three conditions of RCAT are satisfied
+ by the program and notified to the user.
+\end_layout
+
+\begin_layout Section
+Three Node Jackson Network 
+\end_layout
+
+\begin_layout Standard
+This example is taken from paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "marcat2003"
+
+\end_inset
+
+.
+ Consider a three queue Jackson network, with external arrival rates 
+\begin_inset Formula $\lambda_{1},\lambda_{2},\lambda_{3}$
+\end_inset
+
+ and service rates 
+\begin_inset Formula $\mu_{1},\mu_{2},\mu_{3}$
+\end_inset
+
+ respectively, and with routing probability 
+\begin_inset Formula $pij$
+\end_inset
+
+ from queue 
+\begin_inset Formula $i$
+\end_inset
+
+ to queue 
+\begin_inset Formula $j$
+\end_inset
+
+, 
+\begin_inset Formula $i,j\in\{1,2,3\}$
+\end_inset
+
+ and customers leave the network from node 
+\begin_inset Formula $i$
+\end_inset
+
+ with probability 
+\begin_inset Formula $1−pij$
+\end_inset
+
+.
+ This network is represented in MATLAB code as given in Figure 5.10 where
+ the last line denotes the cooperation between the two queues.
+ The three queues given as input are 
+\begin_inset Formula $P1,P2,P3$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+P1(n) = (e1, lambda1).P1(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P1(n) = (a21, infinity).P1(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P1(n) = (a31, infinity).P1(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P1(n) = (d1, (1-(p12+p13))*mu1).P1(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P1(n) = (a12, p12*mu1).P1(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P1(n) = (a13, p13*mu1).P1(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+P2(n) = (e2, lambda2).P2(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P2(n) = (a12, infinity).P2(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P2(n) = (a32, infinity).P2(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P2(n) = (d2, (1-(p21+p23))*mu2).P2(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P2(n) = (a21, p21*mu2).P2(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P2(n) = (a23, p23*mu2).P2(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+P3(n) = (e3, lambda3).P3(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P3(n) = (a13, infinity).P3(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P3(n) = (a23, infinity).P3(n+1) for n >= 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P3(n) = (d3, (1-(p31+p32))*mu3).P3(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P3(n) = (a31, p31*mu3).P3(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+P3(n) = (a32, p32*mu3).P3(n-1) for n > 0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+P1(0) with P2(0) with P3(0) over {a21, a31, a12, a32, a13, a23}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+MATLAB Code for Three Node Jackson Network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The process for running RCAT on a system model for 
+\begin_inset Formula $k>2$
+\end_inset
+
+ (that is for multiple agents) is the same as running RCAT on only two compound
+ agents.
+ We represent the multiple processes cooperating with keyword with and represent
+ the actions the processes are cooperating on in parentheses (see last line
+ of Figure 5.10).
+\end_layout
+
+\begin_layout Standard
+On parsing the input, the program produces the structure 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ with three nodes as shown in Figure 5.11.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+r = 1x3 struct array with fields:
+\end_layout
+
+\begin_layout Plain Layout
+
+    	definitions
+\end_layout
+
+\begin_layout Plain Layout
+
+    	activeLabels
+\end_layout
+
+\begin_layout Plain Layout
+
+    	passiveLabels
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ for Three Node Jackson Network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Running the reversed rate calculation, we get solutions as shown in Figure
+ 5.12
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Reversed rate for passive action a21: x_a21 = 
+\end_layout
+
+\begin_layout Plain Layout
+
+p21*(lambda2 + x_a12 + x_a32)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Reversed rate for passive action a31: x_a31 = 
+\end_layout
+
+\begin_layout Plain Layout
+
+p31*(lambda3 + x_a13 + x_a23)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Reversed rate for passive action a12: x_a12 = 
+\end_layout
+
+\begin_layout Plain Layout
+
+p12*(lambda1 + x_a21 + x_a31)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Reversed rate for passive action a32: x_a32 = 
+\end_layout
+
+\begin_layout Plain Layout
+
+p32*(lambda3 + x_a13 + x_a23)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Reversed rate for passive action a13: x_a13 = 
+\end_layout
+
+\begin_layout Plain Layout
+
+p13*(lambda1 + x_a21 + x_a31)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Reversed rate for passive action a23: x_a23 = 
+\end_layout
+
+\begin_layout Plain Layout
+
+p23*(lambda2 + x_a12 + x_a32)
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ for Three Node Jackson Network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Comparing the rates with the ones in the paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "marcat2003"
+
+\end_inset
+
+, we verify that they are as expected.
+ As with the all previous examples, we know that all the three conditions
+ of RCAT are satisfied and this is verified by the program.
 \end_layout
 
 \begin_layout Bibliography
