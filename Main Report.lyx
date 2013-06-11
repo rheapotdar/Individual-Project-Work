@@ -4517,6 +4517,318 @@ reference "eq:ProductFormSolutionJThm"
 ) confirming its validity.
 \end_layout
 
+\begin_layout Section
+Stochastic Petri nets (SPNs)
+\end_layout
+
+\begin_layout Standard
+Stochastic Petri Net
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SPNs"
+
+\end_inset
+
+ (SPNs) is a popular higher level formalism for Markovian systems apart
+ from Stochastic Process Algebras like PEPA.
+ They are more expressive in a natural graphical way than SPAs but are more
+ difficult to analyse structrally.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 8.1
+\end_layout
+
+\begin_layout Plain Layout
+A stochastic Petri net can be defined as a tuple, 
+\begin_inset Formula $SPN=(\mathcal{P},\mathcal{T},\mathcal{X}(\mbox{ }.\mbox{ }),\mathrm{I}(\mbox{ }.\mbox{ }),\mathrm{O}(\mbox{ }.\mbox{ }),m_{0})$
+\end_inset
+
+ where:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{P}=\{P_{1},\mbox{ . . . },P_{N}\}$
+\end_inset
+
+ is a set of N places,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{T}=\{T_{1},\mbox{ . . . },T_{M}\}$
+\end_inset
+
+ is a set of M transitions,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{X}:\mathcal{T}\to\mathbb{R}^{+}$
+\end_inset
+
+ is a positive valued function that associates a firing rate with every
+ transition,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathrm{I}:\mathcal{T}\to\mathbb{N}^{N}$
+\end_inset
+
+ associates an input vector with every transition,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathrm{O}:\mathcal{T}\to\mathbb{N}^{N}$
+\end_inset
+
+ associates an output vector with every transition,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $m$
+\end_inset
+
+ is a vector called 
+\emph on
+marking
+\emph default
+ which denotes the number of tokens 
+\begin_inset Formula $m_{i}$
+\end_inset
+
+ placed in every place 
+\begin_inset Formula $P_{i}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $m_{0}$
+\end_inset
+
+ is the initial marking.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To help analyse SPNs we define a fundamental structure called 
+\emph on
+Building Blocks
+\emph default
+ or BBs, give an expression for its product-form solution and conditions
+ required for its existence.
+\end_layout
+
+\begin_layout Subsection
+Building blocks
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Definition 8.2
+\end_layout
+
+\begin_layout Plain Layout
+A SPN 
+\begin_inset Formula $S$
+\end_inset
+
+ with set of transitions 
+\begin_inset Formula $\mathcal{T}$
+\end_inset
+
+ and set of 
+\begin_inset Formula $N$
+\end_inset
+
+ places 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ is a building block if it satisfies the following conditions:
+\end_layout
+
+\begin_layout Enumerate
+For all 
+\begin_inset Formula $T\in\mathcal{T}$
+\end_inset
+
+ then either 
+\begin_inset Formula $T$
+\end_inset
+
+ is an output transition with 
+\begin_inset Formula $O(T)=0$
+\end_inset
+
+ or 
+\begin_inset Formula $T$
+\end_inset
+
+ is an input transition with 
+\begin_inset Formula $I(T)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+For each 
+\begin_inset Formula $T\in T_{I}\mbox{(set of input transitions)}$
+\end_inset
+
+, there exists 
+\begin_inset Formula $T'\in T_{O}\mbox{ (set of output transitions)}$
+\end_inset
+
+ such that 
+\begin_inset Formula $O(T)=I(T')$
+\end_inset
+
+ and vice versa.
+\end_layout
+
+\begin_layout Enumerate
+Two places 
+\begin_inset Formula $P_{i},P_{j}\in\mathcal{P},\mbox{ }1\leq i,j\leq N,$
+\end_inset
+
+ are connected if there exists a transition 
+\begin_inset Formula $T\in\mathcal{T}$
+\end_inset
+
+ such that the components 
+\begin_inset Formula $i$
+\end_inset
+
+ and 
+\begin_inset Formula $j$
+\end_inset
+
+ of 
+\begin_inset Formula $I(T)$
+\end_inset
+
+ or of 
+\begin_inset Formula $O(T)$
+\end_inset
+
+ are non-zero.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus condition 1 requires all transitions to be either input or output transitio
+ns.
+ Condition 2 required any input transition 
+\begin_inset Formula $T_{y}$
+\end_inset
+
+ of the building block feeding a subset of places 
+\begin_inset Formula $y$
+\end_inset
+
+ to have a corresponding output transition 
+\begin_inset Formula $T_{y}'$
+\end_inset
+
+ that consumes the tokens from the same subset 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ Finally condition 3 requires the SPN to be connected.
+ Figure 2.4 is an example of a building block with three places 
+\begin_inset Formula $\mathcal{P}=\{P_{1},P_{2},P_{3}\}$
+\end_inset
+
+, three input transitions 
+\begin_inset Formula $T_{I}=\{T_{12},T_{23},T_{3}\}$
+\end_inset
+
+ and three output transitions 
+\begin_inset Formula $T_{O}=\{T_{12}',T_{23}',T_{3}'\}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Example of a building block
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Product form of building blocks
+\end_layout
+
+\begin_layout Standard
+Practical Example
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
@@ -4582,8 +4894,8 @@ User inputs Pure PEPA descriptions
 \end_layout
 
 \begin_layout Standard
-User to inputs component descriptions as they would to a normal non-automated
- RCAT theorem (shown in Figure 3.3).
+In this implementation, the user inputs component descriptions as they would
+ to a normal non-automated RCAT theorem (shown in Figure 3.3).
  This ensures ease of use and is quite intuitive for the user.
  It also deals with input validation and decoupling of the API from functional
  aspects of the RCAT theorem.
@@ -6980,7 +7292,7 @@ hasInvisibleTransition
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset CommandInset line
@@ -7181,7 +7493,7 @@ domain
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset CommandInset line
@@ -7415,7 +7727,7 @@ isSymbolicEqual
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset CommandInset line
@@ -7516,7 +7828,7 @@ xUnit
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset CommandInset line
@@ -7616,20 +7928,23 @@ This concludes the implementation of RCAT.
 \end_layout
 
 \begin_layout Chapter
-Implementation of Extensions to RCAT
+Implementation of Extensions
 \end_layout
 
 \begin_layout Section
 Multiple Agents RCAT
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Write from marcat.
  Only thing different is the input.
  remaining everything in the implementation remains same.
- Talk about how you extended register process to parse multiple process
- descs.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Talk about how you extended register process to parse multiple process descs.
 \end_layout
 
 \begin_layout Plain Layout
@@ -7644,7 +7959,7 @@ width "100col%"
 special "none"
 height "1in"
 height_special "totalheight"
-status open
+status collapsed
 
 \begin_layout Plain Layout
 A Multiple Agent Cooperation is denoted by 
@@ -7662,6 +7977,230 @@ A Multiple Agent Cooperation is denoted by
 \begin_layout Plain Layout
 In the next chapter, we evaluate the usefulness of the implemented RCAT
  algorithm
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Generating Product-Form Solutions for Stochastic Petri Nets
+\end_layout
+
+\begin_layout Standard
+Stochastic Petri Nets (SPNs), as mentioned in the section 2.8, are different
+ from Stochastic Process Algebra like PEPA and thus cannot be directly input
+ into the RCAT solver.
+ We generate product-form solutions for SPNs by applying MARCAT on a model
+ consisting of several SPN building blocks.
+ For a practical example, please refer to the background.
+\end_layout
+
+\begin_layout Subsection
+Formailsing Stochastic Petri Nets
+\end_layout
+
+\begin_layout Standard
+Our first concern while implementing this extension was designing a formalism
+ for SPN building blocks.
+ Due to the graph like structure of SPNs, it is difficult to formalise them
+ using a Markovian Process Algebra like PEPA.
+ So a new formalism was designed which treats an SPN as a connection of
+ building blocks.
+\end_layout
+
+\begin_layout Subsubsection
+Formailsing building blocks
+\end_layout
+
+\begin_layout Standard
+A building block as defined in 
+\emph on
+Definition 8.2
+\emph default
+ is an SPN 
+\begin_inset Formula $S$
+\end_inset
+
+ with set of transitions 
+\begin_inset Formula $\mathcal{T}$
+\end_inset
+
+ and set of 
+\begin_inset Formula $N$
+\end_inset
+
+ places 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ where 
+\begin_inset Formula $\mathcal{T}$
+\end_inset
+
+ can be broken into set 
+\begin_inset Formula $T_{I}$
+\end_inset
+
+ of input transitions and set 
+\begin_inset Formula $T_{O}$
+\end_inset
+
+ of output transitions.
+ So we defined a building block as a MATLAB 
+\emph on
+struct
+\emph default
+ as shown in figure 4.1 with three properties:
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+places
+\emph default
+: It is a set of 
+\begin_inset Formula $N$
+\end_inset
+
+ places of a building block stored as a cell array of strings.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+inputs:
+\emph default
+ This is the set 
+\begin_inset Formula $T_{I}$
+\end_inset
+
+ of input transitions, that is stored as a map with the transition name
+ as the key and the transition firing rate as the value.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+outputs:
+\emph default
+ This is the set 
+\begin_inset Formula $T_{O}$
+\end_inset
+
+ of output transitions, that is stored as a map with the transition name
+ as the key and the transition firing rate as the value.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,numbers=left,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+1x1 struct array with fields:         
+\end_layout
+
+\begin_layout Plain Layout
+
+	places: {'P1'  'P2'  'P3'}      
+\end_layout
+
+\begin_layout Plain Layout
+
+	inputs: [3x1 containers.Map]     
+\end_layout
+
+\begin_layout Plain Layout
+
+	outputs: [3x1 containers.Map]
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Building Block formalism as a Matlab struct
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Parsing user input
+\end_layout
+
+\begin_layout Standard
+On determining a way for formailising the bb we has to then deal with converitin
+g a structural bb as programmable input and parsing it to construct the
+ bb struct.
+ This is best explained using an example.
+ Let us take a simple building block as in figure 4.2.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/SimpleBB.png
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Example of a building block
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -8880,7 +9419,7 @@ On parsing the input, the program produces the structure
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset CommandInset line
@@ -9320,6 +9859,27 @@ Separable equilibrium state probabilities via time reversal in Markovian
 \end_inset
 
  Theoretical Computer Science, vol 346, pp.161–182, 2005
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "13"
+key "SPNs"
+
+\end_inset
+
+ Balsamo, Simonetta., Harrison, Peter G., Marin, Andrea.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Methodological construction of product-form stochastic Petri nets for performanc
+e evaluation.
+\begin_inset Quotes erd
+\end_inset
+
+ The Journal of Systems and Software 85 (2012) 1520–1539.
 \end_layout
 
 \end_body

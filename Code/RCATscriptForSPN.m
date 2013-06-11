@@ -1,4 +1,4 @@
-function RCATscriptForSPN( listOfBBs, connectionString )
+function bbStruct = RCATscriptForSPN( listOfBBs, connectionString )
 
     bbStruct = createBbStruct( listOfBBs );
     connections = parseConnections( connectionString );
