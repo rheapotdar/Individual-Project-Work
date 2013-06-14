@@ -25,7 +25,6 @@ function getRateEquations( bbStruct, connectorList , actionLabel, passiveActionR
     end
     fprintf( 'Rate equation for %s: %s = %s\r\n',...
                       actionLabel, char(oldActionRate), char(passiveActionRate) );
-%     char(passiveActionRate)
 end
 
 

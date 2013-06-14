@@ -26,7 +26,7 @@
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman utopia
+\font_roman default
 \font_sans default
 \font_typewriter default
 \font_default_family rmdefault
@@ -92,11 +92,107 @@
 \begin_body
 
 \begin_layout Title
-Automatic Generation of Product-Forms
+Automatic construction of product-form solutions in stochastic networks
 \end_layout
 
 \begin_layout Author
 By Rhea Potdar
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\series bold
+Abstract
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagenumbering{roman} % Roman numerals 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{page}{1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\series bold
+Acknowledgements
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{page}{1}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagenumbering{arabic}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -127,106 +223,12 @@ Introduction
 Motivation
 \end_layout
 
-\begin_layout Standard
-There has been an increase in the complexity systems of the future, due
- to which performance models have become essential for understanding the
- behaviour of these systems.
- Computer systems can be modelled as a network of queues which are then
- evaluated analytically.
- These (stochastic) queuing models then allow for determining some useful
- performance measures of the systems at equilibrium such as throughput,
- mean queue length.
- There has been considerable effort devoted in finding the product-form
- solutions for the steady state probabilities of systems.
- A product form solution can be derived for joint steady state probabilities
- of interacting Markov processes by finding the the reversed process of
- the interaction.
- Analytically, this involves solving Kolmogorov (balance) equations.
- Thus finding product form solutions is computationally expensive for systems
- with large state spaces.
-\end_layout
-
-\begin_layout Standard
-The motivation for using RCAT
-\begin_inset CommandInset citation
-LatexCommand cite
-key "HarrisonPaperTBTinMAP2003"
-
-\end_inset
-
- is to find the product form solutions of synchronisations between Markov
- chains.
- It is usually applied to large queuing networks simplifying the computational
- difficulty.
- RCAT provides an approach for deriving the steady state probabilities for
- Markov processes that does not require Kolmogorov equations to be solved.
- Instead it provides a methodology of calculating the reversed process of
- the Markov chain in terms of the reversed processes of its sub-chains
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ercat"
-
-\end_inset
-
-.
- RCAT uses PEPA (Performance Evaluation Process Algebra), a Markovian Process
- Algebra formalism, which has an appropriate recursive structure for hierarchal
- analysis done by RCAT.
- 
-\end_layout
-
-\begin_layout Standard
-The RCAT theorem can automatically derive product form solutions of G-networks
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "GelenbeGNetworks"
-
-\end_inset
-
- with negative customers, with ease comparable to deriving product form
- solutions of simpler Jackson queuing networks.
- This shows its compositional utility in validating product form solutions
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "HarrisonPaperTBTinMAP2003"
-
-\end_inset
-
-.
- It can also be used for finding new product form solutions of networks
- with no known product form - such as blocking networks.
- 
+\begin_layout Section
+Contributions
 \end_layout
 
 \begin_layout Section
-Objectives
-\end_layout
-
-\begin_layout Standard
-This project aims to automate the generation of product form solutions for
- queuing networks.
- We can divide this into two encompassing objectives.
-\end_layout
-
-\begin_layout Standard
-The first of these is to ensure the accuracy of the project.
- We will achieve this by developing an implementation of the RCAT theorem
- and derive product form solutions for different queuing networks.
-\end_layout
-
-\begin_layout Standard
-The latter of these is to ensure the implementation has ease of use.
- The software should be able to be used without any knowledge of the underlying
- implementation (some knowledge of integral concepts such as product forms
- will be necessary).
- 
-\end_layout
-
-\begin_layout Standard
-An extension of this implementation, if time permits, would be to use RCAT
- to look at chains of interactions between queues.
+Report Structure
 \end_layout
 
 \begin_layout Standard
@@ -2166,7 +2168,7 @@ These conditions ensure that
 \end_layout
 
 \begin_layout Standard
-But this methodology depends on making the 'right guesses' of the unknown
+But this methodology depends on making the `right guesses' of the unknown
  vector 
 \begin_inset Formula $\pi$
 \end_inset
@@ -2813,7 +2815,7 @@ positive customers
 \emph on
 negative customers
 \emph default
- are customers which remove or 'cancel' positive customers in the queue
+ are customers which remove or `cancel' positive customers in the queue
  if it not empty and have not effect on an empty queue.
  They are useful to remove traffic if a network is congested.
 \end_layout
@@ -4532,7 +4534,7 @@ key "SPNs"
  (SPNs) is a popular higher level formalism for Markovian systems apart
  from Stochastic Process Algebras like PEPA.
  They are more expressive in a natural graphical way than SPAs but are more
- difficult to analyse structrally.
+ difficult to analyse structurally.
 \end_layout
 
 \begin_layout Standard
@@ -5221,7 +5223,7 @@ Symbolic Math Toolbox
 
 \begin_layout Standard
 Other languages considered were Python, Java and Mathematica.
- Python has a symbolic manipulation library called '
+ Python has a symbolic manipulation library called `
 \emph on
 sympy' 
 \emph default
@@ -5296,9 +5298,9 @@ The initial step in implementing the project was parsing the PEPA input
 
 .
  On analysing a process description, we realised that a PEPA process definition
- can be broken into parts (or process descriptors) such as 'name of the
- process', 'source state of the transition', ' destination state of the
- transition', ' process action label', 'action rate', and 'process state
+ can be broken into parts (or process descriptors) such as `name of the
+ process', `source state of the transition', ` destination state of the
+ transition', ` process action label', `action rate', and `process state
  domain'.
  For example, a process definition 
 \begin_inset Formula $P_{n}=(e,\lambda).P_{n+1}(n\geq0)$
@@ -5380,7 +5382,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\footnotesize\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -5391,7 +5393,7 @@ matches = regexp( processDescription,
 
 \begin_layout Plain Layout
 
-`'([A-Z][0-9]*)
+`([A-Z][0-9]*)
 \backslash
 ((.+)
 \backslash
@@ -5488,7 +5490,7 @@ for
 \begin_layout Standard
 	Running the code in Figure 3.4 on code input- 
 \family typewriter
-'P(n) = (e, lambda).P(n+1) for n >= 0'
+`P(n) = (e, lambda).P(n+1) for n >= 0'
 \family default
 , we ultimately get a list of aforementioned process descriptors - 
 \family typewriter
@@ -5539,7 +5541,7 @@ addToProcessStructure
 \begin_inset Formula $P$
 \end_inset
 
- will be stored under the same key 'P'.
+ will be stored under the same key `P'.
  The map 
 \family typewriter
 registeredProcesses
@@ -5574,7 +5576,7 @@ registeredProcesses
 \family typewriter
 registeredProcesses
 \family default
- has a key-value pair : 'process name'-'descriptions cell array'.
+ has a key-value pair : `process name'-`descriptions cell array'.
 \end_layout
 
 \begin_layout Standard
@@ -5691,24 +5693,24 @@ actionRate
 ) to be relabelled to avoid confusion in multiple infinite action rates.
  We achieve this by relabelling all action rates with 
 \emph on
-'infinity'
+`infinity'
 \emph default
  to symbolic variable 
 \emph on
-'x'
+`x'
 \emph default
  postfixed with the action name of that passive rate.
  So a process with action rate 
 \emph on
-'infinity'
+`infinity'
 \emph default
  and action label 
 \emph on
-'a'
+`a'
 \emph default
  will be relabelled as 
 \emph on
-'x_a'
+`x_a'
 \emph default
 .
  Action rates are also parsed to check if they are mathematical expressions
@@ -5723,7 +5725,7 @@ stringToMatlabExpr.
  This requires action rates to compulsorily begin with an alphabet in the
  lower case and is validated by the same function.
  While evaluating the action rates, the program makes an assumption that
- no active action rate can have value 'infinity' as this would cause the
+ no active action rate can have value `infinity' as this would cause the
  program to assume the action was passive when it was actually active.
 \end_layout
 
@@ -6351,7 +6353,7 @@ for definition = process.definitions
 
 \begin_layout Plain Layout
 
-      forwardSum = forwardSum + definition('actionRate');
+      forwardSum = forwardSum + definition(`actionRate');
 \end_layout
 
 \begin_layout Plain Layout
@@ -6361,7 +6363,7 @@ for definition = process.definitions
 
 \begin_layout Plain Layout
 
-      backwardSum = backwardSum + definition('actionRate');
+      backwardSum = backwardSum + definition(`actionRate');
 \end_layout
 
 \begin_layout Plain Layout
@@ -6449,7 +6451,7 @@ rho = ( arrivalRate / serviceRate );
 
 \begin_layout Plain Layout
 
-formula = '(1 - r) * r^x';
+formula = `(1 - r) * r^x';
 \end_layout
 
 \begin_layout Plain Layout
@@ -6813,22 +6815,22 @@ status open
 
 \begin_layout Plain Layout
 
-if isequal( definition( 'actionName' ), actionLabel )
+if isequal( definition( `actionName' ), actionLabel )
 \end_layout
 
 \begin_layout Plain Layout
 
-   oldActionRate = definition( 'actionRate' );
+   oldActionRate = definition( `actionRate' );
 \end_layout
 
 \begin_layout Plain Layout
 
-   definition( 'actionRate' ) = reversedRates( actionLabel );
+   definition( `actionRate' ) = reversedRates( actionLabel );
 \end_layout
 
 \begin_layout Plain Layout
 
-   newActionRate = definition( 'actionRate' );
+   newActionRate = definition( `actionRate' );
 \end_layout
 
 \begin_layout Plain Layout
@@ -6871,7 +6873,7 @@ Code for substituting passive action rates
 MATLAB is a pass by value language, thus when a function (modifying a structure
  field) returns, the caller function's copy of the structure is replaced
  by the functions copy such that only the modified field is replaced.
- This also means that Matlab uses 'copy-on-write', that is, variables are
+ This also means that Matlab uses `copy-on-write', that is, variables are
  only copied if you modify them.
  This feature is used in function 
 \family typewriter
@@ -7042,7 +7044,7 @@ status open
 
 \begin_layout Plain Layout
 
-if ~isequal( definition( 'domain' ), stateSpace )
+if ~isequal( definition( `domain' ), stateSpace )
 \end_layout
 
 \begin_layout Plain Layout
@@ -7211,7 +7213,7 @@ if isequal( domain(1), 1 )
 
 \begin_layout Plain Layout
 
-   if isSymbolicEqual( transitionTostate, eval('n-1') )
+   if isSymbolicEqual( transitionTostate, eval(`n-1') )
 \end_layout
 
 \begin_layout Plain Layout
@@ -7268,7 +7270,7 @@ If a process has a transition
 \end_inset
 
  (checked in Line 1 of Figure 3.13).
- For an action to be enabled, an additional 'invisible' transition is required
+ For an action to be enabled, an additional `invisible' transition is required
  going from 
 \begin_inset Formula $n\to n$
 \end_inset
@@ -7517,12 +7519,12 @@ if isequal( domain(1), 1 ) && isequal( domain(2), Inf )
 
 \begin_layout Plain Layout
 
-   if isSymbolicEqual( transitionTostate, eval('n-1') ) &&
+   if isSymbolicEqual( transitionTostate, eval(`n-1') ) &&
 \end_layout
 
 \begin_layout Plain Layout
 
-   isSymbolicEqual( transitionFromState, eval('n') )
+   isSymbolicEqual( transitionFromState, eval(`n') )
 \end_layout
 
 \begin_layout Plain Layout
@@ -7828,7 +7830,7 @@ xUnit
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset CommandInset line
@@ -7852,7 +7854,7 @@ assertEqual( reversedRates.length(), 1);
 
 \begin_layout Plain Layout
 
-assertTrue( isequal( reversedRates( 'a' ), lambda ) );
+assertTrue( isequal( reversedRates( `a' ), lambda ) );
 \end_layout
 
 \begin_layout Plain Layout
@@ -7862,7 +7864,7 @@ assertExceptionThrown( @() storeReversedRates( coopLabels, r ),...
 
 \begin_layout Plain Layout
 
-        'RCATscript:InvalidComputationStoreReversedRates' );
+        `RCATscript:InvalidComputationStoreReversedRates' );
 \end_layout
 
 \end_inset
@@ -7883,7 +7885,7 @@ height "0.8pt"
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Code to checking symbolic equivalence
+Code snippet for a Test
 \end_layout
 
 \end_inset
@@ -7928,60 +7930,420 @@ This concludes the implementation of RCAT.
 \end_layout
 
 \begin_layout Chapter
-Implementation of Extensions
+Implementation of MARCAT and RCAT for SPNs
 \end_layout
 
 \begin_layout Section
 Multiple Agents RCAT
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-Write from marcat.
- Only thing different is the input.
- remaining everything in the implementation remains same.
- 
 \end_layout
 
-\begin_layout Plain Layout
-Talk about how you extended register process to parse multiple process descs.
+\begin_layout Standard
+The Reversed Compound Agent Theorem (RCAT) is used to derive the reversed
+ process of a cooperation between two agents (processes).
+ RCAT can be generalised to a cooperation of multiple agents.
+ This generalised theorem is refered to the MARCAT or Multiple Agents RCAT.
+ The theorem is detailed in paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RCAT2009Paper"
+
+\end_inset
+
+.
 \end_layout
 
+\begin_layout Standard
+To implement MARCAT, we extended the current implementation of RCAT.
+ Due to the scalable design of the software, extending the implementation
+ was a straightforward process.
+\end_layout
+
+\begin_layout Subsection
+Parsing User Input
+\end_layout
+
+\begin_layout Standard
+The API for this implementation has been maintained as the function 
+\family typewriter
+RCATscript
+\family default
+ with two inputs - a list of PEPA process descriptions and the names cooperating
+ processes.
+ This is detailed in section 3.1 of this report.
+ Since the first input is a list of process descriptions, this list has
+ been simply extended to include 
+\begin_inset Formula $k>2$
+\end_inset
+
+ number of agents.
+ No changes have been made to the syntax of specifying an agent as input.
+ Processes are parsed to generate the structure 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ in function 
+\family typewriter
+registerProcess
+\family default
+.
+ Since the function parses the process string and stores it in a map of
+ processes ordered by process name, no extensions were required to ensure
+ it worked for multiple processes.
+ As shown in figure 4.1, we iterated over 
+\begin_inset Formula $P_{k}$
+\end_inset
+
+ process given as input and registered them using the registerProcess function.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
 \begin_layout Plain Layout
-\begin_inset Box Shaded
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
 width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status collapsed
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
 
 \begin_layout Plain Layout
-A Multiple Agent Cooperation is denoted by 
-\begin_inset Formula $\ensuremath{\sync L}P_{k}$
-\end_inset
 
- where 
-\end_layout
-
-\end_inset
-
-
+for i = 1:length( processList )
 \end_layout
 
 \begin_layout Plain Layout
-In the next chapter, we evaluate the usefulness of the implemented RCAT
- algorithm
+
+process = processList(i);
+\end_layout
+
+\begin_layout Plain Layout
+
+registerProcess( registeredProcesses, activeActionLabels, ...
+             
+\end_layout
+
+\begin_layout Plain Layout
+
+				passiveActionLabels, process{1} );
 \end_layout
 
 \end_inset
 
 
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Code to register multiple agents
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Creating 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $R_{k}$
+\end_inset
+
+, as in the aforementioned implementation of RCAT, is structure consisting
+ of 
+\begin_inset Formula $k$
+\end_inset
+
+ PEPA processes where 
+\begin_inset Formula $k\geq2$
+\end_inset
+
+.
+ It is modelled as a Matlab 
+\emph on
+struct
+\emph default
+ with fields as mentioned in section 3.2.1.2.
+ To accomodate multiple agents the function createRk was extended to iterate
+ over the number of processes in the registeredProcesses map as opposed
+ to having a fixed size of 2.
+ This is shown in figure 4.2.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+for i = 1:numOfProcesses 
+\end_layout
+
+\begin_layout Plain Layout
+
+		r(i).definitions = registeredProcesses( processKeyset{1,i} );
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Code for creating 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Parsing PEPA cooperation
+\end_layout
+
+\begin_layout Standard
+Since MARCAT is the cooperation of multiple agesnts, the second input to
+ 
+\family typewriter
+RCATscript
+\family default
+ has been changed to depict the multiple agents.
+ This does not affect the aforementioned method of running the RCAT solver
+ or specifying cooperation between two agents.
+ We specify cooperation 
+\begin_inset Formula $\ensuremath{\sync{L}}P_{k},\mbox{ }k\geq2$
+\end_inset
+
+ as shown in figure 4.3.
+ It specifies a cooperation string between three processes P1, P2 and P3.
+ Keyword `with' is used as the cooperation symbol.
+ The actions which procceses cooperate over are stated in parentheses.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+`P1(0) with P2(0) with P3(0) over {a1, a2, a3}'
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Cooperation String for Three agents
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To parse the cooperation string, function registerCoop had to be extended.
+ Parsing the cooperation string is achieved using regular expressions as
+ shown in figure 4.4.
+ String `([A-Z][0-9]*)
+\backslash
+ (([^
+\backslash
+)]+)
+\backslash
+)' matches a single occurance of process P1(0).
+ Regular expression `(with .+
+\backslash
+s*)+' will match multiple occurances of a string beginning with the keyword
+ `with'.
+ This is then parsed to divide the string into the names of the processes
+ and the list of cooperating action labels in the same way as mentioned
+ in section 3.2.1.3.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+matches = regexp( coopDescription, ...
+         
+\end_layout
+
+\begin_layout Plain Layout
+
+`([A-Z][0-9]*)
+\backslash
+(([^
+\backslash
+)]+)
+\backslash
+) (with .+
+\backslash
+s*)+ over 
+\backslash
+{(.*)
+\backslash
+}', `tokens' );     
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Code for Parsing Cooperation String
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The implementation for calculating reversed rates and checking RCAT conditions
+ is the same as mentioned in the previous chapter.
+ We can use the rates calculated to generate product form result using the
+ same method as detailed in section 3.2.5.
 \end_layout
 
 \begin_layout Section
@@ -7998,7 +8360,7 @@ Stochastic Petri Nets (SPNs), as mentioned in the section 2.8, are different
 \end_layout
 
 \begin_layout Subsection
-Formailsing Stochastic Petri Nets
+Formalising Stochastic Petri Nets
 \end_layout
 
 \begin_layout Standard
@@ -8011,7 +8373,7 @@ Our first concern while implementing this extension was designing a formalism
 \end_layout
 
 \begin_layout Subsubsection
-Formailsing building blocks
+Formalising building blocks
 \end_layout
 
 \begin_layout Standard
@@ -8052,7 +8414,7 @@ Definition 8.2
 \emph on
 struct
 \emph default
- as shown in figure 4.1 with three properties:
+ as shown in figure 4.5 with three properties:
 \end_layout
 
 \begin_layout Enumerate
@@ -8098,7 +8460,7 @@ outputs:
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset CommandInset line
@@ -8111,7 +8473,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,numbers=left,showstringspaces=false"
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -8122,7 +8484,7 @@ status open
 
 \begin_layout Plain Layout
 
-	places: {'P1'  'P2'  'P3'}      
+	places: {`P1'  `P2'  `P3'}      
 \end_layout
 
 \begin_layout Plain Layout
@@ -8167,15 +8529,19 @@ Building Block formalism as a Matlab struct
 \end_layout
 
 \begin_layout Subsubsection
-Parsing user input
+Specifying Building blocks as input
 \end_layout
 
 \begin_layout Standard
-On determining a way for formailising the bb we has to then deal with converitin
-g a structural bb as programmable input and parsing it to construct the
- bb struct.
+On determining a way for formalising the building block, we then dealt with
+ converting a structural building block as programmable input and parsing
+ it to construct the building block 
+\emph on
+struct
+\emph default
+.
  This is best explained using an example.
- Let us take a simple building block as in figure 4.2.
+ Let us take a simple building block as in figure 4.6.
 \end_layout
 
 \begin_layout Standard
@@ -8206,6 +8572,1130 @@ Example of a building block
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+The building block has three places 
+\begin_inset Formula $\{P_{1},P_{2},P_{3}\}$
+\end_inset
+
+ with input transitions 
+\begin_inset Formula $\{T_{12},T_{23},T_{3}\}$
+\end_inset
+
+ and output transitions 
+\begin_inset Formula $\{T_{12}',T_{23}',T_{3}'\}$
+\end_inset
+
+.
+ Let the rates of the three input transitions be 
+\begin_inset Formula $\{\lambda_{12},\infty,\lambda_{3}\}$
+\end_inset
+
+ and the rates of output transitions be 
+\begin_inset Formula $\{\mu_{12},\mu_{23},\mu_{3}\}$
+\end_inset
+
+.
+ Rate 
+\begin_inset Formula $\infty$
+\end_inset
+
+ denotes that the firing of an output transition of some building block
+ corresponds to the firing of the transition with rate 
+\begin_inset Formula $\infty$
+\end_inset
+
+.
+ The user specifies this information as input to the program 
+\family typewriter
+RCATscriptForSPN 
+\family default
+as string as shown in figure 4.7
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+`{P1, P2, P3}, {i_t12, i_t23, i_t3}, {lambda12, infinity, lambda3},
+\end_layout
+
+\begin_layout Plain Layout
+
+ {o_t12, o_t23, o_t3}, {mu12, mu23, mu3}'
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Building Block as input by user
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is important to note that all input transitions are prefixed by `i' while
+ all output transitions are prefixed by `o'.
+ This helps the program ensure that every input transition has a corresponding
+ output transition, as it is one of the mandatory conditions for an SPN
+ to be a building block.
+ The string is always arranged in the order as shown in the figure, starting
+ with places followed by input transitions, input transition rates, output
+ transitions and output transition rates.
+\end_layout
+
+\begin_layout Subsubsection
+Specifying Building Block connections
+\end_layout
+
+\begin_layout Standard
+Since an SPN is specified as a model composed with several connected building
+ blocks, user inputs the several building blocks as a list to the program
+ 
+\family typewriter
+RCATscriptForSPN
+\family default
+.
+ The user also has to input a routing probability matrix giving the connections
+ between the different building blocks and their routing probabilities.
+ The figure 4.8 gives an example of a simple SPN composed of two building
+ blocks.
+ The dotted lines show the passive composition between the two building
+ blocks.
+ So the firing of transitions 
+\begin_inset Formula $T_{12}'\mbox{ and }T_{23}'$
+\end_inset
+
+ from one building block (BB1) corresponds with input transition 
+\begin_inset Formula $T_{45}$
+\end_inset
+
+ of the other building block (BB2).
+ Similarly, output transition 
+\begin_inset Formula $T_{5}'$
+\end_inset
+
+ from BB2 corresponds with input transition 
+\begin_inset Formula $T_{23}$
+\end_inset
+
+ from BB1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/SimpleSPN.png
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Example of a SPN with two building blocks
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The passive cooperations between the building blocks are specified as shown
+ in Figure 4.9.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+`{o_t12 = 1, o_t23 = 1 to i_t45} ; {o_t5 = 1 to i_t23}'
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+User input specifying passive compositions between BBs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Each connection is stated by the user in parentheses 
+\begin_inset Formula $\{...\}$
+\end_inset
+
+ separated by a semi-colon as shown in Figure 4.9.
+ Connection `
+\family typewriter
+o_t12 = 1, o_t23 = 1 to i_t45
+\family default
+' states that output transitions 
+\begin_inset Formula $t12\mbox{ and }t23$
+\end_inset
+
+ correspond to input transition 
+\begin_inset Formula $t45$
+\end_inset
+
+ with routing probability equal to 1.
+ This routing probability is used while calculating rate equations.
+\end_layout
+
+\begin_layout Subsubsection
+Running RCAT for SPNs
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+listOfBBs = {
+\end_layout
+
+\begin_layout Plain Layout
+
+`{P1, P2, P3}, {i_t12, i_t23, i_t3}, {lambda12, infinity, lambda3},
+\end_layout
+
+\begin_layout Plain Layout
+
+{o_t12, o_t23, o_t3}, {mu12, mu23, mu3}',
+\end_layout
+
+\begin_layout Plain Layout
+
+`{P4, P5}, {i_t4, i_t45, i_t5}, {lambda4, infinity, lambda5}, 
+\end_layout
+
+\begin_layout Plain Layout
+
+{o_t4, o_t45, o_t5}, {mu4, mu45, mu5}'}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+connectionString =
+\end_layout
+
+\begin_layout Plain Layout
+
+`{o_t12 = 1, o_t23 = 1 to i_t45} ; {o_t5 = 1 to i_t23}'
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+RCATscriptForSPN( listOfBBs, connectionString )
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Running RCAT on a SPN with two building blocks
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 4.10 shows how the specified user input is specified for a SPN model
+ using list of building blocks and their connections.
+ This is then run using the API function 
+\family typewriter
+RCATscriptForSPN
+\family default
+ which takes the list of building blocks and their connections as the two
+ arguments.
+\end_layout
+
+\begin_layout Subsection
+Parsing user input
+\end_layout
+
+\begin_layout Subsubsection
+Parsing Building Block String
+\end_layout
+
+\begin_layout Standard
+We started with writing a parser for converting the user input of the list
+ of building blocks into a building block 
+\emph on
+struct 
+\emph default
+to match the formalism outlined in section 4.2.1.1.
+ This is achieved in function 
+\family typewriter
+createBbStruct
+\family default
+ which takes the list of building block strings as input and returns a building
+ block struct (as shown in figure 4.5
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+) as output.
+ We use regular expressions for the majority of the parsing in function
+ 
+\family typewriter
+parseBB
+\family default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+match = regexp( bbString, ...
+\end_layout
+
+\begin_layout Plain Layout
+
+		`{(.+)}, {(.+)}, {(.+)}, {(.+)}, {(.+)}', `tokens' );     
+\end_layout
+
+\begin_layout Plain Layout
+
+matches = match{1};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+places = regexp( matches{1}, `
+\backslash
+s*,
+\backslash
+s*', `split' );
+\end_layout
+
+\begin_layout Plain Layout
+
+         
+\end_layout
+
+\begin_layout Plain Layout
+
+inputKeyset = regexp( matches{2}, `
+\backslash
+s*,
+\backslash
+s*', `split' );
+\end_layout
+
+\begin_layout Plain Layout
+
+rateStrings = regexp( matches{3}, `
+\backslash
+s*,
+\backslash
+s*', `split' );
+\end_layout
+
+\begin_layout Plain Layout
+
+   
+\end_layout
+
+\begin_layout Plain Layout
+
+i_rates = relabelPassiveRates( inputKeyset, rateStrings );
+\end_layout
+
+\begin_layout Plain Layout
+
+inputValues = convertToSymbolicRates( i_rates );
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+inputs = containers.Map( inputKeyset, inputValues ); 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Parsing building block String
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 4.11 gives a code snippet for parsing a building block string.
+ Lines 1-2 take a building block string of the form 
+\emph on
+`{P1, P2, P3}, {i_t12, i_t23, i_t3}, {lambda12, infinity, lambda3}, {o_t12,
+ o_t23, o_t3}, {mu12, mu23, mu3}'
+\emph default
+ and divide it into five different sections; from these sections we derive
+ information about the places and transitions of the building block.
+ Matlab function 
+\family typewriter
+regexp
+\family default
+ on lines 1-2 is used to match any text in parentheses using regular expression
+ 
+\begin_inset Formula $`\{(.+)\}'$
+\end_inset
+
+.
+ It is important to note that the building block must be specified as stated
+ in section 4.2.1.3 else the parsing will fail.
+\end_layout
+
+\begin_layout Standard
+On dividing the string into different sections, we then go on to extract
+ values for the set of building block places in line 5.
+ Here the Matlab function 
+\family typewriter
+regexp
+\family default
+ splits string 
+\emph on
+`P1, P2, P3
+\emph default
+' into three substrings `P1', `P2', `P3'.
+ Lines 7-8 perform the same type of split on the set of input transition
+ names and input transition rates.
+\end_layout
+
+\begin_layout Standard
+Transition rates which are passive need to relabelled to avoid confusion;
+ so passive transition rates with 
+\emph on
+`infinity'
+\emph default
+ are relabelled to symbolic variable 
+\emph on
+`x'
+\emph default
+ postfixed with the transition name of that passive rate.
+ This is performed in the function 
+\family typewriter
+relabelPassiveRates
+\family default
+ as shown on line 10 in figure 4.11.
+ Input transition rates need to be converted into Matlab symbolic expressions
+ which is achieved by function 
+\family typewriter
+convertToSymbolicRates
+\family default
+, which used the function 
+\family typewriter
+stringToMatlabExpr
+\family default
+ ( a helper function used for converting strings to Matlab symbolic expressions).
+ 
+\end_layout
+
+\begin_layout Standard
+We finally generate 
+\emph on
+inputs,
+\emph default
+ a field of the building block struct as a map of the transition names as
+ keys and their rates as values.
+ Output transitions and rates are parsed similarly to create 
+\emph on
+outputs
+\emph default
+, the last field of the building block struct.
+\end_layout
+
+\begin_layout Subsubsection
+Parsing Building Block connections
+\end_layout
+
+\begin_layout Standard
+On constructing a building block struct, the next step is to parse the building
+ block connection string.
+ This is performed by function 
+\family typewriter
+parseConnections
+\family default
+ which takes a connections string as input and returns a map of connections
+ as output.
+ The map of connections has the destination as the key and the list of inputs
+ as values.
+ For instance, for connection 
+\emph on
+`o_t5 = 1 to i_t23'
+\emph default
+, the key will be i_t23 and the value will be the tuple (o_t5,1).
+ Figure 4.12 is a code snippet of the 
+\family typewriter
+parseConnections
+\family default
+ function.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+match = regexp( connectionString, `
+\backslash
+s*;
+\backslash
+s*', `split' );
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+for i = 1:length( match )            
+\end_layout
+
+\begin_layout Plain Layout
+
+	matches = regexp( match{i}, `{(.+) to (.+)}', `tokens' );
+\end_layout
+
+\begin_layout Plain Layout
+
+	...
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Parsing building block connections
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Parsing is done using regular expression; line 1 in figure 4.12 shows how
+ the string of connections are split into individual sub-strings of connections
+ each of which are then parsed using a loop.
+ The regular expression 
+\begin_inset Formula $`\{(.+)\mbox{ }to\mbox{ }(.+)\}'$
+\end_inset
+
+ retrieves text from either sides of `to'.
+ Thus we separate the key and value pairs for our map of connections.
+ In the function 
+\family typewriter
+parseInputs
+\family default
+, each input value of type `
+\emph on
+o_t5 = 1
+\emph default
+' is parsed and is separated into transition name string `o_t5' and Matlab
+ symbolic expression `1'.
+ The function returns a list of such input transitions names and probability
+ tuples, which is then allocated as the value to its corresponding key in
+ the connection map.
+ Again since we are using regular expressions, the connections string has
+ to be specified as mentioned in section 4.2.1 else the program will terminate
+ because of a parsing error.
+\end_layout
+
+\begin_layout Subsection
+Generating Rate Equations
+\end_layout
+
+\begin_layout Standard
+To decide if a composition of building blocks has a product-form, we need
+ to find the unknown (i.e.
+ passive) rates the input transitions.
+ This is done by setting each unknown rate is to the reversed rate of the
+ corresponding output transition.
+ The system of equations generated are the rate equations desired.
+ This calculation is performed in the Matlab function 
+\family typewriter
+calculatePassiveRatesForBBs
+\family default
+ where for each unknown rate, we derieve a rate equation by using the function
+ 
+\family typewriter
+getRateEquations
+\family default
+.
+ Figure 4.13 is a code snippet of 
+\family typewriter
+getRateEquations
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+for i = 1:length( connectorList )      
+\end_layout
+
+\begin_layout Plain Layout
+
+	map = connectorList{i};         
+\end_layout
+
+\begin_layout Plain Layout
+
+	label = map.keys;                
+\end_layout
+
+\begin_layout Plain Layout
+
+	passiveActionRate =  passiveActionRate + ...
+\end_layout
+
+\begin_layout Plain Layout
+
+		getReversedRateForBB( bbStruct, label{1} ) * map( label{1} ); 
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Generating rate equations
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To find the passibe rate of the input transition we use the connections
+ map generated while parsing.
+ The connections map has the name of the input transition with unknown rate
+ as key and a list of `connectors' as value.
+ This list is input to the 
+\family typewriter
+getRateEquations
+\family default
+ function.
+ Each connection is stored as a map with the corresponding output transition
+ name as the key and its routing proability as the value.
+ We retrieve this key in line 3 of Figure 4.13.
+ and find the reversed rate of the corresponding output transition using
+ function 
+\family typewriter
+getReversedRateForBB
+\family default
+.
+ We then multiply this with the routing proability - 
+\emph on
+map( label{1} )
+\emph default
+ - as shown in line 5 of Figure 4.13.
+\end_layout
+
+\begin_layout Standard
+A code snippet of function 
+\family typewriter
+getReversedRateForBB
+\family default
+ is shown in figure 4.14.
+ To find reversed rate of a transition we use the building block corollary
+ stated in section 2.8 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+add correct corollary no.
+\end_layout
+
+\end_inset
+
+ - `The reversed rate of transition 
+\begin_inset Formula $T_{y}′$
+\end_inset
+
+ is 
+\begin_inset Formula $\lambda_{y}$
+\end_inset
+
+, i.e.
+ the rate of the corresponding input transition'.
+ The corresponding input transition is calculated by using regular expressions
+ and prefixing the transition name with `i' as described in line 1 and 3
+ of figure 4.14.
+ Thus an output transition of the form `o_t23' gives an input transition
+ label `i_t23'.
+ The rate of this input transition is calculated by interating over the
+ building block stuct in function 
+\family typewriter
+getActionRateForSPNs
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+matches = regexp( actionLabel, `
+\backslash
+s*_
+\backslash
+s*', `split' );
+\end_layout
+
+\begin_layout Plain Layout
+
+assert( strcmp( matches(1), `o' ) )
+\end_layout
+
+\begin_layout Plain Layout
+
+inputActionLabel = strcat( `i', `_', matches{2} );
+\end_layout
+
+\begin_layout Plain Layout
+
+revRate = getActionRateForSPNs( inputActionLabel , bbStruct );
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Finding reversed rate of corresponding output transition
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As a final step in generating rate equations, we print the generated equations
+ on standard output which can be solved easily by the user using standard
+ Matlab tools.
+\end_layout
+
+\begin_layout Subsection
+Checking Building Block conditions
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+conditions
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Parsing building block String
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Generating Product Form Solution
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Then, we derive a system of equations where each unknown rate is set to
+ the reversed rate of the corresponding output transition.
+ If the system admits a solution that is compatible with the product-form
+ conditions of each BB, then the SPN has product-form.
+\end_layout
+
+\begin_layout Plain Layout
+Theorem 2 - BBs having product form solutions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This concludes the implementation of MARCAT and RCAT for Stochastic Petri
+ Nets.
+ In the next chapter, we evaluate the usefulness and correctness of the
+ implemented RCAT and RCAT for Stochastic Petri Nets.
 \end_layout
 
 \begin_layout Chapter
@@ -9642,6 +11132,26 @@ key "marcat2003"
 , we verify that they are as expected.
  As with the all previous examples, we know that all the three conditions
  of RCAT are satisfied and this is verified by the program.
+\end_layout
+
+\begin_layout Section
+Stochastic Petri Nets
+\end_layout
+
+\begin_layout Section
+Strengths and Improvements
+\end_layout
+
+\begin_layout Chapter
+Conclusions
+\end_layout
+
+\begin_layout Section
+My Learning curve
+\end_layout
+
+\begin_layout Section
+Future Work
 \end_layout
 
 \begin_layout Bibliography
