@@ -53,7 +53,7 @@
 \pdf_colorlinks false
 \pdf_backref false
 \pdf_pdfusetitle false
-\papersize default
+\papersize a4paper
 \use_geometry true
 \use_amsmath 1
 \use_esint 1
@@ -70,10 +70,10 @@
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 3cm
-\topmargin 4cm
-\rightmargin 3cm
-\bottommargin 4cm
+\leftmargin 4cm
+\topmargin 3cm
+\rightmargin 4cm
+\bottommargin 3cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation skip
@@ -188,6 +188,13 @@ setcounter{page}{1}
 
 \backslash
 pagenumbering{arabic}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{tocdepth}{2}
 \end_layout
 
 \end_inset
@@ -368,7 +375,7 @@ Markov Property (MP)
 \begin_layout Plain Layout
 \begin_inset Formula 
 \begin{eqnarray}
-P(X_{t}+s=j\mbox{ | }X_{u},\mbox{ }u\text{≤}t) & = & P(X_{t}+s=j\mbox{ | }X_{t})\label{eq:Markov Property}
+P(X_{t+s}=j\mbox{ | }X_{u},\mbox{ }u\text{≤}t) & = & P(X_{t+s}=j\mbox{ | }X_{t})\label{eq:Markov Property}
 \end{eqnarray}
 
 \end_inset
@@ -387,9 +394,8 @@ This states that the conditional probability distribution of future states
 \end_layout
 
 \begin_layout Standard
-Alternatively Markov chains can also be defined as labelled transition systems,
- undergoing transitions with different rates between finite number of possible
- states.
+Markov chains can also be denoted as labelled transition systems, undergoing
+ transitions with different rates between finite number of possible states.
 \end_layout
 
 \begin_layout Subsection
@@ -1180,8 +1186,8 @@ The Poisson process is a renewal process with renewal period (inter-arrival
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray*}
-F(x) & = & P(X\leq x)=1-e-\lambda x\\
-f(x) & = & F'(x)=\lambda e-\lambda x
+F(x) & = & P(X\leq x)=1-e^{-\lambda x}\\
+f(x) & = & F'(x)=\lambda e^{-\lambda x}
 \end{eqnarray*}
 
 \end_inset
@@ -1211,7 +1217,7 @@ where
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray*}
-P(\mbox{arrival in }(t,t+h)) & = & 1-e^{-\lambda h}\\
+P(\mbox{arrival in }(t,t+h)) & = & 1-e^{-\lambda t}\\
  & = & \lambda h+o(h)
 \end{eqnarray*}
 
@@ -1288,7 +1294,7 @@ Single Server Queue (SSQ)
 \end_layout
 
 \begin_layout Standard
-The Single Server Queue Model
+The Single Server Queue Model 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "PerformanceModellingHarrisonBook"
@@ -1328,14 +1334,7 @@ Kendall's Notation
 \end_layout
 
 \begin_layout Standard
-Queues are classified according to Kendall's notation
-\begin_inset CommandInset citation
-LatexCommand cite
-key "PerformanceModellingHarrisonBook,LectureNotes"
-
-\end_inset
-
-
+Queues are classified according to Kendall's notation 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "PerformanceModellingHarrisonBook,LectureNotes"
@@ -1390,7 +1389,7 @@ m
 \begin_inset Formula $m=1$
 \end_inset
 
-refers to a single server, while 
+ refers to a single server, while 
 \begin_inset Formula $m=m$
 \end_inset
 
@@ -1442,7 +1441,7 @@ M/M/1 Queue
 \end_layout
 
 \begin_layout Standard
-The M/M/1 queue
+The M/M/1 queue 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "PerformanceModellingHarrisonBook"
@@ -1470,7 +1469,7 @@ key "PerformanceModellingHarrisonBook"
 .
  Considering the M/M/1 queue in equilibrium, in the steady state, we can
  write down the probability flux balance equations passing in and out of
- the states enclosed in the contour shown in Figure 2.1.
+ the states shown in Figure 2.1.
 \end_layout
 
 \begin_layout Standard
@@ -1508,7 +1507,7 @@ M/M/1 Queue state diagram
 \end_layout
 
 \begin_layout Standard
-There is only one arc leaving the contour and one incoming arc.
+There is only one outgoing arc and one incoming arc.
  The balance equations are therefore, 
 \end_layout
 
@@ -1517,11 +1516,7 @@ Outward flux (all from state
 \begin_inset Formula $i$
 \end_inset
 
-):
-\begin_inset Formula $ $
-\end_inset
-
-
+): 
 \begin_inset Formula $\pi_{i}\lambda(i)$
 \end_inset
 
@@ -1613,7 +1608,7 @@ reference "eq:Normalising_Eq_MP"
 \end_layout
 
 \begin_layout Standard
-Solving the equation gives the steady state probability 
+Solving the equations we get the steady state probability 
 \begin_inset Formula $\pi_{i}$
 \end_inset
 
@@ -1700,7 +1695,7 @@ reference "eq:SSPD_of_MM1Q"
 \begin_inset Formula 
 \begin{eqnarray*}
 L & = & \frac{\rho}{(1-\rho)}\\
-U & = & 1-p_{0}=\rho
+U & = & 1-\pi_{0}=\rho
 \end{eqnarray*}
 
 \end_inset
@@ -1741,8 +1736,8 @@ key "BradleyRP&RCAT,HarrisonPaperTBTinMAP2003,PerformanceModellingHarrisonBook,L
 \end_inset
 
  of a stationary Markov process is a stochastically identical process (to
- the original MP) with the same state space but in which the direction of
- time has been reversed.
+ the original MP) with the same state space but in to which the direction
+ of time has been reversed.
  Knowledge of the reversed process allows us solve balance equations of
  a Markov process in equilibrium and therefore obtain product-form stationary
  distributions of complex processes such queuing network models.
@@ -1982,18 +1977,18 @@ Proposition 4.1 would be useful to detect a reversible Markov process but
 \begin_inset Formula $\{X_{\tau-t}\}$
 \end_inset
 
- for an irreversible Markov process 
+ for a Markov process 
 \begin_inset Formula $\{X_{t}\}$
 \end_inset
 
-.
+ that is not reversible.
  The stationary distribution 
 \begin_inset Formula $\pi$
 \end_inset
 
  is the same for both the processes and thus the we can relate the instantaneous
- transition rates of reversed process to those of the original process by
- the following proposition 4.2.
+ transition rates of the reversed process to those of the original process
+ by the following proposition 4.2.
 \end_layout
 
 \begin_layout Standard
@@ -2075,8 +2070,8 @@ Kolmogorov’s criteria
 \end_layout
 
 \begin_layout Standard
-The equilibrium distribution of stationary Markov process can be found using
- the result (Equation 
+The equilibrium distribution of a stationary Markov process can be found
+ using the result (Equation 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:BalanceEquation_RP"
@@ -2164,7 +2159,7 @@ These conditions ensure that
 \uwave default
 \noun default
 \color inherit
- by uniqueness.
+ by uniqueness, where G is the normalising constant.
 \end_layout
 
 \begin_layout Standard
@@ -2307,11 +2302,11 @@ We then find a sequence of directly connected states
 \end_layout
 
 \begin_layout Enumerate
-We then calculate 
+We then calculate the steady state probability 
 \begin_inset Formula $\pi_{j}$
 \end_inset
 
- steady state probability related to a base value 
+ related to a base value 
 \begin_inset Formula $\pi_{0}$
 \end_inset
 
@@ -2414,7 +2409,7 @@ There are two minimal cycles in the forward process,
 \begin_inset Formula $\{2\to3,\mbox{ }3\to2\}$
 \end_inset
 
-, gives the following cycle equations:
+, which give the following cycle equations:
 \end_layout
 
 \begin_layout Standard
@@ -2441,8 +2436,9 @@ q'_{13}=\lambda,\mbox{ }q'_{32}=2\mu,\mbox{ }q'_{21}=q'_{23}=\frac{\lambda}{2}
 \end_layout
 
 \begin_layout Standard
-This style of reasoning is used in the RCAT to determine the reversed rates
- of PEPA actions in sequential PEPA components, described in later sections.
+This style of reasoning is used to prove the RCAT and to determine the reversed
+ rates of PEPA actions in sequential PEPA components, described in later
+ sections.
 \end_layout
 
 \begin_layout Section
@@ -2450,21 +2446,15 @@ Queuing Networks
 \end_layout
 
 \begin_layout Standard
-Queuing networks
+Queuing networks 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "PerformanceModellingHarrisonBook,LectureNotes"
 
 \end_inset
 
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "PerformanceModellingHarrisonBook,LectureNotes"
-
-\end_inset
-
- are systems which are network of queues with interconnect input and outputs.
+ are systems which are network of queues with interconnected inputs and
+ outputs.
  
 \emph on
 Open
@@ -2548,7 +2538,7 @@ where
 \begin_inset Formula $j$
 \end_inset
 
- are routed to node 
+ is routed to node 
 \begin_inset Formula $i$
 \end_inset
 
@@ -2648,8 +2638,7 @@ Theorem 5.1 Jackson Theorem
 \end_layout
 
 \begin_layout Plain Layout
-The theorem states that if the open queuing network is stable, that is if
- the condition:
+If the open queuing network is stable, that is if the condition:
 \end_layout
 
 \begin_layout Plain Layout
@@ -2709,13 +2698,13 @@ The product-form result implies that each node can be reasoned about as
  a M/M/1 queue in isolation and thus makes obtaining performance measures
  of a network such as - mean queue lengths, throughput, mean waiting time
  - an easy task.
- If we analyse the product form solution, we notice that marginal distribution
- of the number of jobs at node 
+ If we analyse the product form solution, we notice that the marginal distributi
+on of the number of jobs at node 
 \begin_inset Formula $i$
 \end_inset
 
- is the same of an M/M/1 queue (compare the SSPD equation of a M/M/1 queue
- from 
+ is the same as that of an M/M/1 queue (compare the SSPD solution of a M/M/1
+ queue from 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:SSPD_of_MM1Q"
@@ -2761,7 +2750,7 @@ Node
 \end_layout
 
 \begin_layout Standard
-We can now define 
+We can now define (an open) 
 \emph on
 Jackson Network
 \begin_inset CommandInset citation
@@ -2777,7 +2766,7 @@ key "PerformanceModellingHarrisonBook"
 \end_inset
 
  forming a Poisson stream and the equilibrium probability distribution resulting
- to a product form solution model.
+ in to a product form solution model.
  It is a relatively simple queuing network and we shall derive its product
  form solution using the RCAT theorem in later sections.
 \end_layout
@@ -4680,7 +4669,11 @@ A SPN
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
- is a building block if it satisfies the following conditions:
+ is a 
+\series bold
+building block
+\series default
+ if it satisfies the following conditions:
 \end_layout
 
 \begin_layout Enumerate
@@ -4799,6 +4792,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/SimpleBB.png
+
+\end_inset
+
 
 \end_layout
 
@@ -4814,10 +4812,6 @@ Example of a building block
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -4828,7 +4822,400 @@ Product form of building blocks
 \end_layout
 
 \begin_layout Standard
+A product form result can be derived for arbitrary building block using
+ ERCAT and is detailed with proof in paper -
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SPNs"
+
+\end_inset
+
+.
+ The paper thus derives a theorem for a product form result of an arbitrary
+ building block, given below.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Theorem 8.1
+\end_layout
+
+\begin_layout Plain Layout
+Consider a Building block 
+\begin_inset Formula $S$
+\end_inset
+
+ with 
+\begin_inset Formula $N$
+\end_inset
+
+ places and 
+\begin_inset Formula $N\subseteq2^{{1,...,N}}\backslash\emptyset$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\rho_{y}=\frac{\lambda_{y}}{\mu_{y}}$
+\end_inset
+
+ for 
+\begin_inset Formula $T_{y},T_{y}'\in\mathcal{T},\mbox{ }|y|\geq1$
+\end_inset
+
+.
+ If the following system of equations has a unique solution 
+\begin_inset Formula $\rho_{i},\mbox{ }(1\leq i\leq N)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\begin{cases}
+\rho_{y}=\prod_{i\in y}\rho_{i} & \forall y\mbox{: }T_{y},T_{y}'\in\mathcal{T}\mbox{ }\wedge\mbox{ }|y|\geq1\\
+\rho_{i}=\frac{\lambda_{i}}{\mu_{i}} & \forall i\mbox{ : }T_{i},T_{i}'\in\mathcal{T},\mbox{ }1\leq i\leq N
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+then the net’s balance equations – and hence stationary probabilities when
+ they exist – have product-form solution:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pi(m_{1},\mbox{ . . . },m_{N})\propto\prod_{i=1}^{N}\rho_{i}^{m_{i}}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Please refer to paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SPNs"
+
+\end_inset
+
+ for detailed proof of Theorem 8.1.
+ Thus the conditions required for the building block in figure 2.4 in product
+ form are 
+\begin_inset Formula 
+\[
+\begin{cases}
+\rho_{12}= & \rho_{1}\rho_{2}\\
+\rho_{23}= & \rho_{2}\rho_{3}\\
+\rho_{3}= & \frac{\lambda_{3}}{\mu_{3}}
+\end{cases}
+\]
+
+\end_inset
+
+ which gives the steady state probabilities and product form as as: 
+\begin_inset Formula 
+\[
+\pi(m_{1},m_{2},m_{3})\propto\left(\frac{\lambda_{12}\lambda_{3}\mu_{23}}{\mu_{12}\mu_{3}\lambda_{23}}\right)^{m_{1}}\left(\frac{\lambda_{23}\mu_{3}}{\mu_{23}\lambda_{3}}\right)^{m_{2}}\left(\frac{\lambda_{3}}{\mu_{3}}\right)^{m_{3}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From Theorem 8.1, the following corollary can be derived.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shaded
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Theorem 8.1
+\end_layout
+
+\begin_layout Plain Layout
+Consider a Building block 
+\begin_inset Formula $S$
+\end_inset
+
+ in product form as defined in Theorem 8.1, let 
+\begin_inset Formula $T_{y}′\in T_{O}$
+\end_inset
+
+.
+ The reversed rate of transition 
+\begin_inset Formula $T_{y}′$
+\end_inset
+
+ is 
+\begin_inset Formula $\lambda_{y}$
+\end_inset
+
+, which is the the rate of the corresponding input transition 
+\begin_inset Formula $T_{y}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+RCAT for Stochastic Petri Nets
+\end_layout
+
+\begin_layout Standard
+We can specify complex SPNs as a composition of multiple building blocks
+ (BBs).
+ Since the BBs themselves are in product form we can say that:
+\end_layout
+
+\begin_layout Enumerate
+the reversed rates of the reversed actions corresponding to the output transitio
+n firings are constant;
+\end_layout
+
+\begin_layout Enumerate
+the input transitions are always enabled;
+\end_layout
+
+\begin_layout Enumerate
+each state of the BB can be reached by the firing of any output transition.
+\end_layout
+
+\begin_layout Standard
+This ensures that the three RCAT conditions hold and we can run Multiple
+ Agent RCAT (
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RCAT2009Paper"
+
+\end_inset
+
+) on a composition of several BBs to find a product form for complex SPNs.
+ 
+\end_layout
+
+\begin_layout Subsubsection
 Practical Example
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/SimpleSPN.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+A simple SPN with two building blocks
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The figure 2.5 gives an example of a simple SPN composed of two building
+ blocks.
+ The dotted lines show the passive composition between the two building
+ blocks.
+ The output transitions 
+\begin_inset Formula $T_{12}'\mbox{ and }T_{23}'$
+\end_inset
+
+ from one building block (
+\begin_inset Formula $BB_{1}$
+\end_inset
+
+) corresponds with input transition 
+\begin_inset Formula $T_{45}$
+\end_inset
+
+ of the other building block (
+\begin_inset Formula $BB_{2}$
+\end_inset
+
+).
+ Similarly, output transition 
+\begin_inset Formula $T_{5}'$
+\end_inset
+
+ from 
+\begin_inset Formula $BB_{2}$
+\end_inset
+
+ corresponds with input transition 
+\begin_inset Formula $T_{23}$
+\end_inset
+
+ from 
+\begin_inset Formula $BB_{1}$
+\end_inset
+
+.
+ The conditions for 
+\begin_inset Formula $BB_{1}$
+\end_inset
+
+ to be in product form are: 
+\begin_inset Formula 
+\[
+\begin{cases}
+\rho_{12}= & \rho_{1}\rho_{2}\\
+\rho_{23}= & \rho_{2}\rho_{3}\\
+\rho_{3}= & \frac{\lambda_{3}}{\mu_{3}}\\
+\rho_{12}= & \frac{\lambda_{12}}{\mu_{12}}\\
+\rho_{23}= & \frac{x_{23}}{\mu_{23}}
+\end{cases}
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula $x_{23}$
+\end_inset
+
+ is the unknown rate for input transition 
+\begin_inset Formula $T_{23}$
+\end_inset
+
+.
+ Similarly the conditions for 
+\begin_inset Formula $BB_{2}$
+\end_inset
+
+ to be in product form are:
+\begin_inset Formula 
+\[
+\begin{cases}
+\rho_{45}= & \rho_{4}\rho_{5}\\
+\rho_{4}= & \frac{\lambda_{4}}{\mu_{4}}\\
+\rho_{5}= & \frac{\lambda_{4}}{\mu_{4}}\\
+\rho_{45}= & \frac{x_{45}}{\mu_{45}}
+\end{cases}
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula $x_{45}$
+\end_inset
+
+ is the unknown rate for input transition 
+\begin_inset Formula $T_{45}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We then derive rate equations for unknowns 
+\begin_inset Formula $x_{23}\mbox{ and }x_{45}$
+\end_inset
+
+ by applying RCAT and using corollary 8.1.
+ Thus the rate equations are:
+\begin_inset Formula 
+\[
+\begin{cases}
+x_{45}= & \bar{\mu_{12}}+\bar{\mu}_{23}=\lambda_{12}+x_{23}\\
+x_{23}= & \bar{\mu}_{5}=\lambda_{5}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Substituting the values into rate equations the conditions for product form
+ are:
+\begin_inset Formula 
+\[
+\begin{cases}
+(\lambda_{12}+\lambda_{5})\mu_{5}\mu_{4} & =\mu_{45}\lambda_{4}\lambda_{5}\\
+\lambda_{5}\mu_{2}\mu_{3} & =\lambda_{2}\lambda_{3}\mu_{23}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These conditions yield the product form solution:
+\begin_inset Formula 
+\[
+\pi(m_{1},m_{2},m_{3},m_{4},m_{5})\propto\left(\frac{\lambda_{12}\lambda_{3}\mu_{23}}{\mu_{12}\mu_{3}\lambda_{5}}\right)^{m_{1}}\left(\frac{\lambda_{5}\mu_{3}}{\mu_{23}\lambda_{3}}\right)^{m_{2}}\left(\frac{\lambda_{3}}{\mu_{3}}\right)^{m_{3}}\left(\frac{\lambda_{4}}{\mu_{4}}\right)^{m_{4}}\left(\frac{\lambda_{5}}{\mu_{5}}\right)^{m_{5}}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -7801,6 +8188,223 @@ Finally if all requirements are satisfied, the function notifies the user
 Generating a Product Form Result
 \end_layout
 
+\begin_layout Standard
+All 
+\begin_inset Formula $R_{k}\mbox{ }(k\geq2)$
+\end_inset
+
+ agents to RCAT are M/M/1 queues with 
+\begin_inset Formula $\rho_{k}=\mbox{arrival rate of }R_{k}\backslash\mbox{ service rate of }R_{k}$
+\end_inset
+
+.
+ Hence the unnormalised equilibrium probability for state 
+\begin_inset Formula $i_{k}$
+\end_inset
+
+ in the process 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ is 
+\begin_inset Formula $\left(\rho_{k}\right)^{i_{k}}$
+\end_inset
+
+ .
+ From this we can derive the product form result using the Jackson’s theorem
+ :
+\begin_inset Formula 
+\[
+\pi(m_{1},\mbox{ . . . , }m_{N})\propto\prod_{i=1}^{N}\rho_{k}^{i_{k}}
+\]
+
+\end_inset
+
+ On finding the reversed rate for unknown actions, the system of rate equations
+ is solved and their values are replaced their 
+\begin_inset Formula $\rho_{k}$
+\end_inset
+
+ to generate the aforementioned product form result.
+ Thus for instance if we derive the rate equation - `
+\begin_inset Formula $x_{a}=\lambda'$
+\end_inset
+
+, we replace the value of unknown action rate 
+\begin_inset Formula $x_{a}$
+\end_inset
+
+ of action 
+\begin_inset Formula $a$
+\end_inset
+
+ with 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and use the new value while generating the product form result.
+ We can use Matlab functions 
+\family typewriter
+solve
+\family default
+ to evaluate solutions to a system of rate equations.
+ 
+\end_layout
+
+\begin_layout Standard
+For example, the equations in figure 3.17 need to be evaluated as they have
+ unknowns in their solutions (lines 2-3).
+ The Matlab library function 
+\family typewriter
+solve
+\family default
+ finds a solution for both x_a1 and x_a2 as shown in lines 9 - 15.
+ Before using the function 
+\family typewriter
+solve
+\family default
+, all variables must be declared symbolic using function 
+\family typewriter
+syms
+\family default
+ as shown in figure 3.17 on line 7.
+ Thus evaluating rate equations is left to the user as it is a straightforward
+ process.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+> RCATscript(x2, y2) % Running script for reversed rate calculation
+\end_layout
+
+\begin_layout Plain Layout
+
+  Printing passive action rates computed using RCAT algorithm...
+\end_layout
+
+\begin_layout Plain Layout
+
+  Reversed rate for passive action a1: x_a1 = p21*(lambda2 + x_a2)
+\end_layout
+
+\begin_layout Plain Layout
+
+  Reversed rate for passive action a2: x_a2 = p12*(lambda1 + x_a1)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+> syms x_a1 x_a2 p21 lambda2 p12 lambda1
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+> solve(`x_a1 = p21*(lambda2 + x_a2)', `x_a2 = p12*(lambda1 + x_a1)' ) 
+\end_layout
+
+\begin_layout Plain Layout
+
+  ans = x_a1: [1x1 sym]     
+\end_layout
+
+\begin_layout Plain Layout
+
+	    x_a2: [1x1 sym]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+> x_a1 = -(p21*(lambda2 + lambda1*p12))/(p12*p21 - 1)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+> x_a2 = -(lambda1*p12 + lambda2*p12*p21)/(p12*p21 - 1)
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Solving system of rate equations
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In some cases, the rate equations are non-linear.
+ To solve non-linear system os equations, we can use Matlab Library function
+ 
+\family typewriter
+fsolve
+\family default
+.
+ It checks if the equations converge to a single value and has the option
+ of running multiple iterations with guessed values.
+ Another alternative is to use `fixed point iteration', but has not been
+ implemented as a part of this project.
+\end_layout
+
 \begin_layout Section
 Testing and Verification
 \end_layout
@@ -7899,7 +8503,7 @@ Code snippet for a Test
 \end_layout
 
 \begin_layout Standard
-Figure 3.17 is a code snippet from the test 
+Figure 3.18 is a code snippet from the test 
 \family typewriter
 testStoreReversedRates
 \family default
@@ -7925,8 +8529,8 @@ Program output is verified by running RCAT on various system models, taken
 
 \begin_layout Standard
 This concludes the implementation of RCAT.
- The next chapter details the implementation of some extensions made to
- the current RCAT implementation.
+ The next chapter details the implementation of how running RCAT on multiple
+ processes and Stochastic Petri Nets.
 \end_layout
 
 \begin_layout Chapter
@@ -7941,7 +8545,7 @@ Multiple Agents RCAT
 The Reversed Compound Agent Theorem (RCAT) is used to derive the reversed
  process of a cooperation between two agents (processes).
  RCAT can be generalised to a cooperation of multiple agents.
- This generalised theorem is refered to the MARCAT or Multiple Agents RCAT.
+ This generalised theorem is referred to the MARCAT or Multiple Agents RCAT.
  The theorem is detailed in paper 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -8096,7 +8700,7 @@ Creating
 struct
 \emph default
  with fields as mentioned in section 3.2.1.2.
- To accomodate multiple agents the function createRk was extended to iterate
+ To accommodate multiple agents the function createRk was extended to iterate
  over the number of processes in the registeredProcesses map as opposed
  to having a fixed size of 2.
  This is shown in figure 4.2.
@@ -8173,7 +8777,7 @@ Parsing PEPA cooperation
 \end_layout
 
 \begin_layout Standard
-Since MARCAT is the cooperation of multiple agesnts, the second input to
+Since MARCAT is the cooperation of multiple agents, the second input to
  
 \family typewriter
 RCATscript
@@ -8188,7 +8792,7 @@ RCATscript
  as shown in figure 4.3.
  It specifies a cooperation string between three processes P1, P2 and P3.
  Keyword `with' is used as the cooperation symbol.
- The actions which procceses cooperate over are stated in parentheses.
+ The actions which processes cooperate over are stated in parentheses.
 \end_layout
 
 \begin_layout Standard
@@ -8256,10 +8860,10 @@ To parse the cooperation string, function registerCoop had to be extended.
 \backslash
 )]+)
 \backslash
-)' matches a single occurance of process P1(0).
+)' matches a single occurrence of process P1(0).
  Regular expression `(with .+
 \backslash
-s*)+' will match multiple occurances of a string beginning with the keyword
+s*)+' will match multiple occurrences of a string beginning with the keyword
  `with'.
  This is then parsed to divide the string into the names of the processes
  and the list of cooperating action labels in the same way as mentioned
@@ -9360,7 +9964,7 @@ To decide if a composition of building blocks has a product-form, we need
 \family typewriter
 calculatePassiveRatesForBBs
 \family default
- where for each unknown rate, we derieve a rate equation by using the function
+ where for each unknown rate, we derive a rate equation by using the function
  
 \family typewriter
 getRateEquations
@@ -9457,7 +10061,7 @@ Generating rate equations
 \end_layout
 
 \begin_layout Standard
-To find the passibe rate of the input transition we use the connections
+To find the passive rate of the input transition we use the connections
  map generated while parsing.
  The connections map has the name of the input transition with unknown rate
  as key and a list of `connectors' as value.
@@ -9467,7 +10071,7 @@ getRateEquations
 \family default
  function.
  Each connection is stored as a map with the corresponding output transition
- name as the key and its routing proability as the value.
+ name as the key and its routing probability as the value.
  We retrieve this key in line 3 of Figure 4.13.
  and find the reversed rate of the corresponding output transition using
  function 
@@ -9475,7 +10079,7 @@ getRateEquations
 getReversedRateForBB
 \family default
 .
- We then multiply this with the routing proability - 
+ We then multiply this with the routing probability - 
 \emph on
 map( label{1} )
 \emph default
@@ -9514,8 +10118,8 @@ add correct corollary no.
  of figure 4.14.
  Thus an output transition of the form `o_t23' gives an input transition
  label `i_t23'.
- The rate of this input transition is calculated by interating over the
- building block stuct in function 
+ The rate of this input transition is calculated by iterating over the building
+ block struct in function 
 \family typewriter
 getActionRateForSPNs
 \family default
@@ -9610,6 +10214,43 @@ Checking Building Block conditions
 \end_layout
 
 \begin_layout Standard
+For an arbitrary building block to have a product form, conditions detailed
+ in Theorem 8.1 need to be satisfied.
+ These conditions are generated and checked in function 
+\family typewriter
+checkBBconditions
+\family default
+.
+ The process of validating the conditions is divided into two parts:
+\end_layout
+
+\begin_layout Enumerate
+If the number of input and output transitions (i.e.
+ 
+\begin_inset Formula $size(T_{I})\mbox{ and }size(T_{O})$
+\end_inset
+
+) is less than or equal to the number of places in the building bock, we
+ assume the conditions are unconditionally satisfied.
+ This follows directly form the nature of the system of equations generated
+ by the conditions detailed in Theorem 8.1.
+ Code for this check is shown in figure 4.15.
+ We loop over all the building blocks the SPN is composed of and also ensure
+ their input and output transitions are equal as shown in line 1-2.
+\end_layout
+
+\begin_layout Enumerate
+If the number of input and output transitions exceed the number of places
+ in the building block, then we generate the additional conditions required
+ from Theorem 8.1.
+ Function furtherConditionCheck generates and displays the conditions to
+ be satisfied.
+ It is important to note that these conditions need to be solved along with
+ the rate equations and if they are compatible then a product form solution
+ will exist.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
@@ -9627,13 +10268,33 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
 inline false
 status open
 
 \begin_layout Plain Layout
 
-conditions
+for i = 1:length( bbStruct )
+\end_layout
+
+\begin_layout Plain Layout
+
+	assert( length(bbStruct(i).outputs) == length(bbStruct(i).inputs) )
+\end_layout
+
+\begin_layout Plain Layout
+
+	if ~( length(bbStruct(i).places) >= length(bbStruct(i).inputs) )
+\end_layout
+
+\begin_layout Plain Layout
+
+		furtherConditionCheck( bbStruct(i) )
+\end_layout
+
+\begin_layout Plain Layout
+
+...
 \end_layout
 
 \end_inset
@@ -9654,7 +10315,7 @@ height "0.8pt"
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Parsing building block String
+Check Building Block Conditions
 \end_layout
 
 \end_inset
@@ -9672,23 +10333,42 @@ Generating Product Form Solution
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-Then, we derive a system of equations where each unknown rate is set to
- the reversed rate of the corresponding output transition.
- If the system admits a solution that is compatible with the product-form
- conditions of each BB, then the SPN has product-form.
+A system of rate equations has been derived for a given SPN using the method
+ in section 4.2.3, where each unknown rate is set to the reversed rate of
+ the corresponding output transition.
+ Theorem 8.1 gives conditions for a BB to have a product form which are derived
+ by the aforementioned method in section 4.2.4.
+ To find a product form for the given SPN, the system of equations is solved
+ and if a solution exists then it is checked for compatibility with the
+ product-form conditions of each BB.
+ If compatible, the SPN has a product-form.
 \end_layout
 
-\begin_layout Plain Layout
-Theorem 2 - BBs having product form solutions
-\end_layout
+\begin_layout Standard
+As mentioned in section 3.2.5, Matlab functions solve and simplify can be
+ used to evaluate solutions to the system of rate equations.
+ The process of evaluating the rate equations remains the same as section
+ 3.2.5.
+ On finding a solution, the product form results of all the participating
+ BBs is combined to give one result.
+ So for a SPN with 
+\begin_inset Formula $N$
+\end_inset
+
+ places the product form result will be:
+\begin_inset Formula 
+\[
+\pi(m_{1},\mbox{ . . . , }m_{N})\propto\prod_{i=1}^{N}\rho_{i}^{m_{i}}
+\]
 
 \end_inset
 
+where 
+\begin_inset Formula $\rho_{i}$
+\end_inset
 
+ is recalculated substituting the unknowns with solutions to the system
+ of rate equations.
 \end_layout
 
 \begin_layout Standard
@@ -9704,7 +10384,8 @@ Evaluation
 
 \begin_layout Standard
 In this chapter, the implementation of RCAT is tested over several queuing
- networks and their results are verified using research papers and by hand.
+ networks and Stochastic Petri Nets and their results are verified using
+ research papers and by hand.
 \end_layout
 
 \begin_layout Section
@@ -10185,7 +10866,7 @@ As input in Figure 5.4, the process
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset CommandInset line
@@ -11003,7 +11684,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -11138,20 +11819,744 @@ key "marcat2003"
 Stochastic Petri Nets
 \end_layout
 
+\begin_layout Standard
+All examples of Stochatic Petri nets (SPNs) used for testing are taken from
+ the paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SPNs"
+
+\end_inset
+
+.
+ The results in the paper have been derieved by hand.
+ We look at two SPNs for evaluation, one with two BBs and one with three
+ BBs; thus showing that the implementation can find a product form for SPN
+ with several BBs.
+\end_layout
+
+\begin_layout Subsection
+Simple SPN composed of two building blocks
+\end_layout
+
+\begin_layout Standard
+Figure 4.8 gives and example of a simple SPN with two building blocks (BBs)
+ with dotted lines showing synchronising transitions.
+ It is specified as input in Matlab as shown in Figure 4.10.
+ On running RCATscriptForSPN on the SPN, a BB structure is created as expected
+ with two BBs as shown in figure 5.13.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+1x2 struct array with fields:     
+\end_layout
+
+\begin_layout Plain Layout
+
+	places    
+\end_layout
+
+\begin_layout Plain Layout
+
+	inputs     
+\end_layout
+
+\begin_layout Plain Layout
+
+	outputs
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Building Block Structure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The program then generates rate equations and product form conditions as
+ shown in figure 5.14 lines 1-3 and lines 5-10 respectively.
+ These are verified by the results in the paper : 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SPNs"
+
+\end_inset
+
+.
+ Observing 
+\begin_inset Formula $BB_{2}$
+\end_inset
+
+ in figure 4.8 we can see that, since the number of tranitions in greater
+ than the number of places, 
+\begin_inset Formula $BB_{2}$
+\end_inset
+
+ does require additional conditions for a product form solution.
+ This is verified by the program on line 5-6.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Printing rate equations:
+\end_layout
+
+\begin_layout Plain Layout
+
+Rate equation for i_t23: x_i_t23 = lambda5
+\end_layout
+
+\begin_layout Plain Layout
+
+Rate equation for i_t45: x_i_t45 = lambda12 + x_i_t23
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Product form is subject to following 
+\end_layout
+
+\begin_layout Plain Layout
+
+conditions being fulfilled for BB 2:
+\end_layout
+
+\begin_layout Plain Layout
+
+rho4 = lambda4 / mu4 
+\end_layout
+
+\begin_layout Plain Layout
+
+rho45 = x_i_t45 / mu45 
+\end_layout
+
+\begin_layout Plain Layout
+
+rho45 = rho4 * rho5 
+\end_layout
+
+\begin_layout Plain Layout
+
+rho5 = lambda5 / mu5
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Rate equations and conditions for product form result of SPN in Figure 4.8
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Solving the equations generated in figure 5.14, a product form result can
+ be obtained easily.
+\end_layout
+
+\begin_layout Subsection
+SPN composed of three building blocks
+\end_layout
+
+\begin_layout Standard
+Figure 5.15 shows a SPN structure and its decomposed BBs.
+ Thus the SPN considered is composed of three building blocks.
+ We can deduce their connections based on the places in each BB.
+ All input transitions of all BBs are unknown; there are five unkown input
+ transition rates.
+ The service rates (output transition rates) for all three BBs is given
+ as 
+\begin_inset Formula $\chi_{i}\mbox{ ,}1\leq i\leq5$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/SPNwith3BBs.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+SPN with 3 BBs and decomposition of the SPN into BBs 1–3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We specify the building blocks as input in Matlab as shown in figure 5.16
+ and run the program using function 
+\family typewriter
+RCATscriptForSPN
+\family default
+.
+ We deduce the synchronising transitions by observing the structure of the
+ decomposed BBs and the SPN strucuture.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+listOfBBs ={ 
+\end_layout
+
+\begin_layout Plain Layout
+
+{P1, P2}, {i_t1, i_t2, i_t3}, {infinity, infinity, infinity}, 
+\end_layout
+
+\begin_layout Plain Layout
+
+{o_t1, o_t2, o_t3}, {chi1, chi2, chi3}',
+\end_layout
+
+\begin_layout Plain Layout
+
+`{P4, P5}, {i_t5, i_t6}, {infinity, infinity}, {o_t5, o_t6}, 
+\end_layout
+
+\begin_layout Plain Layout
+
+{chi5, chi6}',
+\end_layout
+
+\begin_layout Plain Layout
+
+`{P3}, {i_t4}, {infinity}, {o_t4}, {chi4}' }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+connectionString = `{o_t1 = 1 to i_t4} ; {o_t3 = 1 to i_t6}; 
+\end_layout
+
+\begin_layout Plain Layout
+
+{o_t2 = 1 to i_t5}; {o_t5 = 1 to i_t3}; {o_t6 = 1 to i_t2}; 
+\end_layout
+
+\begin_layout Plain Layout
+
+{o_t4 = 1 to i_t1}'
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+>RCATscriptForSPN( listOfBBs, connectionString )
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Running RCAT on a SPN in Fig.
+ 5.15
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The program then generates rate equations and product form conditions as
+ shown in figure 5.17, lines 1-7 and lines 9-14 respectively.
+ These are verified by the results in the paper : 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SPNs"
+
+\end_inset
+
+.
+ Observing 
+\begin_inset Formula $BB_{1}$
+\end_inset
+
+ in figure 5.17 we can see that, since the number of tranitions in greater
+ than the number of places, 
+\begin_inset Formula $BB_{1}$
+\end_inset
+
+ does require additional conditions for a product form solution.
+ This is verified by the program on line 9-10.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Printing rate equations:
+\end_layout
+
+\begin_layout Plain Layout
+
+Rate equation for i_t1: x_i_t1 = x_i_t4
+\end_layout
+
+\begin_layout Plain Layout
+
+Rate equation for i_t2: x_i_t2 = x_i_t6
+\end_layout
+
+\begin_layout Plain Layout
+
+Rate equation for i_t3: x_i_t3 = x_i_t5
+\end_layout
+
+\begin_layout Plain Layout
+
+Rate equation for i_t4: x_i_t4 = x_i_t1
+\end_layout
+
+\begin_layout Plain Layout
+
+Rate equation for i_t5: x_i_t5 = x_i_t2
+\end_layout
+
+\begin_layout Plain Layout
+
+Rate equation for i_t6: x_i_t6 = x_i_t3
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Product form is subject to following 
+\end_layout
+
+\begin_layout Plain Layout
+
+conditions being fulfilled for BB 1:
+\end_layout
+
+\begin_layout Plain Layout
+
+rho1 = x_i_t1 / chi1 
+\end_layout
+
+\begin_layout Plain Layout
+
+rho2 = x_i_t2 / chi2
+\end_layout
+
+\begin_layout Plain Layout
+
+rho2 = rho1 * rho3
+\end_layout
+
+\begin_layout Plain Layout
+
+rho3 = x_i_t3 / chi3
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Rate equations and conditions for product form result of SPN in Figure 5.15
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Solving the equations generated in figure 5.17, a product form result can
+ be obtained easily.
+\end_layout
+
 \begin_layout Section
-Strengths and Improvements
+Strengths and Weaknesses
+\end_layout
+
+\begin_layout Standard
+The strengths of the work accomplished as a part of this project include:
+\end_layout
+
+\begin_layout Itemize
+Automation of RCAT and Multiple Agent RCAT theorem using the generic algorithm
+ detailed in section 2.7.3.
+ Due to the automation, complex queuing models with multiple synchronising
+ processes can be analysed using RCAT with ease and their (new) product
+ form solutions can be generated.
+\end_layout
+
+\begin_layout Itemize
+Automation of product form construction of Stochastic Petri Nets (SPNs).
+ Due to this automation, complex and large SPNs can be analysed with ease
+ as opposed to a tedious manual process.
+\end_layout
+
+\begin_layout Itemize
+Parser for agents (processes) specified in PEPA, a type of Stochastic Process
+ Algebra.
+ Due to the modularised code, the parser can be reused in applications,
+ where processes are described using the same syntax and in any extensions
+ to the RCAT.
+\end_layout
+
+\begin_layout Itemize
+Parser for Stochastic Petri Nets (SPNs).
+ A new formalism is introduced for SPNs and a parser has been implemented
+ for the same.
+\end_layout
+
+\begin_layout Itemize
+An easy command line API for product form construction of both queuing models
+ and SPNs, which ensures that the user does not require in depth knowledge
+ of Matlab.
+\end_layout
+
+\begin_layout Standard
+Although majority of the project was a success, there are some limitations,
+ as listed below:
+\end_layout
+
+\begin_layout Itemize
+The implementation of RCAT and MARCAT in this project accommodates only
+ networks composed of M/M/1 queues; so the steady state probabilities calculatio
+n automated by this implementation is applicable to only M/M/1 queues.
+ The implementation would benefit greatly if this restriction were removed
+ and will thus be able to analyse queuing models which go beyond M/M/1 queues.
+ Since the program logic is loosely coupled, adding this functionality is
+ possible without drastic changes to current implementation.
+\end_layout
+
+\begin_layout Itemize
+The implementation of RCAT for SPNs assumes the knowledge of all Building
+ Blocks (BBs) which the given SPN is composed off.
+ This is a disadvantage, as if the SPN is large and complex then finding
+ BBs manually can be tedious.
+ An algorithm to automate finding BBs in SPNs is detailed in the paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SPNs"
+
+\end_inset
+
+.
+ Implementing this algorithm will be a useful extension to the project.
+\end_layout
+
+\begin_layout Itemize
+We had initially planned to provide a Graphical User Interface (GUI) for
+ the implementation but due to time constraints it was not realised.
+ The implementation will benefit from a GUI and due to the straightforward
+ API it can be easily integrated with the current implementation of RCAT.
 \end_layout
 
 \begin_layout Chapter
 Conclusions
 \end_layout
 
-\begin_layout Section
-My Learning curve
+\begin_layout Standard
+To conclude this report, we summarise our achievements in terms of what
+ we have learnt and if we have met our objectives.
+ The goal of the project was to automate the construction of product forms
+ in stochastic models.
+ Using Matlab, we have built a software which successfully implements the
+ generic algorithm for RCAT and MARCAT, thus achieving automatic construction
+ of rate equations used to derive product forms for queuing models.
+ We have as a part of the implementation developed a parser for queuing
+ models defined in PEPA syntax.
+ On correctly parsing the multiple process descriptions, the software has
+ been able to generate rate equations for synchronising actions.
+ The solutions of these equations are then used to to calculate the marginal
+ probabilities of process nodes which are then used in product form construction
+ of queuing models.
+ 
+\end_layout
+
+\begin_layout Standard
+Furthermore, we have also automated the rate equation generation (leading
+ to product form construction) for Stochastic Petri Nets (SPNs) composed
+ of Building Blocks in product form.
+ A formailsm has been provided for BBs and SPNs and parser has been implemented
+ for the same.
+ In addition to generating rate equations, we have also provided the functionali
+ty to check whether the conditions of the BB are in product form.
+ While this implementation requires the knowledge of all BBs which a given
+ SPN is composed of to be known, it does provide a scope for adding a functional
+ity where this will not be necessary.
+ Both the implementations have been tested for a wide variety of queuing
+ models including G-queues (queues with negative customers) and relatively
+ large SPNs, as detailed in the Evaluation section.
+ The software has been made with a hope to provide the first step towards
+ mechanically analysing complex networks composed of both queuing models
+ and SPNs and thus leading to the discovery new product form solutions.
 \end_layout
 
 \begin_layout Section
 Future Work
+\end_layout
+
+\begin_layout Subsection
+Product-form solutions in a class of synchronised Markov processes
+\end_layout
+
+\begin_layout Standard
+The paper `Product-forms in multi-wise synchronisations' 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chains"
+
+\end_inset
+
+ introduces a new algorithm to find product-form solutions for the joint
+ equilibrium probabilities in a class of synchronised Markov processes.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+TBC
+\end_layout
+
+\begin_layout Subsection
+Automating identifying the BBs of a SPN
+\end_layout
+
+\begin_layout Standard
+As mentioned before, the current implementation of RCAT for SPNs assumes
+ the knowledge of all BBs which the given SPN is composed off.
+ This is a disadvantage, as if the SPN is large and complex then finding
+ BBs manually can be tedious.
+ An algorithm to automate finding BBs in SPNs is detailed in the paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SPNs"
+
+\end_inset
+
+ and can be implemented as a small extension to the current implementation.
+\end_layout
+
+\begin_layout Subsection
+M/M/1
+\end_layout
+
+\begin_layout Standard
+The implementation of RCAT and MARCAT in this project accommodates only
+ networks composed of M/M/1 queues; so the steady state probabilities calculatio
+n automated by this implementation is applicable to only M/M/1 queues.
+ The implementation would benefit greatly if this restriction were removed
+ and will thus be able to analyse queuing models which go beyond M/M/1 queues.
+ Since the program logic is loosely coupled, adding this functionality is
+ possible without drastic changes to current implementation.
 \end_layout
 
 \begin_layout Bibliography
@@ -11390,6 +12795,37 @@ e evaluation.
 \end_inset
 
  The Journal of Systems and Software 85 (2012) 1520–1539.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "14"
+key "Chains"
+
+\end_inset
+
+ Harrison, Peter G., Marin, Andrea.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Product-forms in multi-wise synchronisations
+\begin_inset Quotes erd
+\end_inset
+
+.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+add proper info
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

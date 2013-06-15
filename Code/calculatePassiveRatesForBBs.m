@@ -1,6 +1,6 @@
 function calculatePassiveRatesForBBs( connections, bbStruct )
     
-    fprintf( 'Printing rate equations\r\n' );
+    fprintf( 'Printing rate equations:\r\n' );
     passiveTransitions = connections.keys;
     for i = 1:length( connections )
         connectorList = connections( passiveTransitions{i} );
