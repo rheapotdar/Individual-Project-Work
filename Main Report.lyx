@@ -395,7 +395,7 @@ provides a brief introduction to Markov Chains, Markov processes, Reversed
 Chapter 3 
 \series default
 describes the design choices and the implementation details of automating
- the RCAT starting from the parser - PEPA to Matlab - and concluding with
+ the RCAT starting from the parser - PEPA to MATLAB - and concluding with
  generating a system of rate equations and how to use them to generate product
  form solutions.
 \end_layout
@@ -1160,7 +1160,7 @@ Q
 \end_layout
 
 \begin_layout Subsection
-Steady State Probability Distribution (SSPD) of the Markov Process
+SSPD of the Markov Process
 \end_layout
 
 \begin_layout Standard
@@ -1176,7 +1176,8 @@ If a Markov Process is positive recurrent, the limits
 \begin_inset Formula $\pi_{j}\mbox{ | }j\in S$
 \end_inset
 
-} constitute the SSPD of the Markov Process.
+} constitute the SSPD or Steady State Probability Distribution of the Markov
+ Process.
  This is formally defined by Theorem 2.1.
 \end_layout
 
@@ -2968,14 +2969,14 @@ G-Network
 \end_layout
 
 \begin_layout Standard
-A G-network
+A G-network 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "GelenbeGNetworks"
 
 \end_inset
 
-, also known as generalised queueing network or Gelenbe network and introduced
+, also known as a generalised queueing network or Gelenbe network and introduced
  by Erol Gelenbe, are queuing networks with negative customers.
  Thus this network has two types of customers:
 \end_layout
@@ -2988,7 +2989,7 @@ positive customers
  are customers as in a M/M/1 queue which arrive from other queues or externally
  as Poisson arrivals.
  Their departures (state decrements) are synchronised with state increments
- (arrivals) in destination queue.
+ (arrivals) in the destination queue.
 \end_layout
 
 \begin_layout Itemize
@@ -2997,17 +2998,21 @@ positive customers
 negative customers
 \emph default
  are customers which remove or `cancel' positive customers in the queue
- if it not empty and have not effect on an empty queue.
+ if it not empty and have no effect on an empty queue.
  They are useful to remove traffic if a network is congested.
 \end_layout
 
 \begin_layout Standard
-A product form solution exists for the stationary G-networks despite the
- traffic flows forming a system of non-linear equations.
+A product form solution exists for stationary G-networks despite the traffic
+ flows forming a system of non-linear equations.
  
 \end_layout
 
 \begin_layout Section
+Formalisms and product-forms
+\end_layout
+
+\begin_layout Subsection
 PEPA
 \end_layout
 
@@ -3019,22 +3024,24 @@ key "HillstonPEPAbook,HarrisonPaperTBTinMAP2003,BradleyRP&RCAT,HarrisonPaperPerf
 
 \end_inset
 
- is a formal system description technique used in performance modelling.
+ is a formal system description language used in performance modelling 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "HillstonPEPAbook"
 
 \end_inset
 
- It is a Markovian Process Algebra (MPA) with the fewest combinators that
- provide a semantic model for denoting the states of a continuous time Markov
- Chain.
+.
+ It is a Markovian Process Algebra (MPA) with the fewest combinators necessary
+ to provide a semantic model for denoting the states of a continuous time
+ Markov Chain 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "HarrisonPaperPerformanceImpact2009"
 
 \end_inset
 
+.
  As the Jackson Theorem (see Theorem 5.1) operates over queuing networks
  to generate product form solutions, RCAT operates over PEPA.
 \end_layout
@@ -3076,30 +3083,19 @@ is the
 activity rate
 \emph default
 .
- The Markov process's transition rates are represented in PEPA by activity
- by the activity rate as a duration which is a random variable with an exponenti
-al distribution.
+ The Markov process's transition rates are represented in PEPA by the activity
+ rate as a duration which is a random variable with an exponential distribution.
  Every activity within the PEPA model with the same action type represents
- different instances of that action by the system.
+ different instances of that action in the system.
  A 
 \emph on
 derivation graph
 \emph default
 , formed by PEPA terms at nodes (states of an MP) and arcs showing transitions
  between them, determine the underlying Markov process of a component P.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-To be improved from Harrison paper 2002
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
+\begin_layout Subsubsection
 PEPA Syntax
 \end_layout
 
@@ -3217,7 +3213,7 @@ choice
 \emph on
 cooperation 
 \emph default
-or synchronisation operator.
+or synchronisation operation.
  
 \begin_inset Formula $P_{1}$
 \end_inset
@@ -3265,7 +3261,7 @@ or synchronisation operator.
 \begin_inset Formula $a$
 \end_inset
 
- inherits its rate from 
+ inherits its rate from the 
 \begin_inset Formula $P_{2}$
 \end_inset
 
@@ -3324,7 +3320,7 @@ agents
  agents.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 PEPA activity substitution
 \end_layout
 
@@ -3398,7 +3394,7 @@ where\mbox{ }\mathcal{L}\{(a,\lambda)\leftarrow(a',\lambda')\} & = & \begin{case
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Reversing a PEPA component
 \end_layout
 
@@ -3437,7 +3433,7 @@ For all states
 \begin_inset Formula $S$
 \end_inset
 
- in a component:
+ in a sequential component:
 \end_layout
 
 \begin_layout Plain Layout
@@ -3465,7 +3461,7 @@ Thus the reversed rate of a component
 \begin_inset Formula $S$
 \end_inset
 
- as its immediate successor in the forward process
+ as its immediate successor in the forward process 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "BradleyRP&RCAT"
@@ -3494,17 +3490,17 @@ key "BradleyRP&RCAT"
 \end_inset
 
  can be calculated using Kolmogorov’s generalised criteria (Proposition
- 4.3 - Equation
+ 4.3 - Equation 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:KolmogorovCriteria_RP"
 
 \end_inset
 
-).
+ for example).
  Finding the rates of a reversed compound agent requires a new rule as an
- agent may have several actions leading to the same state that synchronises
- with distinct actions in a cooperating agent
+ agent may have several actions leading to the same state that synchronise
+ with distinct actions in a cooperating agent 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "HarrisonPaperTBTinMAP2003"
@@ -3598,7 +3594,7 @@ where
 Definition 6.4 is used in the RCAT theorem for reversing compound agents.
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Reversed Compound Agent Theorem (RCAT)
 \end_layout
 
@@ -3681,7 +3677,7 @@ Thus an action cannot be both passive and active in the same component.
  that component, and if it is passive then all its instances are passive.
  This is necessary as we, in RCAT, syntactically transform every passive
  action before reversing an agent to ensure every passive action rate is
- uniquely identified with exactly one action type 
+ uniquely identified with all instances of its action type 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "HarrisonPaperTBTinMAP2003"
@@ -3691,12 +3687,12 @@ key "HarrisonPaperTBTinMAP2003"
 .
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 The RCAT theorem
 \end_layout
 
 \begin_layout Standard
-The RCAT as stated in the original paper
+The RCAT as stated in the original paper 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "HarrisonPaperTBTinMAP2003"
@@ -3899,7 +3895,7 @@ key "HarrisonPaperTBTinMAP2003"
  and consists of verifying that Kolmogorov’s criteria hold.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 (E)RCAT - Extended RCAT
 \end_layout
 
@@ -4035,7 +4031,7 @@ Definition 7.2
 \begin_inset Formula $\mathcal{A}^{(i,j)\rightarrow}=\mathcal{A}_{P}^{i\rightarrow}+\mathcal{A}_{Q}^{j\rightarrow}$
 \end_inset
 
- ;
+ ; 
 \end_layout
 
 \begin_layout Plain Layout
@@ -4154,7 +4150,7 @@ The forward and reversed passive and active transition rates satisfy:
 \begin_layout Plain Layout
 \begin_inset Formula 
 \begin{eqnarray*}
-\sum_{a\in\mathcal{P}^{(i,j)\rightarrow}}x_{a}-\sum_{a\in\mathcal{A}^{(i,j)\leftarrow}}x_{a} & = & \sum_{a\in\mathcal{P}^{(i,j)\leftarrow}}\overline{\beta_{a}^{(i,j)}}-\sum_{a\in\mathcal{A}^{(i,j)\rightarrow}\backslash\mathcal{P}^{(i,j)\rightarrow}}\alpha_{a}^{(i,j)}
+\sum_{a\in\mathcal{P}^{(i,j)\rightarrow}}x_{a}-\sum_{a\in\mathcal{A}^{(i,j)\leftarrow}}x_{a} & = & \sum_{a\in\mathcal{P}^{(i,j)\leftarrow}\backslash\mathcal{A}^{(i,j)\leftarrow}}\overline{\beta_{a}^{(i,j)}}-\sum_{a\in\mathcal{A}^{(i,j)\rightarrow}\backslash\mathcal{P}^{(i,j)\rightarrow}}\alpha_{a}^{(i,j)}
 \end{eqnarray*}
 
 \end_inset
@@ -4271,7 +4267,7 @@ key "ercat"
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Practical Application of the RCAT method
 \end_layout
 
@@ -4279,8 +4275,8 @@ Practical Application of the RCAT method
 For using the RCAT method practically, the algorithm detailed in section
  2.7.3.1 can be used.
  This algorithm does not require the whole reversed processes to be determined
- in RCAT theorem 7.1but does require the specific reversed rates of the synchroni
-sing active actions.
+ in RCAT theorem 7.1 but does require the specific reversed rates of the
+ synchronising active actions.
  These rates are computed using equation 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -4292,8 +4288,12 @@ reference "eq:BalanceEquation_RP"
  
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Standard
+
+\series bold
 Generic Algorithm
+\series default
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "RCAT2009Paper"
@@ -4378,7 +4378,7 @@ For each active action type
 ) by the equation 
 \begin_inset Formula 
 \begin{eqnarray}
-\overline{r_{a}} & = & \frac{\pi_{k}(i)r_{a}^{i}}{\pi_{k}(j)}\label{eq:GenericAlgoRRCal}
+\overline{r_{a}^{i}} & = & \frac{\pi_{k}(i)r_{a}^{i}}{\pi_{k}(j)}\label{eq:GenericAlgoRRCal}
 \end{eqnarray}
 
 \end_inset
@@ -4475,8 +4475,12 @@ The required product-form for state
 .
 \end_layout
 
-\begin_layout Subsubsection
-Example 
+\begin_layout Standard
+
+\series bold
+Example
+\series default
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "BradleyRP&RCAT"
@@ -4700,20 +4704,20 @@ reference "eq:ProductFormSolutionJThm"
 ) confirming its validity.
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Stochastic Petri nets (SPNs)
 \end_layout
 
 \begin_layout Standard
-Stochastic Petri Net
+Stochastic Petri Nets 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "SPNs"
 
 \end_inset
 
- (SPNs) is a popular higher level formalism for Markovian systems apart
- from Stochastic Process Algebras like PEPA.
+ (SPNs) are a popular higher level formalism for Markovian (and other interactin
+g) systems apart from Stochastic Process Algebras like PEPA.
  They are more expressive in a natural graphical way than SPAs but are more
  difficult to analyse structurally.
 \end_layout
@@ -4812,7 +4816,7 @@ marking
 \end_layout
 
 \begin_layout Standard
-To help analyse SPNs we define a fundamental structure called 
+To help analyse SPNs we define a fundamental structure called the 
 \emph on
 Building Blocks
 \emph default
@@ -4820,7 +4824,7 @@ Building Blocks
  required for its existence.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Building blocks
 \end_layout
 
@@ -4878,7 +4882,7 @@ For all
 \end_inset
 
  is an output transition with 
-\begin_inset Formula $O(T)=0$
+\begin_inset Formula $O(T)=\emptyset$
 \end_inset
 
  or 
@@ -4886,7 +4890,7 @@ For all
 \end_inset
 
  is an input transition with 
-\begin_inset Formula $I(T)=0$
+\begin_inset Formula $I(T)=\emptyset$
 \end_inset
 
 .
@@ -4894,14 +4898,40 @@ For all
 
 \begin_layout Enumerate
 For each 
-\begin_inset Formula $T\in T_{I}\mbox{(set of input transitions)}$
+\begin_inset Formula $T\in T_{I}$
 \end_inset
 
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+(set of input transitions)
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang british
 , there exists 
-\begin_inset Formula $T'\in T_{O}\mbox{ (set of output transitions)}$
+\begin_inset Formula $T'\in T_{O}$
 \end_inset
 
- such that 
+ (set of output transitions) such that 
 \begin_inset Formula $O(T)=I(T')$
 \end_inset
 
@@ -5010,12 +5040,14 @@ Example of a building block
 \end_layout
 
 \begin_layout Subsubsection
+
+\series bold
 Product form of building blocks
 \end_layout
 
 \begin_layout Standard
-A product form result can be derived for arbitrary building block using
- ERCAT and is detailed with proof in paper -
+A product form result can be derived for an arbitrary building block using
+ ERCAT and is detailed with proof in paper 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "SPNs"
@@ -5126,7 +5158,8 @@ key "SPNs"
 
 \end_inset
 
- which gives the steady state probabilities and product form as as: 
+ which gives the steady state probabilities and product form unconditionally
+ as as: 
 \begin_inset Formula 
 \[
 \pi(m_{1},m_{2},m_{3})\propto\left(\frac{\lambda_{12}\lambda_{3}\mu_{23}}{\mu_{12}\mu_{3}\lambda_{23}}\right)^{m_{1}}\left(\frac{\lambda_{23}\mu_{3}}{\mu_{23}\lambda_{3}}\right)^{m_{2}}\left(\frac{\lambda_{3}}{\mu_{3}}\right)^{m_{3}}
@@ -5192,12 +5225,12 @@ Consider a Building block
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 RCAT for Stochastic Petri Nets
 \end_layout
 
 \begin_layout Standard
-We can specify complex SPNs as a composition of multiple building blocks
+We can specify many complex SPNs as a composition of multiple building blocks
  (BBs).
  Since the BBs themselves are in product form we can say that:
 \end_layout
@@ -5383,8 +5416,8 @@ x_{23}= & \bar{\mu}_{5}=\lambda_{5}
 \end_layout
 
 \begin_layout Standard
-Substituting the values into rate equations the conditions for product form
- are:
+Substituting the values into the rate equations the conditions for product
+ form are:
 \begin_inset Formula 
 \[
 \begin{cases}
@@ -5808,7 +5841,7 @@ sympy'
 \emph default
 which is a lightweight normal Python module which aims to be a full-featured
  computer algebra system.
- Matlab was chosen over Python as it is better tested and documented.
+ MATLAB was chosen over Python as it is better tested and documented.
  
 \begin_inset Note Note
 status open
@@ -6026,7 +6059,7 @@ Code for parsing PEPA process description using regular expressions
 \end_layout
 
 \begin_layout Standard
-The built in Matlab 
+The built in MATLAB 
 \family typewriter
 regexp
 \family default
@@ -6295,7 +6328,7 @@ actionRate
  Action rates are also parsed to check if they are mathematical expressions
  using function 
 \family typewriter
-stringToMatlabExpr.
+stringToMATLABExpr.
 
 \family default
  It parses a string, finds variables in the string, makes them symbolic
@@ -7328,22 +7361,7 @@ x_a
 \end_inset
 
  is some passive action.
- 
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-
-\series bold
-TODO: ADD ON CODE COMPLETION>
-\series default
- Noting that the symbolic reversed rate ra will in general be a function
- of the xb(b ∈ L), solve the equations xa = ra for each a ∈ L
-\end_layout
-
-\end_inset
-
-These rates have to be replaced by the calculated revered rates for all
+ These rates have to be replaced by the calculated revered rates for all
  actions in the set of cooperating actions, that is 
 \begin_inset Formula $\forall a\in coopLabels$
 \end_inset
@@ -7452,7 +7470,7 @@ Code for substituting passive action rates
 MATLAB is a pass by value language, thus when a function (modifying a structure
  field) returns, the caller function's copy of the structure is replaced
  by the functions copy such that only the modified field is replaced.
- This also means that Matlab uses `copy-on-write', that is, variables are
+ This also means that MATLAB uses `copy-on-write', that is, variables are
  only copied if you modify them.
  This feature is used in function 
 \family typewriter
@@ -8435,7 +8453,7 @@ All
 \end_inset
 
  and use the new value while generating the product form result.
- We can use Matlab functions 
+ We can use MATLAB functions 
 \family typewriter
 solve
 \family default
@@ -8446,7 +8464,7 @@ solve
 \begin_layout Standard
 For example, the equations in figure 3.17 need to be evaluated as they have
  unknowns in their solutions (lines 2-3).
- The Matlab library function 
+ The MATLAB library function 
 \family typewriter
 solve
 \family default
@@ -8585,7 +8603,7 @@ Solving system of rate equations
 
 \begin_layout Standard
 In some cases, the rate equations are non-linear.
- To solve non-linear system os equations, we can use Matlab Library function
+ To solve non-linear system os equations, we can use MATLAB Library function
  
 \family typewriter
 fsolve
@@ -8726,7 +8744,7 @@ This concludes the implementation of RCAT.
 \end_layout
 
 \begin_layout Chapter
-Implementation of MARCAT and RCAT for SPNs
+Implementation of MARCAT and RCAT for SPNs and PITs
 \end_layout
 
 \begin_layout Section
@@ -8887,7 +8905,7 @@ Creating
 \end_inset
 
 .
- It is modelled as a Matlab 
+ It is modelled as a MATLAB 
 \emph on
 struct
 \emph default
@@ -9311,7 +9329,7 @@ height "0.8pt"
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Building Block formalism as a Matlab struct
+Building Block formalism as a MATLAB struct
 \end_layout
 
 \end_inset
@@ -9932,7 +9950,7 @@ Figure 4.11 gives a code snippet for parsing a building block string.
 \emph default
  and divide it into five different sections; from these sections we derive
  information about the places and transitions of the building block.
- Matlab function 
+ MATLAB function 
 \family typewriter
 regexp
 \family default
@@ -9949,7 +9967,7 @@ regexp
 \begin_layout Standard
 On dividing the string into different sections, we then go on to extract
  values for the set of building block places in line 5.
- Here the Matlab function 
+ Here the MATLAB function 
 \family typewriter
 regexp
 \family default
@@ -9978,16 +9996,16 @@ Transition rates which are passive need to relabelled to avoid confusion;
 relabelPassiveRates
 \family default
  as shown on line 10 in figure 4.11.
- Input transition rates need to be converted into Matlab symbolic expressions
+ Input transition rates need to be converted into MATLAB symbolic expressions
  which is achieved by function 
 \family typewriter
 convertToSymbolicRates
 \family default
 , which used the function 
 \family typewriter
-stringToMatlabExpr
+stringToMATLABExpr
 \family default
- ( a helper function used for converting strings to Matlab symbolic expressions).
+ ( a helper function used for converting strings to MATLAB symbolic expressions).
  
 \end_layout
 
@@ -10131,7 +10149,7 @@ parseInputs
 \emph on
 o_t5 = 1
 \emph default
-' is parsed and is separated into transition name string `o_t5' and Matlab
+' is parsed and is separated into transition name string `o_t5' and MATLAB
  symbolic expression `1'.
  The function returns a list of such input transitions names and probability
  tuples, which is then allocated as the value to its corresponding key in
@@ -10152,7 +10170,7 @@ To decide if a composition of building blocks has a product-form, we need
  This is done by setting each unknown rate is to the reversed rate of the
  corresponding output transition.
  The system of equations generated are the rate equations desired.
- This calculation is performed in the Matlab function 
+ This calculation is performed in the MATLAB function 
 \family typewriter
 calculatePassiveRatesForBBs
 \family default
@@ -10398,7 +10416,7 @@ Finding reversed rate of corresponding output transition
 \begin_layout Standard
 As a final step in generating rate equations, we print the generated equations
  on standard output which can be solved easily by the user using standard
- Matlab tools.
+ MATLAB tools.
 \end_layout
 
 \begin_layout Subsection
@@ -10537,7 +10555,7 @@ A system of rate equations has been derived for a given SPN using the method
 \end_layout
 
 \begin_layout Standard
-As mentioned in section 3.2.5, Matlab functions solve and simplify can be
+As mentioned in section 3.2.5, MATLAB functions solve and simplify can be
  used to evaluate solutions to the system of rate equations.
  The process of evaluating the rate equations remains the same as section
  3.2.5.
@@ -10563,11 +10581,363 @@ where
  of rate equations.
 \end_layout
 
+\begin_layout Section
+Chains of interactions between queues
+\end_layout
+
+\begin_layout Standard
+This section provides background on finding product-forms on chains of interacti
+ons between queues.
+ The paper ‘Product-forms in multi-wise synchronisations’ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chains"
+
+\end_inset
+
+ provides the detailed theory about the concepts and algorithm introduced
+ here.
+ Due to time constrains, a complete implementation of generating product-forms
+ for chains of interactions could not be achieved, but we include a high
+ level analysis of how it can be done extending the current implementation
+ of the RCAT.
+\end_layout
+
+\begin_layout Subsection
+Background
+\end_layout
+
+\begin_layout Standard
+The paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chains"
+
+\end_inset
+
+ talks about chains of interaction between queues; for example, negative
+ customers can move a customer from a non-empty queue to another queue chosen
+ probabilistically thus triggering two (or more) queues (or constituent
+ process) to change their states simultaneously, causing 
+\emph on
+chains
+\emph default
+ of instantaneous state changes.
+ The paper explains how such synchronisations can be modelled as the Propagation
+ of Instantaneous Transitions (PITs) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chains"
+
+\end_inset
+
+ to specify the composed models as pairwise syntonisations and thus derive
+ product-forms by an iterative application of RCAT.
+\end_layout
+
+\begin_layout Subsubsection
+PEPA formalism and generating rate equations
+\end_layout
+
+\begin_layout Standard
+The paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chains"
+
+\end_inset
+
+ introduces a new PEPA formalism for representing PITs as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+P=(a\to b,\top).Q\label{eq:PepaFormalismPIT}
+\end{equation}
+
+\end_inset
+
+The equation denotes a passive action with type 
+\begin_inset Formula $a$
+\end_inset
+
+ that takes process P to Q and instantaneously synchronises as active on
+ type 
+\begin_inset Formula $b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Deriving rate equations for the instantaneously synchronising types is difficult
+ and thus an algorithm has been established in the paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chains"
+
+\end_inset
+
+ to perform rate equation generation with ease.
+ The Algorithm is recursive in nature and considers each synchronising type
+ 
+\begin_inset Formula $a$
+\end_inset
+
+, removes its synchronisation from the model by replacing type 
+\begin_inset Formula $\tau$
+\end_inset
+
+ in the passive component with the corresponding reversed rate.
+ It simultaneously generates the rate equations corresponding to 
+\begin_inset Formula $x_{a}$
+\end_inset
+
+.
+ It returns the set of rate equations for all cooperating passive actions
+ on termination.
+\end_layout
+
+\begin_layout Subsection
+Design and analysis for implementation
+\end_layout
+
+\begin_layout Standard
+In our approach to implement RCAT for PITs, we divided the task into two
+ parts - Parsing the PEPA descriptions and deriving rate equations.
+ While we have not been able to implement this extension, the ideas for
+ designing the implementation have been documented in the undermentioned
+ sections.
+ Due to the complexity, the design view will be clearer by using an example
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chains"
+
+\end_inset
+
+.
+ Let us take a G-network with a negative customer trigger as shown in figure
+ 4.16.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+G-network with a negative customer trigger
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this network, we have queues 
+\begin_inset Formula $P$
+\end_inset
+
+ and 
+\begin_inset Formula $Q$
+\end_inset
+
+ exponential service times with parameters 
+\begin_inset Formula $\mu_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mu_{2}$
+\end_inset
+
+ respectively and external positive arrivals to process 
+\begin_inset Formula $P$
+\end_inset
+
+ with rate 
+\begin_inset Formula $\lambda$
+\end_inset
+
+.
+ PITs are started in 
+\begin_inset Formula $P$
+\end_inset
+
+ with a negative customer trigger with rate 
+\begin_inset Formula $\beta$
+\end_inset
+
+ which propagates to 
+\begin_inset Formula $Q$
+\end_inset
+
+ and so on until either queue is empty on arrival of the PIT.
+\end_layout
+
+\begin_layout Subsubsection
+Parsing user input
+\end_layout
+
+\begin_layout Standard
+The G-network from figure 4.16 is represented in PEPA using the formalism
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:PepaFormalismPIT"
+
+\end_inset
+
+ for representing PITs as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+P_{n}= & (\tau,\lambda).P_{n+1} & (n\geq0)\\
+P_{n}= & (a_{12}^{+},\mu_{1}).P_{n-1} & (n>0)\\
+P_{n}= & (a_{12}^{-},\beta).P_{n-1} & (n>0)\\
+P_{n}= & (a_{21}^{-}\to a_{12}^{-},\top).P_{n-1} & (n>0)\\
+P_{0}= & (a_{21}^{-},\top).P_{0}\\
+\\
+Q_{n}= & (a_{12}^{+},\top).Q_{n+1} & (n\geq0)\\
+Q_{n}= & (\tau,\mu_{2}).Q_{n-1} & (n>0)\\
+Q_{n}= & (a_{12}^{-}\to a_{21}^{-},\top).Q_{n-1} & (n>0)\\
+Q_{0}= & (a_{12}^{-},\top).Q_{0}\\
+\\
+ & P_{0}\sync{a_{12}^{+},a_{12}^{-},a_{21}^{-}}Q_{0}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From the PEPA description we can see that the only addition to the current
+ PEPA to MATLAB parser would be parsing expressions of the type
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:PepaFormalismPIT"
+
+\end_inset
+
+.
+ We can extend the current parser to store action types 
+\begin_inset Formula $a_{21}^{-}\to a_{12}^{-}$
+\end_inset
+
+ with their rates as symbolic variables similar to any other action type.
+ As the algorithm requires the PITs to be distinguish from normal action
+ types, we aim to create a map of all action types 
+\begin_inset Formula $a\to b$
+\end_inset
+
+ where 
+\begin_inset Formula $a$
+\end_inset
+
+ is the key and 
+\begin_inset Formula $b$
+\end_inset
+
+ is the value.
+ We add an extra field to our process structure 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ to store these actions separately making iterating over them easy.
+ 
+\end_layout
+
+\begin_layout Standard
+Actions of type 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:PepaFormalismPIT"
+
+\end_inset
+
+ always have a passive action rate specified as input as `infinity'.
+ Our current PEPA parser performs relabelling of such rates to avoid confusion
+ while deriving rate equations.
+ To relabel rates of PITs we use the same implementation but instead of
+ relabelling rate of action type 
+\begin_inset Formula $a\to b$
+\end_inset
+
+ to 
+\begin_inset Formula $x_{a\to b}$
+\end_inset
+
+ we relabel it as 
+\begin_inset Formula $x_{a}$
+\end_inset
+
+.
+ This can easily be done by using regular expressions on action types 
+\begin_inset Formula $a\to b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Deriving rate equations
+\end_layout
+
+\begin_layout Standard
+On parsing the PEPA input and generating process structure 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ as a MATLAB struct, we implement the algorithm given in to derive rate
+ equations.
+ The algorithm has an empty set of rate equations initially.
+ It starts by iteration over cooplabels, i.e.
+ synchronising actions, and derives rate equations for each using the rate
+ equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:GenericAlgoRRCal"
+
+\end_inset
+
+.
+ The algorithm needs to be implemented as a separate MATLAB function and
+ needs to be used instead of the current reversed rate calculator to derive
+ rate equations.
+ The complexity of the algorithm lies in the activity substitution which
+ it performs at each step for all action types.
+ We can use the map of PIT action types generated in the parsing stage to
+ aid with the activity substitution.
+\end_layout
+
 \begin_layout Standard
 This concludes the implementation of MARCAT and RCAT for Stochastic Petri
  Nets.
  In the next chapter, we evaluate the usefulness and correctness of the
- implemented RCAT and RCAT for Stochastic Petri Nets.
+ implemented RCAT, MARCAT and RCAT for Stochastic Petri Nets.
 \end_layout
 
 \begin_layout Chapter
@@ -12012,8 +12382,8 @@ Stochastic Petri Nets
 \end_layout
 
 \begin_layout Standard
-All examples of Stochatic Petri nets (SPNs) used for testing are taken from
- the paper 
+All examples of Stochastic Petri nets (SPNs) used for testing are taken
+ from the paper 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "SPNs"
@@ -12021,7 +12391,7 @@ key "SPNs"
 \end_inset
 
 .
- The results in the paper have been derieved by hand.
+ The results in the paper have been derived by hand.
  We look at two SPNs for evaluation, one with two BBs and one with three
  BBs; thus showing that the implementation can find a product form for SPN
  with several BBs.
@@ -12034,7 +12404,7 @@ Simple SPN composed of two building blocks
 \begin_layout Standard
 Figure 4.8 gives and example of a simple SPN with two building blocks (BBs)
  with dotted lines showing synchronising transitions.
- It is specified as input in Matlab as shown in Figure 4.10.
+ It is specified as input in MATLAB as shown in Figure 4.10.
  On running RCATscriptForSPN on the SPN, a BB structure is created as expected
  with two BBs as shown in figure 5.13.
  
@@ -12128,7 +12498,7 @@ key "SPNs"
 \begin_inset Formula $BB_{2}$
 \end_inset
 
- in figure 4.8 we can see that, since the number of tranitions in greater
+ in figure 4.8 we can see that, since the number of transitions in greater
  than the number of places, 
 \begin_inset Formula $BB_{2}$
 \end_inset
@@ -12252,7 +12622,7 @@ SPN composed of three building blocks
 Figure 5.15 shows a SPN structure and its decomposed BBs.
  Thus the SPN considered is composed of three building blocks.
  We can deduce their connections based on the places in each BB.
- All input transitions of all BBs are unknown; there are five unkown input
+ All input transitions of all BBs are unknown; there are five unknown input
  transition rates.
  The service rates (output transition rates) for all three BBs is given
  as 
@@ -12297,14 +12667,14 @@ SPN with 3 BBs and decomposition of the SPN into BBs 1–3
 \end_layout
 
 \begin_layout Standard
-We specify the building blocks as input in Matlab as shown in figure 5.16
+We specify the building blocks as input in MATLAB as shown in figure 5.16
  and run the program using function 
 \family typewriter
 RCATscriptForSPN
 \family default
 .
  We deduce the synchronising transitions by observing the structure of the
- decomposed BBs and the SPN strucuture.
+ decomposed BBs and the SPN structure.
 \end_layout
 
 \begin_layout Standard
@@ -12434,7 +12804,7 @@ key "SPNs"
 \begin_inset Formula $BB_{1}$
 \end_inset
 
- in figure 5.17 we can see that, since the number of tranitions in greater
+ in figure 5.17 we can see that, since the number of transitions in greater
  than the number of places, 
 \begin_inset Formula $BB_{1}$
 \end_inset
@@ -12609,7 +12979,7 @@ Parser for Stochastic Petri Nets (SPNs).
 \begin_layout Itemize
 An easy command line API for product form construction of both queuing models
  and SPNs, which ensures that the user does not require in depth knowledge
- of Matlab.
+ of MATLAB.
 \end_layout
 
 \begin_layout Standard
@@ -12620,11 +12990,8 @@ Although majority of the project was a success, there are some limitations,
 \begin_layout Itemize
 The implementation of RCAT and MARCAT in this project accommodates only
  networks composed of M/M/1 queues; so the steady state probabilities calculatio
-n automated by this implementation is applicable to only M/M/1 queues.
- The implementation would benefit greatly if this restriction were removed
- and will thus be able to analyse queuing models which go beyond M/M/1 queues.
- Since the program logic is loosely coupled, adding this functionality is
- possible without drastic changes to current implementation.
+n automated by this implementation is applicable to only M/M/1 queues which
+ limits the queuing models which the software can be run over.
 \end_layout
 
 \begin_layout Itemize
@@ -12632,15 +12999,6 @@ The implementation of RCAT for SPNs assumes the knowledge of all Building
  Blocks (BBs) which the given SPN is composed off.
  This is a disadvantage, as if the SPN is large and complex then finding
  BBs manually can be tedious.
- An algorithm to automate finding BBs in SPNs is detailed in the paper 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "SPNs"
-
-\end_inset
-
-.
- Implementing this algorithm will be a useful extension to the project.
 \end_layout
 
 \begin_layout Itemize
@@ -12659,7 +13017,7 @@ To conclude this report, we summarise our achievements in terms of what
  we have learnt and if we have met our objectives.
  The goal of the project was to automate the construction of product forms
  in stochastic models.
- Using Matlab, we have built a software which successfully implements the
+ Using MATLAB, we have built a software which successfully implements the
  generic algorithm for RCAT and MARCAT, thus achieving automatic construction
  of rate equations used to derive product forms for queuing models.
  We have as a part of the implementation developed a parser for queuing
@@ -12676,7 +13034,7 @@ To conclude this report, we summarise our achievements in terms of what
 Furthermore, we have also automated the rate equation generation (leading
  to product form construction) for Stochastic Petri Nets (SPNs) composed
  of Building Blocks in product form.
- A formailsm has been provided for BBs and SPNs and parser has been implemented
+ A formalism has been provided for BBs and SPNs and parser has been implemented
  for the same.
  In addition to generating rate equations, we have also provided the functionali
 ty to check whether the conditions of the BB are in product form.
@@ -12686,7 +13044,19 @@ ity where this will not be necessary.
  Both the implementations have been tested for a wide variety of queuing
  models including G-queues (queues with negative customers) and relatively
  large SPNs, as detailed in the Evaluation section.
- The software has been made with a hope to provide the first step towards
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+As a part of the report we have also included a small section on how the
+ software can be extended to accommodate chains of interactions of queues.
+ 
+\end_layout
+
+\end_inset
+
+The software has been made with a hope to provide the first step towards
  mechanically analysing complex networks composed of both queuing models
  and SPNs and thus leading to the discovery new product form solutions.
 \end_layout
@@ -12700,22 +13070,28 @@ Chains of interactions between queues
 \end_layout
 
 \begin_layout Standard
-The paper `Product-forms in multi-wise synchronisations' 
+As mentioned in section 4.3, a new algorithm has been defined in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Chains"
 
 \end_inset
 
- introduces a new algorithm to find product-form solutions for the joint
- equilibrium probabilities in a class of synchronised Markov processes.
- 
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-TBC
+ to generate a system of rate equations for PITs or Propagation of Instantaneous
+ Transitions.
+ Chains of instantaneous state changes are caused by models with synchronisation
+s defined as propagating instantaneous signals, for example, negative customers
+ can move a customer from a non-empty queue to another queue chosen probabilisti
+cally thus triggering two (or more) queues (or constituent process) to change
+ their states simultaneously.
+ These chains are modelled as PITs to specify the composed models as pairwise
+ syntonisations and thus derive product-forms by an iterative application
+ of RCAT.
+ Section 4.3 details how the current implementation can be extended to implement
+ this functionality.
+ As future work, RCAT for PITs will be extremely beneficial as it would
+ extend the usefulness of the software to find rare product forms in chains
+ of queues.
 \end_layout
 
 \begin_layout Subsection
@@ -12725,9 +13101,8 @@ Automating identifying the BBs of a SPN
 \begin_layout Standard
 As mentioned before, the current implementation of RCAT for SPNs assumes
  the knowledge of all BBs which the given SPN is composed off.
- This is a disadvantage, as if the SPN is large and complex then finding
- BBs manually can be tedious.
- An algorithm to automate finding BBs in SPNs is detailed in the paper 
+ SPNs are typically large and complex which makes manually finding BBs tedious.
+ An algorithm to automate the process is detailed in the paper 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "SPNs"
@@ -12735,6 +13110,9 @@ key "SPNs"
 \end_inset
 
  and can be implemented as a small extension to the current implementation.
+ The algorithm can be extended to directly produce programmable input, so
+ the user does not require to type out verbose BB input and will directly
+ get the generated rate equations.
 \end_layout
 
 \begin_layout Subsection
