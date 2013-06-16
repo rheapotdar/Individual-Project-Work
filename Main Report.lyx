@@ -100,23 +100,6 @@ By Rhea Potdar
 \end_layout
 
 \begin_layout Standard
-\noindent
-\align center
-\begin_inset Newpage pagebreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align center
-
-\series bold
-Abstract
-\end_layout
-
-\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -137,6 +120,65 @@ setcounter{page}{1}
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\series bold
+Abstract
+\end_layout
+
+\begin_layout Standard
+The growing complexity of modern systems has escalated the need of performance
+ metrics.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+for capacity planning.
+ (another phrase)
+\end_layout
+
+\end_inset
+
+ Stochastic models such as queuing networks and stochastic Petri nets have
+ been used to model these systems so that their performance measures can
+ be evaluated analytically.
+ Product-forms solutions are equilibrium state probabilities in networks
+ of stochastic nodes (e.g.
+ queues) in the form of a product of terms relating to each node separately.
+ We derive various performance metrics from these product form solutions,
+ thus there is considerable effort dedicated to finding them in various
+ stochastic models.
+\end_layout
+
+\begin_layout Standard
+An established theorem, the Reversed Compound Agent Theorem (RCAT), derives
+ mechanically the product-form solutions for stochastic models defined as
+ a composition of two or more smaller stochastic models, under some conditions.
+ Its use of the divide-and-conquer approach solve problems of state space
+ explosion and computationally complexity which standard methods face for
+ large and complex networks.
+\end_layout
+
+\begin_layout Standard
+This report presents an implementation of RCAT in MATLAB and its extension
+ Multiple Agent RCAT which can be applied to a wide variety of queuing networks
+ with multiple queuing nodes.
+ It also provides the first working implementation of RCAT applied to stochastic
+ Petri nets thus expanding its utility to analyse models composed of both
+ Petri nets and queuing networks.
 \end_layout
 
 \begin_layout Standard
@@ -481,7 +523,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 1.1
+Definition 2.2.1.1
 \end_layout
 
 \begin_layout Plain Layout
@@ -553,7 +595,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 1.2
+Definition 2.2.1.2
 \end_layout
 
 \begin_layout Plain Layout
@@ -622,7 +664,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 1.3
+Definition 2.2.1.3
 \end_layout
 
 \begin_layout Plain Layout
@@ -687,7 +729,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 1.4
+Definition 2.2.1.4
 \end_layout
 
 \begin_layout Plain Layout
@@ -745,7 +787,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 1.6
+Definition 2.2.1.6
 \end_layout
 
 \begin_layout Plain Layout
@@ -814,7 +856,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 1.5
+Definition 2.2.1.5
 \end_layout
 
 \begin_layout Plain Layout
@@ -872,7 +914,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Proposition 1.1
+Proposition 2.1.1
 \end_layout
 
 \begin_layout Plain Layout
@@ -908,7 +950,7 @@ When the limiting probabilities
 
  do exist, they form the steady state probability distribution (SSPD) of
  a DTMC.
- This is formally defined by the following Theorem 1.1.
+ This is formally defined by the following Theorem 2.1.1.
 \end_layout
 
 \begin_layout Standard
@@ -928,7 +970,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Theorem 1.1
+Theorem 2.1.1
 \end_layout
 
 \begin_layout Plain Layout
@@ -1054,7 +1096,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 2.1
+Definition 2.2.1
 \end_layout
 
 \begin_layout Plain Layout
@@ -1178,7 +1220,7 @@ If a Markov Process is positive recurrent, the limits
 
 } constitute the SSPD or Steady State Probability Distribution of the Markov
  Process.
- This is formally defined by Theorem 2.1.
+ This is formally defined by Theorem 2.2.1.
 \end_layout
 
 \begin_layout Standard
@@ -1198,7 +1240,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Theorem 2.1 
+Theorem 2.2.1 
 \end_layout
 
 \begin_layout Plain Layout
@@ -1261,7 +1303,7 @@ have a solution.
 \end_layout
 
 \begin_layout Standard
-From Theorem 2.1, we can rewrite the balance equations as 
+From Theorem 2.2.1, we can rewrite the balance equations as 
 \end_layout
 
 \begin_layout Standard
@@ -1662,7 +1704,14 @@ key "PerformanceModellingHarrisonBook"
 .
  Considering the M/M/1 queue in equilibrium, in the steady state, we can
  write down the probability flux balance equations passing in and out of
- the states shown in Figure 2.1.
+ the states shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:M/M/1-Queue-state"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1687,6 +1736,13 @@ status open
 
 \begin_layout Plain Layout
 M/M/1 Queue state diagram
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:M/M/1-Queue-state"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1955,7 +2011,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 4.1
+Definition 2.4.1
 \end_layout
 
 \begin_layout Plain Layout
@@ -2008,7 +2064,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 4.2
+Definition 2.4.2
 \end_layout
 
 \begin_layout Plain Layout
@@ -2061,7 +2117,7 @@ Definitions 4.1 and 4.2 relate a stationary Markov process to its reversed
 
 .
  We can also define a reversed process in terms of balance conditions of
- a stationary Markov process as in the following proposition 4.1.
+ a stationary Markov process as in the following Proposition 2.4.1.
 \end_layout
 
 \begin_layout Standard
@@ -2081,7 +2137,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Proposition 4.1
+Proposition 2.4.1
 \end_layout
 
 \begin_layout Plain Layout
@@ -2130,7 +2186,7 @@ reference "eq:BalanceEquations"
 \end_inset
 
 .
- Thus by Proposition 4.1 the M/M/1 queue is reversible.
+ Thus by Proposition 2.4.1 the M/M/1 queue is reversible.
 \end_layout
 
 \begin_layout Standard
@@ -2164,7 +2220,7 @@ The departure process of an M/M/1 queue is also identical to the arrival
 \end_layout
 
 \begin_layout Standard
-Proposition 4.1 would be useful to detect a reversible Markov process but
+Proposition 2.4.1 would be useful to detect a reversible Markov process but
  most Markov processes are not reversible.
  Thus a method is required to define a reversed process 
 \begin_inset Formula $\{X_{\tau-t}\}$
@@ -2181,7 +2237,7 @@ Proposition 4.1 would be useful to detect a reversible Markov process but
 
  is the same for both the processes and thus the we can relate the instantaneous
  transition rates of the reversed process to those of the original process
- by the following proposition 4.2.
+ by the following Proposition 2.4.2.
 \end_layout
 
 \begin_layout Standard
@@ -2201,7 +2257,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Proposition 4.2
+Proposition 2.4.2
 \end_layout
 
 \begin_layout Plain Layout
@@ -2271,7 +2327,7 @@ reference "eq:BalanceEquation_RP"
 
 \end_inset
 
-) from Proposition 4.2 by 
+) from Proposition 2.4.2 by 
 \emph on
 guessing
 \emph default
@@ -2398,7 +2454,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Proposition 4.3 - Kolmogorov’s Generalised Criteria
+Proposition 2.4.3 - Kolmogorov’s Generalised Criteria
 \end_layout
 
 \begin_layout Plain Layout
@@ -2465,7 +2521,7 @@ where
 \end_layout
 
 \begin_layout Standard
-As mentioned, Proposition 4.3 can be used to find the instantaneous transition
+As mentioned, Proposition 2.4.3 can be used to find the instantaneous transition
  rates of the reversed process 
 \begin_inset Formula $Q'$
 \end_inset
@@ -2542,6 +2598,13 @@ status open
 
 \begin_layout Plain Layout
 A forward Markov process and its reversed counterpart
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-forward-Markov"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2559,8 +2622,14 @@ A forward Markov process and its reversed counterpart
 \end_layout
 
 \begin_layout Standard
-Consider a 3-state CTMC, as shown in Figure 2.2, with the only non-zero transitio
-n rates given by 
+Consider a 3-state CTMC, as shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-forward-Markov"
+
+\end_inset
+
+, with the only non-zero transition rates given by 
 \begin_inset Formula $q_{12}=q_{23}=\lambda$
 \end_inset
 
@@ -2569,7 +2638,7 @@ n rates given by
 \end_inset
 
 .
- Thus using Kolmogorov Generalised Criteria (Proposition 4.3) to discover
+ Thus using Kolmogorov Generalised Criteria (Proposition 2.4.3) to discover
  the reversed rates in its generator matrix 
 \begin_inset Formula $Q'$
 \end_inset
@@ -2827,7 +2896,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Theorem 5.1 Jackson Theorem
+Theorem 2.5.1 Jackson Theorem
 \end_layout
 
 \begin_layout Plain Layout
@@ -3042,7 +3111,7 @@ key "HarrisonPaperPerformanceImpact2009"
 \end_inset
 
 .
- As the Jackson Theorem (see Theorem 5.1) operates over queuing networks
+ As the Jackson Theorem (see Theorem 2.5.1) operates over queuing networks
  to generate product form solutions, RCAT operates over PEPA.
 \end_layout
 
@@ -3116,7 +3185,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 6.1
+Definition 2.6.1
 \end_layout
 
 \begin_layout Plain Layout
@@ -3361,7 +3430,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 6.2
+Definition 2.6.2
 \end_layout
 
 \begin_layout Plain Layout
@@ -3425,7 +3494,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 6.3
+Definition 2.6.3
 \end_layout
 
 \begin_layout Plain Layout
@@ -3490,7 +3559,7 @@ key "BradleyRP&RCAT"
 \end_inset
 
  can be calculated using Kolmogorov’s generalised criteria (Proposition
- 4.3 - Equation 
+ 2.4.3 - Equation 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:KolmogorovCriteria_RP"
@@ -3527,7 +3596,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 6.4
+Definition 2.6.4
 \end_layout
 
 \begin_layout Plain Layout
@@ -3591,7 +3660,7 @@ where
 \end_layout
 
 \begin_layout Standard
-Definition 6.4 is used in the RCAT theorem for reversing compound agents.
+Definition 2.6.4 is used in the RCAT theorem for reversing compound agents.
 \end_layout
 
 \begin_layout Subsection
@@ -3633,7 +3702,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 7.1
+Definition 2.7.1
 \end_layout
 
 \begin_layout Plain Layout
@@ -3719,7 +3788,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Theorem 7.1 Reversed Compound Agent Theorem
+Theorem 2.7.1 Reversed Compound Agent Theorem
 \end_layout
 
 \begin_layout Plain Layout
@@ -3900,7 +3969,7 @@ key "HarrisonPaperTBTinMAP2003"
 \end_layout
 
 \begin_layout Standard
-Conditions 1 and 2 in the RCAT (Theorem 7.1) requires every passive action
+Conditions 1 and 2 in the RCAT (Theorem 2.7.1) requires every passive action
  to be enabled in every derivative (state) of both the forward and reversed
  cooperating agents.
  This ensures that the total outgoing rate from any state is the same in
@@ -3924,7 +3993,7 @@ key "ercat"
 
  that might not be present in every derivative of the forward and reversed
  cooperating agents.
- This is an extension to Definition 7.1
+ This is an extension to Definition 2.7.1
 \end_layout
 
 \begin_layout Standard
@@ -3944,7 +4013,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 7.2
+Definition 2.7.2
 \end_layout
 
 \begin_layout Plain Layout
@@ -4109,7 +4178,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Theorem 7.2 Extended
+Theorem 2.7.2 Extended
 \series default
  
 \series bold
@@ -4140,7 +4209,7 @@ The reversed rate
 \end_inset
 
  is the same at every instance, given by the solution of the rate equations,
- as in the original RCAT (Theorem 7.1).
+ as in the original RCAT (Theorem 2.7.1).
 \end_layout
 
 \begin_layout Enumerate
@@ -4275,7 +4344,7 @@ Practical Application of the RCAT method
 For using the RCAT method practically, the algorithm detailed in section
  2.7.3.1 can be used.
  This algorithm does not require the whole reversed processes to be determined
- in RCAT theorem 7.1 but does require the specific reversed rates of the
+ in RCAT Theorem 2.7.1 but does require the specific reversed rates of the
  synchronising active actions.
  These rates are computed using equation 
 \begin_inset CommandInset ref
@@ -4513,6 +4582,13 @@ status open
 
 \begin_layout Plain Layout
 A simple tandem queue system
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:simple-tandemQ"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4530,8 +4606,15 @@ A simple tandem queue system
 \end_layout
 
 \begin_layout Standard
-Consider a tandem queue system, as in Figure 2.3, which has 2 M/M/1 queuing
- nodes where input in queue 2 is coming from output from queue 1.
+Consider a tandem queue system, as in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:simple-tandemQ"
+
+\end_inset
+
+, which has 2 M/M/1 queuing nodes where input in queue 2 is coming from
+ output from queue 1.
  Queue 1 has an external arrival rate of 
 \begin_inset Formula $\lambda$
 \end_inset
@@ -4694,7 +4777,7 @@ where where
 
 .
  The derived product form solution aggress with Jackson's Theorem (Theorem
- 5.1, equation 
+ 2.5.1, equation 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:ProductFormSolutionJThm"
@@ -4739,7 +4822,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 8.1
+Definition 2.8.1
 \end_layout
 
 \begin_layout Plain Layout
@@ -4845,7 +4928,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 8.2
+Definition 2.8.2
 \end_layout
 
 \begin_layout Plain Layout
@@ -4992,7 +5075,14 @@ ns.
 
 .
  Finally condition 3 requires the SPN to be connected.
- Figure 2.4 is an example of a building block with three places 
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Example-BB-Simple"
+
+\end_inset
+
+ is an example of a building block with three places 
 \begin_inset Formula $\mathcal{P}=\{P_{1},P_{2},P_{3}\}$
 \end_inset
 
@@ -5027,6 +5117,13 @@ status open
 
 \begin_layout Plain Layout
 Example of a building block
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Example-BB-Simple"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5076,7 +5173,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Theorem 8.1
+Theorem 2.8.1
 \end_layout
 
 \begin_layout Plain Layout
@@ -5144,9 +5241,15 @@ key "SPNs"
 
 \end_inset
 
- for detailed proof of Theorem 8.1.
- Thus the conditions required for the building block in figure 2.4 in product
- form are 
+ for detailed proof of Theorem 2.8.1.
+ Thus the conditions required for the building block in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Example-BB-Simple"
+
+\end_inset
+
+ in product form are 
 \begin_inset Formula 
 \[
 \begin{cases}
@@ -5171,7 +5274,7 @@ key "SPNs"
 \end_layout
 
 \begin_layout Standard
-From Theorem 8.1, the following corollary can be derived.
+From Theorem 2.8.1, the following corollary can be derived.
 \end_layout
 
 \begin_layout Standard
@@ -5191,7 +5294,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Theorem 8.1
+Corollary 2.8.1
 \end_layout
 
 \begin_layout Plain Layout
@@ -5199,7 +5302,7 @@ Consider a Building block
 \begin_inset Formula $S$
 \end_inset
 
- in product form as defined in Theorem 8.1, let 
+ in product form as defined in Theorem 2.8.1, let 
 \begin_inset Formula $T_{y}′\in T_{O}$
 \end_inset
 
@@ -5285,6 +5388,13 @@ status open
 
 \begin_layout Plain Layout
 A simple SPN with two building blocks
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:simple-SPN-2BB"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5302,8 +5412,14 @@ A simple SPN with two building blocks
 \end_layout
 
 \begin_layout Standard
-The figure 2.5 gives an example of a simple SPN composed of two building
- blocks.
+The 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:simple-SPN-2BB"
+
+\end_inset
+
+ gives an example of a simple SPN composed of two building blocks.
  The dotted lines show the passive composition between the two building
  blocks.
  The output transitions 
@@ -5469,19 +5585,19 @@ Design Decisions
 
 \begin_layout Standard
 The first design consideration was the API of the RCAT solver.
- The input to the RCAT algorithm (Theorem 7.1) are two PEPA compound agents
+ The input to the RCAT algorithm (Theorem 2.7.1) are two PEPA compound agents
  synchronising over some action labels.
  Thus while considering the input to the automated version of RCAT, there
  were two choices:
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Enumerate
 User splits input requiring minimal automated parsing
 \end_layout
 
 \begin_layout Standard
-In this implementation, the user is required to split PEPA processes such
- that they be directly used to in reversed rate calculation with minimal
+In this possible implementation, the user is required to write PEPA processes
+ such that they be can directly used in reversed rate calculation with minimal
  automated parsing.
  
 \begin_inset Note Note
@@ -5503,13 +5619,32 @@ add examples
 g language to supply a ready made PEPA structure as input.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Enumerate
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[2.]
+\backslash
+setcounter{enumi}{2}
+\end_layout
+
+\end_inset
+
 User inputs Pure PEPA descriptions
 \end_layout
 
 \begin_layout Standard
 In this implementation, the user inputs component descriptions as they would
- to a normal non-automated RCAT theorem (shown in Figure 3.3).
+ to a non-automated RCAT theorem (shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Func-to-run-rcat"
+
+\end_inset
+
+).
  This ensures ease of use and is quite intuitive for the user.
  It also deals with input validation and decoupling of the API from functional
  aspects of the RCAT theorem.
@@ -5541,7 +5676,14 @@ Q_{n}= & (d,\mu_{2}).Q_{n-1} & (n>0)\\
 \begin_layout Standard
 This is an example of a queueing network (a basic tandem network with two
  nodes) modelled in PEPA.
- Its corresponding translation to code is shown in Figure 3.1.
+ Its corresponding translation to code is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PEPA-Process-Simple-Desc"
+
+\end_inset
+
+.
  Please note that the unspecified action rate 
 \begin_inset Formula $\top$
 \end_inset
@@ -5579,7 +5721,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -5619,6 +5761,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Pure PEPA Process Description translated to RCAT Program input
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PEPA-Process-Simple-Desc"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5632,11 +5781,25 @@ Pure PEPA Process Description translated to RCAT Program input
 \end_layout
 
 \begin_layout Standard
-From Figure 3.1, it is apparent that with minimal substitution we can translate
- a pure PEPA process description to code input.
+From Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PEPA-Process-Simple-Desc"
+
+\end_inset
+
+, it is apparent that with minimal substitution we can translate a pure
+ PEPA process description to code input.
  RCAT also requires as input the cooperating compound agents (processes)
  with the actions they are synchronising on, which are converted into code
- input as shown in Figure 3.2.
+ input as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PEPA-Coop-Input-eg"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -5657,7 +5820,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -5685,6 +5848,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 PEPA Cooperating Agents translated to RCAT Program input
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PEPA-Coop-Input-eg"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5705,11 +5875,18 @@ PEPA Cooperating Agents translated to RCAT Program input
 \begin_inset Formula $\{a\}$
 \end_inset
 
- are the synchronising actions.
- It is mandatory that the cooperation is written as in Figure 3.2 for parsing.
+ is the set of synchronising actions.
+ It is mandatory that the cooperation is written as in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PEPA-Coop-Input-eg"
+
+\end_inset
+
+ for parsing.
  
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 inputs change when sspd toggle is added?
@@ -5717,9 +5894,29 @@ inputs change when sspd toggle is added?
 
 \end_inset
 
-The RCAT algorithm is run as shown in Figure 3.3, with the converted PEPA
- process description (Figure 3.1) in a cell array as the first input and
- with PEPA cooperation string (see Figure 3.2) as second input.
+The RCAT algorithm is run as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Func-to-run-rcat"
+
+\end_inset
+
+, with the converted PEPA process description (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PEPA-Process-Simple-Desc"
+
+\end_inset
+
+) in a cell array as the first input and with PEPA cooperation string (see
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PEPA-Coop-Input-eg"
+
+\end_inset
+
+) as second input.
 \end_layout
 
 \begin_layout Standard
@@ -5740,7 +5937,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -5803,6 +6000,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Function used to run the RCAT Program
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Func-to-run-rcat"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5961,8 +6165,14 @@ Thus the program
 \family typewriter
 RCATscript
 \family default
-, on receiving input a process description string (Figure 3.1), calls the
- function 
+, on receiving input a process description string (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PEPA-Process-Simple-Desc"
+
+\end_inset
+
+), calls the function 
 \family typewriter
 registerProcess
 \family default
@@ -5973,7 +6183,14 @@ registerProcess
 \family default
  is responsible for parsing the process string and storing it in a map of
  processes, ordered by process name.
- Parsing is done using regular expressions as in Figure 3.4.
+ Parsing is done using regular expressions as in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-parsing-pepa-desc"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -6046,6 +6263,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Code for parsing PEPA process description using regular expressions
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Code-parsing-pepa-desc"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -6100,7 +6324,14 @@ for
 \end_layout
 
 \begin_layout Standard
-	Running the code in Figure 3.4 on code input- 
+Running the code in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-parsing-pepa-desc"
+
+\end_inset
+
+ on code input- 
 \family typewriter
 `P(n) = (e, lambda).P(n+1) for n >= 0'
 \family default
@@ -6110,7 +6341,14 @@ for
 \family default
 .
  It is noteworthy that the regular expression string (parameter two in regexp
- function in Figure 3.4) allows processes to have an optional state domain.
+ function in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-parsing-pepa-desc"
+
+\end_inset
+
+) allows processes to have an optional state domain.
 \end_layout
 
 \begin_layout Subsubsection
@@ -6134,12 +6372,20 @@ Constructing
 \begin_inset Formula $k=1,2$
 \end_inset
 
- is used in most system/network models used as input to RCAT, thus 
+ is used in our initial system/network models used as input to RCAT, thus
+ 
 \begin_inset Formula $P_{k}$
 \end_inset
 
  will correspond to two separate PEPA processes analogous to P and Q respectivel
-y in Figure 3.1.
+y in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PEPA-Process-Simple-Desc"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -6175,15 +6421,28 @@ A description of a process with name
 registeredProcesses
 \family default
  as a map with the process descriptors as keys.
- Figure 3.5 lists the keyset which each process description map is ordered
- by.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ProcessDesc-map-KVset"
+
+\end_inset
+
+ lists the keyset which each process description map is ordered by.
  If a process 
 \begin_inset Formula $P$
 \end_inset
 
- has multiple descriptions (as shown in Figure 3.1), they are converted into
- maps ordered by process descriptors and stored together in a cell array
- (a data structure in MATLAB which allows entries of different classes).
+ has multiple descriptions (as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PEPA-Process-Simple-Desc"
+
+\end_inset
+
+), they are converted into maps ordered by process descriptors and stored
+ together in a cell array (a data structure in MATLAB which allows entries
+ of different classes).
  Thus 
 \family typewriter
 registeredProcesses
@@ -6209,7 +6468,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -6252,6 +6511,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Process description map's keyset and valueset
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ProcessDesc-map-KVset"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -6265,8 +6531,14 @@ Process description map's keyset and valueset
 \end_layout
 
 \begin_layout Standard
-Values of every process description ( as shown in Figure 3.5) have certain
- properties
+Values of every process description ( as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ProcessDesc-map-KVset"
+
+\end_inset
+
+) have certain properties
 \end_layout
 
 \begin_layout Enumerate
@@ -6274,7 +6546,7 @@ Values of every process description ( as shown in Figure 3.5) have certain
 \emph on
 transitionFromState
 \emph default
- is the the source state the transition is coming from while 
+ is the source state the transition is coming from while 
 \emph on
 transitionToStat
 \emph default
@@ -6460,7 +6732,12 @@ r
 \family typewriter
 r
 \family default
- contains fields for various properties of the processes.
+ contains fields for various properties of the processes which are populated
+ using function 
+\family typewriter
+createRk
+\family default
+.
  The 
 \family typewriter
 definitions
@@ -6483,7 +6760,14 @@ passiveLabels
 \end_inset
 
 .
- Figure 3.6 is an example of structure 
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Fields-in-rk"
+
+\end_inset
+
+ is an example of structure 
 \family typewriter
 r
 \family default
@@ -6508,7 +6792,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -6560,6 +6844,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Fields in structure r containing r(1) and r(2)
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Fields-in-rk"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -6594,11 +6885,126 @@ passiveActionLabels
 \family typewriter
 addToProcessStructure
 \family default
- for instantiating the three fields of the structure 
+ using process number 
+\begin_inset Formula $k$
+\end_inset
+
+ and instantiates the three fields of the structure 
 \family typewriter
 r
 \family default
+ structure as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:createRk-populate-fields"
+
+\end_inset
+
 .
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+for i = 1:numOfProcesses
+\end_layout
+
+\begin_layout Plain Layout
+
+	r(i).definitions 
+\end_layout
+
+\begin_layout Plain Layout
+
+	= registeredProcesses( processKeyset{1,i} );
+\end_layout
+
+\begin_layout Plain Layout
+
+	r(i).activeLabels 
+\end_layout
+
+\begin_layout Plain Layout
+
+	= setActionLabels(activeActionLabels, processKeyset{1,i});
+\end_layout
+
+\begin_layout Plain Layout
+
+	r(i).passiveLabels 
+\end_layout
+
+\begin_layout Plain Layout
+
+	= setActionLabels(passiveActionLabels, processKeyset{1,i});     
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Populating fields of structure 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:createRk-populate-fields"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -6611,10 +7017,23 @@ The function
 registerCoop
 \family default
  parses input for a PEPA cooperation (synchronisation) between two processes.
- A cooperation as shown in Figure 3.2 is the second input to the API function
- RCATscript.
+ A cooperation as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PEPA-Coop-Input-eg"
+
+\end_inset
+
+ is the second input to the API function RCATscript.
  The cooperation string is parsed using regular expressions as in Figure
- 3.7.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-parsing-pepa-coop"
+
+\end_inset
+
+.
  
 \family typewriter
 registerCoop
@@ -6625,7 +7044,14 @@ registerCoop
 coopLabels
 \family default
 , which is used in calculating reversed rates and checking RCAT conditions.
- For input as in Figure 3.2, 
+ For input as in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PEPA-Coop-Input-eg"
+
+\end_inset
+
+, 
 \family typewriter
 coopLabels
 \family default
@@ -6654,7 +7080,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -6704,7 +7130,9 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Code for parsing PEPA Cooperation string using regular expressions
-\end_layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Code-parsing-pepa-coop"
 
 \end_inset
 
@@ -6714,14 +7142,6 @@ Code for parsing PEPA Cooperation string using regular expressions
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-add detail explaining how this works.
 \end_layout
 
 \end_inset
@@ -6731,6 +7151,15 @@ add detail explaining how this works.
 
 \begin_layout Subsubsection
 Validation of user input
+\end_layout
+
+\begin_layout Standard
+User input, the PEPA textual description, is validated by various functions
+ of the program to ensure the input matches a valid PEPA process.
+ Much of the syntax is validated by the use of regular expressions which
+ would give an error if there is a `match' error.
+ Semantic validations on the action rates, transitions compared to the process
+ domain are also implemented, the code for which is provided in the Appendix.
 \end_layout
 
 \begin_layout Subsection
@@ -6820,7 +7249,7 @@ reference "eq:SSPD_of_MM1Q"
 
 \end_inset
 
- where 
+where 
 \begin_inset Formula $\lambda$
 \end_inset
 
@@ -6846,7 +7275,7 @@ reference "eq:SSPD_of_MM1Q"
 \end_inset
 
  is a M/M/1 queue, 
-\begin_inset Formula $\rho_{k}=\mbox{arrival rate of }R_{k}\backslash\mbox{ service rate of }R_{k}$
+\begin_inset Formula $\rho_{k}=\mbox{arrival rate of }R_{k}/\mbox{ service rate of }R_{k}$
 \end_inset
 
 .
@@ -6928,7 +7357,14 @@ forwardSum
 \family typewriter
 backwardSum
 \family default
- respectively in Figure 3.8.
+ respectively in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-calculating-arrival-service-rate"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -6949,7 +7385,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -7007,6 +7443,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Code for calculating arrival rate and service rate for each process
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Code-calculating-arrival-service-rate"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -7034,7 +7477,7 @@ sspdMM1
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset CommandInset line
@@ -7047,7 +7490,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -7095,6 +7538,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Code for SSPD calculation of M/M/1 queue
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Code-for-SSPD-calc"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -7108,8 +7558,14 @@ Code for SSPD calculation of M/M/1 queue
 \end_layout
 
 \begin_layout Standard
-The formula shown in Figure 3.9 is the formula of equilibrium probability
- distribution (see 
+The formula shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-for-SSPD-calc"
+
+\end_inset
+
+ is the formula for the equilibrium probability distribution (see 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:SSPD_of_MM1Q"
@@ -7117,7 +7573,7 @@ reference "eq:SSPD_of_MM1Q"
 \end_inset
 
 ) of a M/M/1 queue.
- MATLAB function 
+ The MATLAB function 
 \family typewriter
 subs
 \family default
@@ -7201,13 +7657,20 @@ reference "eq:GenericAlgoRRCal"
 
 \end_inset
 
- stated in the generic algorithm (Section 2.7.3.1) to calculate revered rates
+ stated in the generic algorithm (Section 2.7.3.1) to calculate reversed rates
  for all passive synchronising actions.
- The code shown in Figure 3.10 corresponds to this, where the 
+ The code shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-reversed-rate-calc"
+
+\end_inset
+
+ corresponds to this, where the 
 \family typewriter
 forwardRate
 \family default
- is the specified forward rate of a given passive action, 
+ is the specified forward rate of a given active action, 
 \family typewriter
 iStateSSPD
 \family default
@@ -7232,7 +7695,7 @@ jStateSSPD
 \family typewriter
 simplify
 \family default
- solves formula which is mathematical expression of the form 
+ reduces the formula which is a mathematical expression of the form 
 \begin_inset Formula $\pi_{k}(i)r_{a}^{i}/\mbox{ }\pi_{k}(j)$
 \end_inset
 
@@ -7258,7 +7721,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -7291,6 +7754,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Code for reversed rate calculation
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Code-reversed-rate-calc"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -7304,11 +7774,11 @@ Code for reversed rate calculation
 \end_layout
 
 \begin_layout Subsubsection
-Storing revered rates
+Storing reversed rates
 \end_layout
 
 \begin_layout Standard
-As a final step in reversed rate calculation, we need to store the revered
+As a final step in reversed rate calculation, we need to store the reversed
  rate for each action 
 \begin_inset Formula $a$
 \end_inset
@@ -7326,12 +7796,12 @@ storeReversedRates
 \family typewriter
 reversedRates
 \family default
- with the every action in 
+ with each action in 
 \family typewriter
 coopLabels
 \family default
  as the key.
- The map of reveres rates becomes significant while replacing the passive
+ The map of reversed rates becomes significant while replacing the passive
  actions (
 \begin_inset Formula $x_{a}$
 \end_inset
@@ -7340,7 +7810,8 @@ coopLabels
 \begin_inset Formula $R_{k}$
 \end_inset
 
-.
+ and checks they are the same at each instance if there are multiple instances
+ of the same action.
 \end_layout
 
 \begin_layout Subsection
@@ -7361,13 +7832,13 @@ x_a
 \end_inset
 
  is some passive action.
- These rates have to be replaced by the calculated revered rates for all
+ These rates have to be replaced by the calculated reversed rates for all
  actions in the set of cooperating actions, that is 
 \begin_inset Formula $\forall a\in coopLabels$
 \end_inset
 
 .
- We substitute solutions for each rate variable 
+ We substitute symbolic solutions for each rate variable 
 \begin_inset Formula $x_{a}$
 \end_inset
 
@@ -7406,7 +7877,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,numbers=left,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
 inline false
 status open
 
@@ -7454,6 +7925,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Code for substituting passive action rates
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Code-substituting-passive-act-rates"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -7476,7 +7954,14 @@ MATLAB is a pass by value language, thus when a function (modifying a structure
 \family typewriter
 setPassiveActionRate
 \family default
- where assigning revered rate (on Line 3 of Figure 3.11) to variable 
+ where assigning reversed rate (on Line 3 of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-substituting-passive-act-rates"
+
+\end_inset
+
+) to variable 
 \family typewriter
 definition
 \family default
@@ -7494,7 +7979,7 @@ Checking RCAT Conditions
 \begin_layout Standard
 The RCAT theorem has three conditions which need to be met for product form
  solution to exist for any system model.
- They are stated in Theorem 7.1.
+ They are stated in Theorem 2.7.1.
  We have checked all three conditions and in the implementation of RCAT.
  If any of the three conditions are violated, the program will exit with
  an exception error.
@@ -7599,8 +8084,17 @@ passiveLabels
 \family typewriter
 checkActionIsEnabled
 \family default
- checks if action is enabled in all states of a process transition graph.
- It is assumed that the state space of any process is from 
+ checks if action is enabled in all states of a process transition graph
+ for all descriptors of 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+It is assumed that the state space of any process is from 
 \begin_inset Formula $0$
 \end_inset
 
@@ -7612,9 +8106,20 @@ checkActionIsEnabled
  This assumption is made to perform the condition checks on the whole state
  space of a process, but the assumptions are intuitively reasonable as (mostly
  for this implementation) the input is networks formed of M/M/1 queues.
- Despite this assumption it will be relatively straightforward to extend
+ Despite this assumption, it will be relatively straightforward to extend
  the function due to decoupling of concerns.
+ Furthermore, even in a closed network the number in a queue is unbounded
+ since it depends on the (given) initial network population 
+\begin_inset Formula $N$
+\end_inset
+
+.
  
+\begin_inset Formula $N$
+\end_inset
+
+ would only ever be needed to calculate the normalising constant which is
+ out of scope of this project.
 \end_layout
 
 \begin_layout Standard
@@ -7635,7 +8140,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,numbers=left,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
 inline false
 status open
 
@@ -7693,6 +8198,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Code for Checking First Condition
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Code-Checking-1st-cond"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -7710,7 +8222,14 @@ Function
 \family typewriter
 checkActionIsEnabled
 \family default
- (code snippet in Figure 3.12) compares the 
+ (code snippet in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-Checking-1st-cond"
+
+\end_inset
+
+) compares the 
 \emph on
 domain
 \emph default
@@ -7799,7 +8318,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,numbers=left,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
 inline false
 status open
 
@@ -7837,6 +8356,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Code for Checking First Condition
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Code-Checking-ist-cond-other"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -7866,7 +8392,14 @@ If a process has a transition
 \begin_inset Formula $n>0$
 \end_inset
 
- (checked in Line 1 of Figure 3.13).
+ (checked in Line 1 of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-Checking-ist-cond-other"
+
+\end_inset
+
+).
  For an action to be enabled, an additional `invisible' transition is required
  going from 
 \begin_inset Formula $n\to n$
@@ -7883,7 +8416,14 @@ hasInvisibleTransition
 \family default
  checks for invisible transitions.
  If all conditions are satisfied, the function notifies the user that the
- First condition has been satisfied (as in Figure 3.14).
+ First condition has been satisfied (as in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:output-for-condition-checks"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Standard
@@ -7904,7 +8444,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -7946,6 +8486,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Snippet of output of program RCATscript
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:output-for-condition-checks"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -8084,7 +8631,14 @@ domain
 \begin_inset Formula $[1,Inf]$
 \end_inset
 
- and is checked in the function as shown in Figure 3.15 (line 1).
+ and is checked in the function as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-checking-incoming-trans"
+
+\end_inset
+
+ (line 1).
 \end_layout
 
 \begin_layout Standard
@@ -8105,7 +8659,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -8153,6 +8707,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Code for checking incoming transitions
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Code-checking-incoming-trans"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -8170,7 +8731,14 @@ The function
 \family typewriter
 isSymbolicEqual
 \family default
-(Figure 3.16) checks if the states 
+(Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-checking-symbolic-equal"
+
+\end_inset
+
+) checks if the states 
 \emph on
 from
 \emph default
@@ -8188,7 +8756,14 @@ to
 
 .
  Finally if all conditions are satisfied, the function notifies the user
- that the second condition has been satisfied (as in Figure 3.14).
+ that the second condition has been satisfied (as in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:output-for-condition-checks"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Subsubsection
@@ -8264,29 +8839,22 @@ This condition checks that the total reversed rate of all incoming active
  It is known that for M/M/1 queues, the equilibrium state probabilities
  are state independent.
  Thus the reversed rate is same for all the states the transition corresponds
- to.
- For example, if we are finding the reversed rate 
-\begin_inset Formula $r_{a}$
+ to as the ratio of 
+\begin_inset Formula $\pi(n+1)/\pi(n)$
 \end_inset
 
- with active process
-\begin_inset Formula 
-\[
-P(n)=(a,\mu_{1}).P(n-1),\mbox{ }\forall n>0
-\]
+ (used in rate equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:GenericAlgoRRCal"
 
 \end_inset
 
-
+) is constant.
 \end_layout
 
 \begin_layout Standard
-we know that the reversed rate will be the same for all 
-\begin_inset Formula $n>0$
-\end_inset
-
-.
- We then need to check if there are multiple transitions with the same action
+We then need to check if there are multiple transitions with the same action
  name in the description of the active process, calculate their reversed
  rates and ensure they are equal.
  Thus if active process 
@@ -8302,7 +8870,11 @@ we know that the reversed rate will be the same for all
 \family typewriter
 checkThirdRcatCondition
 \family default
- iterates through each activeLabels for all active processes and 
+ iterates through each 
+\begin_inset Formula $activeLabels$
+\end_inset
+
+ for all active processes and 
 \begin_inset Formula $\forall a\in coopLabels\mbox{ }\&\mbox{ }a\in activeLabels$
 \end_inset
 
@@ -8317,8 +8889,14 @@ checkThirdRcatCondition
 isSymbolicEqual
 \family default
 .
- The function checks to see if the difference (Line 2, Figure 3.16) between
- two symbolic variables is zero, proving they are equal.
+ The function checks to see if the difference (Line 2, Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-checking-symbolic-equal"
+
+\end_inset
+
+) between two symbolic variables is zero, proving they are equal.
 \end_layout
 
 \begin_layout Standard
@@ -8339,7 +8917,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,numbers=left,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
 inline false
 status open
 
@@ -8377,6 +8955,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Code to checking symbolic equivalence
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Code-checking-symbolic-equal"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -8462,8 +9047,14 @@ solve
 \end_layout
 
 \begin_layout Standard
-For example, the equations in figure 3.17 need to be evaluated as they have
- unknowns in their solutions (lines 2-3).
+For example, the equations in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Solving-system-of-rateEqns"
+
+\end_inset
+
+ need to be evaluated as they have unknowns in their solutions (lines 2-3).
  The MATLAB library function 
 \family typewriter
 solve
@@ -8477,9 +9068,16 @@ solve
 \family typewriter
 syms
 \family default
- as shown in figure 3.17 on line 7.
- Thus evaluating rate equations is left to the user as it is a straightforward
- process.
+ as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Solving-system-of-rateEqns"
+
+\end_inset
+
+ on line 7.
+ Thus evaluating rate equations, displayed by the software, is left to the
+ user as it is a straightforward process.
 \end_layout
 
 \begin_layout Standard
@@ -8589,6 +9187,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Solving system of rate equations
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Solving-system-of-rateEqns"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -8636,7 +9241,7 @@ xUnit
 \emph on
 xUnit
 \emph default
- provides functions to test exceptions along with equality.
+ provides functions to test exceptions and equality.
 \end_layout
 
 \begin_layout Standard
@@ -8700,6 +9305,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Code snippet for a Test
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Code-for-test"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -8713,7 +9325,14 @@ Code snippet for a Test
 \end_layout
 
 \begin_layout Standard
-Figure 3.18 is a code snippet from the test 
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-for-test"
+
+\end_inset
+
+ is a code snippet from the test 
 \family typewriter
 testStoreReversedRates
 \family default
@@ -8725,6 +9344,7 @@ assertExceptionThrown
  tests if the program throws the right exception on being given erroneous
  input.
  This function is very useful for testing program validations.
+ Please refer to Appendix for additional test cases.
 \end_layout
 
 \begin_layout Standard
@@ -8755,7 +9375,8 @@ Multiple Agents RCAT
 The Reversed Compound Agent Theorem (RCAT) is used to derive the reversed
  process of a cooperation between two agents (processes).
  RCAT can be generalised to a cooperation of multiple agents.
- This generalised theorem is referred to the MARCAT or Multiple Agents RCAT.
+ This generalised theorem is referred to as the MARCAT or Multiple Agents
+ RCAT.
  The theorem is detailed in paper 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -8795,7 +9416,7 @@ RCATscript
 \begin_inset Formula $R_{k}$
 \end_inset
 
- in function 
+ in the function 
 \family typewriter
 registerProcess
 \family default
@@ -8803,11 +9424,18 @@ registerProcess
  Since the function parses the process string and stores it in a map of
  processes ordered by process name, no extensions were required to ensure
  it worked for multiple processes.
- As shown in figure 4.1, we iterated over 
+ As shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-to-register-MA"
+
+\end_inset
+
+, we iterated over the processes 
 \begin_inset Formula $P_{k}$
 \end_inset
 
- process given as input and registered them using the registerProcess function.
+ given as input and registered them using the registerProcess function.
 \end_layout
 
 \begin_layout Standard
@@ -8869,6 +9497,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Code to register multiple agents
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Code-to-register-MA"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -8895,7 +9530,7 @@ Creating
 \begin_inset Formula $R_{k}$
 \end_inset
 
-, as in the aforementioned implementation of RCAT, is structure consisting
+, as in the aforementioned implementation of RCAT, is a structure consisting
  of 
 \begin_inset Formula $k$
 \end_inset
@@ -8911,9 +9546,16 @@ struct
 \emph default
  with fields as mentioned in section 3.2.1.2.
  To accommodate multiple agents the function createRk was extended to iterate
- over the number of processes in the registeredProcesses map as opposed
- to having a fixed size of 2.
- This is shown in figure 4.2.
+ over the processes in the registeredProcesses map as opposed to having
+ a fixed size of 2.
+ This is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-createrk-ma"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -8968,6 +9610,13 @@ Code for creating
 \end_inset
 
 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Code-createrk-ma"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -8999,7 +9648,14 @@ RCATscript
 \begin_inset Formula $\ensuremath{\sync{L}}P_{k},\mbox{ }k\geq2$
 \end_inset
 
- as shown in figure 4.3.
+ as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Coop-String-3agents"
+
+\end_inset
+
+.
  It specifies a cooperation string between three processes P1, P2 and P3.
  Keyword `with' is used as the cooperation symbol.
  The actions which processes cooperate over are stated in parentheses.
@@ -9048,6 +9704,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Cooperation String for Three agents
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Coop-String-3agents"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -9063,7 +9726,14 @@ Cooperation String for Three agents
 \begin_layout Standard
 To parse the cooperation string, function registerCoop had to be extended.
  Parsing the cooperation string is achieved using regular expressions as
- shown in figure 4.4.
+ shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-Parsing-coop-3agents"
+
+\end_inset
+
+.
  String `([A-Z][0-9]*)
 \backslash
  (([^
@@ -9141,6 +9811,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Code for Parsing Cooperation String
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Code-Parsing-coop-3agents"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -9156,8 +9833,8 @@ Code for Parsing Cooperation String
 \begin_layout Standard
 The implementation for calculating reversed rates and checking RCAT conditions
  is the same as mentioned in the previous chapter.
- We can use the rates calculated to generate product form result using the
- same method as detailed in section 3.2.5.
+ We can use the rates calculated to generate the product form result using
+ the same method as detailed in section 3.2.5.
 \end_layout
 
 \begin_layout Section
@@ -9182,8 +9859,8 @@ Our first concern while implementing this extension was designing a formalism
  for SPN building blocks.
  Due to the graph like structure of SPNs, it is difficult to formalise them
  using a Markovian Process Algebra like PEPA.
- So a new formalism was designed which treats an SPN as a connection of
- building blocks.
+ So a new formalism was designed which treats a subset of SPNs as a connection
+ of building blocks.
 \end_layout
 
 \begin_layout Subsubsection
@@ -9193,7 +9870,7 @@ Formalising building blocks
 \begin_layout Standard
 A building block as defined in 
 \emph on
-Definition 8.2
+Definition 2.8.2
 \emph default
  is an SPN 
 \begin_inset Formula $S$
@@ -9228,7 +9905,14 @@ Definition 8.2
 \emph on
 struct
 \emph default
- as shown in figure 4.5 with three properties:
+ as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Building-Block-formalism"
+
+\end_inset
+
+ with three properties:
 \end_layout
 
 \begin_layout Enumerate
@@ -9287,7 +9971,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -9330,6 +10014,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Building Block formalism as a MATLAB struct
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Building-Block-formalism"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -9348,14 +10039,21 @@ Specifying Building blocks as input
 
 \begin_layout Standard
 On determining a way for formalising the building block, we then dealt with
- converting a structural building block as programmable input and parsing
+ converting a structural building block into a programmable input and parsing
  it to construct the building block 
 \emph on
 struct
 \emph default
 .
  This is best explained using an example.
- Let us take a simple building block as in figure 4.6.
+ Let us take the simple building block of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:simpleBB"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -9375,7 +10073,14 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Example of a building block
+Example of a building block 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:simpleBB"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -9425,7 +10130,14 @@ The building block has three places
 \family typewriter
 RCATscriptForSPN 
 \family default
-as string as shown in figure 4.7
+as the string shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Building-Block-ip-by-user"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -9446,7 +10158,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -9479,6 +10191,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Building Block as input by user
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Building-Block-ip-by-user"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -9497,9 +10216,11 @@ It is important to note that all input transitions are prefixed by `i' while
  This helps the program ensure that every input transition has a corresponding
  output transition, as it is one of the mandatory conditions for an SPN
  to be a building block.
- The string is always arranged in the order as shown in the figure, starting
+ The string is always arranged in the order as shown in the Figure, starting
  with places followed by input transitions, input transition rates, output
  transitions and output transition rates.
+ It might be worth noting that the M/M/1 queue is simply a BB with one place.
+ Thus the application of RCAT to SPNs is a true generalisation.
 \end_layout
 
 \begin_layout Subsubsection
@@ -9508,7 +10229,7 @@ Specifying Building Block connections
 
 \begin_layout Standard
 Since an SPN is specified as a model composed with several connected building
- blocks, user inputs the several building blocks as a list to the program
+ blocks, the user inputs the several building blocks as a list to the program
  
 \family typewriter
 RCATscriptForSPN
@@ -9516,8 +10237,14 @@ RCATscriptForSPN
 .
  The user also has to input a routing probability matrix giving the connections
  between the different building blocks and their routing probabilities.
- The figure 4.8 gives an example of a simple SPN composed of two building
- blocks.
+ The Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:simpleSPN2BBs"
+
+\end_inset
+
+ gives an example of a simple SPN composed of two building blocks.
  The dotted lines show the passive composition between the two building
  blocks.
  So the firing of transitions 
@@ -9537,7 +10264,7 @@ RCATscriptForSPN
 \begin_inset Formula $T_{23}$
 \end_inset
 
- from BB1.
+ of BB1.
 \end_layout
 
 \begin_layout Standard
@@ -9558,6 +10285,13 @@ status open
 
 \begin_layout Plain Layout
 Example of a SPN with two building blocks
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:simpleSPN2BBs"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -9572,7 +10306,14 @@ Example of a SPN with two building blocks
 
 \begin_layout Standard
 The passive cooperations between the building blocks are specified as shown
- in Figure 4.9.
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:User-input-bb-connections"
+
+\end_inset
+
+.
  
 \end_layout
 
@@ -9581,7 +10322,7 @@ The passive cooperations between the building blocks are specified as shown
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset CommandInset line
@@ -9594,7 +10335,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -9622,6 +10363,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 User input specifying passive compositions between BBs
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:User-input-bb-connections"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -9639,7 +10387,14 @@ Each connection is stated by the user in parentheses
 \begin_inset Formula $\{...\}$
 \end_inset
 
- separated by a semi-colon as shown in Figure 4.9.
+ separated by a semi-colon as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:User-input-bb-connections"
+
+\end_inset
+
+.
  Connection `
 \family typewriter
 o_t12 = 1, o_t23 = 1 to i_t45
@@ -9654,6 +10409,18 @@ o_t12 = 1, o_t23 = 1 to i_t45
 
  with routing probability equal to 1.
  This routing probability is used while calculating rate equations.
+ The routing probability becomes significant while looking at the behaviour
+ of the BB.
+ It the routing probability were 
+\begin_inset Formula $p$
+\end_inset
+
+ then the output transition has a chance of synchronising with its corresponding
+ input transition with probability 
+\begin_inset Formula $p$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -9678,7 +10445,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -9749,6 +10516,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Running RCAT on a SPN with two building blocks
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Running-RCAT-2BBSPN"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -9762,8 +10536,15 @@ Running RCAT on a SPN with two building blocks
 \end_layout
 
 \begin_layout Standard
-Figure 4.10 shows how the specified user input is specified for a SPN model
- using list of building blocks and their connections.
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Running-RCAT-2BBSPN"
+
+\end_inset
+
+ shows how the specified user input is specified for a SPN model using list
+ of building blocks and their connections.
  This is then run using the API function 
 \family typewriter
 RCATscriptForSPN
@@ -9782,28 +10563,28 @@ Parsing Building Block String
 
 \begin_layout Standard
 We started with writing a parser for converting the user input of the list
- of building blocks into a building block 
+ of building blocks into a MATLAB 
 \emph on
 struct 
 \emph default
 to match the formalism outlined in section 4.2.1.1.
- This is achieved in function 
+ This is achieved in the function 
 \family typewriter
 createBbStruct
 \family default
- which takes the list of building block strings as input and returns a building
- block struct (as shown in figure 4.5
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-x
-\end_layout
+ which takes the list of building block strings as input and returns a 
+\emph on
+struct
+\emph default
+ (as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Building-Block-formalism"
 
 \end_inset
 
 ) as output.
- We use regular expressions for the majority of the parsing in function
+ We use regular expressions for the majority of the parsing in the function
  
 \family typewriter
 parseBB
@@ -9929,6 +10710,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Parsing building block String
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Parsing-building-block"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -9942,11 +10730,19 @@ Parsing building block String
 \end_layout
 
 \begin_layout Standard
-Figure 4.11 gives a code snippet for parsing a building block string.
- Lines 1-2 take a building block string of the form 
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Parsing-building-block"
+
+\end_inset
+
+ gives a code snippet for parsing a building block string.
+ Lines 1-2 take a building block string of the form `{P1, P2, P3}, {i_t12,
+ i_t23, i_t3}, {lambda12, infinity, lambda3}, {o_t12, o_t23, o_t3}, {mu12,
+ mu23, mu3}
 \emph on
-`{P1, P2, P3}, {i_t12, i_t23, i_t3}, {lambda12, infinity, lambda3}, {o_t12,
- o_t23, o_t3}, {mu12, mu23, mu3}'
+'
 \emph default
  and divide it into five different sections; from these sections we derive
  information about the places and transitions of the building block.
@@ -9981,12 +10777,8 @@ regexp
 \end_layout
 
 \begin_layout Standard
-Transition rates which are passive need to relabelled to avoid confusion;
- so passive transition rates with 
-\emph on
-`infinity'
-\emph default
- are relabelled to symbolic variable 
+Transition rates which are passive are relabelled to a symbolic variable
+ 
 \emph on
 `x'
 \emph default
@@ -9995,9 +10787,16 @@ Transition rates which are passive need to relabelled to avoid confusion;
 \family typewriter
 relabelPassiveRates
 \family default
- as shown on line 10 in figure 4.11.
+ as shown on line 10 in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Parsing-building-block"
+
+\end_inset
+
+.
  Input transition rates need to be converted into MATLAB symbolic expressions
- which is achieved by function 
+ which is achieved by the function 
 \family typewriter
 convertToSymbolicRates
 \family default
@@ -10014,13 +10813,28 @@ We finally generate
 \emph on
 inputs,
 \emph default
- a field of the building block struct as a map of the transition names as
- keys and their rates as values.
+ a field of the building block 
+\emph on
+struct
+\emph default
+, as a map of the transition names as keys and their rates as values (as
+ shown on line 14 of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Parsing-building-block"
+
+\end_inset
+
+).
  Output transitions and rates are parsed similarly to create 
 \emph on
 outputs
 \emph default
-, the last field of the building block struct.
+, the last field of the building block 
+\emph on
+struct
+\emph default
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -10028,8 +10842,11 @@ Parsing Building Block connections
 \end_layout
 
 \begin_layout Standard
-On constructing a building block struct, the next step is to parse the building
- block connection string.
+On constructing a building block 
+\emph on
+struct
+\emph default
+, the next step is to parse the building block connection string.
  This is performed by function 
 \family typewriter
 parseConnections
@@ -10043,7 +10860,14 @@ parseConnections
 `o_t5 = 1 to i_t23'
 \emph default
 , the key will be i_t23 and the value will be the tuple (o_t5,1).
- Figure 4.12 is a code snippet of the 
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Parsing-building-block-connections"
+
+\end_inset
+
+ is a code snippet of the 
 \family typewriter
 parseConnections
 \family default
@@ -10119,6 +10943,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Parsing building block connections
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Parsing-building-block-connections"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -10132,14 +10963,20 @@ Parsing building block connections
 \end_layout
 
 \begin_layout Standard
-Parsing is done using regular expression; line 1 in figure 4.12 shows how
- the string of connections are split into individual sub-strings of connections
- each of which are then parsed using a loop.
+Parsing is done using regular expression; line 1 in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Parsing-building-block-connections"
+
+\end_inset
+
+ shows how the string of connections is split into individual sub-strings
+ of connections each of which are then parsed using a loop.
  The regular expression 
 \begin_inset Formula $`\{(.+)\mbox{ }to\mbox{ }(.+)\}'$
 \end_inset
 
- retrieves text from either sides of `to'.
+ retrieves text from either side of `to'.
  Thus we separate the key and value pairs for our map of connections.
  In the function 
 \family typewriter
@@ -10166,10 +11003,10 @@ Generating Rate Equations
 \begin_layout Standard
 To decide if a composition of building blocks has a product-form, we need
  to find the unknown (i.e.
- passive) rates the input transitions.
+ passive) rates to the input transitions.
  This is done by setting each unknown rate is to the reversed rate of the
  corresponding output transition.
- The system of equations generated are the rate equations desired.
+ The system of equations thus generated are the rate equations desired.
  This calculation is performed in the MATLAB function 
 \family typewriter
 calculatePassiveRatesForBBs
@@ -10180,7 +11017,14 @@ calculatePassiveRatesForBBs
 getRateEquations
 \family default
 .
- Figure 4.13 is a code snippet of 
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Generating-rate-equations-spns"
+
+\end_inset
+
+ is a code snippet of 
 \family typewriter
 getRateEquations
 \family default
@@ -10258,6 +11102,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Generating rate equations
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Generating-rate-equations-spns"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -10282,7 +11133,14 @@ getRateEquations
  function.
  Each connection is stored as a map with the corresponding output transition
  name as the key and its routing probability as the value.
- We retrieve this key in line 3 of Figure 4.13.
+ We retrieve this key in line 3 of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Generating-rate-equations-spns"
+
+\end_inset
+
+.
  and find the reversed rate of the corresponding output transition using
  function 
 \family typewriter
@@ -10293,7 +11151,14 @@ getReversedRateForBB
 \emph on
 map( label{1} )
 \emph default
- - as shown in line 5 of Figure 4.13.
+ - as shown in line 5 of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Generating-rate-equations-spns"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -10301,9 +11166,16 @@ A code snippet of function
 \family typewriter
 getReversedRateForBB
 \family default
- is shown in figure 4.14.
- To find reversed rate of a transition we use the building block corollary
- stated in section 2.8 
+ is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Finding-revRate-bb-output-trans"
+
+\end_inset
+
+.
+ To find the reversed rate of a transition we use the building block corollary
+ stated in section 2.8.1 
 \begin_inset Note Note
 status collapsed
 
@@ -10323,13 +11195,24 @@ add correct corollary no.
 
 , i.e.
  the rate of the corresponding input transition'.
- The corresponding input transition is calculated by using regular expressions
+ The corresponding input transition is identified by using regular expressions
  and prefixing the transition name with `i' as described in line 1 and 3
- of figure 4.14.
+ of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Finding-revRate-bb-output-trans"
+
+\end_inset
+
+.
  Thus an output transition of the form `o_t23' gives an input transition
  label `i_t23'.
  The rate of this input transition is calculated by iterating over the building
- block struct in function 
+ block 
+\emph on
+struct
+\emph default
+ in function 
 \family typewriter
 getActionRateForSPNs
 \family default
@@ -10401,6 +11284,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Finding reversed rate of corresponding output transition
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Finding-revRate-bb-output-trans"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -10425,7 +11315,7 @@ Checking Building Block conditions
 
 \begin_layout Standard
 For an arbitrary building block to have a product form, conditions detailed
- in Theorem 8.1 need to be satisfied.
+ in Theorem 2.8.1 need to be satisfied.
  These conditions are generated and checked in function 
 \family typewriter
 checkBBconditions
@@ -10440,19 +11330,26 @@ If the number of input and output transitions (i.e.
 \begin_inset Formula $size(T_{I})\mbox{ and }size(T_{O})$
 \end_inset
 
-) is less than or equal to the number of places in the building bock, we
- assume the conditions are unconditionally satisfied.
- This follows directly form the nature of the system of equations generated
- by the conditions detailed in Theorem 8.1.
- Code for this check is shown in figure 4.15.
+) is less than or equal to the number of places in the building block, we
+ know the conditions are unconditionally satisfied.
+ This follows directly from the nature of the system of equations generated
+ by the conditions detailed in Theorem 2.8.1.
+ Code for this check is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Check-BB-conditions"
+
+\end_inset
+
+.
  We loop over all the building blocks the SPN is composed of and also ensure
  their input and output transitions are equal as shown in line 1-2.
 \end_layout
 
 \begin_layout Enumerate
-If the number of input and output transitions exceed the number of places
+If the number of input and output transitions exceeds the number of places
  in the building block, then we generate the additional conditions required
- from Theorem 8.1.
+ from Theorem 2.8.1.
  Function furtherConditionCheck generates and displays the conditions to
  be satisfied.
  It is important to note that these conditions need to be solved along with
@@ -10526,6 +11423,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Check Building Block Conditions
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Check-BB-conditions"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -10546,8 +11450,8 @@ Generating Product Form Solution
 A system of rate equations has been derived for a given SPN using the method
  in section 4.2.3, where each unknown rate is set to the reversed rate of
  the corresponding output transition.
- Theorem 8.1 gives conditions for a BB to have a product form which are derived
- by the aforementioned method in section 4.2.4.
+ Theorem 2.8.1 gives conditions for a BB to have a product form which are
+ derived by the aforementioned method in section 4.2.4.
  To find a product form for the given SPN, the system of equations is solved
  and if a solution exists then it is checked for compatibility with the
  product-form conditions of each BB.
@@ -10555,8 +11459,16 @@ A system of rate equations has been derived for a given SPN using the method
 \end_layout
 
 \begin_layout Standard
-As mentioned in section 3.2.5, MATLAB functions solve and simplify can be
- used to evaluate solutions to the system of rate equations.
+As mentioned in section 3.2.5, MATLAB functions 
+\family typewriter
+solve
+\family default
+ and 
+\family typewriter
+simplify
+\family default
+ can be used to evaluate solutions to the system of rate equations and condition
+s generated.
  The process of evaluating the rate equations remains the same as section
  3.2.5.
  On finding a solution, the product form results of all the participating
@@ -10718,8 +11630,15 @@ key "Chains"
 \end_inset
 
 .
- Let us take a G-network with a negative customer trigger as shown in figure
- 4.16.
+ Let us take a G-network with a negative customer trigger as shown in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:G-network-chains"
+
+\end_inset
+
+.
  
 \end_layout
 
@@ -10738,6 +11657,13 @@ status open
 
 \begin_layout Plain Layout
 G-network with a negative customer trigger
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:G-network-chains"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -10800,8 +11726,14 @@ Parsing user input
 \end_layout
 
 \begin_layout Standard
-The G-network from figure 4.16 is represented in PEPA using the formalism
- 
+The G-network from Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:G-network-chains"
+
+\end_inset
+
+ is represented in PEPA using the formalism 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:PepaFormalismPIT"
@@ -10956,7 +11888,14 @@ Tandem Queues
 
 \begin_layout Standard
 An example of a simple queuing network is a network with two queues (nodes)
- in tandem (Figure 5.1) with Poisson arrivals to queue one at the rate 
+ in tandem (Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Tandem-Queues-Eval"
+
+\end_inset
+
+) with Poisson arrivals to queue one at the rate 
 \begin_inset Formula $\lambda$
 \end_inset
 
@@ -10979,7 +11918,7 @@ An example of a simple queuing network is a network with two queues (nodes)
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -10996,6 +11935,13 @@ status collapsed
 
 \begin_layout Plain Layout
 Tandem Queue with two Queues
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Tandem-Queues-Eval"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -11010,7 +11956,14 @@ Tandem Queue with two Queues
 
 \begin_layout Standard
 This network can be described in PEPA as follows and in as MATLAB code in
- Figure 3.1.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PEPA-Process-Simple-Desc"
+
+\end_inset
+
+.
  
 \begin_inset Formula 
 \begin{eqnarray*}
@@ -11032,7 +11985,14 @@ Running
 \family typewriter
 RCATscript
 \family default
- on this queuing network we get reversed rates as shown in Figure 5.2.
+ on this queuing network we get reversed rates as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Passive-rates-TandemQ"
+
+\end_inset
+
+.
  From the cooperation, it is clear that the three RCAT conditions are satisfied
  on this network.
  The program checks this and displays a message for satisfying all conditions.
@@ -11056,7 +12016,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,numbers=left,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
 inline false
 status open
 
@@ -11088,6 +12048,13 @@ Passive rates in
 \end_inset
 
  in Two node Tandem Queuing network
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Passive-rates-TandemQ"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -11151,7 +12118,14 @@ key "HarrisonPaperTBTinMAP2003"
 \begin_inset Formula $1-p_{12}\mbox{ and }1-p_{21}$
 \end_inset
 
- as shown in Figure 5.3.
+ as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:feedbackQs"
+
+\end_inset
+
+.
  
 \begin_inset Note Note
 status open
@@ -11170,7 +12144,7 @@ Change diagram
 placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -11187,6 +12161,13 @@ status collapsed
 
 \begin_layout Plain Layout
 General Tandem-2 Network
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:feedbackQs"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -11200,8 +12181,14 @@ General Tandem-2 Network
 \end_layout
 
 \begin_layout Standard
-The network is represented in MATLAB code as given in Figure 5.4 where the
- last line denotes the cooperation between the two queues.
+The network is represented in MATLAB code as given in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MATLAB-input-feedbackQ"
+
+\end_inset
+
+ where the last line denotes the cooperation between the two queues.
 \end_layout
 
 \begin_layout Standard
@@ -11222,7 +12209,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -11294,6 +12281,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 MATLAB Code for General Tandem-2 Network
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MATLAB-input-feedbackQ"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -11319,7 +12313,14 @@ On parsing the input, the program produces the structure
 \begin_inset Formula $P$
 \end_inset
 
-) is shown in Figure 5.5.
+) is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:R1-feedbackQ"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -11340,7 +12341,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -11391,6 +12392,13 @@ height "0.8pt"
 \end_inset
 
  for General Tandem-2 Network
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:R1-feedbackQ"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -11404,7 +12412,14 @@ height "0.8pt"
 \end_layout
 
 \begin_layout Standard
-As input in Figure 5.4, the process 
+As input in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MATLAB-input-feedbackQ"
+
+\end_inset
+
+, the process 
 \begin_inset Formula $P$
 \end_inset
 
@@ -11420,7 +12435,14 @@ As input in Figure 5.4, the process
  Each description of the process is stored as a map with process descriptors
  as keys.
  Running the reversed rate calculation, we get solutions as shown in Figure
- 5.6
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Passive-rates-feedbackQ"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -11441,7 +12463,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -11478,6 +12500,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Passive rates for General Tandem-2 Network
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Passive-rates-feedbackQ"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -11537,7 +12566,14 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-A G-Queue
+A G-Queue j within a network
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-G-Queue-eval"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -11551,8 +12587,14 @@ A G-Queue
 \end_layout
 
 \begin_layout Standard
-Consider a G-network with two nodes (see figure 5.7), with respective positive/
- negative external arrival rates 
+Consider a G-network with two nodes (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-G-Queue-eval"
+
+\end_inset
+
+), with respective positive/ negative external arrival rates 
 \begin_inset Formula $\lambda_{1},\lambda_{2}$
 \end_inset
 
@@ -11560,15 +12602,30 @@ Consider a G-network with two nodes (see figure 5.7), with respective positive/
 \begin_inset Formula $\Lambda_{1}\Lambda_{2}$
 \end_inset
 
- (correspond to 
+ (corresponding to 
 \emph on
-lambda 
+
+\begin_inset Formula $\lambda$
+\end_inset
+
+ 
 \emph default
 and 
 \emph on
-bigLambda
+
+\begin_inset Formula $\Lambda$
+\end_inset
+
+
 \emph default
- in Figure 5.8), with respective service rates 
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MATLAB-input-gNetwork"
+
+\end_inset
+
+), with respective service rates 
 \begin_inset Formula $\mu_{1},\mu_{2}$
 \end_inset
 
@@ -11581,8 +12638,14 @@ bigLambda
 \end_inset
 
 .
- This network is represented in MATLAB code as given in Figure 5.8 where
- the last line denotes the cooperation between the two queues.
+ This network is represented in MATLAB code as given in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MATLAB-input-gNetwork"
+
+\end_inset
+
+ where the last line denotes the cooperation between the two queues.
  
 \end_layout
 
@@ -11603,7 +12666,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,numbers=left,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
 inline false
 status open
 
@@ -11709,6 +12772,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 MATLAB Code for a Two Node G-Network
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MATLAB-input-gNetwork"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -11730,7 +12800,7 @@ Since the two queues in the G-network are M/M/1 queues, every node
 \begin_inset Formula $n$
 \end_inset
 
- as 
+ of 
 \begin_inset Formula $\pi(n)=(1-\rho_{i})\rho_{i}^{n}$
 \end_inset
 
@@ -11738,7 +12808,7 @@ Since the two queues in the G-network are M/M/1 queues, every node
 \begin_inset Formula $\rho_{i}=\frac{\lambda_{i}+\sum_{k}x_{ki}}{\mu_{i}+\Lambda_{i}+\sum_{k}x'_{ki}}$
 \end_inset
 
- where 
+ and 
 \begin_inset Formula $\lambda_{i}+\sum_{k}x_{ki}$
 \end_inset
 
@@ -11751,9 +12821,16 @@ Since the two queues in the G-network are M/M/1 queues, every node
 \end_inset
 
  respectively.
- Since the nodes are M/M/1 queues, we can run the reversed rate calculation
+ Since the nodes are M/M/1 queues, we can just run the reversed rate calculation
  of the implemented RCATscript which generates solutions given in Figure
- 5.9.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Passive-rates-gnetwork"
+
+\end_inset
+
+.
  
 \end_layout
 
@@ -11775,7 +12852,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -11850,6 +12927,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Passive rates for a Two Node G-Network
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Passive-rates-gnetwork"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -11890,8 +12974,8 @@ x_{bkj} & = & \frac{(1-p_{kj})\mu_{k}(\lambda_{k}+\sum_{j}x_{ajk})}{\mu_{k}+\Lam
 \begin_inset Formula $x_{bij}$
 \end_inset
 
- are the passive action rates corresponding to external arrivals, positive
- and negative respectively, 
+ are the passive action rates corresponding to positive and negative internal
+ arrivals respectively, 
 \begin_inset Formula $a_{ij}\mbox{ and }b_{ij}$
 \end_inset
 
@@ -11899,10 +12983,130 @@ x_{bkj} & = & \frac{(1-p_{kj})\mu_{k}(\lambda_{k}+\sum_{j}x_{ajk})}{\mu_{k}+\Lam
 \end_layout
 
 \begin_layout Standard
-To ensure that the RCAT first condition holds on this network, we add invisible
- transitions (line 5 and 12 in Figure 5.8) to ensure negative arrivals have
- no effect on an empty queue.
- Thus we can see that the first two RCAT conditions are satisfied from the
+To ensure that the RCAT first condition holds in this network, we add invisible
+ transitions (line 5 and 12 in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MATLAB-input-gNetwork"
+
+\end_inset
+
+) to ensure negative arrivals have no effect on an empty queue.
+ If we were to run the RCATscript ommitting lines 5 and 12 from the PEPA
+ description in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MATLAB-input-gNetwork"
+
+\end_inset
+
+, we would get a condition violation error shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:gNets-condition-violation"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Error using checkFirstRcatCondition (line 10)
+\end_layout
+
+\begin_layout Plain Layout
+
+RCAT First Condition is violated.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+If you think this is an error, 
+\end_layout
+
+\begin_layout Plain Layout
+
+then check the pepa description and try again.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Error in RCATscript (line 31) 
+\end_layout
+
+\begin_layout Plain Layout
+
+checkFirstRcatCondition( r, stateSpace );
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+RCAT condition Violation for a Two Node G-Network
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:gNets-condition-violation"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus we can see that the first two RCAT conditions are satisfied from the
  PEPA description.
  Since the passive actions in the reversed process do not have multiple
  transitions, we conclude that the third condition of RCAT holds for this
@@ -11932,8 +13136,8 @@ key "marcat2003"
 \begin_inset Formula $\mu_{1},\mu_{2},\mu_{3}$
 \end_inset
 
- respectively, and with routing probability 
-\begin_inset Formula $pij$
+ respectively, routing probability 
+\begin_inset Formula $p_{ij}$
 \end_inset
 
  from queue 
@@ -11948,17 +13152,23 @@ key "marcat2003"
 \begin_inset Formula $i,j\in\{1,2,3\}$
 \end_inset
 
- and customers leave the network from node 
+ and where customers leave the network from node 
 \begin_inset Formula $i$
 \end_inset
 
  with probability 
-\begin_inset Formula $1−pij$
+\begin_inset Formula $1−\sum_{j\neq i}p_{ij}$
 \end_inset
 
 .
- This network is represented in MATLAB code as given in Figure 5.10 where
- the last line denotes the cooperation between the two queues.
+ This network is represented in MATLAB code as given in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MATLAB-input-3node-network"
+
+\end_inset
+
+ where the last line denotes the cooperation between the two queues.
  The three queues given as input are 
 \begin_inset Formula $P1,P2,P3$
 \end_inset
@@ -11984,7 +13194,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -12114,6 +13324,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 MATLAB Code for Three Node Jackson Network
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MATLAB-input-3node-network"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -12133,9 +13350,16 @@ The process for running RCAT on a system model for
 
  (that is for multiple agents) is the same as running RCAT on only two compound
  agents.
- We represent the multiple processes cooperating with keyword with and represent
- the actions the processes are cooperating on in parentheses (see last line
- of Figure 5.10).
+ We represent the multiple processes cooperating with keyword `with' and
+ represent the actions the processes are cooperating on in parentheses (see
+ last line of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MATLAB-input-3node-network"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Standard
@@ -12143,7 +13367,14 @@ On parsing the input, the program produces the structure
 \begin_inset Formula $R_{k}$
 \end_inset
 
- with three nodes as shown in Figure 5.11.
+ with three nodes as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:-rk-3node-network"
+
+\end_inset
+
+.
  
 \end_layout
 
@@ -12165,7 +13396,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
 inline false
 status open
 
@@ -12211,6 +13442,13 @@ height "0.8pt"
 \end_inset
 
  for Three Node Jackson Network
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:-rk-3node-network"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -12225,7 +13463,14 @@ height "0.8pt"
 
 \begin_layout Standard
 Running the reversed rate calculation, we get solutions as shown in Figure
- 5.12
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Passive-rates-3node-net"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -12348,10 +13593,14 @@ height "0.8pt"
 \begin_inset Caption
 
 \begin_layout Plain Layout
-\begin_inset Formula $R_{k}$
+Passive rates for Three Node Jackson Network
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Passive-rates-3node-net"
+
 \end_inset
 
- for Three Node Jackson Network
+
 \end_layout
 
 \end_inset
@@ -12373,7 +13622,7 @@ key "marcat2003"
 \end_inset
 
 , we verify that they are as expected.
- As with the all previous examples, we know that all the three conditions
+ As with all the previous examples, we know that all the three conditions
  of RCAT are satisfied and this is verified by the program.
 \end_layout
 
@@ -12391,10 +13640,10 @@ key "SPNs"
 \end_inset
 
 .
- The results in the paper have been derived by hand.
+ The results in that paper have been derived by hand.
  We look at two SPNs for evaluation, one with two BBs and one with three
- BBs; thus showing that the implementation can find a product form for SPN
- with several BBs.
+ BBs; thus showing that the implementation can find a product form for an
+ SPN with several BBs.
 \end_layout
 
 \begin_layout Subsection
@@ -12402,11 +13651,36 @@ Simple SPN composed of two building blocks
 \end_layout
 
 \begin_layout Standard
-Figure 4.8 gives and example of a simple SPN with two building blocks (BBs)
- with dotted lines showing synchronising transitions.
- It is specified as input in MATLAB as shown in Figure 4.10.
- On running RCATscriptForSPN on the SPN, a BB structure is created as expected
- with two BBs as shown in figure 5.13.
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:simpleSPN2BBs"
+
+\end_inset
+
+ gives an example of a simple SPN with two building blocks (BBs) with dotted
+ lines showing synchronising transitions.
+ It is specified as input in MATLAB as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Running-RCAT-2BBSPN"
+
+\end_inset
+
+.
+ On running 
+\family typewriter
+RCATscriptForSPN
+\family default
+ on the SPN, a BB structure is created as expected with two BBs as shown
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Building-Block-Structure-eval"
+
+\end_inset
+
+.
  
 \end_layout
 
@@ -12471,6 +13745,13 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Building Block Structure
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Building-Block-Structure-eval"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -12485,7 +13766,14 @@ Building Block Structure
 
 \begin_layout Standard
 The program then generates rate equations and product form conditions as
- shown in figure 5.14 lines 1-3 and lines 5-10 respectively.
+ shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rate-equations-simple-spn"
+
+\end_inset
+
+ lines 1-3 and lines 5-10 respectively.
  These are verified by the results in the paper : 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -12498,13 +13786,20 @@ key "SPNs"
 \begin_inset Formula $BB_{2}$
 \end_inset
 
- in figure 4.8 we can see that, since the number of transitions in greater
- than the number of places, 
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:simpleSPN2BBs"
+
+\end_inset
+
+ we can see that, since the number of transitions in greater than the number
+ of places, 
 \begin_inset Formula $BB_{2}$
 \end_inset
 
  does require additional conditions for a product form solution.
- This is verified by the program on line 5-6.
+ This is indicated by the program on line 5-6.
 \end_layout
 
 \begin_layout Standard
@@ -12596,7 +13891,21 @@ height "0.8pt"
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Rate equations and conditions for product form result of SPN in Figure 4.8
+Rate equations and conditions for product form result of SPN in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:simpleSPN2BBs"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Rate-equations-simple-spn"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -12610,8 +13919,14 @@ Rate equations and conditions for product form result of SPN in Figure 4.8
 \end_layout
 
 \begin_layout Standard
-Solving the equations generated in figure 5.14, a product form result can
- be obtained easily.
+Solving the equations generated in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rate-equations-simple-spn"
+
+\end_inset
+
+, a product form result can be obtained easily.
 \end_layout
 
 \begin_layout Subsection
@@ -12619,12 +13934,19 @@ SPN composed of three building blocks
 \end_layout
 
 \begin_layout Standard
-Figure 5.15 shows a SPN structure and its decomposed BBs.
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SPN-with-3BBs"
+
+\end_inset
+
+ shows a SPN structure and its decomposed BBs.
  Thus the SPN considered is composed of three building blocks.
  We can deduce their connections based on the places in each BB.
- All input transitions of all BBs are unknown; there are five unknown input
- transition rates.
- The service rates (output transition rates) for all three BBs is given
+ All input transitions of all BBs are unknown (passive); there are five
+ unknown input transition rates.
+ The service rates (output transition rates) for all three BBs are given
  as 
 \begin_inset Formula $\chi_{i}\mbox{ ,}1\leq i\leq5$
 \end_inset
@@ -12654,6 +13976,13 @@ status open
 
 \begin_layout Plain Layout
 SPN with 3 BBs and decomposition of the SPN into BBs 1–3
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:SPN-with-3BBs"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -12667,7 +13996,13 @@ SPN with 3 BBs and decomposition of the SPN into BBs 1–3
 \end_layout
 
 \begin_layout Standard
-We specify the building blocks as input in MATLAB as shown in figure 5.16
+We specify the building blocks as input in MATLAB as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Running-RCAT-spn-3bbs"
+
+\end_inset
+
  and run the program using function 
 \family typewriter
 RCATscriptForSPN
@@ -12776,7 +14111,21 @@ height "0.8pt"
 
 \begin_layout Plain Layout
 Running RCAT on a SPN in Fig.
- 5.15
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SPN-with-3BBs"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Running-RCAT-spn-3bbs"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -12791,7 +14140,14 @@ Running RCAT on a SPN in Fig.
 
 \begin_layout Standard
 The program then generates rate equations and product form conditions as
- shown in figure 5.17, lines 1-7 and lines 9-14 respectively.
+ shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rate-equations-spn-3bbs"
+
+\end_inset
+
+, lines 1-7 and lines 9-14 respectively.
  These are verified by the results in the paper : 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -12804,13 +14160,20 @@ key "SPNs"
 \begin_inset Formula $BB_{1}$
 \end_inset
 
- in figure 5.17 we can see that, since the number of transitions in greater
- than the number of places, 
+ in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rate-equations-spn-3bbs"
+
+\end_inset
+
+ we can see that, since the number of transitions in greater than the number
+ of places, 
 \begin_inset Formula $BB_{1}$
 \end_inset
 
  does require additional conditions for a product form solution.
- This is verified by the program on line 9-10.
+ This is indicated by the program on line 9-10.
 \end_layout
 
 \begin_layout Standard
@@ -12922,7 +14285,21 @@ height "0.8pt"
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Rate equations and conditions for product form result of SPN in Figure 5.15
+Rate equations and conditions for product form result of SPN in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SPN-with-3BBs"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Rate-equations-spn-3bbs"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -12936,8 +14313,14 @@ Rate equations and conditions for product form result of SPN in Figure 5.15
 \end_layout
 
 \begin_layout Standard
-Solving the equations generated in figure 5.17, a product form result can
- be obtained easily.
+Solving the equations generated in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Rate-equations-spn-3bbs"
+
+\end_inset
+
+, a product form result can be obtained easily.
 \end_layout
 
 \begin_layout Section
