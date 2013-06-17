@@ -91,14 +91,6 @@
 
 \begin_body
 
-\begin_layout Title
-Automatic construction of product-form solutions in stochastic networks
-\end_layout
-
-\begin_layout Author
-By Rhea Potdar
-\end_layout
-
 \begin_layout Standard
 \begin_inset ERT
 status open
@@ -344,8 +336,8 @@ ties of stochastic models defined as a cooperation (or synchronisation)
  This approach for deriving the steady state probabilities of Markov processes
  does not require Kolmogorov equations to be solved.
  RCAT uses PEPA (Performance Evaluation Process Algebra), a Markovian Process
- Algebra formalism, which has an appropriate recursive structure for hierarchal
- analysis done by RCAT.
+ Algebra formalism, which has an appropriate recursive structure for hierarchica
+l analysis done by RCAT.
  But this does not limit the application of RCAT to systems specified by
  Markovian Process Algebra.
  It can also be applied to derive product-forms in Stochastic Petri Nets
@@ -5601,7 +5593,7 @@ Implementation of the RCAT
 
 \begin_layout Standard
 This chapter covers the design, implementation and testing aspects of the
- project.
+ RCAT implementation.
  Since RCAT was implemented from scratch, considerable effort was put in
  to produce easy and scalable application programming interface (API) and
  clean and modularised code.
@@ -7274,7 +7266,7 @@ reference "eq:GenericAlgoRRCal"
 \end_inset
 
  stated in the generic algorithm (Section 2.7.3.1).
- The formula requires the steady state probabilities 
+ The formula requires that the steady state probabilities 
 \begin_inset Formula $\pi_{k}$
 \end_inset
 
@@ -7415,18 +7407,18 @@ The arrival rate (since
 \end_inset
 
 .
- The function 
-\family typewriter
-getAggregateArrivalAndServiceRates
-\family default
- is used to find arrival and service rates for each 
-\begin_inset Formula $k$
+ The function used to find arrival and service rates 
+\begin_inset Formula $\forall k$
 \end_inset
 
  in 
 \begin_inset Formula $R_{k}$
 \end_inset
 
+ is 
+\family typewriter
+getAggregateArrivalAndServiceRates
+\family default
 .
  The calculation involves iterating through all the definitions of a process
  and determining the the direction of the transition in each definition(see
@@ -7758,7 +7750,7 @@ reference "eq:GenericAlgoRRCal"
 
  stated in the generic algorithm (Section 2.7.3.1) to calculate reversed rates
  for all passive synchronising actions.
- The code shown in Figure 
+ The code in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Code-reversed-rate-calc"
@@ -8079,7 +8071,7 @@ Checking RCAT Conditions
 The RCAT theorem has three conditions which need to be met for product form
  solution to exist for any system model.
  They are stated in Theorem 2.7.1.
- We have checked all three conditions and in the implementation of RCAT.
+ We have checked all three conditions in this implementation of RCAT.
  If any of the three conditions are violated, the program will exit with
  an exception error.
 \end_layout
@@ -8682,11 +8674,11 @@ activeLabels
 \begin_inset Formula $R_{k},k=1,2$
 \end_inset
 
- with the help of function 
+ and using 
 \family typewriter
 checkForIncomingTransitions
 \family default
- checks to see if is an incoming active action 
+ function checks to see if there is an incoming active action 
 \begin_inset Formula $a$
 \end_inset
 
@@ -8964,24 +8956,25 @@ We then need to check if there are multiple transitions with the same action
 \begin_inset Formula $a$
 \end_inset
 
-, their reversed rates will be calculated and checked to see if equal.
+, their reversed rates will be calculated and checked to see if they are
+ equal.
  The function 
 \family typewriter
 checkThirdRcatCondition
 \family default
- iterates through each 
+ iterates over all 
 \begin_inset Formula $activeLabels$
 \end_inset
 
- for all active processes and 
-\begin_inset Formula $\forall a\in coopLabels\mbox{ }\&\mbox{ }a\in activeLabels$
-\end_inset
-
-, checks if action 
+ for all active processes and checks if action 
 \begin_inset Formula $a$
 \end_inset
 
- has multiple transitions.
+ has multiple transitions, 
+\begin_inset Formula $\forall a\in coopLabels\mbox{ }\&\mbox{ }a\in activeLabels$
+\end_inset
+
+.
  Then its reversed rates are calculated and are checked for equality with
  function 
 \family typewriter
@@ -9088,7 +9081,7 @@ All
 \end_inset
 
  agents to RCAT are M/M/1 queues with 
-\begin_inset Formula $\rho_{k}=\mbox{arrival rate of }R_{k}\backslash\mbox{ service rate of }R_{k}$
+\begin_inset Formula $\rho_{k}=\frac{\mbox{arrival rate of }R_{k}}{\mbox{ service rate of }R_{k}}$
 \end_inset
 
 .
@@ -9114,17 +9107,24 @@ All
 
 \end_inset
 
- On finding the reversed rate for unknown actions, the system of rate equations
- is solved and their values are replaced their 
+The RCAT implementation prints a system of rate equations as output by retrievin
+g them from structure 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ as a part of the implementation stage `Replacing Passive Actions with Reversed
+ Rates'.
+ This system of rate equations is solved and their values are replaced in
+ 
 \begin_inset Formula $\rho_{k}$
 \end_inset
 
  to generate the aforementioned product form result.
  Thus for instance if we derive the rate equation - `
-\begin_inset Formula $x_{a}=\lambda'$
+\begin_inset Formula $x_{a}=\lambda$
 \end_inset
 
-, we replace the value of unknown action rate 
+', we replace the value of unknown action rate 
 \begin_inset Formula $x_{a}$
 \end_inset
 
@@ -9203,22 +9203,32 @@ status open
 
 \begin_layout Plain Layout
 
-> RCATscript(x2, y2) % Running script for reversed rate calculation
+> RCATscript(x2, y2)
 \end_layout
 
 \begin_layout Plain Layout
 
-  Printing passive action rates computed using RCAT algorithm...
+  Printing passive action rates...
 \end_layout
 
 \begin_layout Plain Layout
 
-  Reversed rate for passive action a1: x_a1 = p21*(lambda2 + x_a2)
+  Reversed rate for passive action a1: 
 \end_layout
 
 \begin_layout Plain Layout
 
-  Reversed rate for passive action a2: x_a2 = p12*(lambda1 + x_a1)
+  x_a1 = p21*(lambda2 + x_a2)
+\end_layout
+
+\begin_layout Plain Layout
+
+  Reversed rate for passive action a2: 
+\end_layout
+
+\begin_layout Plain Layout
+
+  x_a2 = p12*(lambda1 + x_a1)
 \end_layout
 
 \begin_layout Plain Layout
@@ -9236,17 +9246,22 @@ status open
 
 \begin_layout Plain Layout
 
-> solve(`x_a1 = p21*(lambda2 + x_a2)', `x_a2 = p12*(lambda1 + x_a1)' ) 
+> solve(`x_a1 = p21*(lambda2 + x_a2)', 
 \end_layout
 
 \begin_layout Plain Layout
 
-  ans = x_a1: [1x1 sym]     
+			`x_a2 = p12*(lambda1 + x_a1)' ) 
 \end_layout
 
 \begin_layout Plain Layout
 
-	    x_a2: [1x1 sym]
+  ans = x_a1: [1x1 sym]
+\end_layout
+
+\begin_layout Plain Layout
+
+			x_a2: [1x1 sym]
 \end_layout
 
 \begin_layout Plain Layout
@@ -9307,7 +9322,7 @@ name "fig:Solving-system-of-rateEqns"
 
 \begin_layout Standard
 In some cases, the rate equations are non-linear.
- To solve non-linear system os equations, we can use MATLAB Library function
+ To solve non-linear system of equations, we can use MATLAB Library function
  
 \family typewriter
 fsolve
@@ -9315,8 +9330,8 @@ fsolve
 .
  It checks if the equations converge to a single value and has the option
  of running multiple iterations with guessed values.
- Another alternative is to use `fixed point iteration', but has not been
- implemented as a part of this project.
+ Another alternative is to use `fixed point iteration', but this has not
+ been implemented as a part of this project.
 \end_layout
 
 \begin_layout Section
@@ -9361,7 +9376,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\ttfamily},language=Matlab,numbers=left,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
 inline false
 status open
 
@@ -9372,17 +9387,25 @@ assertEqual( reversedRates.length(), 1);
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\begin_layout Plain Layout
+
 assertTrue( isequal( reversedRates( `a' ), lambda ) );
 \end_layout
 
 \begin_layout Plain Layout
 
-assertExceptionThrown( @() storeReversedRates( coopLabels, r ),...
 \end_layout
 
 \begin_layout Plain Layout
 
-        `RCATscript:InvalidComputationStoreReversedRates' );
+assertExceptionThrown(@()storeReversedRates(coopLabels,r),
+\end_layout
+
+\begin_layout Plain Layout
+
+`RCATscript:InvalidComputationStoreReversedRates' );
 \end_layout
 
 \end_inset
@@ -9431,17 +9454,28 @@ reference "fig:Code-for-test"
 
 \end_inset
 
- is a code snippet from the test 
+ is a code snippet from a test 
 \family typewriter
-testStoreReversedRates
+`testStoreReversedRates'
 \family default
  which tests if reversed rates are calculated and stored correctly.
- Function 
+ 
+\emph on
+xUnit
+\emph default
+ provides a function 
 \family typewriter
 assertExceptionThrown
 \family default
- tests if the program throws the right exception on being given erroneous
- input.
+ to test if the program throws the right exception on being given erroneous
+ input (as shown on lines 5-6 in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Code-for-test"
+
+\end_inset
+
+).
  This function is very useful for testing program validations.
  Please refer to Appendix for additional test cases.
 \end_layout
@@ -9450,20 +9484,28 @@ assertExceptionThrown
 Program output is verified by running RCAT on various system models, taken
  from research papers and provided by the supervisor, and comparing the
  solutions against the given solutions.
- The implementation has a command line interface which has been user tested
- and been provided with instructions for first time users.
+ The implementation has a command line interface which has been tested by
+ the user.
  User testing by primarily myself and my supervisor has helped correct any
  erroneous or unexpected behaviour by the program.
 \end_layout
 
 \begin_layout Standard
 This concludes the implementation of RCAT.
- The next chapter details the implementation of how running RCAT on multiple
- processes and Stochastic Petri Nets.
+ The next chapter details the implementation of running RCAT on multiple
+ compound agents and Stochastic Petri Nets.
 \end_layout
 
 \begin_layout Chapter
 Implementation of MARCAT and RCAT for SPNs and PITs
+\end_layout
+
+\begin_layout Standard
+This chapter covers the implementation of MARCAT, an extension of RCAT and
+ the design and implementation of RCAT for Stochastic Petri Nets (SPNs).
+ It also introduces Propagation of Instantaneous Transitions (PITs) and
+ provides an implementation design for running RCAT on PITs.
+ 
 \end_layout
 
 \begin_layout Section
@@ -9534,7 +9576,11 @@ reference "fig:Code-to-register-MA"
 \begin_inset Formula $P_{k}$
 \end_inset
 
- given as input and registered them using the registerProcess function.
+ given as input and registered them using the 
+\family typewriter
+registerProcess
+\family default
+ function.
 \end_layout
 
 \begin_layout Standard
@@ -11752,6 +11798,14 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/GQueueChains.svg
+	scale 60
+
+\end_inset
+
 
 \end_layout
 
