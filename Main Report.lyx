@@ -1617,7 +1617,7 @@ S
 \begin_inset Formula $S=M$
 \end_inset
 
- for a Markovian(exponential) service time distribution, while 
+ for a Markovian (exponential) service time distribution, while 
 \begin_inset Formula $S=G$
 \end_inset
 
@@ -2726,8 +2726,7 @@ key "PerformanceModellingHarrisonBook,LectureNotes"
 
 \end_inset
 
- are systems which are network of queues with interconnected inputs and
- outputs.
+ are systems that are network of queues with connected inputs and outputs.
  
 \emph on
 Open
@@ -3077,8 +3076,8 @@ positive customers
 \emph on
 negative customers
 \emph default
- are customers which remove or `cancel' positive customers in the queue
- if it not empty and have no effect on an empty queue.
+ are those customers which remove or `cancel' positive customers in the
+ queue if it is not empty and have no effect on an empty queue.
  They are useful to remove traffic if a network is congested.
 \end_layout
 
@@ -4813,7 +4812,7 @@ key "SPNs"
 \end_inset
 
  (SPNs) are a popular higher level formalism for Markovian (and other interactin
-g) systems apart from Stochastic Process Algebras like PEPA.
+g) systems apart from Stochastic Process Algebra like PEPA.
  They are more expressive in a natural graphical way than SPAs but are more
  difficult to analyse structurally.
 \end_layout
@@ -4840,6 +4839,9 @@ Definition 2.8.1
 
 \begin_layout Plain Layout
 A stochastic Petri net can be defined as a tuple, 
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Formula $SPN=(\mathcal{P},\mathcal{T},\mathcal{X}(\mbox{ }.\mbox{ }),\mathrm{I}(\mbox{ }.\mbox{ }),\mathrm{O}(\mbox{ }.\mbox{ }),m_{0})$
 \end_inset
 
@@ -5223,10 +5225,14 @@ Consider a Building block
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\begin{cases}
+\begin_inset Formula 
+\[
+\begin{cases}
 \rho_{y}=\prod_{i\in y}\rho_{i} & \forall y\mbox{: }T_{y},T_{y}'\in\mathcal{T}\mbox{ }\wedge\mbox{ }|y|\geq1\\
 \rho_{i}=\frac{\lambda_{i}}{\mu_{i}} & \forall i\mbox{ : }T_{i},T_{i}'\in\mathcal{T},\mbox{ }1\leq i\leq N
-\end{cases}$
+\end{cases}
+\]
+
 \end_inset
 
 
@@ -5238,7 +5244,11 @@ then the net’s balance equations – and hence stationary probabilities when
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pi(m_{1},\mbox{ . . . },m_{N})\propto\prod_{i=1}^{N}\rho_{i}^{m_{i}}$
+\begin_inset Formula 
+\[
+\pi(m_{1},\mbox{ . . . },m_{N})\propto\prod_{i=1}^{N}\rho_{i}^{m_{i}}
+\]
+
 \end_inset
 
 .
@@ -5453,7 +5463,7 @@ reference "fig:simple-SPN-2BB"
 \begin_inset Formula $T_{45}$
 \end_inset
 
- of the other building block (
+ of the second building block (
 \begin_inset Formula $BB_{2}$
 \end_inset
 
