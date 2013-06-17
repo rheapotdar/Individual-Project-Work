@@ -5604,7 +5604,7 @@ Design Decisions
 
 \begin_layout Standard
 The first design consideration was the API of the RCAT solver.
- The input to the RCAT algorithm (Theorem 2.7.1) are two PEPA compound agents
+ The inputs to the RCAT algorithm (Theorem 2.7.1) are two PEPA compound agents
  synchronising over some action labels.
  Thus while considering the input to the automated version of RCAT, there
  were two choices:
@@ -5618,24 +5618,105 @@ User splits input requiring minimal automated parsing
 In this possible implementation, the user is required to write PEPA processes
  such that they be can directly used in reversed rate calculation with minimal
  automated parsing.
+ For example, a PEPA description, 
+\begin_inset Formula $P_{n}=(e,\lambda).P_{n+1}(n\geq0)$
+\end_inset
+
+, can be converted to a process structure in MATLAB as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Bad-Input-example"
+
+\end_inset
+
+.
  
-\begin_inset Note Note
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
-add examples
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+p( 1 ).definition( 1, : ) = 
+\end_layout
+
+\begin_layout Plain Layout
+
+{ `n', `e', `lambda', 'n+1', 'n>=0' } 
 \end_layout
 
 \end_inset
 
- This option is thus easier to program but is non-intuitive and cumbersome
+
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "0.8pt"
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+PEPA Process Description converted to MATLAB format
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Bad-Input-example"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This option is thus easier to program but is non-intuitive and cumbersome
  to the user.
  The program would also be prone to calculation errors as we would not be
  able to robustly validate the input.
  An additional disadvantage would be coupling the API to close to the functional
  logic of RCAT.
  Finally it would also require the user to have some knowledge of the programmin
-g language to supply a ready made PEPA structure as input.
+g language to supply a ready made PEPA structure as input as can be seen
+ from the Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Bad-Input-example"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -5809,9 +5890,9 @@ reference "fig:PEPA-Process-Simple-Desc"
 
 , it is apparent that with minimal substitution we can translate a pure
  PEPA process description to code input.
- RCAT also requires as input the cooperating compound agents (processes)
- with the actions they are synchronising on, which are converted into code
- input as shown in Figure 
+ RCAT also requires as input the cooperating agents (processes) with the
+ actions they are synchronising on, which are converted into code input
+ as shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:PEPA-Coop-Input-eg"
@@ -5904,15 +5985,13 @@ reference "fig:PEPA-Coop-Input-eg"
 
  for parsing.
  
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-inputs change when sspd toggle is added?
 \end_layout
 
-\end_inset
+\begin_layout Subsubsection*
+Running RCAT in MATLAB
+\end_layout
 
+\begin_layout Standard
 The RCAT algorithm is run as shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -6038,6 +6117,10 @@ name "fig:Func-to-run-rcat"
 
 \end_layout
 
+\begin_layout Subsubsection*
+Choice of programming language
+\end_layout
+
 \begin_layout Standard
 The next design consideration was the choice of programming language and
  effort was made to make a choice comfortable for both the developer and
@@ -6057,25 +6140,16 @@ Symbolic Math Toolbox
 \end_layout
 
 \begin_layout Standard
-Other languages considered were Python, Java and Mathematica.
+Other languages considered were Python and Java.
  Python has a symbolic manipulation library called `
 \emph on
 sympy' 
 \emph default
 which is a lightweight normal Python module which aims to be a full-featured
  computer algebra system.
- MATLAB was chosen over Python as it is better tested and documented.
- 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-insert stuff about pythons shortcomings and sympy lacking
-\end_layout
-
-\end_inset
-
-Java despite is object oriented capabilities was not chosen as a symbolic
+ MATLAB was chosen over Python as it is better tested and documented and
+ because of its vast Library of functions.
+ Java despite is object oriented capabilities was not chosen as a symbolic
  manipulator would have to be written from scratch and robustly tested thus
  making the task extremely time consuming.
 \end_layout
@@ -6184,7 +6258,7 @@ Thus the program
 \family typewriter
 RCATscript
 \family default
-, on receiving input a process description string (Figure 
+, on receiving input, a process description string (Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:PEPA-Process-Simple-Desc"
@@ -6253,14 +6327,14 @@ matches = regexp( processDescription,
 \backslash
 .([A-Z][0-9]*)
 \backslash
-((.+)
-\backslash
-)(?: for )?(.*)', 
+
 \end_layout
 
 \begin_layout Plain Layout
 
-		`tokens' );
+((.+)
+\backslash
+)(?: for )?(.*)', `tokens' );
 \end_layout
 
 \end_inset
@@ -6339,7 +6413,8 @@ regexp
 for
 \family default
  and optionally match anything after it.
- 
+ It thus gives the flexibility of having an optional state domain descriptor
+ for a process.
 \end_layout
 
 \begin_layout Standard
@@ -6359,15 +6434,6 @@ reference "fig:Code-parsing-pepa-desc"
 {P, n, e, lambda, n+1, n>=0}
 \family default
 .
- It is noteworthy that the regular expression string (parameter two in regexp
- function in Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Code-parsing-pepa-desc"
-
-\end_inset
-
-) allows processes to have an optional state domain.
 \end_layout
 
 \begin_layout Subsubsection
@@ -6408,12 +6474,15 @@ reference "fig:PEPA-Process-Simple-Desc"
 \end_layout
 
 \begin_layout Standard
-The program 
+Function 
 \family typewriter
 addToProcessStructure
 \family default
- stores processes in a map called registeredProcesses, ordered by process
- name.
+ stores processes, ordered by process name, in a map called 
+\emph on
+registeredProcesses
+\emph default
+.
  So multiple descriptions of any process 
 \begin_inset Formula $P$
 \end_inset
@@ -6498,17 +6567,22 @@ keyset = { `transitionFromState',`actionName',`actionRate',
 
 \begin_layout Plain Layout
 
-	`transitionToState',`domain' };
+`transitionToState',`domain' };
 \end_layout
 
 \begin_layout Plain Layout
 
-valueset = { eval(processDefinition{2}), actionLabel, actionRate, 
+valueset = { eval(processDefinition{2}), actionLabel, 
 \end_layout
 
 \begin_layout Plain Layout
 
-	eval(processDefinition{6}), [domainMin, domainMax] };
+actionRate, eval(processDefinition{6}), 
+\end_layout
+
+\begin_layout Plain Layout
+
+[domainMin, domainMax] };
 \end_layout
 
 \end_inset
@@ -6570,8 +6644,8 @@ transitionFromState
 transitionToStat
 \emph default
 e is the destination state for that transition.
- They are stored as a MATLAB symbolic variables to simplify future implementatio
-n stages such as RCAT condition checking (Section 3.2.3).
+ They are stored as a MATLAB symbolic variables to simplify implementation
+ stages such as RCAT condition checking (Section 3.2.3).
 \end_layout
 
 \begin_layout Enumerate
@@ -6589,7 +6663,12 @@ actionRate
 \emph default
  is stored as MATLAB symbolic variable as it is used extensively in reversed
  rate calculations (Section 3.2.2).
- RCAT requires all passive action rates (rate 
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+RCAT requires all passive action rates (rate 
 \begin_inset Formula $=\top$
 \end_inset
 
@@ -6616,10 +6695,14 @@ actionRate
 `x_a'
 \emph default
 .
- Action rates are also parsed to check if they are mathematical expressions
+ 
+\end_layout
+
+\begin_layout Enumerate
+Action rates are also parsed to check if they are mathematical expressions
  using function 
 \family typewriter
-stringToMATLABExpr.
+stringToMatlabExpr.
 
 \family default
  It parses a string, finds variables in the string, makes them symbolic
@@ -6632,20 +6715,21 @@ stringToMATLABExpr.
  program to assume the action was passive when it was actually active.
 \end_layout
 
+\end_deeper
 \begin_layout Enumerate
 
 \emph on
 domain
 \emph default
- is an equality or inequality mathematical expression.
+ is an equality or an inequality mathematical expression.
  This is analysed to give a range of values for which the state transition
  holds.
  The function 
 \family typewriter
 parseDomain
 \family default
- achieves this by parsing the (in)equality string and return a tuple of
- (
+ achieves this by parsing the (in)equality string and returning a tuple
+ of (
 \emph on
 domainMin
 \emph default
@@ -6673,7 +6757,7 @@ domainMax
 \end_inset
 
 .
- While the maximum and minimum domain of a condition string 
+ But the maximum and minimum domain of a condition string 
 \begin_inset Formula $n=0$
 \end_inset
 
@@ -6761,8 +6845,7 @@ createRk
 \family typewriter
 definitions
 \family default
- field refers to the parsed PEPA descriptions in the previous section, the
- 
+ field refers to the parsed PEPA descriptions, the 
 \family typewriter
 activeLabels
 \family default
@@ -6900,15 +6983,15 @@ registeredProcesses, activeActionLabels
 \family typewriter
 passiveActionLabels
 \family default
- generated in the function 
+ that were generated in the function 
 \family typewriter
 addToProcessStructure
 \family default
- using process number 
-\begin_inset Formula $k$
+ and the process name (for example 
+\begin_inset Formula $P$
 \end_inset
 
- and instantiates the three fields of the structure 
+) as the key to instantiate the three fields of the structure 
 \family typewriter
 r
 \family default
@@ -7036,14 +7119,14 @@ The function
 registerCoop
 \family default
  parses input for a PEPA cooperation (synchronisation) between two processes.
- A cooperation as shown in Figure 
+ A cooperation, as shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:PEPA-Coop-Input-eg"
 
 \end_inset
 
- is the second input to the API function RCATscript.
+, is the second input to the API function RCATscript.
  The cooperation string is parsed using regular expressions as in Figure
  
 \begin_inset CommandInset ref
@@ -7166,19 +7249,6 @@ name "fig:Code-parsing-pepa-coop"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsubsection
-Validation of user input
-\end_layout
-
-\begin_layout Standard
-User input, the PEPA textual description, is validated by various functions
- of the program to ensure the input matches a valid PEPA process.
- Much of the syntax is validated by the use of regular expressions which
- would give an error if there is a `match' error.
- Semantic validations on the action rates, transitions compared to the process
- domain are also implemented, the code for which is provided in the Appendix.
 \end_layout
 
 \begin_layout Subsection
@@ -10825,7 +10895,7 @@ convertToSymbolicRates
 \family default
 , which used the function 
 \family typewriter
-stringToMATLABExpr
+stringToMatlabExpr
 \family default
  ( a helper function used for converting strings to MATLAB symbolic expressions).
  
