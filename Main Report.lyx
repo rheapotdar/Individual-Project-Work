@@ -134,6 +134,15 @@ setcounter{page}{1}
 \begin_layout Standard
 \noindent
 \align center
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
 
 \series bold
 Abstract
@@ -167,15 +176,15 @@ for capacity planning.
 An established theorem, the Reversed Compound Agent Theorem (RCAT), derives
  mechanically the product-form solutions for stochastic models defined as
  a composition of two or more smaller stochastic models, under some conditions.
- Its use of the divide-and-conquer approach solve problems of state space
- explosion and computationally complexity which standard methods face for
- large and complex networks.
+ Its use of the divide-and-conquer approach solves problems of state space
+ explosion and computationally complexity, which standard methods face while
+ finding product-forms for large and complex networks.
 \end_layout
 
 \begin_layout Standard
 This report presents a working implementation of RCAT in MATLAB and its
  extension Multiple Agent RCAT which can be applied to a wide variety of
- queuing networks with multiple queuing nodes.
+ queuing networks with multiple components.
  It also provides the first working implementation of RCAT applied to stochastic
  Petri nets thus expanding its utility to analyse models composed of both
  Petri nets and queuing networks.
@@ -205,6 +214,20 @@ This report presents a working implementation of RCAT in MATLAB and its
 
 \series bold
 Acknowledgements
+\end_layout
+
+\begin_layout Standard
+I would like to thank my supervisor, Prof.
+ Peter Harrison, for his tremendous support, motivation and invaluable advice
+ throughout this project, and also my family and friends for their encouragement
+ and blessings.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -242,13 +265,6 @@ setcounter{tocdepth}{2}
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage pagebreak
-\end_inset
-
-
 \begin_inset CommandInset toc
 LatexCommand tableofcontents
 
@@ -276,10 +292,10 @@ Motivation
 In the recent years, there has been an increase in the complexity of computer
  systems making performance models essential for understanding the behaviour
  of these systems.
- The performance models help analyse performance measures of computer systems
- such as utilisation, throughput and help ensure that the systems can manage
- varying workload, that the utilisation of resources is fair and the list
- goes on.
+ These performance models help analyse performance measures of computer
+ systems such as utilisation, throughput and help ensure that the systems
+ can manage varying workload, that the utilisation of resources is fair
+ and the list goes on.
  To analyse these computer systems, they are modelled using stochastic models
  which are then used to evaluate various performance measures of the systems.
 \end_layout
@@ -291,8 +307,8 @@ Queuing networks (models with underlying Markov Processes) and stochastic
  However due to the increase in complexity, the number of components of
  systems have increased, leading to a large state space and thus very high
  computational costs while analysing stochastic models.
- To improve the efficiency of this process, considerable effort devoted
- in finding the 
+ To improve the efficiency of this process, considerable effort has been
+ devoted in finding the 
 \emph on
 product-form
 \emph default
@@ -320,16 +336,16 @@ key "HarrisonPaperTBTinMAP2003"
 
 \end_inset
 
- has been proved which provides a method for finding product-form solutions
+ has been proved, which provides a method for finding product-form solutions
  using the divide-and-conquer approach.
- The RCAT derives mechanically the product form solutions for steady state
- probabilities of stochastic models defined as a cooperation (or synchronisation
-) of two or more smaller stochastic models subject to some conditions.
+ RCAT derives mechanically the product form solutions for steady state probabili
+ties of stochastic models defined as a cooperation (or synchronisation)
+ of two or more smaller stochastic models under some conditions.
  This approach for deriving the steady state probabilities of Markov processes
  does not require Kolmogorov equations to be solved.
- The RCAT uses PEPA (Performance Evaluation Process Algebra), a Markovian
- Process Algebra formalism, which has an appropriate recursive structure
- for hierarchal analysis done by RCAT.
+ RCAT uses PEPA (Performance Evaluation Process Algebra), a Markovian Process
+ Algebra formalism, which has an appropriate recursive structure for hierarchal
+ analysis done by RCAT.
  But this does not limit the application of RCAT to systems specified by
  Markovian Process Algebra.
  It can also be applied to derive product-forms in Stochastic Petri Nets
@@ -346,7 +362,7 @@ key "GelenbeGNetworks"
 \end_inset
 
  with negative customers, with ease comparable to deriving product form
- solutions of simpler Jackson queuing networks or of the differently specified
+ solutions of simpler Jackson queuing networks or the differently specified
  Stochastic Petri Nets.
  This shows its compositional utility in validating product form solutions
  
@@ -378,12 +394,12 @@ key "RCAT2009Paper"
 
 \end_inset
 
- theorems, allowing construction of product forms of queuing models composed
- of more than two processes.
+, allowing construction of product forms of queuing models composed of more
+ than two processes.
 \end_layout
 
 \begin_layout Itemize
-Automatic construction of `rate equations' for construction of product forms
+Automatic construction of `rate equations' used to derive product form solutions
  of Stochastic Petri Nets (SPNs).
 \end_layout
 
@@ -395,20 +411,14 @@ A parser which translates a pure PEPA description as text input into a format
 \end_layout
 
 \begin_layout Itemize
-Developing a formalism for specifying SPNs as programmable input and implementin
-g a parser for the same.
+A formalism for specifying SPNs as programmable input and a parser for translati
+ng that input into a format required by the implementation
 \end_layout
 
 \begin_layout Itemize
-Ensures the accuracy of the results generated by running the implementation
- over a varied class of queuing models and Petri nets.
-\end_layout
-
-\begin_layout Itemize
-Ensures the implementation has ease of use by providing a clean and simple
- API.
- The software can be used without any knowledge of the underlying implementation
- with only high level instructions on using the command-line interface.
+Ensuring the accuracy of the results generated by running the implementation
+ over a varied class of queuing models and Petri nets and ensuring the implement
+ation has ease of use by providing a clean and simple API.
 \end_layout
 
 \begin_layout Section
@@ -425,10 +435,10 @@ The remainder of the report is organised as follows:
 Chapter 2 
 \series default
 provides a brief introduction to Markov Chains, Markov processes, Reversed
- Processes and Queuing networks; then covers the theory necessary to comprehend
- the RCAT such as PEPA and proceeds to explain the RCAT and the (E)RCAT;
- finally concludes with a background to Stochastic Petri Nets and product
- form Building blocks.
+ Processes and Queuing networks.
+ It then covers the theory necessary to comprehend the RCAT such as PEPA
+ and proceeds to explain RCAT and (E)RCAT, and concludes with a background
+ to Stochastic Petri Nets and product form Building blocks.
 \end_layout
 
 \begin_layout Itemize
@@ -437,9 +447,9 @@ provides a brief introduction to Markov Chains, Markov processes, Reversed
 Chapter 3 
 \series default
 describes the design choices and the implementation details of automating
- the RCAT starting from the parser - PEPA to MATLAB - and concluding with
- generating a system of rate equations and how to use them to generate product
- form solutions.
+ RCAT, starting from the parser - PEPA to MATLAB - and concluding with generatin
+g a system of rate equations and how to use them to generate product form
+ solutions.
 \end_layout
 
 \begin_layout Itemize
@@ -447,10 +457,11 @@ describes the design choices and the implementation details of automating
 \series bold
 Chapter 4 
 \series default
-describes the implementation details of extending the RCAT to the MARCAT
- and the implementation details of implementing RCAT for SPNs.
- It details parsing choices, a new formalism for the SPNs and concludes
- with how product form solutions are generated for SPNs.
+describes the implementation details of extending RCAT to MARCAT and the
+ implementation details of implementing RCAT for SPNs.
+ It details parsing choices, a new formalism for the SPNs, how product form
+ solutions are generated for SPNs and concludes with a design analysis for
+ implementing RCAT for chains of interactions between queues.
 \end_layout
 
 \begin_layout Itemize
@@ -12569,9 +12580,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\noindent
+\align center
 \begin_inset Graphics
-	filename images/G-queue.png
-	scale 70
+	filename images/G-queue.svg
+	scale 55
 
 \end_inset
 
