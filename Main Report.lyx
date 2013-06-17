@@ -173,9 +173,9 @@ An established theorem, the Reversed Compound Agent Theorem (RCAT), derives
 \end_layout
 
 \begin_layout Standard
-This report presents an implementation of RCAT in MATLAB and its extension
- Multiple Agent RCAT which can be applied to a wide variety of queuing networks
- with multiple queuing nodes.
+This report presents a working implementation of RCAT in MATLAB and its
+ extension Multiple Agent RCAT which can be applied to a wide variety of
+ queuing networks with multiple queuing nodes.
  It also provides the first working implementation of RCAT applied to stochastic
  Petri nets thus expanding its utility to analyse models composed of both
  Petri nets and queuing networks.
@@ -1704,7 +1704,7 @@ key "PerformanceModellingHarrisonBook"
 .
  Considering the M/M/1 queue in equilibrium, in the steady state, we can
  write down the probability flux balance equations passing in and out of
- the states shown in 
+ the states shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:M/M/1-Queue-state"
@@ -1721,13 +1721,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
+\noindent
+\align center
 \begin_inset Graphics
-	filename images/MM1_Queue_state_transition.png
-	scale 70
+	filename images/MM1_Queue_state_transition.svg
+	scale 55
 
 \end_inset
 
@@ -2586,9 +2584,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\noindent
+\align center
 \begin_inset Graphics
-	filename images/KolgomorovCriteriaReversedProcess.png
-	scale 50
+	filename images/KolgomorovCriteriadrawing.svg
+	scale 65
 	rotateOrigin centerTop
 
 \end_inset
@@ -2622,7 +2622,7 @@ name "fig:A-forward-Markov"
 \end_layout
 
 \begin_layout Standard
-Consider a 3-state CTMC, as shown in 
+Consider a 3-state CTMC, as shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:A-forward-Markov"
@@ -4571,9 +4571,11 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
+\noindent
+\align center
 \begin_inset Graphics
-	filename images/tandemMM2Network.png
-	scale 80
+	filename images/tandemMM2Network.svg
+	scale 55
 
 \end_inset
 
@@ -4606,7 +4608,7 @@ name "fig:simple-tandemQ"
 \end_layout
 
 \begin_layout Standard
-Consider a tandem queue system, as in 
+Consider a tandem queue system, as in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:simple-tandemQ"
@@ -5075,7 +5077,7 @@ ns.
 
 .
  Finally condition 3 requires the SPN to be connected.
- 
+ Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Example-BB-Simple"
@@ -5104,8 +5106,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\noindent
+\align center
 \begin_inset Graphics
-	filename images/SimpleBB.png
+	filename images/SimpleBB.svg
+	scale 70
 
 \end_inset
 
@@ -5242,7 +5247,7 @@ key "SPNs"
 \end_inset
 
  for detailed proof of Theorem 2.8.1.
- Thus the conditions required for the building block in 
+ Thus the conditions required for the building block in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Example-BB-Simple"
@@ -5375,8 +5380,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\noindent
+\align center
 \begin_inset Graphics
-	filename images/SimpleSPN.png
+	filename images/SimpleSPN.svg
+	scale 60
 
 \end_inset
 
@@ -5412,7 +5420,7 @@ name "fig:simple-SPN-2BB"
 \end_layout
 
 \begin_layout Standard
-The 
+The Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:simple-SPN-2BB"
@@ -10063,8 +10071,10 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\noindent
+\align center
 \begin_inset Graphics
-	filename images/SimpleBB.png
+	filename images/SimpleBB.svg
 	scale 80
 
 \end_inset
@@ -10274,9 +10284,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\noindent
+\align center
 \begin_inset Graphics
-	filename images/SimpleSPN.png
-	scale 80
+	filename images/SimpleSPN.svg
+	scale 55
 
 \end_inset
 
@@ -11921,9 +11933,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\noindent
+\align center
 \begin_inset Graphics
-	filename images/tandemMM2Network.png
-	scale 80
+	filename images/tandemMM2Network.svg
+	scale 55
 
 \end_inset
 
@@ -12147,9 +12161,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\noindent
+\align center
 \begin_inset Graphics
-	filename images/GeneralTandem2Network.png
-	scale 70
+	filename images/GeneralTandem2Network.svg
+	scale 75
 
 \end_inset
 
@@ -13959,12 +13975,14 @@ reference "fig:SPN-with-3BBs"
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
+\noindent
+\align center
 \begin_inset Graphics
-	filename images/SPNwith3BBs.png
-	scale 35
+	filename images/SPNwith3BBs.svg
+	scale 41
 
 \end_inset
 
