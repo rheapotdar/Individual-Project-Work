@@ -572,7 +572,7 @@ An established theorem, the Reversed Compound Agent Theorem (RCAT), derives
  mechanically the product-form solutions for stochastic models defined as
  a composition of two or more smaller stochastic models, under some conditions.
  Its use of the divide-and-conquer approach solves problems of state space
- explosion and computationally complexity, which standard methods face while
+ explosion and computational complexity, which standard methods face while
  finding product-forms for large and complex networks.
 \end_layout
 
@@ -694,7 +694,7 @@ Motivation
 In the recent years, there has been an increase in the complexity of computer
  systems making performance models essential for understanding the behaviour
  of these systems.
- These performance models help determine performance measures of computer
+ Such performance models help determine performance measures of computer
  systems such as utilisation, throughput and help ensure that the systems
  can manage varying workload, that the utilisation of resources is fair
  and the list goes on.
@@ -716,7 +716,7 @@ Queuing networks (models with underlying Markov Processes) and stochastic
 product-form
 \emph default
  solutions for the steady state probabilities of systems.
- The product-form solutions, when it exists, can be derived for the joint
+ The product-form solution, when it exists, can be derived for the joint
  steady state probabilities of interacting Markov processes by finding the
  the reversed process of the interaction.
  Analytically, this involves solving Kolmogorov (balance) equations 
@@ -862,7 +862,7 @@ Chapter 4
 \series default
 describes the implementation details of extending RCAT to MARCAT and the
  implementation details of implementing RCAT for SPNs.
- It details parsing choices, a new formalism for the SPNs, showing how product
+ It details parsing choices, a new formalism for the SPNs, shows how product
  form solutions are generated for SPNs and concludes with a design analysis
  for implementing RCAT for chains of interactions between queues.
 \end_layout
@@ -12458,7 +12458,14 @@ On parsing the PEPA input and generating process structure
 \emph on
 struct
 \emph default
-, we implement the algorithm given in to derive rate equations.
+, we implement the algorithm given in the paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chains"
+
+\end_inset
+
+ to derive rate equations.
  The algorithm has an empty set of rate equations initially.
  It starts by iteration over cooplabels, i.e.
  synchronising actions, and derives rate equations for each using the rate
@@ -12480,8 +12487,9 @@ reference "eq:GenericAlgoRRCal"
 \end_layout
 
 \begin_layout Standard
-In the next chapter, we evaluate the usefulness and correctness of the implement
-ed RCAT, MARCAT and RCAT for Stochastic Petri Nets.
+This concludes the design and implementation of the project.
+ In the next chapter, we evaluate the usefulness and correctness of the
+ implemented RCAT, MARCAT and RCAT for Stochastic Petri Nets.
 \end_layout
 
 \begin_layout Chapter
@@ -15067,7 +15075,7 @@ n of rate equations used to derive product forms for queuing models.
  models defined in PEPA syntax.
  On correctly parsing the multiple process descriptions, the software has
  been able to generate rate equations for synchronising actions.
- The solutions of these equations are then used to to calculate the marginal
+ The solutions of these equations are then used to calculate the marginal
  probabilities of process nodes which are then used in product form construction
  of queuing models.
  
