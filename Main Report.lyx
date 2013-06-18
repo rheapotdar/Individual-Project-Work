@@ -814,7 +814,7 @@ A parser which translates a pure PEPA description as text input into a format
 
 \begin_layout Itemize
 A formalism for specifying SPNs as programmable input and a parser for translati
-ng that input into a format required by the implementation
+ng that input into a format required by the implementation.
 \end_layout
 
 \begin_layout Itemize
@@ -936,7 +936,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 2.2.1.1
+Definition 2.1.1
 \end_layout
 
 \begin_layout Plain Layout
@@ -1008,7 +1008,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 2.2.1.2
+Definition 2.1.2
 \end_layout
 
 \begin_layout Plain Layout
@@ -1077,7 +1077,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 2.2.1.3
+Definition 2.1.3
 \end_layout
 
 \begin_layout Plain Layout
@@ -1142,7 +1142,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 2.2.1.4
+Definition 2.1.4
 \end_layout
 
 \begin_layout Plain Layout
@@ -1200,7 +1200,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 2.2.1.6
+Definition 2.1.6
 \end_layout
 
 \begin_layout Plain Layout
@@ -1269,7 +1269,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 2.2.1.5
+Definition 2.1.5
 \end_layout
 
 \begin_layout Plain Layout
@@ -1282,7 +1282,7 @@ Let
 \begin_inset Formula $m_{j}<\infty$
 \end_inset
 
- and
+ and 
 \begin_inset Formula $\pi_{j}=1/m_{j}$
 \end_inset
 
@@ -1340,7 +1340,7 @@ If
 \begin_inset Formula $\mbox{\{}\pi_{j}|j=0,1,...\mbox{\}}$
 \end_inset
 
- exist and
+ exist and 
 \begin_inset Formula $\pi_{j}=1/m_{j}$
 \end_inset
 
@@ -1865,7 +1865,7 @@ where
 \begin_layout Standard
 \begin_inset Formula 
 \begin{eqnarray*}
-P(\mbox{arrival in }(t,t+h)) & = & 1-e^{-\lambda t}\\
+P(\mbox{arrival in }(t,t+h)) & = & 1-e^{-\lambda h}\\
  & = & \lambda h+o(h)
 \end{eqnarray*}
 
@@ -1885,7 +1885,7 @@ From the above result we get the instantaneous transition rates which can
 q_{ij} & = & \begin{cases}
 \lambda & \mbox{if }j=i+1\\
 0 & \mbox{if}j\neq i,i+1\\
- & \mbox{not defined if}j=i
+ & \mbox{not defined if }j=i
 \end{cases}
 \end{eqnarray*}
 
@@ -2050,7 +2050,7 @@ m
 K
 \emph default
  denotes the capacity of the system or the maximum number of customers allowed
- in the system
+ in the system.
 \end_layout
 
 \begin_layout Itemize
@@ -2402,7 +2402,7 @@ key "BradleyRP&RCAT,HarrisonPaperTBTinMAP2003,PerformanceModellingHarrisonBook,L
  a Markov process in equilibrium and therefore obtain product-form stationary
  distributions of complex processes such queuing network models.
  Thus comprehension of reversed processes helps in applying the RCAT theorem
- (discussed in Section 2.7).
+ (discussed in Section 2.6.2).
 \end_layout
 
 \begin_layout Standard
@@ -3708,7 +3708,7 @@ or synchronisation operation.
 \end_inset
 
 .
- Synchronising actions much be activated jointly by both components.
+ Synchronising actions must be activated jointly by both components.
  Thus if component 
 \begin_inset Formula $P_{1}$
 \end_inset
@@ -4114,7 +4114,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 2.7.1
+Definition 2.6.5
 \end_layout
 
 \begin_layout Plain Layout
@@ -4200,7 +4200,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Theorem 2.7.1 Reversed Compound Agent Theorem
+Theorem 2.6.1 Reversed Compound Agent Theorem
 \end_layout
 
 \begin_layout Plain Layout
@@ -4381,7 +4381,7 @@ key "HarrisonPaperTBTinMAP2003"
 \end_layout
 
 \begin_layout Standard
-Conditions 1 and 2 in the RCAT (Theorem 2.7.1) requires every passive action
+Conditions 1 and 2 in the RCAT (Theorem 2.6.1) requires every passive action
  to be enabled in every derivative (state) of both the forward and reversed
  cooperating agents.
  This ensures that the total outgoing rate from any state is the same in
@@ -4405,7 +4405,7 @@ key "ercat"
 
  that might not be present in every derivative of the forward and reversed
  cooperating agents.
- This is an extension to Definition 2.7.1
+ This is an extension to Definition 2.6.5
 \end_layout
 
 \begin_layout Standard
@@ -4425,7 +4425,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 2.7.2
+Definition 2.6.6
 \end_layout
 
 \begin_layout Plain Layout
@@ -4590,7 +4590,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Theorem 2.7.2 Extended
+Theorem 2.6.2 Extended
 \series default
  
 \series bold
@@ -4621,7 +4621,7 @@ The reversed rate
 \end_inset
 
  is the same at every instance, given by the solution of the rate equations,
- as in the original RCAT (Theorem 2.7.1).
+ as in the original RCAT (Theorem 2.6.1).
 \end_layout
 
 \begin_layout Enumerate
@@ -4732,10 +4732,10 @@ Practical Application of the RCAT method
 \end_layout
 
 \begin_layout Standard
-For using the RCAT method practically, the algorithm detailed in section
- 2.7.3.1 can be used.
+For using the RCAT method practically, the algorithm detailed below can
+ be used.
  This algorithm does not require the whole reversed processes to be determined
- in RCAT Theorem 2.7.1 but does require the specific reversed rates of the
+ in RCAT Theorem 2.6.1 but does require the specific reversed rates of the
  synchronising active actions.
  These rates are computed using equation 
 \begin_inset CommandInset ref
@@ -5215,7 +5215,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 2.8.1
+Definition 2.6.7
 \end_layout
 
 \begin_layout Plain Layout
@@ -5324,7 +5324,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Definition 2.8.2
+Definition 2.6.8
 \end_layout
 
 \begin_layout Plain Layout
@@ -5572,7 +5572,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Theorem 2.8.1
+Theorem 2.6.3
 \end_layout
 
 \begin_layout Plain Layout
@@ -5648,7 +5648,7 @@ key "SPNs"
 
 \end_inset
 
- for detailed proof of Theorem 2.8.1.
+ for detailed proof of Theorem 2.6.3.
  Thus the conditions required for the building block in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -5681,7 +5681,7 @@ reference "fig:Example-BB-Simple"
 \end_layout
 
 \begin_layout Standard
-From Theorem 2.8.1, the following corollary can be derived.
+From Theorem 2.6.3, the following corollary can be derived.
 \end_layout
 
 \begin_layout Standard
@@ -5701,7 +5701,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Corollary 2.8.1
+Corollary 2.6.1
 \end_layout
 
 \begin_layout Plain Layout
@@ -5709,7 +5709,7 @@ Consider a Building block
 \begin_inset Formula $S$
 \end_inset
 
- in product form as defined in Theorem 2.8.1, let 
+ in product form as defined in Theorem 2.6.3, let 
 \begin_inset Formula $T_{y}′\in T_{O}$
 \end_inset
 
@@ -5926,7 +5926,7 @@ We then derive rate equations for unknowns
 \begin_inset Formula $x_{23}\mbox{ and }x_{45}$
 \end_inset
 
- by applying RCAT and using corollary 8.1.
+ by applying RCAT and using corollary 2.6.1.
  Thus the rate equations are:
 \begin_inset Formula 
 \[
@@ -5995,7 +5995,7 @@ Design Decisions
 
 \begin_layout Standard
 The first design consideration was the API of the RCAT solver.
- The inputs to the RCAT algorithm (Theorem 2.7.1) are two PEPA compound agents
+ The inputs to the RCAT algorithm (Theorem 2.6.1) are two PEPA compound agents
  synchronising over some action labels.
  Thus while considering the input to the automated version of RCAT, there
  were two choices:
@@ -6053,7 +6053,7 @@ p( 1 ).definition( 1, : ) =
 
 \begin_layout Plain Layout
 
-{ `n', `e', `lambda', 'n+1', 'n>=0' } 
+{ `n', `e', `lambda', `n+1', `n>=0' } 
 \end_layout
 
 \end_inset
@@ -6551,7 +6551,7 @@ Before starting implementation, we decided to break the RCAT Theorem into
  Since the project was not object oriented, we structured the system according
  to the implementation stages.
  These undermentioned implementation stages are based on the generic RCAT
- algorithm detailed in the background (Section 2.7.3).
+ algorithm detailed in the background (Section 2.6.2).
 \end_layout
 
 \begin_layout Enumerate
@@ -7036,7 +7036,7 @@ transitionToStat
 \emph default
 e is the destination state for that transition.
  They are stored as a MATLAB symbolic variables to simplify implementation
- stages such as RCAT condition checking (Section 3.2.3).
+ stages such as RCAT condition checking (Section 3.2.4).
 \end_layout
 
 \begin_layout Enumerate
@@ -7440,7 +7440,7 @@ for i = 1:numOfProcesses
 
 \begin_layout Plain Layout
 
-	= setActionLabels(activeActionLabels, processKeyset{1,i});
+	= setActionLabels(activeActionLabels,processKeyset{1,i});
 \end_layout
 
 \begin_layout Plain Layout
@@ -7450,7 +7450,7 @@ for i = 1:numOfProcesses
 
 \begin_layout Plain Layout
 
-	= setActionLabels(passiveActionLabels, processKeyset{1,i});     
+	= setActionLabels(passiveActionLabels,processKeyset{1,i});     
 \end_layout
 
 \begin_layout Plain Layout
@@ -7517,7 +7517,11 @@ reference "fig:PEPA-Coop-Input-eg"
 
 \end_inset
 
-, is the second input to the API function RCATscript.
+, is the second input to the API function 
+\family typewriter
+RCATscript
+\family default
+.
  The cooperation string is parsed using regular expressions as in Figure
  
 \begin_inset CommandInset ref
@@ -7654,7 +7658,7 @@ reference "eq:GenericAlgoRRCal"
 
 \end_inset
 
- stated in the generic algorithm (Section 2.7.3.1).
+ stated in the generic algorithm (Section 2.6.2.3).
  The formula requires that the steady state probabilities 
 \begin_inset Formula $\pi_{k}$
 \end_inset
@@ -8127,7 +8131,7 @@ reference "eq:GenericAlgoRRCal"
 
 \end_inset
 
- stated in the generic algorithm (Section 2.7.3.1) to calculate reversed rates
+ stated in the generic algorithm (Section 2.6.2.3) to calculate reversed rates
  for all passive synchronising actions.
  The code in Figure 
 \begin_inset CommandInset ref
@@ -8449,7 +8453,7 @@ Checking RCAT Conditions
 \begin_layout Standard
 The RCAT theorem has three conditions which need to be met for product form
  solution to exist for any system model.
- They are stated in Theorem 2.7.1.
+ They are stated in Theorem 2.6.1.
  We have checked all three conditions in this implementation of RCAT.
  If any of the three conditions are violated, the program will exit with
  an exception error.
@@ -9630,7 +9634,7 @@ status open
 
 \begin_layout Plain Layout
 
-			`x_a2 = p12*(lambda1 + x_a1)' ) 
+        `x_a2 = p12*(lambda1 + x_a1)' ) 
 \end_layout
 
 \begin_layout Plain Layout
@@ -9640,7 +9644,7 @@ status open
 
 \begin_layout Plain Layout
 
-			x_a2: [1x1 sym]
+        x_a2: [1x1 sym]
 \end_layout
 
 \begin_layout Plain Layout
@@ -9856,7 +9860,8 @@ reference "fig:Code-for-test"
 
 ).
  This function is very useful for testing program validations.
- Please refer to Appendix for additional test cases.
+ Please refer to Appendix for additional test cases and instructions to
+ run the unit tests.
 \end_layout
 
 \begin_layout Standard
@@ -9924,7 +9929,7 @@ RCATscript
 \family default
 , a function with two inputs - a list of PEPA process descriptions and the
  names cooperating processes.
- This is detailed in section 3.1 of this report.
+ This is detailed in section 3.2.1 of this report.
  Since the first input is a list of process descriptions, this list has
  been simply extended to include 
 \begin_inset Formula $k>2$
@@ -10375,7 +10380,7 @@ Generating Product-Form Solutions for Stochastic Petri Nets
 \end_layout
 
 \begin_layout Standard
-Stochastic Petri Nets (SPNs), as mentioned in the section 2.8, are different
+Stochastic Petri Nets (SPNs), as mentioned in the section 2.6.3, are different
  from Stochastic Process Algebra like PEPA and thus cannot be directly input
  into the RCAT solver.
  We generate product-form solutions for SPNs by applying MARCAT on a model
@@ -10403,7 +10408,7 @@ Formalising building blocks
 \begin_layout Standard
 A building block as defined in 
 \emph on
-Definition 2.8.2
+Definition 2.6.8
 \emph default
  is an SPN 
 \begin_inset Formula $S$
@@ -11770,17 +11775,7 @@ reference "fig:Finding-revRate-bb-output-trans"
 
 .
  To find the reversed rate of a transition we use the building block corollary
- stated in section 2.8.1 
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-add correct corollary no.
-\end_layout
-
-\end_inset
-
- - `The reversed rate of transition 
+ 2.6.2 stated in section 2.6.3.2 - `The reversed rate of transition 
 \begin_inset Formula $T_{y}$
 \end_inset
 
@@ -11910,7 +11905,7 @@ Checking Building Block conditions
 
 \begin_layout Standard
 For an arbitrary building block to have a product form, conditions detailed
- in Theorem 2.8.1 need to be satisfied.
+ in Theorem 2.6.3 need to be satisfied.
  These conditions are generated and checked in function 
 \family typewriter
 checkBBconditions
@@ -11928,7 +11923,7 @@ If the number of input and output transitions (i.e.
 ) is less than or equal to the number of places in the building block, we
  know the conditions are unconditionally satisfied.
  This follows directly from the nature of the system of equations generated
- by the conditions detailed in Theorem 2.8.1.
+ by the conditions detailed in Theorem 2.6.3.
  Code for this check is shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -11944,7 +11939,7 @@ reference "fig:Check-BB-conditions"
 \begin_layout Enumerate
 If the number of input and output transitions exceeds the number of places
  in the building block, then we generate the additional conditions required
- from Theorem 2.8.1.
+ from Theorem 2.6.3.
  The Function 
 \family typewriter
 furtherConditionCheck
@@ -12058,7 +12053,7 @@ Generating Product Form Solution
 A system of rate equations has been derived for a given SPN using the method
  in section 4.2.3, where each unknown rate is set to the reversed rate of
  the corresponding output transition.
- Theorem 2.8.1 gives conditions for a BB to have a product form which are
+ Theorem 2.6.3 gives conditions for a BB to have a product form which are
  derived by the aforementioned method in section 4.2.4.
  To find a product form for the given SPN, the system of equations is solved
  and if a solution exists then it is checked for compatibility with the
@@ -15000,7 +14995,7 @@ The strengths of the work accomplished as a part of this project include:
 
 \begin_layout Itemize
 Automation of RCAT and Multiple Agent RCAT theorem using the generic algorithm
- detailed in section 2.7.3.
+ detailed in section 2.6.2.3.
  Due to the automation, complex queuing models with multiple synchronising
  processes can be analysed using RCAT with ease and their (new) product
  form solutions can be generated.
@@ -15159,7 +15154,7 @@ key "SPNs"
 
 \end_inset
 
- and can be implemented as a small extension to the current implementation.
+ and can be implemented as an extension to the current implementation.
  The algorithm can be extended to directly produce programmable input, so
  the user does not require to type out verbose BB input and will directly
  get the generated rate equations.
@@ -15496,12 +15491,12 @@ function testRegisterProcess()
 
 \begin_layout Plain Layout
 
-	passiveActionLabels, 'P(n) = (e, lambda).P(n+1) for n >= 0' );
+	passiveActionLabels, `P(n) = (e, lambda).P(n+1) for n >= 0' );
 \end_layout
 
 \begin_layout Plain Layout
 
-	P = registeredProcesses( 'P' );
+	P = registeredProcesses( `P' );
 \end_layout
 
 \begin_layout Plain Layout
@@ -15531,22 +15526,22 @@ function testRegisterProcess()
 
 \begin_layout Plain Layout
 
-	assertEqual( P( 'actionName' ), 'e' );      
+	assertEqual( P( `actionName' ), `e' );      
 \end_layout
 
 \begin_layout Plain Layout
 
-	assertEqual( P( 'actionRate' ), lambda )     
+	assertEqual( P( `actionRate' ), lambda )     
 \end_layout
 
 \begin_layout Plain Layout
 
-	assertEqual( P( 'transitionFromState' ), eval('n') );      
+	assertEqual( P( `transitionFromState' ), eval(`n') );      
 \end_layout
 
 \begin_layout Plain Layout
 
-	assertTrue( isequal( P( 'transitionToState' ), n+1 ) );
+	assertTrue( isequal( P( `transitionToState' ), n+1 ) );
 \end_layout
 
 \begin_layout Plain Layout
@@ -15560,7 +15555,7 @@ function testRegisterProcess()
 
 \begin_layout Plain Layout
 
-	domain = P( 'domain' );     
+	domain = P( `domain' );     
 \end_layout
 
 \begin_layout Plain Layout
@@ -15590,7 +15585,7 @@ function testRegisterProcess()
 
 \begin_layout Plain Layout
 
-	passiveActionLabels, 'Q(n) = (a, infinity).Q(n+1) for n >= 0' );
+	passiveActionLabels, `Q(n) = (a, infinity).Q(n+1) for n >= 0' );
 \end_layout
 
 \begin_layout Plain Layout
@@ -15600,7 +15595,7 @@ function testRegisterProcess()
 
 \begin_layout Plain Layout
 
-	Q = registeredProcesses( 'Q' );
+	Q = registeredProcesses( `Q' );
 \end_layout
 
 \begin_layout Plain Layout
@@ -15619,7 +15614,7 @@ function testRegisterProcess()
 
 \begin_layout Plain Layout
 
-	assertEqual( Q( 'actionRate' ), x_a );
+	assertEqual( Q( `actionRate' ), x_a );
 \end_layout
 
 \begin_layout Plain Layout
@@ -15645,7 +15640,7 @@ function testRegisterProcess()
 
 \begin_layout Plain Layout
 
-	assertEqual( activeActionLabels('P'), { P('actionName') } );
+	assertEqual( activeActionLabels(`P'), { P(`actionName') } );
 \end_layout
 
 \begin_layout Plain Layout
@@ -15655,7 +15650,7 @@ function testRegisterProcess()
 
 \begin_layout Plain Layout
 
-	assertEqual( passiveActionLabels('Q'), { Q('actionName') } ); 
+	assertEqual( passiveActionLabels(`Q'), { Q(`actionName') } ); 
 \end_layout
 
 \begin_layout Plain Layout
@@ -15681,31 +15676,12 @@ function testRegisterProcess()
 
 \begin_layout Plain Layout
 
-	passiveActionLabels, 'Q(n) = a, infinity)   Q(n+1)  n >= 0' ), ...
+	passiveActionLabels, `Q(n) = a, infinity)   Q(n+1)  n >= 0' ), ...
 \end_layout
 
 \begin_layout Plain Layout
 
-	'RCATscript:InvalidInputParsedRegisterProcess' );
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-	assertExceptionThrown( @() registerProcess(...
-\end_layout
-
-\begin_layout Plain Layout
-
-	registeredProcesses, activeActionLabels,...
-\end_layout
-
-\begin_layout Plain Layout
-
-	passiveActionLabels, '' ), 'RCATscript:InvalidInputRegisterProcess' );
+	`RCATscript:InvalidInputParsedRegisterProcess' );
 \end_layout
 
 \begin_layout Plain Layout
@@ -15724,12 +15700,31 @@ function testRegisterProcess()
 
 \begin_layout Plain Layout
 
-	passiveActionLabels, 'Q(n) = (2e, infinity).Q(n+1) for n >= 0' ),...
+	passiveActionLabels, `' ), `RCATscript:InvalidInputRegisterProcess' );
 \end_layout
 
 \begin_layout Plain Layout
 
-	'RCATscript:NumericActionLabel' );
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertExceptionThrown( @() registerProcess(...
+\end_layout
+
+\begin_layout Plain Layout
+
+	registeredProcesses, activeActionLabels,...
+\end_layout
+
+\begin_layout Plain Layout
+
+	passiveActionLabels, `Q(n) = (2e, infinity).Q(n+1) for n >= 0' ),...
+\end_layout
+
+\begin_layout Plain Layout
+
+	`RCATscript:NumericActionLabel' );
 \end_layout
 
 \begin_layout Plain Layout
@@ -15795,7 +15790,7 @@ function testStringToMatlabExpr()
 
 \begin_layout Plain Layout
 
-	assertTrue( isequal( mu_1, stringToMatlabExpr('mu_1') ) );
+	assertTrue( isequal( mu_1, stringToMatlabExpr(`mu_1') ) );
 \end_layout
 
 \begin_layout Plain Layout
@@ -15819,7 +15814,11 @@ function testStringToMatlabExpr()
 
 \begin_layout Plain Layout
 
-	stringToMatlabExpr('(1-lambda1)*mu1') ) );
+	stringToMatlabExpr(`(1-lambda1)*mu1') ) );
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -15829,7 +15828,11 @@ function testStringToMatlabExpr()
 
 \begin_layout Plain Layout
 
-	stringToMatlabExpr('( 1 - lambda1 ) * mu1') ) );
+	stringToMatlabExpr(`( 1 - lambda1 ) * mu1') ) );
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -15839,7 +15842,7 @@ function testStringToMatlabExpr()
 
 \begin_layout Plain Layout
 
-	stringToMatlabExpr('(1-lambda_1)*mu_1') ) );
+	stringToMatlabExpr(`(1-lambda_1)*mu_1') ) );
 \end_layout
 
 \begin_layout Plain Layout
@@ -15853,7 +15856,7 @@ function testStringToMatlabExpr()
 
 \begin_layout Plain Layout
 
-	assertTrue( isequal(7404, stringToMatlabExpr('(1234)* 6') ) );
+	assertTrue( isequal(7404, stringToMatlabExpr(`(1234)* 6') ) );
 \end_layout
 
 \begin_layout Plain Layout
@@ -15867,7 +15870,7 @@ function testStringToMatlabExpr()
 
 \begin_layout Plain Layout
 
-    assertExceptionThrown( @() stringToMatlabExpr('(1-)*mu1'), 
+    assertExceptionThrown( @() stringToMatlabExpr(`(1-)*mu1'), 
 \end_layout
 
 \begin_layout Plain Layout
@@ -15890,6 +15893,74 @@ This program listing unit tests the part of the implementation to do with
  converting strings to MATLAB symbolic expressions.
  It is relatively simple and shows that the program stringToMatlabExpr has
  been tested over various inputs including an erroneous input.
+\end_layout
+
+\begin_layout Section
+Running Unit Tests
+\end_layout
+
+\begin_layout Standard
+The instructions below assume that the xUnit Framework has been installed
+ in MATLAB and is ready to run.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\footnotesize\sffamily},breaklines=true,language=Matlab,numbers=left,numberstyle={\tiny},showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+% go to the directory containing the tests
+\end_layout
+
+\begin_layout Plain Layout
+
+>> cd tests/ 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% The run the undermentioned command
+\end_layout
+
+\begin_layout Plain Layout
+
+>> runtests 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% Test output looks as follows
+\end_layout
+
+\begin_layout Plain Layout
+
+Test suite: /Users/.../Code/tests 
+\end_layout
+
+\begin_layout Plain Layout
+
+Starting test run with test cases.
+\end_layout
+
+\begin_layout Plain Layout
+
+.....PASSED in 11.191 seconds.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
