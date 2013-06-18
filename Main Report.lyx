@@ -15,7 +15,7 @@
 
 \lstset{language=matlab,tabsize=2,showstringspaces=false,showspaces=false,breaklines=true}
 
-\usepackage{amssymb,pepa}
+\usepackage{amssymb,pepa, setspace}
 
 \hyphenpenalty 100000
 \exhyphenpenalty 100000
@@ -99,14 +99,394 @@ status open
 
 
 \backslash
-pagenumbering{roman} % Roman numerals 
+thispagestyle{empty}
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-setcounter{page}{1}
+begin{titlepage}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textsc{
+\backslash
+LARGE Imperial College London}
+\backslash
+
+\backslash
+[1.5cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textsc{
+\backslash
+Large Department of Computing}
+\backslash
+
+\backslash
+[0.5cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textsc{
+\backslash
+Large MEng Final Report}
+\backslash
+
+\backslash
+[0.5cm]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% Title
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+rule[2.8ex]{1
+\backslash
+columnwidth}{1pt} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{spacing}{1.75} 
+\backslash
+vspace{-0.7cm} { 
+\backslash
+huge 
+\backslash
+bfseries Automatic construction of product-form solutions in stochastic
+ networks }
+\backslash
+
+\backslash
+[0.1cm]
+\backslash
+end{spacing}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+rule[10.5ex]{1
+\backslash
+columnwidth}{1pt} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% Author and supervisor
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{minipage}{0.4
+\backslash
+textwidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{flushleft} 
+\backslash
+large
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+emph{Author:}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Rhea Potdar 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textsc{} 
+\backslash
+
+\backslash
+ 
+\backslash
+textsc{} 
+\backslash
+
+\backslash
+ 
+\backslash
+textsc{}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{flushleft}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{minipage}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{minipage}{0.4
+\backslash
+textwidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{flushright} 
+\backslash
+large
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+emph{Supervisor:} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Prof.
+ Peter Harrison 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textsc{} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+emph{Second Marker:} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Dr.
+ Giuliano Casale
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{flushright}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{minipage}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{2cm}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{titlepage}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newcommand{
+\backslash
+cross}{
+\backslash
+ding{55}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newcommand{
+\backslash
+tickbullets}{
+\backslash
+def
+\backslash
+labelitemi{
+\backslash
+ding{51}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newcommand{
+\backslash
+crossbullets}{
+\backslash
+def
+\backslash
+labelitemi{
+\backslash
+ding{55}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newcommand{
+\backslash
+normalbullets}{
+\backslash
+def
+\backslash
+labelitemi{
+\backslash
+(
+\backslash
+bullet
+\backslash
+)}} 
+\backslash
+normalbullets
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+definecolor{grey}{RGB}{240,240,240} 
 \end_layout
 
 \end_inset
@@ -118,6 +498,29 @@ setcounter{page}{1}
 \noindent
 \align center
 \begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagenumbering{roman} % Roman numerals 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{page}{1}
+\end_layout
+
 \end_inset
 
 
@@ -217,6 +620,13 @@ I would like to thank my supervisor, Prof.
 
 \begin_layout Standard
 \begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \enskip{}
 \end_inset
 
 
@@ -4317,27 +4727,6 @@ and
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-is it necessary to write about original rcat and passive invisible transitions
- from 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ercat"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsubsection
 Practical Application of the RCAT method
 \end_layout
@@ -7309,18 +7698,8 @@ Calculating steady state probability
 
 \begin_layout Standard
 The RCAT application was primarily designed to run on systems composed of
- M/M/1 queues,
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-insert stuff about sspd toggle
-\end_layout
-
-\end_inset
-
- which have known equilibrium probability distributions and are given by
- the formula 
+ M/M/1 queues, which have known equilibrium probability distributions and
+ are given by the formula 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:SSPD_of_MM1Q"
@@ -9503,7 +9882,7 @@ Implementation of MARCAT and RCAT for SPNs and PITs
 \begin_layout Standard
 This chapter covers the implementation of MARCAT, an extension of RCAT and
  the design and implementation of RCAT for Stochastic Petri Nets (SPNs).
- It also introduces Propagation of Instantaneous Transitions (PITs) and
+ It also delineates Propagation of Instantaneous Transitions (PITs) and
  provides an implementation design for running RCAT on PITs.
  
 \end_layout
@@ -9514,7 +9893,7 @@ Multiple Agents RCAT
 
 \begin_layout Standard
 The Reversed Compound Agent Theorem (RCAT) is used to derive the reversed
- process of a cooperation between two agents (processes).
+ process of a cooperation between two agents.
  RCAT can be generalised to a cooperation of multiple agents.
  This generalised theorem is referred to as the MARCAT or Multiple Agents
  RCAT.
@@ -9539,12 +9918,12 @@ Parsing User Input
 \end_layout
 
 \begin_layout Standard
-The API for this implementation has been maintained as the function 
+The API for this implementation has been maintained as the 
 \family typewriter
 RCATscript
 \family default
- with two inputs - a list of PEPA process descriptions and the names cooperating
- processes.
+, a function with two inputs - a list of PEPA process descriptions and the
+ names cooperating processes.
  This is detailed in section 3.1 of this report.
  Since the first input is a list of process descriptions, this list has
  been simply extended to include 
@@ -9572,11 +9951,11 @@ reference "fig:Code-to-register-MA"
 
 \end_inset
 
-, we iterated over the processes 
+, we iterate over the processes 
 \begin_inset Formula $P_{k}$
 \end_inset
 
- given as input and registered them using the 
+ given as input and register them using the 
 \family typewriter
 registerProcess
 \family default
@@ -9617,13 +9996,13 @@ process = processList(i);
 
 \begin_layout Plain Layout
 
-registerProcess( registeredProcesses, activeActionLabels, ...
+registerProcess( registeredProcesses, activeActionLabels,...
              
 \end_layout
 
 \begin_layout Plain Layout
 
-				passiveActionLabels, process{1} );
+passiveActionLabels, process{1} );
 \end_layout
 
 \end_inset
@@ -9691,8 +10070,8 @@ struct
 \emph default
  with fields as mentioned in section 3.2.1.2.
  To accommodate multiple agents the function createRk was extended to iterate
- over the processes in the registeredProcesses map as opposed to having
- a fixed size of 2.
+ over all the processes in the map of registered processes as opposed to
+ having a fixed size of 2.
  This is shown in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -9732,7 +10111,7 @@ for i = 1:numOfProcesses
 
 \begin_layout Plain Layout
 
-		r(i).definitions = registeredProcesses( processKeyset{1,i} );
+	r(i).definitions = registeredProcesses(processKeyset{1,i})
 \end_layout
 
 \end_inset
@@ -9786,7 +10165,7 @@ Since MARCAT is the cooperation of multiple agents, the second input to
 \family typewriter
 RCATscript
 \family default
- has been changed to depict the multiple agents.
+ has been changed to include the multiple agents.
  This does not affect the aforementioned method of running the RCAT solver
  or specifying cooperation between two agents.
  We specify cooperation 
@@ -9869,7 +10248,11 @@ name "fig:Coop-String-3agents"
 \end_layout
 
 \begin_layout Standard
-To parse the cooperation string, function registerCoop had to be extended.
+To parse the cooperation string, function 
+\family typewriter
+registerCoop
+\family default
+ had to be extended.
  Parsing the cooperation string is achieved using regular expressions as
  shown in Figure 
 \begin_inset CommandInset ref
@@ -9937,7 +10320,12 @@ s*)+ over
 \backslash
 {(.*)
 \backslash
-}', `tokens' );     
+}',
+\end_layout
+
+\begin_layout Plain Layout
+
+`tokens' );     
 \end_layout
 
 \end_inset
@@ -9978,8 +10366,8 @@ name "fig:Code-Parsing-coop-3agents"
 \begin_layout Standard
 The implementation for calculating reversed rates and checking RCAT conditions
  is the same as mentioned in the previous chapter.
- We can use the rates calculated to generate the product form result using
- the same method as detailed in section 3.2.5.
+ We can use the rate equations generated to construct the product form result
+ using the same method as detailed in section 3.2.5.
 \end_layout
 
 \begin_layout Section
@@ -10065,7 +10453,7 @@ reference "fig:Building-Block-formalism"
 \emph on
 places
 \emph default
-: It is a set of 
+: This is a set of 
 \begin_inset Formula $N$
 \end_inset
 
@@ -10241,7 +10629,7 @@ name "fig:simpleBB"
 \end_layout
 
 \begin_layout Standard
-The building block has three places 
+It has three places 
 \begin_inset Formula $\{P_{1},P_{2},P_{3}\}$
 \end_inset
 
@@ -10311,7 +10699,12 @@ status open
 
 \begin_layout Plain Layout
 
-`{P1, P2, P3}, {i_t12, i_t23, i_t3}, {lambda12, infinity, lambda3},
+`{P1, P2, P3}, {i_t12, i_t23, i_t3}, 
+\end_layout
+
+\begin_layout Plain Layout
+
+ {lambda12, infinity, lambda3}, 
 \end_layout
 
 \begin_layout Plain Layout
@@ -10363,11 +10756,15 @@ It is important to note that all input transitions are prefixed by `i' while
  This helps the program ensure that every input transition has a corresponding
  output transition, as it is one of the mandatory conditions for an SPN
  to be a building block.
- The string is always arranged in the order as shown in the Figure, starting
- with places followed by input transitions, input transition rates, output
- transitions and output transition rates.
- It might be worth noting that the M/M/1 queue is simply a BB with one place.
- Thus the application of RCAT to SPNs is a true generalisation.
+ The string is always arranged in the order as shown in the Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Building-Block-ip-by-user"
+
+\end_inset
+
+, starting with places followed by input transitions, input transition rates,
+ output transitions and output transition rates.
 \end_layout
 
 \begin_layout Subsubsection
@@ -10594,7 +10991,7 @@ height "0.8pt"
 
 
 \begin_inset listings
-lstparams "basicstyle={\small\ttfamily},language=Matlab,showstringspaces=false"
+lstparams "basicstyle={\small\ttfamily},language=Matlab,numbers=left,numberstyle={\scriptsize},showstringspaces=false"
 inline false
 status open
 
@@ -10605,22 +11002,32 @@ listOfBBs = {
 
 \begin_layout Plain Layout
 
-`{P1, P2, P3}, {i_t12, i_t23, i_t3}, {lambda12, infinity, lambda3},
+`{P1, P2, P3}, {i_t12, i_t23, i_t3}, 
 \end_layout
 
 \begin_layout Plain Layout
 
-{o_t12, o_t23, o_t3}, {mu12, mu23, mu3}',
+ {lambda12, infinity, lambda3},
 \end_layout
 
 \begin_layout Plain Layout
 
-`{P4, P5}, {i_t4, i_t45, i_t5}, {lambda4, infinity, lambda5}, 
+ {o_t12, o_t23, o_t3}, {mu12, mu23, mu3}',
 \end_layout
 
 \begin_layout Plain Layout
 
-{o_t4, o_t45, o_t5}, {mu4, mu45, mu5}'}
+`{P4, P5}, {i_t4, i_t45, i_t5}, 
+\end_layout
+
+\begin_layout Plain Layout
+
+ {lambda4, infinity, lambda5}, 
+\end_layout
+
+\begin_layout Plain Layout
+
+ {o_t4, o_t45, o_t5}, {mu4, mu45, mu5}'}
 \end_layout
 
 \begin_layout Plain Layout
@@ -10692,14 +11099,37 @@ reference "fig:Running-RCAT-2BBSPN"
 
 \end_inset
 
- shows how the specified user input is specified for a SPN model using list
- of building blocks and their connections.
+ shows how the input is specified for a SPN model (of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:simpleSPN2BBs"
+
+\end_inset
+
+) using lists of building blocks and their connections (lines 1-10 in Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Running-RCAT-2BBSPN"
+
+\end_inset
+
+).
  This is then run using the API function 
 \family typewriter
 RCATscriptForSPN
 \family default
  which takes the list of building blocks and their connections as the two
- arguments.
+ arguments as shown in line 12 of Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Running-RCAT-2BBSPN"
+
+\end_inset
+
+.
+ It might be worth noting that the M/M/1 queue is simply a BB with one place.
+ Thus the application of RCAT to SPNs is a true generalisation.
 \end_layout
 
 \begin_layout Subsection
@@ -10953,7 +11383,7 @@ convertToSymbolicRates
 \family typewriter
 stringToMatlabExpr
 \family default
- ( a helper function used for converting strings to MATLAB symbolic expressions).
+ (a helper function used for converting strings to MATLAB symbolic expressions).
  
 \end_layout
 
@@ -10975,7 +11405,8 @@ reference "fig:Parsing-building-block"
 \end_inset
 
 ).
- Output transitions and rates are parsed similarly to create 
+ The strings of output transitions and rates are parsed similarly to create
+ 
 \emph on
 outputs
 \emph default
@@ -10983,6 +11414,13 @@ outputs
 \emph on
 struct
 \emph default
+ shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Building-Block-formalism"
+
+\end_inset
+
 .
 \end_layout
 
@@ -11127,7 +11565,11 @@ reference "fig:Parsing-building-block-connections"
 
  retrieves text from either side of `to'.
  Thus we separate the key and value pairs for our map of connections.
- In the function 
+ 
+\end_layout
+
+\begin_layout Standard
+In the function 
 \family typewriter
 parseInputs
 \family default
@@ -11156,7 +11598,11 @@ To decide if a composition of building blocks has a product-form, we need
  This is done by setting each unknown rate is to the reversed rate of the
  corresponding output transition.
  The system of equations thus generated are the rate equations desired.
- This calculation is performed in the MATLAB function 
+ 
+\end_layout
+
+\begin_layout Standard
+This calculation is performed in the function 
 \family typewriter
 calculatePassiveRatesForBBs
 \family default
@@ -11224,7 +11670,7 @@ for i = 1:length( connectorList )
 
 \begin_layout Plain Layout
 
-		getReversedRateForBB( bbStruct, label{1} ) * map( label{1} ); 
+	getReversedRateForBB(bbStruct, label{1}) * map(label{1}); 
 \end_layout
 
 \begin_layout Plain Layout
@@ -11274,7 +11720,7 @@ name "fig:Generating-rate-equations-spns"
 To find the passive rate of the input transition we use the connections
  map generated while parsing.
  The connections map has the name of the input transition with unknown rate
- as key and a list of `connectors' as value.
+ as the key and a list of `connectors' as the value.
  This list is input to the 
 \family typewriter
 getRateEquations
@@ -11297,9 +11743,9 @@ getReversedRateForBB
 \family default
 .
  We then multiply this with the routing probability - 
-\emph on
+\family typewriter
 map( label{1} )
-\emph default
+\family default
  - as shown in line 5 of Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -11335,10 +11781,10 @@ add correct corollary no.
 \end_inset
 
  - `The reversed rate of transition 
-\begin_inset Formula $T_{y}′$
+\begin_inset Formula $T_{y}$
 \end_inset
 
- is 
+' is 
 \begin_inset Formula $\lambda_{y}$
 \end_inset
 
@@ -11411,7 +11857,7 @@ inputActionLabel = strcat( `i', `_', matches{2} );
 
 \begin_layout Plain Layout
 
-revRate = getActionRateForSPNs( inputActionLabel , bbStruct );
+revRate = getActionRateForSPNs(inputActionLabel , bbStruct);
 \end_layout
 
 \end_inset
@@ -11492,15 +11938,18 @@ reference "fig:Check-BB-conditions"
 
 .
  We loop over all the building blocks the SPN is composed of and also ensure
- their input and output transitions are equal as shown in line 1-2.
+ their input and output transitions are equal as shown in line 1-3.
 \end_layout
 
 \begin_layout Enumerate
 If the number of input and output transitions exceeds the number of places
  in the building block, then we generate the additional conditions required
  from Theorem 2.8.1.
- Function furtherConditionCheck generates and displays the conditions to
- be satisfied.
+ The Function 
+\family typewriter
+furtherConditionCheck
+\family default
+ generates and displays the conditions to be satisfied.
  It is important to note that these conditions need to be solved along with
  the rate equations and if they are compatible then a product form solution
  will exist.
@@ -11535,12 +11984,22 @@ for i = 1:length( bbStruct )
 
 \begin_layout Plain Layout
 
-	assert( length(bbStruct(i).outputs) == length(bbStruct(i).inputs) )
+	assert( length(bbStruct(i).outputs) == 
 \end_layout
 
 \begin_layout Plain Layout
 
-	if ~( length(bbStruct(i).places) >= length(bbStruct(i).inputs) )
+	        length(bbStruct(i).inputs) );
+\end_layout
+
+\begin_layout Plain Layout
+
+	if ~( length(bbStruct(i).places) >= 
+\end_layout
+
+\begin_layout Plain Layout
+
+	      length(bbStruct(i).inputs) )
 \end_layout
 
 \begin_layout Plain Layout
@@ -11647,21 +12106,21 @@ Chains of interactions between queues
 \end_layout
 
 \begin_layout Standard
-This section provides background on finding product-forms on chains of interacti
-ons between queues.
- The paper ‘Product-forms in multi-wise synchronisations’ 
+This section provides a background on finding product form solutions on
+ chains of interactions between queues.
+ `Product-forms in multi-way synchronisations' 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Chains"
 
 \end_inset
 
- provides the detailed theory about the concepts and algorithm introduced
- here.
- Due to time constrains, a complete implementation of generating product-forms
- for chains of interactions could not be achieved, but we include a high
- level analysis of how it can be done extending the current implementation
- of the RCAT.
+ is a paper which provides the detailed theory about the concepts and algorithm
+ discussed here.
+ Due to time constrains, an implementation of generating product-forms for
+ chains of interactions could not be achieved, but we include a high level
+ analysis of how it can be done by extending the current implementation
+ of RCAT.
 \end_layout
 
 \begin_layout Subsection
@@ -11924,7 +12383,7 @@ Q_{0}= & (a_{12}^{-},\top).Q_{0}\\
 
 \begin_layout Standard
 From the PEPA description we can see that the only addition to the current
- PEPA to MATLAB parser would be parsing expressions of the type
+ PEPA to MATLAB parser would be parsing expressions of the type 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:PepaFormalismPIT"
@@ -12000,8 +12459,11 @@ On parsing the PEPA input and generating process structure
 \begin_inset Formula $R_{k}$
 \end_inset
 
- as a MATLAB struct, we implement the algorithm given in to derive rate
- equations.
+ as a MATLAB 
+\emph on
+struct
+\emph default
+, we implement the algorithm given in to derive rate equations.
  The algorithm has an empty set of rate equations initially.
  It starts by iteration over cooplabels, i.e.
  synchronising actions, and derives rate equations for each using the rate
@@ -12067,7 +12529,7 @@ reference "fig:Tandem-Queues-Eval"
 \begin_inset Formula $\mu_{2}$
 \end_inset
 
-.
+ respectively.
  
 \end_layout
 
@@ -12513,12 +12975,17 @@ status open
 
 \begin_layout Plain Layout
 
-definitions: {[5x1 containers.Map]  [5x1 containers.Map]  
+definitions: 
 \end_layout
 
 \begin_layout Plain Layout
 
-			  [5x1 containers.Map]  [5x1 containers.Map]}
+{[5x1 containers.Map]  [5x1 containers.Map]  
+\end_layout
+
+\begin_layout Plain Layout
+
+[5x1 containers.Map]  [5x1 containers.Map]}
 \end_layout
 
 \begin_layout Plain Layout
@@ -12630,7 +13097,12 @@ status open
 
 \begin_layout Plain Layout
 
-Reversed rate for passive action a1: x_a1 = p21*(lambda2 + x_a2)
+Reversed rate for passive action a1: 
+\end_layout
+
+\begin_layout Plain Layout
+
+x_a1 = p21*(lambda2 + x_a2)
 \end_layout
 
 \begin_layout Plain Layout
@@ -12639,7 +13111,12 @@ Reversed rate for passive action a1: x_a1 = p21*(lambda2 + x_a2)
 
 \begin_layout Plain Layout
 
-Reversed rate for passive action a2: x_a2 = p12*(lambda1 + x_a1)
+Reversed rate for passive action a2: 
+\end_layout
+
+\begin_layout Plain Layout
+
+x_a2 = p12*(lambda1 + x_a1)
 \end_layout
 
 \end_inset
@@ -12762,7 +13239,7 @@ reference "fig:A-G-Queue-eval"
 \end_inset
 
 / 
-\begin_inset Formula $\Lambda_{1}\Lambda_{2}$
+\begin_inset Formula $\Lambda_{1},\Lambda_{2}$
 \end_inset
 
  (corresponding to 
@@ -13021,26 +13498,17 @@ status open
 
 \begin_layout Plain Layout
 
-Reversed rate for passive action a21: x_a21 = 
+Reversed rate for passive action a21: 
 \end_layout
 
 \begin_layout Plain Layout
 
-(mu2*p21*(lambda2 + x_a12))/(bigLambda2 + mu2 + 2*x_b12)
+x_a21 = (mu2*p21*(lambda2 + x_a12))/
 \end_layout
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
-Reversed rate for passive action b21: x_b21 = 
-\end_layout
-
-\begin_layout Plain Layout
-
--(mu2*(lambda2 + x_a12)*(p21 - 1))/(bigLambda2 + mu2 + 2*x_b12)
+(bigLambda2 + mu2 + 2*x_b12)
 \end_layout
 
 \begin_layout Plain Layout
@@ -13049,12 +13517,17 @@ Reversed rate for passive action b21: x_b21 =
 
 \begin_layout Plain Layout
 
-Reversed rate for passive action a12: x_a12 = 
+Reversed rate for passive action b21: 
 \end_layout
 
 \begin_layout Plain Layout
 
-(mu1*p12*(lambda1 + x_a21))/(bigLambda1 + mu1 + 2*x_b21)
+x_b21 = -(mu2*(lambda2 + x_a12)*(p21 - 1))/
+\end_layout
+
+\begin_layout Plain Layout
+
+(bigLambda2 + mu2 + 2*x_b12)
 \end_layout
 
 \begin_layout Plain Layout
@@ -13063,12 +13536,36 @@ Reversed rate for passive action a12: x_a12 =
 
 \begin_layout Plain Layout
 
-Reversed rate for passive action b12: x_b12 = 
+Reversed rate for passive action a12: 
 \end_layout
 
 \begin_layout Plain Layout
 
--(mu1*(lambda1 + x_a21)*(p12 - 1))/(bigLambda1 + mu1 + 2*x_b21)
+x_a12 = (mu1*p12*(lambda1 + x_a21))/
+\end_layout
+
+\begin_layout Plain Layout
+
+(bigLambda1 + mu1 + 2*x_b21)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Reversed rate for passive action b12: 
+\end_layout
+
+\begin_layout Plain Layout
+
+x_b12 = -(mu1*(lambda1 + x_a21)*(p12 - 1))/
+\end_layout
+
+\begin_layout Plain Layout
+
+(bigLambda1 + mu1 + 2*x_b21)
 \end_layout
 
 \end_inset
@@ -13155,7 +13652,7 @@ reference "fig:MATLAB-input-gNetwork"
 \end_inset
 
 ) to ensure negative arrivals have no effect on an empty queue.
- If we were to run the RCATscript ommitting lines 5 and 12 from the PEPA
+ If we were to run the RCATscript omitting lines 5 and 12 from the PEPA
  description in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -13331,7 +13828,7 @@ reference "fig:MATLAB-input-3node-network"
 
 \end_inset
 
- where the last line denotes the cooperation between the two queues.
+ where the last two lines denote the cooperation between the two queues.
  The three queues given as input are 
 \begin_inset Formula $P1,P2,P3$
 \end_inset
@@ -13465,7 +13962,12 @@ P3(n) = (a32, p32*mu3).P3(n-1) for n > 0
 
 \begin_layout Plain Layout
 
-P1(0) with P2(0) with P3(0) over {a21, a31, a12, a32, a13, a23}
+P1(0) with P2(0) with P3(0) over 
+\end_layout
+
+\begin_layout Plain Layout
+
+{a21, a31, a12, a32, a13, a23}
 \end_layout
 
 \end_inset
@@ -13515,7 +14017,7 @@ The process for running RCAT on a system model for
  agents.
  We represent the multiple processes cooperating with keyword `with' and
  represent the actions the processes are cooperating on in parentheses (see
- last line of Figure 
+ last two lines of Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:MATLAB-input-3node-network"
@@ -14206,12 +14708,12 @@ listOfBBs ={
 
 \begin_layout Plain Layout
 
-{P1, P2}, {i_t1, i_t2, i_t3}, {infinity, infinity, infinity}, 
+`{P1, P2}, {i_t1, i_t2, i_t3}, {infinity,infinity,infinity}, 
 \end_layout
 
 \begin_layout Plain Layout
 
-{o_t1, o_t2, o_t3}, {chi1, chi2, chi3}',
+ {o_t1, o_t2, o_t3}, {chi1, chi2, chi3}',
 \end_layout
 
 \begin_layout Plain Layout
@@ -14221,7 +14723,7 @@ listOfBBs ={
 
 \begin_layout Plain Layout
 
-{chi5, chi6}',
+ {chi5, chi6}',
 \end_layout
 
 \begin_layout Plain Layout
@@ -14254,7 +14756,7 @@ connectionString = `{o_t1 = 1 to i_t4} ; {o_t3 = 1 to i_t6};
 
 \begin_layout Plain Layout
 
->RCATscriptForSPN( listOfBBs, connectionString )
+> RCATscriptForSPN( listOfBBs, connectionString )
 \end_layout
 
 \end_inset
@@ -14630,10 +15132,10 @@ key "Chains"
  Chains of instantaneous state changes are caused by models with synchronisation
 s defined as propagating instantaneous signals, for example, negative customers
  can move a customer from a non-empty queue to another queue chosen probabilisti
-cally thus triggering two (or more) queues (or constituent process) to change
- their states simultaneously.
+cally thus triggering two queues (or constituent process) to change their
+ states simultaneously.
  These chains are modelled as PITs to specify the composed models as pairwise
- syntonisations and thus derive product-forms by an iterative application
+ synchronisations and thus derive product-forms by an iterative application
  of RCAT.
  Section 4.3 details how the current implementation can be extended to implement
  this functionality.
@@ -14673,8 +15175,8 @@ The implementation of RCAT and MARCAT in this project accommodates only
 n automated by this implementation is applicable to only M/M/1 queues.
  The implementation would benefit greatly if this restriction were removed
  and will thus be able to analyse queuing models which go beyond M/M/1 queues.
- Since the program logic is loosely coupled, adding this functionality is
- possible without drastic changes to current implementation.
+ As the program logic is loosely coupled, adding this functionality is possible
+ without drastic changes to current implementation.
 \end_layout
 
 \begin_layout Bibliography
@@ -14928,22 +15430,466 @@ key "Chains"
 \begin_inset Quotes eld
 \end_inset
 
-Product-forms in multi-wise synchronisations
+Product-forms in multi-way synchronisations
 \begin_inset Quotes erd
 \end_inset
 
 .
+ The Computer Journal.
  
-\begin_inset Note Note
+\end_layout
+
+\begin_layout Chapter
+\start_of_appendix
+MATLAB Code for Unit Tests
+\end_layout
+
+\begin_layout Section
+Unit Test for registering processes
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\footnotesize\sffamily},breaklines=true,language=Matlab,numbers=left,numberstyle={\tiny},showstringspaces=false"
+inline false
 status open
 
 \begin_layout Plain Layout
-add proper info
+
+function testRegisterProcess()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% Setting up the process for testing   
+\end_layout
+
+\begin_layout Plain Layout
+
+	syms lambda n x_a;     
+\end_layout
+
+\begin_layout Plain Layout
+
+	registeredProcesses = containers.Map();     
+\end_layout
+
+\begin_layout Plain Layout
+
+	activeActionLabels = containers.Map();     
+\end_layout
+
+\begin_layout Plain Layout
+
+	passiveActionLabels = containers.Map();
+\end_layout
+
+\begin_layout Plain Layout
+
+	registerProcess( registeredProcesses, activeActionLabels,...
+         
+\end_layout
+
+\begin_layout Plain Layout
+
+	passiveActionLabels, 'P(n) = (e, lambda).P(n+1) for n >= 0' );
+\end_layout
+
+\begin_layout Plain Layout
+
+	P = registeredProcesses( 'P' );
+\end_layout
+
+\begin_layout Plain Layout
+
+% Retrieve process registered    
+\end_layout
+
+\begin_layout Plain Layout
+
+	P = P{1};
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\end_layout
+
+\begin_layout Plain Layout
+
+% Test if process descriptors have been parsed correctly
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEqual( registeredProcesses.length(), 1 );
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEqual( P( 'actionName' ), 'e' );      
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEqual( P( 'actionRate' ), lambda )     
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEqual( P( 'transitionFromState' ), eval('n') );      
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertTrue( isequal( P( 'transitionToState' ), n+1 ) );
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% Test the domain function by giving it actual values 
+\end_layout
+
+\begin_layout Plain Layout
+
+	domain = P( 'domain' );     
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertTrue( isequal( 0, domain(1) ) );     
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertTrue( isequal( Inf, domain(2) ) );
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% Add Passive process to test for parsing and relabelling rates
+\end_layout
+
+\begin_layout Plain Layout
+
+	registerProcess( registeredProcesses, activeActionLabels,...
+         
+\end_layout
+
+\begin_layout Plain Layout
+
+	passiveActionLabels, 'Q(n) = (a, infinity).Q(n+1) for n >= 0' );
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEqual( registeredProcesses.length(), 2 );
+\end_layout
+
+\begin_layout Plain Layout
+
+	Q = registeredProcesses( 'Q' );
+\end_layout
+
+\begin_layout Plain Layout
+
+	Q = Q{1};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% Test passive rate relabelling
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEqual( Q( 'actionRate' ), x_a );
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% the input has one process with active action type and one with     
+\end_layout
+
+\begin_layout Plain Layout
+
+% passive action type.
+ Thus the foll.
+ assertions
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEqual( activeActionLabels.length(), 1 );     
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEqual( activeActionLabels('P'), { P('actionName') } );
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEqual( passiveActionLabels.length(), 1 );
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEqual( passiveActionLabels('Q'), { Q('actionName') } ); 
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\end_layout
+
+\begin_layout Plain Layout
+
+% Test if input validates correctly i.e.
+ check exceptions thrown
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertExceptionThrown( @() registerProcess( ...
+\end_layout
+
+\begin_layout Plain Layout
+
+	registeredProcesses, activeActionLabels,...
+\end_layout
+
+\begin_layout Plain Layout
+
+	passiveActionLabels, 'Q(n) = a, infinity)   Q(n+1)  n >= 0' ), ...
+\end_layout
+
+\begin_layout Plain Layout
+
+	'RCATscript:InvalidInputParsedRegisterProcess' );
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertExceptionThrown( @() registerProcess(...
+\end_layout
+
+\begin_layout Plain Layout
+
+	registeredProcesses, activeActionLabels,...
+\end_layout
+
+\begin_layout Plain Layout
+
+	passiveActionLabels, '' ), 'RCATscript:InvalidInputRegisterProcess' );
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertExceptionThrown( @() registerProcess(...
+\end_layout
+
+\begin_layout Plain Layout
+
+	registeredProcesses, activeActionLabels,...
+\end_layout
+
+\begin_layout Plain Layout
+
+	passiveActionLabels, 'Q(n) = (2e, infinity).Q(n+1) for n >= 0' ),...
+\end_layout
+
+\begin_layout Plain Layout
+
+	'RCATscript:NumericActionLabel' );
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+end
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+This program listing unit tests the part of the implementation to do with
+ parsing.
+ It checks if a PEPA process is correctly parsed using various assertions.
+ The comments on the listing (lines starting with `%') provide context to
+ the assertions.
+ Different parts of the program have been unit tested with a similar approach.
+\end_layout
+
+\begin_layout Section
+Unit test for string to expression generation
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\footnotesize\sffamily},breaklines=true,language=Matlab,numbers=left,numberstyle={\tiny},showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+function testStringToMatlabExpr()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% Declare variables symbolic for test case set up
+\end_layout
+
+\begin_layout Plain Layout
+
+	syms lambda1 mu1 lambda_1 mu_1;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% Simple case
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertTrue( isequal( mu_1, stringToMatlabExpr('mu_1') ) );
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% Non-trivial cases, examples added with spaces in expr
+\end_layout
+
+\begin_layout Plain Layout
+
+% which should be ignored by the function
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertTrue( isequal(( 1 - lambda1 ) * mu1, ...
+\end_layout
+
+\begin_layout Plain Layout
+
+	stringToMatlabExpr('(1-lambda1)*mu1') ) );
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertTrue( isequal( ( 1 - lambda1 ) * mu1, ...
+\end_layout
+
+\begin_layout Plain Layout
+
+	stringToMatlabExpr('( 1 - lambda1 ) * mu1') ) );
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertTrue( isequal( ( 1 - lambda_1 ) * mu_1, ...
+\end_layout
+
+\begin_layout Plain Layout
+
+	stringToMatlabExpr('(1-lambda_1)*mu_1') ) );
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% Test if maths expressions are evaluated correctly
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertTrue( isequal(7404, stringToMatlabExpr('(1234)* 6') ) );
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+% Test if wrong output is caught correctly
+\end_layout
+
+\begin_layout Plain Layout
+
+    assertExceptionThrown( @() stringToMatlabExpr('(1-)*mu1'), 
+\end_layout
+
+\begin_layout Plain Layout
+
+	`RCATscript:InvalidStringToMatlabExpr' ) 
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This program listing unit tests the part of the implementation to do with
+ converting strings to MATLAB symbolic expressions.
+ It is relatively simple and shows that the program stringToMatlabExpr has
+ been tested over various inputs including an erroneous input.
 \end_layout
 
 \end_body
