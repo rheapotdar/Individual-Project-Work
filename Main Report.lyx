@@ -544,7 +544,7 @@ Abstract
 \end_layout
 
 \begin_layout Standard
-The growing complexity of modern systems has escalated the need of performance
+The growing complexity of modern systems has escalated the need for performance
  metrics.
 \begin_inset Note Note
 status collapsed
@@ -559,10 +559,10 @@ for capacity planning.
  Stochastic models such as queuing networks and stochastic Petri nets have
  been used to model these systems so that their performance measures can
  be evaluated analytically.
- Product-forms solutions are equilibrium state probabilities in networks
+ Product-form solutions are equilibrium state probabilities in networks
  of stochastic nodes (e.g.
  queues) in the form of a product of terms relating to each node separately.
- We derive various performance metrics from these product form solutions,
+ One can derive various performance metrics from these product form solutions,
  thus there is considerable effort dedicated to finding them in various
  stochastic models.
 \end_layout
@@ -694,30 +694,31 @@ Motivation
 In the recent years, there has been an increase in the complexity of computer
  systems making performance models essential for understanding the behaviour
  of these systems.
- These performance models help analyse performance measures of computer
+ These performance models help determine performance measures of computer
  systems such as utilisation, throughput and help ensure that the systems
  can manage varying workload, that the utilisation of resources is fair
  and the list goes on.
- To analyse these computer systems, they are modelled using stochastic models
- which are then used to evaluate various performance measures of the systems.
+ To analyse these computer systems, they are described abstractly using
+ stochastic models which are then used to evaluate various performance measures
+ of the systems.
 \end_layout
 
 \begin_layout Standard
 Queuing networks (models with underlying Markov Processes) and stochastic
  Petri nets are two common stochastic models which are known to accurately
- model computer systems and can be evaluated analytically.
+ describe computer systems and can be evaluated analytically.
  However due to the increase in complexity, the number of components of
- systems have increased, leading to a large state space and thus very high
+ systems has increased, leading to a large state space and thus very high
  computational costs while analysing stochastic models.
- To improve the efficiency of this process, considerable effort has been
- devoted in finding the 
+ To improve the efficiency of this process, much effort has been devoted
+ to finding the 
 \emph on
 product-form
 \emph default
  solutions for the steady state probabilities of systems.
- The product-form solutions can be derived for joint steady state probabilities
- of interacting Markov processes by finding the the reversed process of
- the interaction.
+ The product-form solutions, when it exists, can be derived for the joint
+ steady state probabilities of interacting Markov processes by finding the
+ the reversed process of the interaction.
  Analytically, this involves solving Kolmogorov (balance) equations 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -726,7 +727,7 @@ key "PerformanceModellingHarrisonBook"
 \end_inset
 
  which can quickly cause state space explosion making the process computationall
-y expensive for systems composed of many components.
+y prohibitive for systems composed of many components.
 \end_layout
 
 \begin_layout Standard
@@ -764,8 +765,7 @@ key "GelenbeGNetworks"
 \end_inset
 
  with negative customers, with ease comparable to deriving product form
- solutions of simpler Jackson queuing networks or the differently specified
- Stochastic Petri Nets.
+ solutions of simpler Jackson queuing networks.
  This shows its compositional utility in validating product form solutions
  
 \begin_inset CommandInset citation
@@ -813,8 +813,9 @@ A parser which translates a pure PEPA description as text input into a format
 \end_layout
 
 \begin_layout Itemize
-A formalism for specifying SPNs as programmable input and a parser for translati
-ng that input into a format required by the implementation.
+A formalism for specifying a hierarchically defined subset of SPNs as programmab
+le input and a parser for translating that input into a format required
+ by the implementation.
 \end_layout
 
 \begin_layout Itemize
@@ -850,8 +851,8 @@ Chapter 3
 \series default
 describes the design choices and the implementation details of automating
  RCAT, starting from the parser - PEPA to MATLAB - and concluding with generatin
-g a system of rate equations and how to use them to generate product form
- solutions.
+g a system of rate equations and showing how to use them to generate product
+ form solutions.
 \end_layout
 
 \begin_layout Itemize
@@ -861,9 +862,9 @@ Chapter 4
 \series default
 describes the implementation details of extending RCAT to MARCAT and the
  implementation details of implementing RCAT for SPNs.
- It details parsing choices, a new formalism for the SPNs, how product form
- solutions are generated for SPNs and concludes with a design analysis for
- implementing RCAT for chains of interactions between queues.
+ It details parsing choices, a new formalism for the SPNs, showing how product
+ form solutions are generated for SPNs and concludes with a design analysis
+ for implementing RCAT for chains of interactions between queues.
 \end_layout
 
 \begin_layout Itemize
@@ -882,7 +883,7 @@ ions of the project.
 Chapter 6 
 \series default
 summarises the contributions of this project as a formal conclusion to the
- report and includes suggestions for extending the project in future.
+ report and includes suggestions for extending the project in the future.
 \end_layout
 
 \begin_layout Standard
@@ -899,8 +900,8 @@ Background
 \begin_layout Standard
 In this chapter, we will explore the theory required for the automatic generatio
 n of product forms by implementing the RCAT.
- We commence this chapter by describing theory behind Markov Chains, Markov
- Processes and Reversed Process as shown in 
+ We commence this chapter by describing the relavent theory behind Markov
+ Chains, Markov Processes and Reversed Process as shown in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "LectureNotes,PerformanceModellingHarrisonBook,MarkovChainsQueuesStewartBook"
@@ -12101,7 +12102,7 @@ Chains of interactions between queues
 \end_layout
 
 \begin_layout Standard
-This section provides a background on finding product form solutions on
+This section provides a background on finding product form solutions for
  chains of interactions between queues.
  `Product-forms in multi-way synchronisations' 
 \begin_inset CommandInset citation
@@ -12112,7 +12113,7 @@ key "Chains"
 
  is a paper which provides the detailed theory about the concepts and algorithm
  discussed here.
- Due to time constrains, an implementation of generating product-forms for
+ Due to time constrains, an implementation of generating product forms for
  chains of interactions could not be achieved, but we include a high level
  analysis of how it can be done by extending the current implementation
  of RCAT.
@@ -12130,10 +12131,10 @@ key "Chains"
 
 \end_inset
 
- talks about chains of interaction between queues; for example, negative
+ talks about chains of interactions between queues; for example, negative
  customers can move a customer from a non-empty queue to another queue chosen
  probabilistically thus triggering two (or more) queues (or constituent
- process) to change their states simultaneously, causing 
+ processes) to change their states simultaneously, causing 
 \emph on
 chains
 \emph default
@@ -12146,8 +12147,8 @@ key "Chains"
 
 \end_inset
 
- to specify the composed models as pairwise syntonisations and thus derive
- product-forms by an iterative application of RCAT.
+ to specify the composed models as successive pairwise synchronisations
+ and thus derive product forms by an iterative application of RCAT.
 \end_layout
 
 \begin_layout Subsubsection
@@ -12162,7 +12163,7 @@ key "Chains"
 
 \end_inset
 
- introduces a new PEPA formalism for representing PITs as follows:
+ introduces a new PEPA construction for representing PITs as follows:
 \end_layout
 
 \begin_layout Standard
@@ -12177,7 +12178,7 @@ The equation denotes a passive action with type
 \begin_inset Formula $a$
 \end_inset
 
- that takes process P to Q and instantaneously synchronises as active on
+ that takes process P to Q and instantaneously synchronises to active on
  type 
 \begin_inset Formula $b$
 \end_inset
@@ -12200,7 +12201,7 @@ key "Chains"
 \begin_inset Formula $a$
 \end_inset
 
-, removes its synchronisation from the model by replacing type 
+, removes its synchronisation from the model by replacing it by type 
 \begin_inset Formula $\tau$
 \end_inset
 
@@ -12222,8 +12223,7 @@ Design and analysis for implementation
 In our approach to implement RCAT for PITs, we divided the task into two
  parts - Parsing the PEPA descriptions and deriving rate equations.
  While we have not been able to implement this extension, the ideas for
- designing the implementation have been documented in the undermentioned
- sections.
+ designing the implementation have been documented in the following sections.
  Due to the complexity, the design view will be clearer by using an example
  
 \begin_inset CommandInset citation
@@ -12300,7 +12300,7 @@ In this network, we have queues
 \begin_inset Formula $Q$
 \end_inset
 
- exponential service times with parameters 
+ having exponential service times with parameters 
 \begin_inset Formula $\mu_{1}$
 \end_inset
 
@@ -12378,7 +12378,7 @@ Q_{0}= & (a_{12}^{-},\top).Q_{0}\\
 
 \begin_layout Standard
 From the PEPA description we can see that the only addition to the current
- PEPA to MATLAB parser would be parsing expressions of the type 
+ PEPA in the MATLAB parser would be parsing expressions of the type 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:PepaFormalismPIT"
@@ -12391,7 +12391,7 @@ reference "eq:PepaFormalismPIT"
 \end_inset
 
  with their rates as symbolic variables similar to any other action type.
- As the algorithm requires the PITs to be distinguish from normal action
+ As the algorithm requires the PITs to be distinguished from normal action
  types, we aim to create a map of all action types 
 \begin_inset Formula $a\to b$
 \end_inset
@@ -12425,7 +12425,7 @@ reference "eq:PepaFormalismPIT"
  Our current PEPA parser performs relabelling of such rates to avoid confusion
  while deriving rate equations.
  To relabel rates of PITs we use the same implementation but instead of
- relabelling rate of action type 
+ relabelling the rate of action type 
 \begin_inset Formula $a\to b$
 \end_inset
 
@@ -12480,10 +12480,8 @@ reference "eq:GenericAlgoRRCal"
 \end_layout
 
 \begin_layout Standard
-This concludes the implementation of MARCAT and RCAT for Stochastic Petri
- Nets.
- In the next chapter, we evaluate the usefulness and correctness of the
- implemented RCAT, MARCAT and RCAT for Stochastic Petri Nets.
+In the next chapter, we evaluate the usefulness and correctness of the implement
+ed RCAT, MARCAT and RCAT for Stochastic Petri Nets.
 \end_layout
 
 \begin_layout Chapter
@@ -14990,19 +14988,19 @@ Strengths and Weaknesses
 \end_layout
 
 \begin_layout Standard
-The strengths of the work accomplished as a part of this project include:
+The strengths of the work accomplished in this project include:
 \end_layout
 
 \begin_layout Itemize
-Automation of RCAT and Multiple Agent RCAT theorem using the generic algorithm
- detailed in section 2.6.2.3.
+Automation of the RCAT and Multiple Agent RCAT theorem using the generic
+ algorithm detailed in section 2.6.2.3.
  Due to the automation, complex queuing models with multiple synchronising
  processes can be analysed using RCAT with ease and their (new) product
  form solutions can be generated.
 \end_layout
 
 \begin_layout Itemize
-Automation of product form construction of Stochastic Petri Nets (SPNs).
+Automation of product form construction for Stochastic Petri Nets (SPNs).
  Due to this automation, complex and large SPNs can be analysed with ease
  as opposed to a tedious manual process.
 \end_layout
@@ -15028,7 +15026,7 @@ An easy command line API for product form construction of both queuing models
 \end_layout
 
 \begin_layout Standard
-Although majority of the project was a success, there are some limitations,
+Although the majority of the project was a success, there are some limitations,
  as listed below:
 \end_layout
 
@@ -15059,12 +15057,12 @@ Conclusions
 
 \begin_layout Standard
 To conclude this report, we summarise our achievements in terms of what
- we have learnt and if we have met our objectives.
+ we have learnt and consider if we have met our objectives.
  The goal of the project was to automate the construction of product forms
  in stochastic models.
- Using MATLAB, we have built a software which successfully implements the
- generic algorithm for RCAT and MARCAT, thus achieving automatic construction
- of rate equations used to derive product forms for queuing models.
+ Using MATLAB, we have built a software system which successfully implements
+ the generic algorithm for RCAT and MARCAT, thus achieving automatic constructio
+n of rate equations used to derive product forms for queuing models.
  We have as a part of the implementation developed a parser for queuing
  models defined in PEPA syntax.
  On correctly parsing the multiple process descriptions, the software has
@@ -15079,8 +15077,8 @@ To conclude this report, we summarise our achievements in terms of what
 Furthermore, we have also automated the rate equation generation (leading
  to product form construction) for Stochastic Petri Nets (SPNs) composed
  of Building Blocks in product form.
- A formalism has been provided for BBs and SPNs and parser has been implemented
- for the same.
+ A formalism has been provided for BBs and SPNs and a parser has been implemente
+d for the same.
  In addition to generating rate equations, we have also provided the functionali
 ty to check whether the conditions of the BB are in product form.
  While this implementation requires the knowledge of all BBs which a given
@@ -15103,7 +15101,7 @@ As a part of the report we have also included a small section on how the
 
 The software has been made with a hope to provide the first step towards
  mechanically analysing complex networks composed of both queuing models
- and SPNs and thus leading to the discovery new product form solutions.
+ and SPNs and thus leading to the discovery of new product form solutions.
 \end_layout
 
 \begin_layout Section
@@ -15145,7 +15143,7 @@ Automating identifying the BBs of a SPN
 
 \begin_layout Standard
 As mentioned before, the current implementation of RCAT for SPNs assumes
- the knowledge of all BBs which the given SPN is composed off.
+ the knowledge of all BBs which the given SPN is explicitly composed off.
  SPNs are typically large and complex which makes manually finding BBs tedious.
  An algorithm to automate the process is detailed in the paper 
 \begin_inset CommandInset citation
@@ -15156,8 +15154,8 @@ key "SPNs"
 
  and can be implemented as an extension to the current implementation.
  The algorithm can be extended to directly produce programmable input, so
- the user does not require to type out verbose BB input and will directly
- get the generated rate equations.
+ the user does not need to type out verbose BB input and will directly get
+ the generated rate equations.
 \end_layout
 
 \begin_layout Subsection
@@ -15169,7 +15167,8 @@ The implementation of RCAT and MARCAT in this project accommodates only
  networks composed of M/M/1 queues; so the steady state probabilities calculatio
 n automated by this implementation is applicable to only M/M/1 queues.
  The implementation would benefit greatly if this restriction were removed
- and will thus be able to analyse queuing models which go beyond M/M/1 queues.
+ and would thus be able to analyse queuing models which go beyond M/M/1
+ queues.
  As the program logic is loosely coupled, adding this functionality is possible
  without drastic changes to current implementation.
 \end_layout
