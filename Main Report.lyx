@@ -694,7 +694,7 @@ Motivation
 In the recent years, there has been an increase in the complexity of computer
  systems making performance models essential for understanding the behaviour
  of these systems.
- Such performance models help determine performance measures of computer
+ These performance models help determine performance measures of computer
  systems such as utilisation, throughput and help ensure that the systems
  can manage varying workload, that the utilisation of resources is fair
  and the list goes on.

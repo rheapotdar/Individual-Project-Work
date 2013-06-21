@@ -1,8 +1,4 @@
-% TELL THE USER : make labels standardised in terms of n only. Can k only
-% equal 1 or 2 (only 2 agents coop?) Rates have to be symbolic and HAVE to
-% begin with a letter to be parsed.
-% pi as input is given symbollically or as 'MM1 with arrival rate and
-% service rate functions.' TODO: need to make the sspd toggle
+% TELL THE USER : make labels standardised in terms of n only.
     
 
 function output = RCATscript( processList, coopString )
@@ -27,9 +23,10 @@ function output = RCATscript( processList, coopString )
     r = createRk( registeredProcesses, activeActionLabels, passiveActionLabels );
     % Validate syntax %
     validatePassiveAndActiveLabels( r );
-    %Step %
+    % Condition check %
     checkFirstRcatCondition( r, stateSpace );
     checkSecondRcatCondition( r, coopLabels );
+    checkThirdRcatCondition( coopLabels, r )
     %Step 2%
     reversedRates = storeReversedRates( coopLabels, r );
     %Step 3%
