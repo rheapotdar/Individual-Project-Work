@@ -12,7 +12,10 @@ function [ forwardSum, backwardSum ] = getAggregateArrivalAndServiceRates( proce
         if isTransitioningForwards( definition )
             forwardSum = forwardSum + definition('actionRate');
         else
-            backwardSum = backwardSum + definition('actionRate');
+            if ~(eval( definition('transitionToState') - ...
+                    definition('transitionFromState') ) == 0)
+                backwardSum = backwardSum + definition('actionRate');
+            end
         end
     end
 end
