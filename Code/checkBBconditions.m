@@ -31,7 +31,7 @@ function furtherConditionCheck( bb )
         serviceRate = outputs(o_keys{i});
         fprintf('%s = %s / %s\n', rho, char(arrivalRate), char(serviceRate) );        
         
-        if length( str ) == 2
+        if length( str ) == 2 && length( bb.inputs ) >= 3
             r1 = strcat( 'rho' , str(1) );
             r2 = strcat( 'rho' , str(2) );
             fprintf('%s = %s * %s\n', rho, r1, r2 );
