@@ -31,6 +31,6 @@ function output = RCATscript( processList, coopString )
     reversedRates = storeReversedRates( coopLabels, r );
     %Step 3%
     computeSolutionsOfPassiveActionRates( r, reversedRates );
-    output = r;
+    output = r
     
 end
